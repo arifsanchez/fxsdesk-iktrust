@@ -59,20 +59,9 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'oipolloi88',
-		'database' => 'fxsdesk',
-		'prefix' => '',
-		//'encoding' => 'utf8',
-	);
-
-	public $test = array(
-		'datasource' => 'Database/Mysql',
-		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'oipolloi88',
-		'database' => 'fxsdesk_test',
+		'login' => 'fannie',
+		'password' => 'Dt5xnuqo',
+		'database' => 'fxsdesk-iktrust-db1',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

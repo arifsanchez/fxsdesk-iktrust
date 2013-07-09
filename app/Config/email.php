@@ -39,7 +39,7 @@ class EmailConfig {
 
 	public $default = array(
 		'transport' => 'Mail',
-		'from' => 'you@localhost',
+		'from' => 'hello@fxsolut.io',
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);
