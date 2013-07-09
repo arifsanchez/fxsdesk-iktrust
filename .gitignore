@@ -40,5 +40,6 @@ Thumbs.db
 /private/*
 
 # Image Folder
+!/app/webroot/img/
 /app/webroot/img/publics/*
 /app/webroot/img/publics/gcache/*
