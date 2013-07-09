@@ -1,0 +1,158 @@
+UserMgmt is a User Management Plugin for cakephp 2.x
+Plugin Premium version 2.2 (stable)
+
+Hey wanna Demo ??? http://umpremium.ektanjali.com
+
+For All	featues	go to http://umpremium.ektanjali.com
+
+For Documentations go to http://developers.ektanjali.com/docs/umpremium/version2.2/index.html
+
+INSTALLATION
+------------
+
+1. Download the	latest version from http://www.ektanjali.com/products
+	go to yourapp/app/Plugin
+	extract	here
+	name it	Usermgmt
+
+2. Schema import (use your favorite sql	tool to	import the schema)
+
+	yourapp/app/Plugin/Usermgmt/Config/Schema/usermgmt-2.2.sql
+
+3. Configure your AppController	class
+	
+	you can download the app controller from http://www.ektanjali.com/products/downloadAppController/umpremium2.2
+	
+	or you can write manual code as following
+
+	Your yourapp/app/Controller/AppController.php should look like this:
+
+<?php
+	class AppController extends Controller {
+		var $helpers = array('Form', 'Html', 'Session',	'Js', 'Usermgmt.UserAuth', 'Usermgmt.Image');
+		public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth');
+		function beforeFilter() {
+			$this->userAuth();
+		}
+		private	function userAuth() {
+			$this->UserAuth->beforeFilter($this);
+		}
+		function beforeRender() {
+			if(!defined("SITE_URL")) {
+				UsermgmtInIt($this);
+			}
+		}
+	}
+?>
+
+4. (Optional)
+	This plugin is CSRF protection enabled and If you want to use CSRF in rest Application just use	Security component
+	for ex.	$components in Your yourapp/app/Controller/AppController.php should look like this:
+	public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth', 'Security');
+
+5. Enable Plugin in your bootstrap.php
+
+	yourapp/app/Config/bootstrap.php should	include	this line
+
+	// load	Usermgmt plugin	and apply plugin routes. Keep all the other plugins you	are using here
+	CakePlugin::loadAll(array(
+	    'Usermgmt' => array('routes' => true, 'bootstrap' => true),
+	));
+
+6. Download twitter bootstrap framework from http://twitter.github.com/bootstrap/
+extract this some where now do following-
+
+copy all css files for e.g. bootstrap.css, bootstrap.min.css, bootstrap-responsive.css, bootstrap-responsive.min.css
+and paste them in to yourapp/app/webroot/css directory
+
+copy all js files for e.g. bootstrap.js, bootstrap.min.js
+and paste them in to yourapp/app/webroot/js directory
+
+copy all images
+and paste them in to yourapp/app/webroot/img directory
+
+7. Add all plugin and bootstrap css and js files in head of your layout file, for example yourapp/app/View/Layouts/default.ctp
+	
+	you can download the default layout from http://www.ektanjali.com/products/downloadLayout/umpremium2.2
+	
+	or you can write manual code as following
+
+	Your yourapp/app/View/Layouts/default.php should look like this:
+
+    <!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<?php echo $this->Html->charset(); ?>
+		<title>Cakephp 2.x User Management Premium Plugin</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script language="javascript">
+			var urlForJs="<?php echo SITE_URL ?>";
+		</script>
+		<?php
+			echo $this->Html->meta('icon');
+			/* Bootstrap CSS */
+			echo $this->Html->css('bootstrap.css?q='.QRDN);
+			echo $this->Html->css('bootstrap-responsive.css?q='.QRDN);
+			
+			/* Usermgmt Plugin CSS */
+			echo $this->Html->css('/usermgmt/css/umstyle.css?q='.QRDN);
+			
+			/* Jquery UI CSS taken from http://jqueryui.com */
+			echo $this->Html->css('/usermgmt/css/jquery-ui-1.10.2.custom.min');
+			
+			/* Jquery Datetime addon taken from http://trentrichardson.com */
+			echo $this->Html->css('/usermgmt/css/jquery-ui-timepicker-addon');
+			
+			/* Jquery latest version taken from http://jquery.com */
+			echo $this->Html->script('/usermgmt/js/jquery-1.9.1');
+			
+			/* Jquery UI JS taken from http://jqueryui.com */
+			echo $this->Html->script('/usermgmt/js/jquery-ui-1.10.2.custom.min');
+			
+			/* Jquery Datetime addon taken from http://trentrichardson.com */
+			echo $this->Html->script('/usermgmt/js/jquery-ui-timepicker-addon');
+
+			/* Usermgmt Plugin JS */
+			echo $this->Html->script('/usermgmt/js/umscript.js?q='.QRDN);
+
+			/* Bootstrap JS */
+			echo $this->Html->script('bootstrap.js?q='.QRDN);
+
+
+			echo $this->fetch('meta');
+			echo $this->fetch('css');
+			echo $this->fetch('script');
+		?>
+	</head>
+	<body>
+		<div class="container">
+			<div class="content">
+				<?php echo $this->element('Usermgmt.message'); ?>
+				<?php echo $this->element('Usermgmt.message_validation'); ?>
+				<?php echo $this->fetch('content'); ?>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+	</body>
+	</html>
+
+8.	Download the tinymce editor from http://www.tinymce.com/download/download.php (at this time latest version is TinyMCE 3.5.8)
+	Extract	it some	where now go tinymce/jscripts directory	and copy tiny_mce folder and go	to yourapp/app/webroot/js directory and	paste here.
+
+	Download the ckeditor (full package) editor from http://ckeditor.com/download (at this time latest version is ckeditor 4.1)
+	Make sure you have downloaded full package
+	Extract	it some	where now go copy ckeditor folder and go to yourapp/app/webroot/js directory and paste here.
+
+9. Go to yourdomain/login
+Default	user name password
+username- admin
+password- 123456
+
+ALL DONE !
+
+HOW TO UPGRADE from Old	Version	to New Version
+
+see the	guide http://developers.ektanjali.com/docs/umpremium/version2.2/upgrade.html
+
+
+If you have any	problem	please do not hesitate to contact me at	chetanvarshney@gmail.com

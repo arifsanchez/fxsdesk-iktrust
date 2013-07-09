@@ -1,0 +1,71 @@
+ALTER TABLE `user_groups` ADD `parent_id` INT( 10 ) NOT NULL DEFAULT '0' AFTER `id`;
+ALTER TABLE `user_groups` ADD `description` TEXT NULL AFTER `alias_name`;
+UPDATE `users` SET `active` = '1', `email_verified` = '1' WHERE `id` =1;
+
+
+CREATE TABLE IF NOT EXISTS `user_emails` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `type` varchar(20) DEFAULT NULL,
+  `user_group_id` varchar(256) DEFAULT NULL,
+  `cc_to` text,
+  `from_name` varchar(200) DEFAULT NULL,
+  `from_email` varchar(200) DEFAULT NULL,
+  `subject` varchar(500) NOT NULL,
+  `message` text NOT NULL,
+  `sent_by` int(10) DEFAULT NULL,
+  `is_email_sent` int(1) NOT NULL DEFAULT '0',
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+
+CREATE TABLE IF NOT EXISTS `user_email_recipients` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `user_email_id` int(10) NOT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  `email_address` varchar(100) NOT NULL,
+  `is_email_sent` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+INSERT INTO `user_group_permissions` (`id`, `user_group_id`, `controller`, `action`, `allowed`) VALUES
+(null, 1, 'UserEmails', 'index', 1),
+(null, 1, 'UserEmails', 'send', 1),
+(null, 1, 'UserEmails', 'sendToUser', 1),
+(null, 1, 'UserEmails', 'sendReply', 1),
+(null, 1, 'UserEmails', 'view', 1),
+(null, 1, 'UserGroupPermissions', 'subPermissions', 1),
+(null, 1, 'UserGroupPermissions', 'getPermissions', 1),
+(null, 1, 'UserGroupPermissions', 'permissionGroupMatrix', 1),
+(null, 1, 'UserGroupPermissions', 'permissionSubGroupMatrix', 1),
+(null, 1, 'UserGroupPermissions', 'changePermission', 1),
+(null, 1, 'Users', 'indexSearch', 1),
+(null, 1, 'UserEmailSignatures', 'index', 1),
+(null, 1, 'UserEmailSignatures', 'add', 1),
+(null, 1, 'UserEmailSignatures', 'edit', 1),
+(null, 1, 'UserEmailSignatures', 'delete', 1),
+(null, 1, 'UserEmailTemplates', 'index', 1),
+(null, 1, 'UserEmailTemplates', 'add', 1),
+(null, 1, 'UserEmailTemplates', 'edit', 1),
+(null, 1, 'UserEmailTemplates', 'delete', 1);
+
+CREATE TABLE IF NOT EXISTS `user_email_templates` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `template_name` varchar(100) NOT NULL,
+  `header` text,
+  `footer` text,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS `user_email_signatures` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `signature_name` varchar(100) NOT NULL,
+  `signature` text,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
