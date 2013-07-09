@@ -58,12 +58,22 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'tunnel.pagodabox.com',
-		'login' => 'fannie',
-		'password' => 'Dt5xnuqo',
-		'database' => 'fxsdesk-iktrust-db1',
+		'host' => 'localhost',
+		'login' => 'root',
+		'password' => 'oipolloi88',
+		'database' => 'fxsdesk',
 		'prefix' => '',
-		'port' => '3306'
+		//'encoding' => 'utf8',
+	);
+
+	public $test = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
+		'host' => 'localhost',
+		'login' => 'root',
+		'password' => 'oipolloi88',
+		'database' => 'fxsdesk_test',
+		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
 }
