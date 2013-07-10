@@ -4,6 +4,9 @@
 # Windows
 Thumbs.db
 
+#Avoid sending local dev db config
+/app/Config/database.php
+
 # Cake TMP Dirs
 /app/tmp/*
 !/app/tmp/
