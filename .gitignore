@@ -36,10 +36,8 @@ Thumbs.db
 !/app/tmp/tests/
 !/app/tmp/tests/empty
 
-# Private Folder
-/private/*
-
 # Image Folder
-!/app/webroot/img/
+!/app/webroot/*
+!/app/webroot/img/*
 /app/webroot/img/publics/*
 /app/webroot/img/publics/gcache/*

@@ -44,7 +44,7 @@ class CkeditorHelper extends AppHelper {
 		if(!$this->_script){
 			// We don't want to add this every time, it's only needed once
 			$this->_script = true;
-			$this->Html->script('ckeditor/ckeditor', array('inline' => false));
+			$this->Html->script('plugins/ckeditor/ckeditor', array('inline' => false));
 		}
 
 		$textAreaId = $this->domId($fieldName);

@@ -47,7 +47,8 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 		<div class="um-form-row control-group">
 			<label class="control-label"><?php echo __('Email Signature');?></label>
 			<div class="controls">
-				<?php  echo $this->Ckeditor->textarea('UserEmailSignature.signature', array('type' => 'textarea', 'label' => false, 'div' => false), array('language'=>'en'), 'standard');?>
+				<?php  echo $this->Ckeditor->textarea('UserEmailSignature.signature', array('type' => 'textarea', 'label' => false, 'div' => false, 'style'=>'height:400px'), array('language'=>'en',
+'uiColor'=> '#CCFFCC'), 'standard');?>
 			</div>
 		</div>
 		<div class="um-button-row">

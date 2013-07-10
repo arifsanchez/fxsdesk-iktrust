@@ -63,7 +63,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 			<label class="control-label required"><?php echo __('Page Content');?></label>
 			<div class="controls">
 				<?php  echo $this->Ckeditor->textarea('Content.page_content', array('type' => 'textarea', 'label' => false, 'div' => false, 'style'=>'height:400px'), array('language'=>'en',
-'uiColor'=> '#14B8C4'), 'standard');?>
+'uiColor'=> '#880000'), 'standard');?>
 			</div>
 		</div>
 		<div class="um-button-row">
