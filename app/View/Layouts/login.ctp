@@ -8,7 +8,7 @@
 	<!-- Apple devices fullscreen -->
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	
-	<title>FXSdesk</title>
+	<title>IK Trust | FXSdesk</title>
 
 	<?php
 	#CSS

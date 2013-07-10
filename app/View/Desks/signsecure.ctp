@@ -1,4 +1,4 @@
-<h1><a href="#"><img src="../img/logo-big.png" alt="" class='retina-ready' width="59" height="49">FXS Desk</a></h1>
+<h1><a href="#"><img src="../img/logo-big.png" alt="" class='retina-ready' width="59" height="49">IK Trust</a></h1>
 <div class="login-body">
 	<h2>SIGN IN</h2>
 
