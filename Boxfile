@@ -30,7 +30,7 @@ web1:
     - "mkdir -p app/tmp/logs"
     - "mkdir -p app/tmp/sessions"
     - "mkdir -p app/tmp/tests"
-   php_zlib_output_compression: On
+  php_zlib_output_compression: On
 db1:
   name: fxsdesk-iktrust-db1
   type: mysql  
