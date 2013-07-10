@@ -62,9 +62,17 @@
 
 <body class='login theme-red'>
 	<div class="wrapper">
-		<?php echo $this->element('Usermgmt.message'); ?>
-		<?php echo $this->element('Usermgmt.message_validation'); ?>
-		<?php echo $this->fetch('content'); ?>
+		<div class="container-fluid" id="content">
+			<?php echo $this->element('Usermgmt.message'); ?>
+			<?php echo $this->element('Usermgmt.message_validation'); ?>
+			<?php echo $this->fetch('content'); ?>
+		</div>
+		<div id="footer" class="hidden-phone">
+			<p>
+				&copy; Copyright 2012 - 2013. IK Financial Markets Ltd .
+			</p>
+			<a href="#" class="gototop"><i class="icon-arrow-up"></i></a>
+		</div>
 	</div>
 	
 </body>
