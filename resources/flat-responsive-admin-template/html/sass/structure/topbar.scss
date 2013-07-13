@@ -13,6 +13,39 @@
 	}
 }
 
+.language-select{
+	.dropdown-menu{
+		a{
+			padding:6px 15px !important;
+
+			img{
+				top:11px;
+				left:11px;
+			}
+
+			span{
+				margin-left:20px;
+			}
+		}
+	}
+
+	a{
+		position: relative;
+		padding:9px 10px 11px 10px !important;
+
+		img{
+			margin-left: 0 !important;
+			position: absolute;
+			top:15px;
+			left:13px;
+		}
+
+		span{
+			margin-left:25px;
+		}
+	}
+}
+
 .theme-settings{
 	&>li{
 		padding:0;

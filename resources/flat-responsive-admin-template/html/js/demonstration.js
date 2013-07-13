@@ -1,144 +1,216 @@
-/*
-	FLAT Theme v.1.4
-	*/
+// FLAT Theme v2.0
 
-	var onlineUserArray = [255,455,385,759,500,284,581,684,255,455,385,759,500,293,585,342,684];
-	function getUser(){
-		var min = 300,
-		max = 600;
-		var currentRandom = Math.floor(Math.random() * (max - min + 1)) + min;
-		onlineUserArray.shift();
-		onlineUserArray.push(currentRandom);
+var onlineUserArray = [255,455,385,759,500,284,581,684,255,455,385,759,500,293,585,342,684];
+function getUser(){
+	var min = 300,
+	max = 600;
+	var currentRandom = Math.floor(Math.random() * (max - min + 1)) + min;
+	onlineUserArray.shift();
+	onlineUserArray.push(currentRandom);
 
-		return onlineUserArray;
-	}
+	return onlineUserArray;
+}
 
-	function createOnlineUserStatistic(){
-		var $el = $("#online-users"),
-		userData = getUser();
+function createOnlineUserStatistic(){
+	var $el = $("#online-users"),
+	userData = getUser();
 
-		$el.sparkline(userData, {
-			width: ($("#left").width() > 200) ? 100 : $("#left").width() - 100,
-			height: '25px',
-			enableTagOptions: true
-		});
+	$el.sparkline(userData, {
+		width: ($("#left").width() > 200) ? 100 : $("#left").width() - 100,
+		height: '25px',
+		enableTagOptions: true
+	});
 
-		$el.prev().html(userData[userData.length - 1]);
+	$el.prev().html(userData[userData.length - 1]);
 
+	setTimeout(function(){
+		createOnlineUserStatistic();
+	}, 2000);
+}
+
+var balanceArray = [255,455,385,759,500,284,581,684,255,455,385,759,500,293,585,342,684];
+function getBalance(){
+	var min = 500,
+	max = 750;
+	var currentRandom = Math.floor(Math.random() * (max - min + 1)) + min;
+	balanceArray.shift();
+	balanceArray.push(currentRandom);
+
+	return balanceArray;
+}
+
+function createBalanceStatistic(){
+	var $el = $("#balance"),
+	balanceData = getBalance();
+
+	$el.sparkline(balanceData, {
+		height: '25px',
+		barWidth: ($("#left").width() > 200) ? 4 : Math.floor(($("#left").width() - 100)/17)-1,
+		enableTagOptions: true
+	});
+
+	$el.prev().html("$"+balanceData[balanceData.length - 1]);
+
+	setTimeout(function(){
+		createBalanceStatistic();
+	}, 3000);
+}
+
+function moneyRandom(){
+	var $el = $(".stats .icon-money").parent().find(".details .big");
+	if($el.length > 0){
+		var current = parseFloat($el.html().replace("$","").replace(",",".")),
+		randomOperation = (Math.random() * 10),
+		operation = 1;
+		if(randomOperation >= 5){
+			operation = -1;
+		}
+		current += (operation) * Math.floor(Math.random() * 10);
+		$el.html("$"+current.toFixed(2).toString().replace(".",","));
 		setTimeout(function(){
-			createOnlineUserStatistic();
-		}, 2000);
+			moneyRandom();
+		}, 2500);
 	}
+}
 
-	var balanceArray = [255,455,385,759,500,284,581,684,255,455,385,759,500,293,585,342,684];
-	function getBalance(){
-		var min = 500,
-		max = 750;
-		var currentRandom = Math.floor(Math.random() * (max - min + 1)) + min;
-		balanceArray.shift();
-		balanceArray.push(currentRandom);
+function currentTime(){
+	var $el = $(".stats .icon-calendar").parent(),
+	currentDate = new Date(),
+	monthNames = [ "January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October", "November", "December" ],
+	dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
-		return balanceArray;
-	}
+	$el.find(".details .big").html(monthNames[currentDate.getMonth()] + " " + currentDate.getDate() + ", " + currentDate.getFullYear());
+	$el.find(".details span").last().html(dayNames[currentDate.getDay()] + ", " + currentDate.getHours()+":"+ ("0" + currentDate.getMinutes()).slice(-2));
+	setTimeout(function(){
+		currentTime();
+	}, 10000);
+}
 
-	function createBalanceStatistic(){
-		var $el = $("#balance"),
-		balanceData = getBalance();
+function showTooltip(x, y, contents) {
+	$('<div id="tooltip" class="flot-tooltip tooltip"><div class="tooltip-arrow"></div>' + contents + '</div>').css( {
+		top: y - 43,
+		left: x - 15,
+	}).appendTo("body").fadeIn(200);
+}
 
-		$el.sparkline(balanceData, {
-			height: '25px',
-			barWidth: ($("#left").width() > 200) ? 4 : Math.floor(($("#left").width() - 100)/17)-1,
-			enableTagOptions: true
-		});
-
-		$el.prev().html("$"+balanceData[balanceData.length - 1]);
-
-		setTimeout(function(){
-			createBalanceStatistic();
-		}, 3000);
-	}
-
-	function moneyRandom(){
-		var $el = $(".stats .icon-money").parent().find(".details .big");
-		if($el.length > 0){
-			var current = parseFloat($el.html().replace("$","").replace(",",".")),
-			randomOperation = (Math.random() * 10),
-			operation = 1;
-			if(randomOperation >= 5){
-				operation = -1;
-			}
-			current += (operation) * Math.floor(Math.random() * 10);
-			$el.html("$"+current.toFixed(2).toString().replace(".",","));
-			setTimeout(function(){
-				moneyRandom();
-			}, 2500);
+function randomFeed(){
+	var $el = $("#randomFeed");
+	var random = new Array('<span class="label"><i class="icon-plus"></i></span> <a href="#">John Doe</a> added a new photo','<span class="label label-success"><i class="icon-user"></i></span> New user registered','<span class="label label-info"><i class="icon-shopping-cart"></i></span> New order received','<span class="label label-warning"><i class="icon-comment"></i></span> <a href="#">John Doe</a> commented on <a href="#">News #123</a>'),
+	auto = $el.parents(".box").find(".box-title .actions .custom-checkbox").hasClass("checkbox-active");
+	var randomIndex = Math.floor(Math.random() * 4);
+	var newElement = random[randomIndex];
+	if(auto){
+		$el.prepend("<tr><td>"+newElement+"</td></tr>").find("tr").first().hide();
+		$el.find("tr").first().fadeIn();
+		if($el.find("tbody tr").length > 20){
+			$el.find("tbody tr").last().fadeOut(400, function(){
+				$(this).remove();
+			});
 		}
 	}
 
-	function currentTime(){
-		var $el = $(".stats .icon-calendar").parent(),
-		currentDate = new Date(),
-		monthNames = [ "January", "February", "March", "April", "May", "June",
-		"July", "August", "September", "October", "November", "December" ],
-		dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+	slimScrollUpdate($el.parents(".scrollable"));
 
-		$el.find(".details .big").html(monthNames[currentDate.getMonth()] + " " + currentDate.getDate() + ", " + currentDate.getFullYear());
-		$el.find(".details span").last().html(dayNames[currentDate.getDay()] + ", " + currentDate.getHours()+":"+ ("0" + currentDate.getMinutes()).slice(-2));
-		setTimeout(function(){
-			currentTime();
-		}, 10000);
-	}
+	setTimeout(function(){
+		randomFeed();
+	}, 3000);
+}
 
-	function showTooltip(x, y, contents) {
-		$('<div id="tooltip" class="flot-tooltip tooltip"><div class="tooltip-arrow"></div>' + contents + '</div>').css( {
-			top: y - 43,
-			left: x - 15,
-		}).appendTo("body").fadeIn(200);
-	}
 
-	function randomFeed(){
-		var $el = $("#randomFeed");
-		var random = new Array('<span class="label"><i class="icon-plus"></i></span> <a href="#">John Doe</a> added a new photo','<span class="label label-success"><i class="icon-user"></i></span> New user registered','<span class="label label-info"><i class="icon-shopping-cart"></i></span> New order received','<span class="label label-warning"><i class="icon-comment"></i></span> <a href="#">John Doe</a> commented on <a href="#">News #123</a>'),
-		auto = $el.parents(".box").find(".box-title .actions .custom-checkbox").hasClass("checkbox-active");
-		var randomIndex = Math.floor(Math.random() * 4);
-		var newElement = random[randomIndex];
-		if(auto){
-			$el.prepend("<tr><td>"+newElement+"</td></tr>").find("tr").first().hide();
-			$el.find("tr").first().fadeIn();
-			if($el.find("tbody tr").length > 20){
-				$el.find("tbody tr").last().fadeOut(400, function(){
-					$(this).remove();
-				});
+$(document).ready(function() {
+
+	if($(".usertable").length > 0){
+		var opt = {
+			"sPaginationType": "full_numbers",
+			"oLanguage":{
+				"sSearch": "<span>Search:</span> ",
+				"sInfo": "Showing <span>_START_</span> to <span>_END_</span> of <span>_TOTAL_</span> entries",
+				"sLengthMenu": "_MENU_ <span>entries per page</span>"
+			},
+			'sDom': "lfrtip",
+			'aoColumnDefs' : [
+			{ 'bSortable': false, 'aTargets': [0, 5] }
+			],
+			'oColVis': {
+				"buttonText": "Change columns <i class='icon-angle-down'></i>"
+			},
+			'oTableTools' : {
+				"sSwfPath": "js/plugins/datatable/swf/copy_csv_xls_pdf.swf"
 			}
-		}
+		};
+		var oTable = $('.usertable').dataTable(opt);
 
-		slimScrollUpdate($el.parents(".scrollable"));
-
-		setTimeout(function(){
-			randomFeed();
-		}, 3000);
+		$('.dataTables_filter input').attr("placeholder", "Search here...");
+		$(".dataTables_length select").wrap("<div class='input-mini'></div>").chosen({
+			disable_search_threshold: 9999999
+		});
+		$("#check_all").click(function(e){
+			$('input', oTable.fnGetNodes()).prop('checked',this.checked);
+		});
+		$.datepicker.setDefaults( {
+			dateFormat: "dd-mm-yy"
+		});
+		oTable.columnFilter({
+			"sPlaceHolder" : "head:after",
+			'sRangeFormat': "{from}{to}",
+			'aoColumns': [
+			null,
+			{
+				type: "text",
+			},
+			{
+				type: "text",
+			},
+			{
+				type: "select",
+				bCaseSensitive:true,
+				values: ['Active', 'Inactive', 'Disabled']
+			},
+			{
+				type: "date-range"
+			},
+			null
+			]
+		});
+		$(".usertable").css("width", '100%');
 	}
 
+	var $left = $("#left");
 
-	$(document).ready(function() {
+	$(".table-user .icon .btn").click(function(e){
+		e.preventDefault();
+		var $el = $(this);
+		var $parent = $el.parents("tr");
+		var name = $parent.find('td').eq(1).text(),
+		img = $parent.find("td").eq(0).find("img").attr("src");
+		var email = name + "@randomemailgenerated.com";
+		$("#user-infos").text(name);
+		$("#modal-user .dl-horizontal dd").eq(0).text(name);
+		$("#modal-user .dl-horizontal dd").eq(1).text(email);
+		$("#modal-user .span2 img").attr("src", img);
+		$("#modal-user").modal("show");
+	});
 
-		var $left = $("#left");
+	if($(".username-check").length > 0){
+		//ajax mocks
+		$.mockjaxSettings.responseTime = 500; 
 
-		$(".table-user .icon .btn").click(function(e){
-			e.preventDefault();
-			var $el = $(this);
-			var $parent = $el.parents("tr");
-			var name = $parent.find('td').eq(1).text(),
-			img = $parent.find("td").eq(0).find("img").attr("src");
-			var email = name + "@randomemailgenerated.com";
-			$("#user-infos").text(name);
-			$("#modal-user .dl-horizontal dd").eq(0).text(name);
-			$("#modal-user .dl-horizontal dd").eq(1).text(email);
-			$("#modal-user .span2 img").attr("src", img);
-			$("#modal-user").modal("show");
+		$.mockjax({
+			url: '/check',
+			contentType: "text/json",
+			response: function(settings) {
+				this.responseText = {available: "true"};
+				if(settings.data.username == ""){
+					this.responseText = {
+						available: 'false'
+					};
+				}
+			}
 		});
+	}
 
-		if($("#user").length > 0){
+	if($("#user").length > 0){
 		//ajax mocks
 		$.mockjaxSettings.responseTime = 500; 
 
@@ -294,6 +366,61 @@ if($("#online-users").length > 0){
 	  		order: 3
 	  	}
 	  });
+
+	  if($("#flot-spider").length > 0){
+	  	var d1 = [ [0,40], [1,50], [2,80], [3,70], [4,60] ];
+	  	var d2 = [ [0,60], [1,45], [2,60], [3,60], [4,95] ];
+	  	var d3 = [ [0,50], [1,40], [2,50], [3,95], [4,30] ];
+
+
+	  	data = [{ label: "Pies", color:"green",data: d1, spider: {show: true, lineWidth:12} },
+	  	{ label: "Apples",data: d2, spider: {show: true} },
+	  	{ label: "Cherries",data: d3, spider: {show: true} }];
+
+	  	$.plot($("#flot-spider"), data, 
+	  	{
+	  		series: {
+	  			spider:{
+	  				active: true,
+	  				spiderSize: 0.8,
+	  				legs: { 
+	  					data: [{label: "OEE"},{label: "MOE"},{label: "OER"},{label: "OEC"},{label: "Quality"}],
+	  					font: "14px Open Sans"
+	  				}
+	  			}
+	  		},
+	  		grid: {
+	  			mode: 'spider'
+	  		}
+	  	});
+	  }
+	  if($("#flot-radar").length > 0){
+	  	var d1 = [ [0,40], [1,50], [2,80], [3,70], [4,60] ];
+	  	var d2 = [ [0,60], [1,45], [2,60], [3,60], [4,95] ];
+	  	var d3 = [ [0,50], [1,40], [2,50], [3,95], [4,30] ];
+
+
+	  	data = [{ label: "Pies", color:"green",data: d1, spider: {show: true, lineWidth:12} },
+	  	{ label: "Apples",data: d2, spider: {show: true} },
+	  	{ label: "Cherries",data: d3, spider: {show: true} }];
+
+	  	$.plot($("#flot-radar"), data, 
+	  	{
+	  		series: {
+	  			spider:{
+	  				active: true,
+	  				spiderSize: 0.8,
+	  				legs: { 
+	  					data: [{label: "OEE"},{label: "MOE"},{label: "OER"},{label: "OEC"},{label: "Quality"}],
+	  					font: "14px Open Sans"
+	  				}
+	  			}
+	  		},
+	  		grid: {
+	  			mode: 'radar'
+	  		}
+	  	});
+	  }
 
 	  if($("#flot-2").length > 0){
 	  	var sin = [], cos = [];
@@ -736,7 +863,7 @@ if($('.flot-line').length > 0){
 	  	});
 }
 // Calendar
-if($(".calendar").length > 0)
+if($(".calendar").length > 0 && !$(".calendar").parent().hasClass("daterangepicker"))
 {
 	var date = new Date();
 	var d = date.getDate();

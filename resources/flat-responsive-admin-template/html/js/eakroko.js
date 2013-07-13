@@ -1,15 +1,6 @@
-/*
-	FLAT Theme v.1.4
-	*/
-
-/*
-	* eakroko.js - Copyright 2013 by Ernst-Andreas Krokowski
-	* Framework for themeforest themes
-
-	* Date: 2013-01-01
-	*/
-	(function( $ ){
-		$.fn.retina = function(retina_part) {
+// FLAT Theme v2.0
+(function( $ ){
+	$.fn.retina = function(retina_part) {
 		// Set default retina file part to '-2x'
 		// Eg. some_image.jpg will become some_image-2x.jpg
 		var settings = {'retina_part': '-2x'};
@@ -167,13 +158,21 @@ $(document).ready(function() {
 	}
 	// tag-input
 	if($(".tagsinput").length > 0){
-		$('.tagsinput').tagsInput({width:'auto', height:'auto'});
+		$('.tagsinput').each(function(e){
+			$(this).tagsInput({width:'auto', height:'auto'});
+		});
 	}
 
 	// datepicker
 	if($('.datepick').length > 0){
 		$('.datepick').datepicker();
 	}
+
+	// daterangepicker
+	if($('.daterangepick').length > 0){
+		$('.daterangepick').daterangepicker();
+	}
+
 	// timepicker
 	if($('.timepick').length > 0){
 		$('.timepick').timepicker({
@@ -245,7 +244,6 @@ $(document).ready(function() {
 			opt.debugLevel = 0;
 			if($el.hasClass("filetree-callbacks")){
 				opt.onActivate = function(node){
-					console.log(node.data);
 					$(".activeFolder").text(node.data.title);
 					$(".additionalInformation").html("<ul style='margin-bottom:0;'><li>Key: "+node.data.key+"</li><li>is folder: "+node.data.isFolder+"</li></ul>");
 				};
@@ -386,7 +384,8 @@ $(document).ready(function() {
 						"sSearch": "<span>Search:</span> ",
 						"sInfo": "Showing <span>_START_</span> to <span>_END_</span> of <span>_TOTAL_</span> entries",
 						"sLengthMenu": "_MENU_ <span>entries per page</span>"
-					}
+					},
+					'sDom': "lfrtip"
 				};
 				if($(this).hasClass("dataTable-noheader")){
 					opt.bFilter = false;
@@ -402,34 +401,37 @@ $(document).ready(function() {
 					for (var i = 0; i < column.length; i++) {
 						column[i] = parseInt(column[i]);
 					};
-					opt.aoColumnDefs =  [
-					{ 'bSortable': false, 'aTargets': column }
-					];
+					opt.aoColumnDefs =  [{ 
+						'bSortable': false, 
+						'aTargets': column 
+					}];
 				}
 				if($(this).hasClass("dataTable-scroll-x")){
 					opt.sScrollX = "100%";
 					opt.bScrollCollapse = true;
+					$(window).resize(function(){
+						oTable.fnAdjustColumnSizing();
+					});
 				}
 				if($(this).hasClass("dataTable-scroll-y")){
 					opt.sScrollY = "300px";
 					opt.bPaginate = false;
 					opt.bScrollCollapse = true;
+					$(window).resize(function(){
+						oTable.fnAdjustColumnSizing();
+					});
 				}
 				if($(this).hasClass("dataTable-reorder")){
-					opt.sDom = "Rlfrtip";
+					opt.sDom = "R"+opt.sDom;
 				}
 				if($(this).hasClass("dataTable-colvis")){
-					opt.sDom = 'C<"clear">lfrtip';
+					opt.sDom = "C"+opt.sDom;
 					opt.oColVis = {
 						"buttonText": "Change columns <i class='icon-angle-down'></i>"
 					};
 				}
 				if($(this).hasClass('dataTable-tools')){
-					if($(this).hasClass("dataTable-colvis")){
-						opt.sDom= 'TC<"clear">lfrtip';
-					} else {
-						opt.sDom= 'T<"clear">lfrtip';
-					}
+					opt.sDom= "T"+opt.sDom;
 					opt.oTableTools = {
 						"sSwfPath": "js/plugins/datatable/swf/copy_csv_xls_pdf.swf"
 					};
@@ -438,13 +440,19 @@ $(document).ready(function() {
 					opt.sScrollY = "300px";
 					opt.bDeferRender = true;
 					if($(this).hasClass("dataTable-tools")){
-						opt.sDom = 'T<"clear">frtiS';
+						opt.sDom = 'TfrtiS';
 					} else {
 						opt.sDom = 'frtiS';
 					}
 					opt.sAjaxSource = "js/plugins/datatable/demo.txt";
 				}
+				if($(this).hasClass("dataTable-grouping") && $(this).attr("data-grouping") == "expandable"){
+					opt.bLengthChange = false;
+					opt.bPaginate = false;
+				}
+
 				var oTable = $(this).dataTable(opt);
+				$(this).css("width", '100%');
 				$('.dataTables_filter input').attr("placeholder", "Search here...");
 				$(".dataTables_length select").wrap("<div class='input-mini'></div>").chosen({
 					disable_search_threshold: 9999999
@@ -460,6 +468,17 @@ $(document).ready(function() {
 						"sPlaceHolder" : "head:after"
 					});
 				}
+				if($(this).hasClass("dataTable-grouping")){
+					var rowOpt = {};
+
+					if($(this).attr("data-grouping") == 'expandable'){
+						rowOpt.bExpandableGrouping = true;
+					}
+					oTable.rowGrouping(rowOpt);
+				}
+
+				oTable.fnDraw();
+				oTable.fnAdjustColumnSizing();
 			}
 		});
 }
@@ -524,6 +543,7 @@ if($(".ckeditor").length > 0){
 }
 
 $(".retina-ready").retina("@2x");
+
 });
 
 $(window).resize(function() {

@@ -2,6 +2,26 @@
 @for $i from 1 through length($colornames){
 	$currentColorName: nth($colornames,$i);
 	$currentColor: nth($colors,$i);
+	.accordion-widget .accordion-group{
+		&.#{$currentColorName}{
+			border:2px solid $currentColor;
+			&:hover{
+				border-color: darken($currentColor, 10%) !important;
+			}
+			.accordion-toggle{
+				background:$currentColor !important;
+				@if lightness($currentColor) > lightness(#999){
+					color:#333;
+				} @else {
+					color:#fff;
+				}
+
+				&:hover{
+					background: darken($currentColor, 10%) !important;
+				}
+			}
+		}
+	}
 	.font-#{$currentColorName}{
 		color: $currentColor;
 	}
@@ -110,6 +130,11 @@
 		}
 	}
 	.theme-#{$currentColorName}{
+		.daterangepicker{
+			.active{
+				background: $currentColor;
+			}
+		}
 		.mobile-sidebar-toggle{
 			color:#fff;
 		}

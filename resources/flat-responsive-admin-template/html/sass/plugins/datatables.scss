@@ -199,6 +199,15 @@ span.ColVis_radio {
 			text-decoration:none;
 			cursor:pointer;
 
+			&.paginate_button_disabled{
+				color:#999;
+
+				&:hover{
+					background: #eee;
+					cursor:default;
+				}
+			}
+
 			&:hover{
 				background:#ddd;
 			}

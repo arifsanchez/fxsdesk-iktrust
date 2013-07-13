@@ -132,6 +132,11 @@
 						To hide the sidebar by default just add the class <code>nav-hidden</code> to the <code>#content</code> element.
 					</p>
 					<pre class='prettyprint'>&lt;div class=&quot;container-fluid nav-hidden&quot; id=&quot;content&quot;&gt;</pre>
+					<h4>Sidebar right side</h4>
+					<p>
+						If you want to have the sidebar on the right hand side just use the snippet below.
+					</p>
+					<pre class="prettyprint">&lt;body class="sidebar-right"&gt;</pre>
 					<h4>Topbar fixed</h4>
 					<p>
 						If you want the topbar fixed at the top you need to use this body element
@@ -186,6 +191,11 @@
   &lt;/div&gt;
 &lt;/div&gt;</pre>
 					</p>
+					<h4>Widget small / condensed</h4>
+					<p>Since FLAT v2.0 you can use small widgets and also condensed widgets if you don't want to use the big (default) ones. Simply add the class <code>box-small</code> or <code>box-condensed</code> to the <code>box</code> element.</p>
+					<h4>Widget closed by default</h4>
+					<p>To hide the widget content by default use the following code below and be sure to change the action-arrow in the widget title.</p>
+					<pre class="prettyprint">&lt;div class=&quot;box-content&quot; style=&quot;display: none;&quot;&gt;&lt;/div&gt;</pre>
 					<h4>Widget without padding</h4>
 					<p>Sometimes you want the box content to have no padding. For example with tables. If so, simply add the class <code>nopadding</code> to the <code>box-content</code> container. It should look like this: <pre class='prettyprint'>&lt;div class=&quot;box&quot;&gt;
   &lt;!-- ...box-title... --&gt;
@@ -755,6 +765,14 @@ Every step needs its unique id. Inside the step is the step overview (<code>wiza
 					<h4>Datepicker</h4>
 					<p>
 						<pre class='prettyprint'>&lt;input type=&quot;text&quot; name=&quot;textfield&quot; id=&quot;textfield&quot; class=&quot;input-medium datepick&quot;&gt;</pre>
+					</p>
+					<h4>Daterange picker</h4>
+					<p>
+						<pre class='prettyprint'>&lt;input type=&quot;text&quot; name=&quot;textfield&quot; id=&quot;textfield&quot; class=&quot;input-large daterangepick&quot;&gt;</pre>
+					</p>
+					<h4>Username available?</h4>
+					<p>
+						If you want to use the username available form element you have to adjust some things in javascript. In the application.js on line #296 you will find an AJAX request (jQuerys $.post()). You have to adjust the URL which is currently "/check" (uses mockjax to simulate an answer). Your URL should return JSON with the key 'available'. That should be "true" if the username is free and otherwise it will show an error. Of course you could change that behaviour if you have the js skills.
 					</p>
 					<h4>Colorpicker</h4>
 					<p>

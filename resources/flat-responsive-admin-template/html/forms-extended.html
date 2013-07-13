@@ -34,6 +34,8 @@
 	<link rel="stylesheet" href="css/plugins/colorpicker/colorpicker.css">
 	<!-- Datepicker -->
 	<link rel="stylesheet" href="css/plugins/datepicker/datepicker.css">
+	<!-- Daterangepicker -->
+	<link rel="stylesheet" href="css/plugins/daterangepicker/daterangepicker.css">
 	<!-- Plupload -->
 	<link rel="stylesheet" href="css/plugins/plupload/jquery.plupload.queue.css">
 	<!-- select2 -->
@@ -71,6 +73,9 @@
 	<script src="js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
 	<!-- Datepicker -->
 	<script src="js/plugins/datepicker/bootstrap-datepicker.js"></script>
+	<!-- Daterangepicker -->
+	<script src="js/plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="js/plugins/daterangepicker/moment.min.js"></script>
 	<!-- Timepicker -->
 	<script src="js/plugins/timepicker/bootstrap-timepicker.min.js"></script>
 	<!-- Colorpicker -->
@@ -94,6 +99,8 @@
 	<!-- complexify -->
 	<script src="js/plugins/complexify/jquery.complexify-banlist.min.js"></script>
 	<script src="js/plugins/complexify/jquery.complexify.min.js"></script>
+	<!-- Mockjax -->
+	<script src="js/plugins/mockjax/jquery.mockjax.js"></script>
 
 
 	<!-- Theme framework -->
@@ -239,118 +246,110 @@
 						</ul>
 					</li>
 					<li>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
-						<span>Pages</span>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="more-error.html">Error pages</a>
-						</li>
-						<li class='dropdown-submenu'>
-							<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Shop</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="more-shop-list.html">List view</a>
-								</li>
-								<li>
-									<a href="more-shop-product.html">Product view</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="more-pricing.html">Pricing tables</a>
-						</li>
-						<li>
-							<a href="more-faq.html">FAQ</a>
-						</li>
-						<li>
-							<a href="more-invoice.html">Invoice</a>
-						</li>
-						<li>
-							<a href="more-userprofile.html">User profile</a>
-						</li>
-						<li>
-							<a href="more-searchresults.html">Search results</a>
-						</li>
-						<li>
-							<a href="more-login.html">Login</a>
-						</li>
-						<li>
-							<a href="more-locked.html">Lock screen</a>
-						</li>
-						<li>
-							<a href="more-email.html">Email templates</a>
-						</li>
-						<li>
-							<a href="more-blank.html">Blank page</a>
-						</li>
-						<li class='dropdown-submenu'>
-							<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Another submenu</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">This is level 3</a>
-								</li>
-								<li>
-									<a href="#">Another page here</a>
-								</li>
-								<li class='dropdown-submenu'>
-									<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Go to level 4</a>
-									<ul class="dropdown-menu">
-										<li>
-											<a href="#">This is level 4</a>
-										</li>
-										<li>
-											<a href="#">Unlimited levels</a>
-										</li>
-										<li>
-											<a href="#">Easy to use</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
-						<span>Layouts</span>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="layouts-sidebar-hidden.html">Default hidden sidebar</a>
-						</li>
-						<li>
-							<a href="layouts-color.html">Different default color</a>
-						</li>
-						<li>
-							<a href="layouts-fixed.html">Fixed layout</a>
-						</li>
-						<li>
-							<a href="layouts-fixed-topside.html">Fixed topbar and sidebar</a>
-						</li>
-						<li class='dropdown-submenu'>
-							<a href="#">Mobile sidebar</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="layouts-mobile-slide.html">Slide</a>
-								</li>
-								<li>
-									<a href="layouts-mobile-button.html">Button</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="layouts-footer.html">Footer</a>
-						</li>
-					</ul>
-				</li>
+						<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+							<span>Pages</span>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="more-error.html">Error pages</a>
+							</li>
+							<li class='dropdown-submenu'>
+								<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Shop</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="more-shop-list.html">List view</a>
+									</li>
+									<li>
+										<a href="more-shop-product.html">Product view</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="more-pricing.html">Pricing tables</a>
+							</li>
+							<li>
+								<a href="more-faq.html">FAQ</a>
+							</li>
+							<li>
+								<a href="more-invoice.html">Invoice</a>
+							</li>
+							<li>
+								<a href="more-userprofile.html">User profile</a>
+							</li>
+							<li>
+								<a href="more-searchresults.html">Search results</a>
+							</li>
+							<li>
+								<a href="more-login.html">Login</a>
+							</li>
+							<li>
+								<a href="more-locked.html">Lock screen</a>
+							</li>
+							<li>
+								<a href="more-email.html">Email templates</a>
+							</li>
+							<li>
+								<a href="more-blank.html">Blank page</a>
+							</li>
+							<li class='dropdown-submenu'>
+								<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Blog</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="more-blog-list.html">List big image</a>
+									</li>
+									<li>
+										<a href="more-blog-list-small.html">List small image</a>
+									</li>
+									<li>
+										<a href="more-blog-post.html">Post</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+							<span>Layouts</span>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="layouts-sidebar-hidden.html">Default hidden sidebar</a>
+							</li>
+							<li>
+								<a href="layouts-sidebar-right.html">Sidebar right side</a>
+							</li>
+							<li>
+								<a href="layouts-color.html">Different default color</a>
+							</li>
+							<li>
+								<a href="layouts-fixed.html">Fixed layout</a>
+							</li>
+							<li>
+								<a href="layouts-fixed-topside.html">Fixed topbar and sidebar</a>
+							</li>
+							<li class='dropdown-submenu'>
+								<a href="#">Mobile sidebar</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="layouts-mobile-slide.html">Slide</a>
+									</li>
+									<li>
+										<a href="layouts-mobile-button.html">Button</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="layouts-footer.html">Footer</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 				<div class="user">
 					<ul class="icon-nav">
 						<li class='dropdown'>
-							<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-envelope-alt"></i><span class="label label-lightred">4</span></a>
+							<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-envelope"></i><span class="label label-lightred">4</span></a>
 							<ul class="dropdown-menu pull-right message-ul">
 								<li>
 									<a href="#">
@@ -447,9 +446,23 @@
 								</li>
 							</ul>
 						</li>
-						<li>
-							<a href="more-locked.html" class='lock-screen' rel='tooltip' title="Lock screen" data-placement="bottom"><i class="icon-lock"></i></a>
-						</li>
+						<li class='dropdown language-select'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><img src="img/demo/flags/us.gif" alt=""><span>US</span></a>
+						<ul class="dropdown-menu pull-right">
+							<li>
+								<a href="#"><img src="img/demo/flags/br.gif" alt=""><span>Brasil</span></a>
+							</li>
+							<li>
+								<a href="#"><img src="img/demo/flags/de.gif" alt=""><span>Deutschland</span></a>
+							</li>
+							<li>
+								<a href="#"><img src="img/demo/flags/es.gif" alt=""><span>España</span></a>
+							</li>
+							<li>
+								<a href="#"><img src="img/demo/flags/fr.gif" alt=""><span>France</span></a>
+							</li>
+						</ul>
+					</li>
 					</ul>
 					<div class="dropdown">
 						<a href="#" class='dropdown-toggle' data-toggle="dropdown">John Doe <img src="img/demo/user-avatar.jpg" alt=""></a>
@@ -850,6 +863,18 @@
 								</div>
 								<div class="box-content nopadding">
 									<form action="#" method="POST" class='form-horizontal form-bordered' enctype='multipart/form-data'>
+										<div class="control-group">
+											<label for="textfield" class="control-label">Username availability</label>
+											<div class="controls">
+												<div class="input-append">
+													<input type="text" class='username-check'>
+													<a href="#" class="btn add-on username-check-force"><i class="icon-refresh"></i></a>
+												</div>
+												<span class="help-block">
+													Please enter a username
+												</span>
+											</div>
+										</div>
 										<div class="control-group">
 											<label for="textfield" class="control-label">Password strength</label>
 											<div class="controls">
@@ -1590,6 +1615,13 @@
 											</div>
 										</div>
 										<div class="control-group">
+											<label for="textfield" class="control-label">Date-Range picker</label>
+											<div class="controls">
+												<input type="text" name="textfield" id="textfield" class="input-large daterangepick">
+											</div>
+										</div>
+
+										<div class="control-group">
 											<label for="timepicker" class="control-label">Timepicker</label>
 											<div class="controls">
 												<div class="bootstrap-timepicker">
@@ -1647,9 +1679,10 @@
 						</div>
 					</div>
 				</div>
-			</div></div>
-			
-		</body>
+			</div>
+		</div>
+		
+	</body>
 
-		</html>
+	</html>
 

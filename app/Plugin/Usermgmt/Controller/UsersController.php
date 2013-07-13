@@ -134,6 +134,9 @@ class UsersController extends UserMgmtAppController {
 	 * @return array
 	 */
 	public function index() {
+
+		$this->layout = 'staff.dashboard';
+		
 		$this->paginate = array('limit' => 10, 'order'=>'User.id desc', 'recursive'=>0);
 		$users = $this->paginate('User');
 		$i=0;
@@ -1258,7 +1261,7 @@ class UsersController extends UserMgmtAppController {
 	public function dashboard() {
 		/* Do here something for user */
 
-		$this->layout = 'traders.dashboard';
+		$this->layout = 'staff.dashboard';
 	}
 	/**
 	 * It is used to activate or deactivate from all users page

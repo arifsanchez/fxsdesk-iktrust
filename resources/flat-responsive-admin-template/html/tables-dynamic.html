@@ -39,6 +39,7 @@
 	<script src="js/plugins/jquery-ui/jquery.ui.mouse.min.js"></script>
 	<script src="js/plugins/jquery-ui/jquery.ui.resizable.min.js"></script>
 	<script src="js/plugins/jquery-ui/jquery.ui.sortable.min.js"></script>
+	<script src="js/plugins/jquery-ui/jquery.ui.datepicker.min.js"></script>
 	<!-- slimScroll -->
 	<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<!-- Bootstrap -->
@@ -48,9 +49,10 @@
 	<!-- dataTables -->
 	<script src="js/plugins/datatable/jquery.dataTables.min.js"></script>
 	<script src="js/plugins/datatable/TableTools.min.js"></script>
-	<script src="js/plugins/datatable/ColReorder.min.js"></script>
+	<script src="js/plugins/datatable/ColReorderWithResize.js"></script>
 	<script src="js/plugins/datatable/ColVis.min.js"></script>
 	<script src="js/plugins/datatable/jquery.dataTables.columnFilter.js"></script>
+	<script src="js/plugins/datatable/jquery.dataTables.grouping.js"></script>
 	<!-- Chosen -->
 	<script src="js/plugins/chosen/chosen.jquery.min.js"></script>
 
@@ -245,27 +247,16 @@
 							<a href="more-blank.html">Blank page</a>
 						</li>
 						<li class='dropdown-submenu'>
-							<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Another submenu</a>
+							<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Blog</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="#">This is level 3</a>
+									<a href="more-blog-list.html">List big image</a>
 								</li>
 								<li>
-									<a href="#">Another page here</a>
+									<a href="more-blog-list-small.html">List small image</a>
 								</li>
-								<li class='dropdown-submenu'>
-									<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Go to level 4</a>
-									<ul class="dropdown-menu">
-										<li>
-											<a href="#">This is level 4</a>
-										</li>
-										<li>
-											<a href="#">Unlimited levels</a>
-										</li>
-										<li>
-											<a href="#">Easy to use</a>
-										</li>
-									</ul>
+								<li>
+									<a href="more-blog-post.html">Post</a>
 								</li>
 							</ul>
 						</li>
@@ -279,6 +270,9 @@
 					<ul class="dropdown-menu">
 						<li>
 							<a href="layouts-sidebar-hidden.html">Default hidden sidebar</a>
+						</li>
+						<li>
+							<a href="layouts-sidebar-right.html">Sidebar right side</a>
 						</li>
 						<li>
 							<a href="layouts-color.html">Different default color</a>
@@ -309,7 +303,7 @@
 			<div class="user">
 				<ul class="icon-nav">
 					<li class='dropdown'>
-						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-envelope-alt"></i><span class="label label-lightred">4</span></a>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-envelope"></i><span class="label label-lightred">4</span></a>
 						<ul class="dropdown-menu pull-right message-ul">
 							<li>
 								<a href="#">
@@ -406,8 +400,22 @@
 							</li>
 						</ul>
 					</li>
-					<li>
-						<a href="more-locked.html" class='lock-screen' rel='tooltip' title="Lock screen" data-placement="bottom"><i class="icon-lock"></i></a>
+					<li class='dropdown language-select'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><img src="img/demo/flags/us.gif" alt=""><span>US</span></a>
+						<ul class="dropdown-menu pull-right">
+							<li>
+								<a href="#"><img src="img/demo/flags/br.gif" alt=""><span>Brasil</span></a>
+							</li>
+							<li>
+								<a href="#"><img src="img/demo/flags/de.gif" alt=""><span>Deutschland</span></a>
+							</li>
+							<li>
+								<a href="#"><img src="img/demo/flags/es.gif" alt=""><span>España</span></a>
+							</li>
+							<li>
+								<a href="#"><img src="img/demo/flags/fr.gif" alt=""><span>France</span></a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 				<div class="dropdown">
@@ -979,6 +987,349 @@
 				</div>
 				<div class="row-fluid">
 					<div class="span12">
+						<div class="box box-color box-bordered">
+							<div class="box-title">
+								<h3>
+									Advanced filtering
+								</h3>
+							</div>
+							<div class="box-content nopadding">
+								<table class="table table-hover table-nomargin table-bordered usertable">
+									<thead>
+										<tr class='thefilter'>
+											<th class='with-checkbox'></th>
+											<th>Username</th>
+											<th>Email</th>
+											<th class='hidden-350'>Status</th>
+											<th class='hidden-1024'>Member since</th>
+											<th class='hidden-480'>Options</th>
+										</tr>
+										<tr>
+											<th class='with-checkbox'><input type="checkbox" name="check_all" id="check_all"></th>
+											<th>Username</th>
+											<th>Email</th>
+											<th class='hidden-350'>Status</th>
+											<th class='hidden-1024'>Member since</th>
+											<th class='hidden-480'>Options</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>John Doe</td>
+											<td>john.doe@johndoe.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>03-07-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Jane Doe</td>
+											<td>jane.doe@johndoe.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>02-07-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Max Mustermann</td>
+											<td>max.mustermann@maxmustermann.com</td>
+											<td class='hidden-350'><span class="label label-lightred">Inactive</span></td>
+											<td class='hidden-1024'>01-07-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Mary P. Hendrix</td>
+											<td>mary.p@maryhendrix.com</td>
+											<td class='hidden-350'><span class="label">Disabled</span></td>
+											<td class='hidden-1024'>30-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>John J. Rodriquez</td>
+											<td>mary.p@maryhendrix.com</td>
+											<td class='hidden-350'><span class="label">Disabled</span></td>
+											<td class='hidden-1024'>30-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Rochelle J. Worsham</td>
+											<td>RochelleJWorsham@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>28-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Scott J. Fountain</td>
+											<td>ScottJFountain@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>27-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Rita J. Lima</td>
+											<td>RitaJLima@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>26-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Beth B. Tabb</td>
+											<td>BethBTabb@einrot.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>26-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Grace J. McClelland</td>
+											<td>GraceJMcClelland@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>24-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Michael J. Puente</td>
+											<td>MichaelJPuente@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>23-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Jeffery B. Barnard</td>
+											<td>JefferyBBarnard@einrot.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>22-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Johanna R. Lewis</td>
+											<td>JohannaRLewis@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>21-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Rochelle J. Worsham</td>
+											<td>RochelleJWorsham@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>21-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Rudolph B. Beaty</td>
+											<td>RudolphBBeaty@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>21-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>John T. Medina</td>
+											<td>JohnTMedina@einrot.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>20-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Dwayne D. Bender</td>
+											<td>DwayneDBender@einrot.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>20-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Peter C. Thomas</td>
+											<td>PeterCThomas@einrot.com</td>
+											<td class='hidden-350'><span class="label">Disabled</span></td>
+											<td class='hidden-1024'>19-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Dolores R. Anderson</td>
+											<td>DoloresRAnderson@einrot.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>19-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Cathleen K. King</td>
+											<td>CathleenKKing@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>30-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Leslie M. Martinez</td>
+											<td>LeslieMMartinez@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Active</span></td>
+											<td class='hidden-1024'>18-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Rochelle J. Worsham</td>
+											<td>RochelleJWorsham@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-lightred">Inactive</span></td>
+											<td class='hidden-1024'>16-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
 						<div class="box">
 							<div class="box-title">
 								<h3>
@@ -1042,149 +1393,6 @@
 											<td class='hidden-1024'>-</td>
 											<td class='hidden-480'>X</td>
 										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Misc</td>
-											<td>Links</td>
-											<td class='hidden-350'>Text only</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Misc</td>
-											<td>Lynx</td>
-											<td class='hidden-350'>Text only</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Misc</td>
-											<td>IE Mobile</td>
-											<td class='hidden-350'>Windows Mobile 6</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>C</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Misc</td>
-											<td>PSP browser</td>
-											<td class='hidden-350'>PSP</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>C</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Other browsers</td>
-											<td>All others</td>
-											<td class='hidden-350'>-</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>U</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Trident</td>
-											<td>
-												Internet
-													Explorer 4.0
-											</td>
-											<td class='hidden-350'>Win 95+</td>
-											<td class='hidden-1024'>4</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Presto</td>
-											<td>Nokia N800</td>
-											<td class='hidden-350'>N800</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>A</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Misc</td>
-											<td>NetFront 3.4</td>
-											<td class='hidden-350'>Embedded devices</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>A</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Misc</td>
-											<td>Dillo 0.8</td>
-											<td class='hidden-350'>Embedded devices</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Misc</td>
-											<td>Links</td>
-											<td class='hidden-350'>Text only</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Misc</td>
-											<td>Lynx</td>
-											<td class='hidden-350'>Text only</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Misc</td>
-											<td>IE Mobile</td>
-											<td class='hidden-350'>Windows Mobile 6</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>C</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Misc</td>
-											<td>PSP browser</td>
-											<td class='hidden-350'>PSP</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>C</td>
-										</tr>
-										<tr>
-											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>
-											<td>Other browsers</td>
-											<td>All others</td>
-											<td class='hidden-350'>-</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>U</td>
-										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -1230,65 +1438,6 @@
 											<td class='hidden-480'>A</td>
 										</tr>
 										<tr>
-											<td>Misc</td>
-											<td>NetFront 3.4</td>
-											<td class='hidden-350'>Embedded devices</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>A</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>Dillo 0.8</td>
-											<td class='hidden-350'>Embedded devices</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>Links</td>
-											<td class='hidden-350'>Text only</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>Lynx</td>
-											<td class='hidden-350'>Text only</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>IE Mobile</td>
-											<td class='hidden-350'>Windows Mobile 6</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>C</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>PSP browser</td>
-											<td class='hidden-350'>PSP</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>C</td>
-										</tr>
-										<tr>
-											<td>Other browsers</td>
-											<td>All others</td>
-											<td class='hidden-350'>-</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>U</td>
-										</tr>
-										<tr>
-											<td>Trident</td>
-											<td>
-												Internet
-													Explorer 4.0
-											</td>
-											<td class='hidden-350'>Win 95+</td>
-											<td class='hidden-1024'>4</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
 											<td>Presto</td>
 											<td>Nokia N800</td>
 											<td class='hidden-350'>N800</td>
@@ -1315,34 +1464,6 @@
 											<td class='hidden-350'>Text only</td>
 											<td class='hidden-1024'>-</td>
 											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>Lynx</td>
-											<td class='hidden-350'>Text only</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>IE Mobile</td>
-											<td class='hidden-350'>Windows Mobile 6</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>C</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>PSP browser</td>
-											<td class='hidden-350'>PSP</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>C</td>
-										</tr>
-										<tr>
-											<td>Other browsers</td>
-											<td>All others</td>
-											<td class='hidden-350'>-</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>U</td>
 										</tr>
 									</tbody>
 								</table>
@@ -1515,11 +1636,11 @@
 							<div class="box-title">
 								<h3>
 									<i class="icon-table"></i>
-									Column reorder (drag head column)
+									Column reorder + resize
 								</h3>
 							</div>
 							<div class="box-content nopadding">
-								<table class="table table-hover table-nomargin table-striped dataTable dataTable-reorder">
+								<table class="table table-bordered table-hover table-nomargin table-striped dataTable dataTable-reorder">
 									<thead>
 										<tr>
 											<th>Rendering engine</th>
@@ -1678,7 +1799,166 @@
 								</h3>
 							</div>
 							<div class="box-content nopadding">
-								<table class="table table-hover table-nomargin table-striped dataTable dataTable-colvis dataTable-tools">
+								<table class="table table-hover table-nomargin table-striped dataTable dataTable-colvis">
+									<thead>
+										<tr>
+											<th>Rendering engine</th>
+											<th>Browser</th>
+											<th class='hidden-350'>Platform(s)</th>
+											<th class='hidden-1024'>Engine version</th>
+											<th class='hidden-480'>CSS grade</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Trident</td>
+											<td>
+												Internet
+													Explorer 4.0
+											</td>
+											<td class='hidden-350'>Win 95+</td>
+											<td class='hidden-1024'>4</td>
+											<td class='hidden-480'>X</td>
+										</tr>
+										<tr>
+											<td>Presto</td>
+											<td>Nokia N800</td>
+											<td class='hidden-350'>N800</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>A</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>NetFront 3.4</td>
+											<td class='hidden-350'>Embedded devices</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>A</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>Dillo 0.8</td>
+											<td class='hidden-350'>Embedded devices</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>X</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>Links</td>
+											<td class='hidden-350'>Text only</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>X</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>Lynx</td>
+											<td class='hidden-350'>Text only</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>X</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>IE Mobile</td>
+											<td class='hidden-350'>Windows Mobile 6</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>C</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>PSP browser</td>
+											<td class='hidden-350'>PSP</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>C</td>
+										</tr>
+										<tr>
+											<td>Other browsers</td>
+											<td>All others</td>
+											<td class='hidden-350'>-</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>U</td>
+										</tr>
+										<tr>
+											<td>Trident</td>
+											<td>
+												Internet
+													Explorer 4.0
+											</td>
+											<td class='hidden-350'>Win 95+</td>
+											<td class='hidden-1024'>4</td>
+											<td class='hidden-480'>X</td>
+										</tr>
+										<tr>
+											<td>Presto</td>
+											<td>Nokia N800</td>
+											<td class='hidden-350'>N800</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>A</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>NetFront 3.4</td>
+											<td class='hidden-350'>Embedded devices</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>A</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>Dillo 0.8</td>
+											<td class='hidden-350'>Embedded devices</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>X</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>Links</td>
+											<td class='hidden-350'>Text only</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>X</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>Lynx</td>
+											<td class='hidden-350'>Text only</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>X</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>IE Mobile</td>
+											<td class='hidden-350'>Windows Mobile 6</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>C</td>
+										</tr>
+										<tr>
+											<td>Misc</td>
+											<td>PSP browser</td>
+											<td class='hidden-350'>PSP</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>C</td>
+										</tr>
+										<tr>
+											<td>Other browsers</td>
+											<td>All others</td>
+											<td class='hidden-350'>-</td>
+											<td class='hidden-1024'>-</td>
+											<td class='hidden-480'>U</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box box-color box-bordered">
+							<div class="box-title">
+								<h3>
+									<i class="icon-table"></i>
+									Grouping
+								</h3>
+							</div>
+							<div class="box-content nopadding">
+								<table class="table table-hover table-nomargin table-striped dataTable dataTable-grouping dataTable-noheader" data-grouping="expandable">
 									<thead>
 										<tr>
 											<th>Rendering engine</th>
