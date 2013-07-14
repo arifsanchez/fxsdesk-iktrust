@@ -6,11 +6,11 @@
 </form>
 <div class="subnav">
 	<div class="subnav-title">
-		<a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>Balance</span></a>
+		<a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>All Accounts</span></a>
 	</div>
 	<div class="subnav-content">
 		<div class="pagestats">
-			<span class="left">$584</span><span class="spark" id="balance" sparkType="bar" sparkBarColor="#ff7f66"></span>
+			<span class="left">$657,129.00</span><span class="spark" id="balance" sparkType="bar" sparkBarColor="#ff7f66"></span>
 		</div>
 	</div>
 </div>
