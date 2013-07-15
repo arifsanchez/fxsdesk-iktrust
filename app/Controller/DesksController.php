@@ -27,17 +27,6 @@ class DesksController extends AppController {
  */
 	public $uses = array();
 
-/**
- * Public Sign In page
- *
- * @param mixed What page to display
- * @return void
- */
-	public function signsecure() {
-
-		$this->layout = 'public.access';
-
-	}
 }
 
 ?>

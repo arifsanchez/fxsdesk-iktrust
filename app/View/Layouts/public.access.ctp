@@ -50,8 +50,8 @@
 	<?php
 		#FAVicon
 		echo $this->Html->meta(
-		    'fxicon.png',
-		    '/fxicon.png',
+		    ''.SITE_URL.'img/fxs-favicon.png',
+		    ''.SITE_URL.'img/fxs-favicon.png',
 		    array('type' => 'icon')
 		);
 	?>
