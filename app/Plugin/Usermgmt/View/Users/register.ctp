@@ -1,6 +1,6 @@
 <h1><a href="#"><img src="../img/logo-big.png" alt="" class='retina-ready' width="59" height="49">IK Trust</a></h1>
 <div class="login-body">
-	<h2>REGISTER</h2>
+	<h2><b>REGISTER</b>  or <b><?php echo $this->Html->link('SIGN IN', '/');?></b></h2>
 
 	<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
 				<?php echo $this->element('Usermgmt.ajax_validation', array('formId' => 'registerForm', 'submitButtonId' => 'registerSubmitBtn')); ?>

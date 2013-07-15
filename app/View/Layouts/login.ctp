@@ -63,9 +63,15 @@
 <body class='login theme-red'>
 	<div class="wrapper">
 		<div class="container-fluid" id="content">
-			<?php echo $this->element('Usermgmt.message'); ?>
-			<?php echo $this->element('Usermgmt.message_validation'); ?>
-			<?php echo $this->fetch('content'); ?>
+			<h1><a href="#"><img src="../img/logo-big.png" alt="" class='retina-ready' width="59" height="49">IK Trust</a></h1>
+			<div class="login-body">
+				<?php echo $this->element('Usermgmt.message'); ?>
+				<?php echo $this->element('Usermgmt.message_validation'); ?>
+				<?php echo $this->fetch('content'); ?>
+				<div class="forget">
+					<a href="/forgotPassword"><span>Forgot password?</span></a>
+				</div>
+			</div>
 		</div>
 		<div id="footer" class="hidden-phone">
 			<p>

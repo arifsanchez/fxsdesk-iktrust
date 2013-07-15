@@ -322,6 +322,9 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function login($connect=null) {
+
+		$this->layout = "login";
+		
 		$userId = $this->UserAuth->getUserId();
 		if ($userId) {
 			if($connect) {
