@@ -12,50 +12,58 @@
 
 	<?php
 	#CSS
-		//Bootstrap
+		#Bootstrap
 		echo $this->Html->css('bootstrap.min.css?q='.QRDN);
-		//Bootstrap responsive
+		#Bootstrap responsive
 		echo $this->Html->css('bootstrap-responsive.min.css?q='.QRDN);
-		//jQuery UI
+		#jQuery UI
 		echo $this->Html->css('plugins/jquery-ui/smoothness/jquery-ui.css?q='.QRDN);
-		echo $this->Html->css('plugins/jquery-ui/smoothness/jquery.ui.theme.css?q='.QRDN);
-		//Theme CSS
+		echo $this->Html->css('plugins/jquery-ui/smoothness/jquery-ui.theme.css?q='.QRDN);
+		#Theme CSS
 		echo $this->Html->css('style.css?q='.QRDN);
-		//Color CSS
+		#Color CSS
 		echo $this->Html->css('themes.css?q='.QRDN);
+
+	#JS
+		#jQuery
+		echo $this->Html->script('jquery.min.js?q='.QRDN);
+		#jQuery UI
+		echo $this->Html->script('plugins/jquery-ui/jquery.ui.core.min.js?q='.QRDN);
+		echo $this->Html->script('plugins/jquery-ui/jquery.ui.widget.min.js?q='.QRDN);
+		echo $this->Html->script('plugins/jquery-ui/jquery.ui.mouse.min.js?q='.QRDN);
+		echo $this->Html->script('plugins/jquery-ui/jquery.ui.resizable.min.js?q='.QRDN);
+		echo $this->Html->script('plugins/jquery-ui/jquery.ui.sortable.min.js?q='.QRDN);
+		echo $this->Html->script('plugins/jquery-ui/jquery.ui.datepicker.min.js?q='.QRDN);
+
+		#Nice Scroll
+		echo $this->Html->script('plugins/nicescroll/jquery.nicescroll.js?q='.QRDN);
+
+		#Slim Scroll
+		echo $this->Html->script('plugins/slimscroll/jquery.slimscroll.min.js?q='.QRDN);
+
+		#Bootstrap
+		echo $this->Html->script('bootstrap.min.js?q='.QRDN);
+
+		#Sparkline
+		echo $this->Html->script('plugins/sparklines/jquery.sparklines.min.js?q='.QRDN);
+
+		#Form
+		echo $this->Html->script('plugins/form/jquery.form.min.js?q='.QRDN);
+
+		#Notify
+		echo $this->Html->script('plugins/gritter/jquery.gritter.min.js?q='.QRDN);
+
+		#Theme Framework
+		echo $this->Html->script('eakroko.min.js?q='.QRDN);
+
+		#Theme Scripts
+		echo $this->Html->script('application.min.js?q='.QRDN);
+
+
 	?>
 
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- Nice Scroll -->
-	<script src="js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
-	<!-- jQuery UI -->
-	<script src="js/plugins/jquery-ui/jquery.ui.core.min.js"></script>
-	<script src="js/plugins/jquery-ui/jquery.ui.widget.min.js"></script>
-	<script src="js/plugins/jquery-ui/jquery.ui.mouse.min.js"></script>
-	<script src="js/plugins/jquery-ui/jquery.ui.resizable.min.js"></script>
-	<script src="js/plugins/jquery-ui/jquery.ui.sortable.min.js"></script>
-	<script src="js/plugins/jquery-ui/jquery.ui.datepicker.min.js"></script>
-	<!-- slimScroll -->
-	<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Sparkline -->
-	<script src="js/plugins/sparklines/jquery.sparklines.min.js"></script>
-	<!-- Form -->
-	<script src="js/plugins/form/jquery.form.min.js"></script>
-	<!-- Notify -->
-	<script src="js/plugins/gritter/jquery.gritter.min.js"></script>
-
-	<!-- Theme framework -->
-	<script src="js/eakroko.min.js"></script>
-	<!-- Theme scripts -->
-	<script src="js/application.min.js"></script>
-	<!-- Just for demonstration -->
-	<script src="js/demonstration.min.js"></script>
-
 	<!--[if lte IE 9]>
-		<script src="<?php echo SITE_URL; ?>/js/plugins/placeholder/jquery.placeholder.min.js"></script>
+		<?php echo $this->Html->script('plugins/placeholder/jquery.placeholder.min.js?q='.QRDN); ?>
 		<script>
 			$(document).ready(function() {
 				$('input, textarea').placeholder();
@@ -63,10 +71,16 @@
 		</script>
 	<![endif]-->
 	
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="<?php echo SITE_URL; ?>/favicon.ico" />
+	<?php
+		#FAVicon
+		echo $this->Html->meta(
+		    ''.SITE_URL.'img/fxs-favicon.png',
+		    ''.SITE_URL.'img/fxs-favicon.png',
+		    array('type' => 'icon')
+		);
+	?>
 	<!-- Apple devices Homescreen icon -->
-	<link rel="apple-touch-icon-precomposed" href="<?php echo SITE_URL;?>/img/apple-touch-icon-precomposed.png" />
+	<link rel="apple-touch-icon-precomposed" href="<?php echo SITE_URL;?>/img/fxs-2--144px.png" />
 
 </head>
 
@@ -123,9 +137,15 @@
 					</li>
 				</ul>
 				<div class="dropdown">
-					<?php if(!empty($var)){ ?>
-					<a href="#" class='dropdown-toggle' data-toggle="dropdown"><?php echo h($var['User']['first_name']);?> <img src="img/demo/user-avatar.jpg" alt=""></a>
-					<?php }?>
+					<?php $userId = $this->UserAuth->getUserId();?>
+					<a href="#" class='dropdown-toggle' data-toggle="dropdown">
+						<?php 
+							if(!empty($userId)){
+								echo h($var['User']['first_name']);
+							};
+						?> 
+						<img src="img/demo/user-avatar.jpg" alt="">
+					</a>
 					<ul class="dropdown-menu pull-right">
 						<li>
 							<a href="more-userprofile.html">Edit profile</a>
@@ -152,14 +172,6 @@
 						<h1>Pro Dashboard</h1>
 					</div>
 					<div class="pull-right">
-						<ul class="minitiles">
-							<li class='grey'>
-								<a href="#"><i class="icon-cogs"></i></a>
-							</li>
-							<li class='lightgrey'>
-								<a href="#"><i class="icon-globe"></i></a>
-							</li>
-						</ul>
 						<ul class="stats">
 							<li class='satgreen'>
 								<i class="icon-money"></i>
@@ -207,8 +219,6 @@
 							</div>
 							<div class="box-content">
 								<?php
-									echo $this->element('Usermgmt.message');
-									echo $this->element('Usermgmt.message_validation');
 									echo $this->fetch('content');
 								?>
 							</div>
