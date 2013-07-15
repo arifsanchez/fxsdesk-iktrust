@@ -35,7 +35,7 @@ class DesksController extends AppController {
  */
 	public function signsecure() {
 
-		$this->layout = 'login';
+		$this->layout = 'public.access';
 
 	}
 }

@@ -323,8 +323,8 @@ class UsersController extends UserMgmtAppController {
 	 */
 	public function login($connect=null) {
 
-		$this->layout = "login";
-		
+		$this->layout = "public.access";
+
 		$userId = $this->UserAuth->getUserId();
 		if ($userId) {
 			if($connect) {
@@ -826,7 +826,7 @@ class UsersController extends UserMgmtAppController {
 	 */
 	public function register() {
 
-		$this->layout = "login";
+		$this->layout = "public.access";
 
 		$userId = $this->UserAuth->getUserId();
 		if ($userId) {
@@ -1390,6 +1390,9 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function forgotPassword() {
+
+		$this->layout = 'public.access';
+
 		if ($this->request->isPost()) {
 			$this->User->set($this->data);
 			if ($this->User->LoginValidate()) {
@@ -1420,6 +1423,9 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function emailVerification() {
+
+		$this->layout = "public.access";
+
 		if ($this->request->isPost()) {
 			$this->User->set($this->data);
 			if ($this->User->LoginValidate()) {
