@@ -121,7 +121,15 @@
 					</li>
 				</ul>
 				<div class="dropdown">
-					<a href="#" class='dropdown-toggle' data-toggle="dropdown"><?php echo h($var['User']['first_name']);?> <img src="img/demo/user-avatar.jpg" alt=""></a>
+					<?php $userId = $this->UserAuth->getUserId();?>
+					<a href="#" class='dropdown-toggle' data-toggle="dropdown">
+						<?php 
+							if(!empty($userId)){
+								echo h($var['User']['first_name']);
+							};
+						?> 
+						<img src="img/demo/user-avatar.jpg" alt="">
+					</a>
 					<ul class="dropdown-menu pull-right">
 						<li>
 							<a href="more-userprofile.html">Edit profile</a>

@@ -822,6 +822,9 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function register() {
+
+		$this->layout = "login";
+
 		$userId = $this->UserAuth->getUserId();
 		if ($userId) {
 			$this->redirect("/dashboard");
