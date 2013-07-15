@@ -18,7 +18,7 @@
 		echo $this->Html->css('bootstrap-responsive.min.css?q='.QRDN);
 		#jQuery UI
 		echo $this->Html->css('plugins/jquery-ui/smoothness/jquery-ui.css?q='.QRDN);
-		echo $this->Html->css('plugins/jquery-ui/smoothness/jquery-ui.theme.css?q='.QRDN);
+		echo $this->Html->css('plugins/jquery-ui/smoothness/jquery.ui.theme.css?q='.QRDN);
 		#Theme CSS
 		echo $this->Html->css('style.css?q='.QRDN);
 		#Color CSS
@@ -36,7 +36,7 @@
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.datepicker.min.js?q='.QRDN);
 
 		#Nice Scroll
-		echo $this->Html->script('plugins/nicescroll/jquery.nicescroll.js?q='.QRDN);
+		echo $this->Html->script('plugins/nicescroll/jquery.nicescroll.min.js?q='.QRDN);
 
 		#Slim Scroll
 		echo $this->Html->script('plugins/slimscroll/jquery.slimscroll.min.js?q='.QRDN);
@@ -125,13 +125,13 @@
 						</ul>
 					</li>
 					<li class='dropdown language-select'>
-						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><img src="img/demo/flags/us.gif" alt=""><span> English</span></a>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><img src="<?php echo SITE_URL; ?>img/demo/flags/us.gif" alt=""><span> English</span></a>
 						<ul class="dropdown-menu pull-right">
 							<li>
-								<a href="#" class="notify" data-notify-time="1000" data-notify-title="Success!" data-notify-message="The user has been successfully edited."><img src="img/demo/flags/my.gif" alt=""><span> Bahasa Malaysia</span></a>
+								<a href="#"><img src="<?php echo SITE_URL; ?>img/demo/flags/my.gif" alt=""><span> Bahasa Malaysia</span></a>
 							</li>
 							<li>
-								<a href="#"><img src="img/demo/flags/cn.gif" alt=""><span> Chinese</span></a>
+								<a href="#"><img src="<?php echo SITE_URL; ?>img/demo/flags/cn.gif" alt=""><span> Chinese</span></a>
 							</li>
 						</ul>
 					</li>
@@ -144,7 +144,7 @@
 								echo h($var['User']['first_name']);
 							};
 						?> 
-						<img src="img/demo/user-avatar.jpg" alt="">
+						<img src="<?php echo SITE_URL; ?>img/demo/user-avatar.jpg" alt="">
 					</a>
 					<ul class="dropdown-menu pull-right">
 						<li>
@@ -154,7 +154,7 @@
 							<a href="#">Account settings</a>
 						</li>
 						<li>
-							<a href="logout">Sign out</a>
+							<a href="/logout">Sign out</a>
 						</li>
 					</ul>
 				</div>
