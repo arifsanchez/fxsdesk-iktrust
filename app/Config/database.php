@@ -59,9 +59,9 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'oipolloi88',
-		'database' => 'fxsdesk',
+		'login' => 'faiz',
+		'password' => '123456',
+		'database' => 'fxdesk',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

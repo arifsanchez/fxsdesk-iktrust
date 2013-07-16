@@ -36,6 +36,8 @@
 		#Bootstrap
 		echo $this->Html->script('bootstrap.min.js?q='.QRDN);
 		echo $this->Html->script('eakroko.js?q='.QRDN);
+		#styling umstyle
+     
 	?>
 
 	<!--[if lte IE 9]>

@@ -1,41 +1,29 @@
 <?php
-/*
-Cakephp 2.x User Management Premium Version (a product of Ektanjali Softwares Pvt Ltd)
-Website- http://ektanjali.com
-Plugin Demo- http://umpremium.ektanjali.com
-Author- Chetan Varshney (The Director of Ektanjali Softwares Pvt Ltd)
-Plugin Copyright No- 11498/2012-CO/L
+#File ini telah diubah !!!!!!
 
-UMPremium is a copyrighted work of authorship. Chetan Varshney retains ownership of the product and any copies of it, regardless of the form in which the copies may exist. This license is not a sale of the original product or any copies.
-
-By installing and using UMPremium on your server, you agree to the following terms and conditions. Such agreement is either on your own behalf or on behalf of any corporate entity which employs you or which you represent ('Corporate Licensee'). In this Agreement, 'you' includes both the reader and any Corporate Licensee and Chetan Varshney.
-
-The Product is licensed only to you. You may not rent, lease, sublicense, sell, assign, pledge, transfer or otherwise dispose of the Product in any form, on
-a temporary or permanent basis, without the prior written consent of Chetan Varshney.
-
-The Product source code may be altered (at your risk)
-
-All Product copyright notices within the scripts must remain unchanged (and visible).
-
-If any of the terms of this Agreement are violated, Chetan Varshney reserves the right to action against you.
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Product.
-
-THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT.
-*/
+#css custom sendiri
 ?>
+<style type="text/css">
+.login-body {
+	height: 430px;
+}
+.test3 {
+	margin: 10px 30px;
+}
+
+</style>
 <?php if(USE_FB_LOGIN || USE_TWT_LOGIN || USE_GMAIL_LOGIN || USE_YAHOO_LOGIN || USE_LDN_LOGIN || USE_FS_LOGIN) { ?>
-<div class="providerBox">
-	<div class="sign_with"><?php echo __('Sign in using your account with'); ?></div>
-	<ul class="providers">
+<div class="providerBox test3">
+	<div class="sign_with"><h5><?php echo __('Sign in to cabinet using'); ?></h5></div>
+	<ul class="providers minitiles">
 		<?php if(USE_FB_LOGIN){ ?>
-		<li id="facebook" title='<?php echo __('Facebook Connect');?>' onclick="javascript:login_popup('fb');return false;"></li>
+		<li id="facebook" class="blue" title='<?php echo __('Facebook Connect');?>' onclick="javascript:login_popup('fb');return false;"><a href="#"><i class="icon-facebook"></i></a></li>
 		<?php } if(USE_TWT_LOGIN){ ?>
 		<li id="twitter" title='<?php echo __('Twitter Connect');?>' onclick="javascript:login_popup('twt');return false;"></li>
 		<?php } if(USE_GMAIL_LOGIN){ ?>
-		<li id="google" title='<?php echo __('Gmail Connect');?>' onclick="javascript:login_popup('gmail');return false;"></li>
+		<li id="google" class="red" title='<?php echo __('Gmail Connect');?>' onclick="javascript:login_popup('gmail');return false;"><a href="#"><i class="icon-google-plus"></i></a></li>
 		<?php } if(USE_YAHOO_LOGIN){ ?>
-		<li id="yahoo" title='<?php echo __('Yahoo Connect');?>' onclick="javascript:login_popup('yahoo');return false;"></li>
+		<li id="yahoo" class="magenta" title='<?php echo __('Yahoo Connect');?>' onclick="javascript:login_popup('yahoo');return false;"><a href="#"><i class="glyphicon-yahoo"></i></a></li>
 		<?php } if(USE_LDN_LOGIN){ ?>
 		<li id="linkedin" title='<?php echo __('Linkedin Connect');?>' onclick="javascript:login_popup('ldn');return false;"></li>
 		<?php } if(USE_FS_LOGIN){ ?>

@@ -22,6 +22,8 @@
 		echo $this->Html->css('style.css?q='.QRDN);
 		#Color CSS
 		echo $this->Html->css('themes.css?q='.QRDN);
+        
+
 
 	#JS
 		#jQuery

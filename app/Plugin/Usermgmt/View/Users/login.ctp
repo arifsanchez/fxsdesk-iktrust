@@ -23,10 +23,11 @@
 			<input type="checkbox" name="data[User][remember]" class='icheck-me' data-skin="square" data-color="red" id="remember"> <label for="remember">Remember me</label>
 		</div>
 	</div>
-	<p>
+	<div class="submit">
 		<?php echo $this->Form->Submit('Sign In', array('div'=>false, 'class'=>'btn btn-primary', 'id'=>'loginSubmitBtn')); ?>
 		<?php echo $this->Html->link(__('Forgot Password?'), '/forgotPassword', array('class'=>'right btn')); ?>
 		<?php echo $this->Html->link(__('Email Verification'), '/emailVerification', array('class'=>'right btn')); ?>
-	</p>
+	</div>
 <?php echo $this->Form->end(); ?>
+
 <?php echo $this->element('Usermgmt.provider'); ?>
