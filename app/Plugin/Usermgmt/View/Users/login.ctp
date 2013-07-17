@@ -40,7 +40,10 @@
 	<style type="text/css">
       .bodythe {
       	height: 132px;
-
       	padding-left: 30px;
+      }
+      .btn {
+      	font-size: small;
+        margin: 3px;
       }
 	</style>
