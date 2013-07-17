@@ -89,13 +89,9 @@
 		<div class="container-fluid">
 			<a href="#" id="brand">IK TRUST</a>
 			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
-			<ul class='main-nav'>
-				<li class='active'>
-					<a href="/dashboard">
-						<span>Dashboard</span>
-					</a>
-				</li>
-			</ul>
+
+			<?php echo $this->element('staff.dashboard.navigate');?>
+			
 			<div class="user">
 				<ul class="icon-nav">
 					<li class='dropdown colo'>
@@ -147,15 +143,26 @@
 						<img src="<?php echo SITE_URL; ?>img/demo/user-avatar.jpg" alt="">
 					</a>
 					<ul class="dropdown-menu pull-right">
-						<li>
-							<a href="more-userprofile.html">Edit profile</a>
-						</li>
-						<li>
-							<a href="#">Account settings</a>
-						</li>
-						<li>
-							<a href="/logout">Sign out</a>
-						</li>
+						<?php
+						$contName = Inflector::camelize($this->params['controller']);
+						$actName = $this->params['action'];
+						$actionUrl = $contName.'/'.$actName;
+						$activeClass='active';
+						$inactiveClass='';
+						if($this->UserAuth->HP('Users', 'myprofile')) {
+							echo "<li class='".(($actionUrl=='Users/myprofile') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('View Profile'), array('controller'=>'Users', 'action'=>'myprofile', 'plugin'=>'usermgmt'))."</li>";
+						}
+						if($this->UserAuth->isLogged()) {
+							if($this->UserAuth->HP('Users', 'editProfile')) {
+								echo "<li class='".(($actionUrl=='Users/editProfile') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Edit Profile'), array('controller'=>'Users', 'action'=>'editProfile', 'plugin'=>'usermgmt'))."</li>";
+							}
+							if($this->UserAuth->HP('Users', 'changePassword')) {
+								echo "<li class='".(($actionUrl=='Users/changePassword') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Change Password'), array('controller'=>'Users', 'action'=>'changePassword', 'plugin'=>'usermgmt'))."</li>";
+							}
+							echo "<li>".$this->Html->link(__('Sign Out'), '/logout')."</li>";
+						} else {
+							echo "<li class='".(($actionUrl=='Users/login') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Sign In'), '/login')."</li>";
+						} ?>
 					</ul>
 				</div>
 			</div>

@@ -20,10 +20,12 @@ web1:
     - pdo_mysql
     - apc
     - curl
+    - gd
   after_build:
     - "mv app/Config/database.php.pagoda app/Config/database.php"
     - "mv app/Config/core.php.pagoda app/Config/core.php"
   before_deploy:
+    - "mkdir -p app/tmp/cache"
     - "mkdir -p app/tmp/cache/models"
     - "mkdir -p app/tmp/cache/persistent"
     - "mkdir -p app/tmp/cache/views"
