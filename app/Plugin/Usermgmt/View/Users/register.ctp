@@ -1,10 +1,22 @@
-<h1><a href="#"><img src="../img/logo-big.png" alt="" class='retina-ready' width="59" height="49">IK Trust</a></h1>
+
+<style type="text/css">
+.login-body {
+    height: 583px; }
+
+.test3 {
+	margin: 10px 30px;
+}
+
+
+</style>
+
+
 <div class="login-body">
 	<h2><b>REGISTER</b>  or <b><?php echo $this->Html->link('SIGN IN', '/');?></b></h2>
 
 	<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
 				<?php echo $this->element('Usermgmt.ajax_validation', array('formId' => 'registerForm', 'submitButtonId' => 'registerSubmitBtn')); ?>
-				<?php echo $this->Form->create('User', array('id'=>'registerForm', 'class'=>'form-horizontal')); ?>
+				<?php echo $this->Form->create('User', array('id'=>'registerForm', 'class'=>'')); ?>
 				<?php if (count($userGroups) >2) { ?>
 				<div class="um-form-row control-group">
 					<label class="control-label required"><?php echo __('Group');?></label>
@@ -13,40 +25,34 @@
 					</div>
 				</div>
 				<?php } ?>
-				<div class="um-form-row control-group">
-					<label class="control-label required"><?php echo __('Username');?></label>
+				<div class="email control-group">
 					<div class="controls">
-						<?php echo $this->Form->input('username', array('label'=>false, 'div'=>false)); ?>
+						<?php echo $this->Form->input('username', array('label'=>false, 'div'=>false, 'class' => "input-block-level", 'placeholder' => 'Username',)); ?>
 					</div>
 				</div>
-				<div class="um-form-row control-group">
-					<label class="control-label required"><?php echo __('First Name');?></label>
+				<div class="email control-group">
 					<div class="controls">
-						<?php echo $this->Form->input('first_name', array('label'=>false, 'div'=>false)); ?>
+						<?php echo $this->Form->input('first_name', array('label'=>false, 'div'=>false, 'class' => "input-block-level", 'placeholder' => 'First Name', )); ?>
 					</div>
 				</div>
-				<div class="um-form-row control-group">
-					<label class="control-label required"><?php echo __('Last Name');?></label>
+				<div class="email control-group">
 					<div class="controls">
-						<?php echo $this->Form->input('last_name', array('label'=>false, 'div'=>false)); ?>
+						<?php echo $this->Form->input('last_name', array('label'=>false, 'div'=>false, 'class' => "input-block-level", 'placeholder' => 'Last Name', )); ?>
 					</div>
 				</div>
-				<div class="um-form-row control-group">
-					<label class="control-label required"><?php echo __('Email');?></label>
+				<div class="email control-group">
 					<div class="controls">
-						<?php echo $this->Form->input('email', array('label'=>false, 'div'=>false)); ?>
+						<?php echo $this->Form->input('email', array('label'=>false, 'div'=>false, 'class' => "input-block-level", 'placeholder' => 'Email', )); ?>
 					</div>
 				</div>
-				<div class="um-form-row control-group">
-					<label class="control-label required"><?php echo __('Password');?></label>
+				<div class="pw control-group">
 					<div class="controls">
-						<?php echo $this->Form->input('password', array('type'=>'password', 'label'=>false, 'div'=>false)); ?>
+						<?php echo $this->Form->input('password', array('type'=>'password', 'label'=>false, 'div'=>false, 'class' => "input-block-level", 'placeholder' => 'Password', )); ?>
 					</div>
 				</div>
-				<div class="um-form-row control-group">
-					<label class="control-label required"><?php echo __('Confirm Password');?></label>
+				<div class="pw control-group">
 					<div class="controls">
-						<?php echo $this->Form->input('cpassword', array('type'=>'password', 'label'=>false, 'div'=>false)); ?>
+						<?php echo $this->Form->input('cpassword', array('type'=>'password', 'label'=>false, 'div'=>false, 'class' => "input-block-level", 'placeholder' => 'Last Name', )); ?>
 					</div>
 				</div>
 				<?php if(USE_RECAPTCHA && PRIVATE_KEY_FROM_RECAPTCHA !="" && PUBLIC_KEY_FROM_RECAPTCHA !="") { ?>

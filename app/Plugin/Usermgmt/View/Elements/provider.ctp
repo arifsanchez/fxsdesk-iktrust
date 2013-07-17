@@ -3,15 +3,8 @@
 
 #css custom sendiri
 ?>
-<style type="text/css">
-.login-body {
-	height: 430px;
-}
-.test3 {
-	margin: 10px 30px;
-}
 
-</style>
+
 <?php if(USE_FB_LOGIN || USE_TWT_LOGIN || USE_GMAIL_LOGIN || USE_YAHOO_LOGIN || USE_LDN_LOGIN || USE_FS_LOGIN) { ?>
 <div class="providerBox test3">
 	<div class="sign_with"><h5><?php echo __('Sign in to cabinet using'); ?></h5></div>

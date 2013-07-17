@@ -1,3 +1,12 @@
+<style type="text/css">
+.login-body {
+	height: 420px;
+}
+.test3 {
+	margin: 10px 30px;
+}
+</style>
+
 <h2><b>SIGN IN</b> or <b><?php echo $this->Html->link('SIGN UP', '/register');?></b></h2>
 
 <?php 
