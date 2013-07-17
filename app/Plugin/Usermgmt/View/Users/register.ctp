@@ -1,14 +1,5 @@
 
-<style type="text/css">
-.login-body {
-    height: 583px; }
 
-.test3 {
-	margin: 10px 30px;
-}
-
-
-</style>
 
 
 <div class="login-body">
@@ -65,12 +56,22 @@
 					</div>
 				</div>
 				<?php } ?>
-				<div class="um-button-row">
+				
 					<?php echo $this->Form->Submit('Sign Up', array('div'=>false, 'class'=>'btn btn-primary', 'id'=>'registerSubmitBtn')); ?>
-				</div>
+				
 				<?php echo $this->Form->end(); ?>
 
-	<div class="other_provider">
+	
+</div>
+<div class="login-body bodythe center">
 		<?php echo $this->element('Usermgmt.provider'); ?>
 	</div>
-</div>
+
+
+	<style type="text/css">
+      .bodythe {
+      	height: 100px;
+
+      	padding-left: 30px;
+      }
+	</style>

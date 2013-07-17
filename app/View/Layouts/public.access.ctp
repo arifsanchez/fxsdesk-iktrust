@@ -21,8 +21,9 @@
 		#Theme
 		echo $this->Html->css('style.css?q='.QRDN);
 		#Color CSS
-		echo $this->Html->css('themes.css?q='.QRDN);
+		echo $this->Html->css('themes.css?q='.QRDN); 
 
+		echo $this->Html->css('../usermgmt/css/umstyle.css?q='.QRDN);
 	#JS
 		#jQuery
 		echo $this->Html->script('jquery.min.js?q='.QRDN);
@@ -37,7 +38,7 @@
 		echo $this->Html->script('bootstrap.min.js?q='.QRDN);
 		echo $this->Html->script('eakroko.js?q='.QRDN);
 		#styling umstyle
-     
+    
 	?>
 
 	<!--[if lte IE 9]>
