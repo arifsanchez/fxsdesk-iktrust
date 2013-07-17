@@ -1,11 +1,4 @@
-<style type="text/css">
-.login-body {
-	height: 420px;
-}
-.test3 {
-	margin: 10px 30px;
-}
-</style>
+
 
 <h2><b>SIGN IN</b> or <b><?php echo $this->Html->link('SIGN UP', '/register');?></b></h2>
 
@@ -39,4 +32,18 @@
 	</div>
 <?php echo $this->Form->end(); ?>
 
-<?php echo $this->element('Usermgmt.provider'); ?>
+<div class="login-body bodythe">
+		<?php echo $this->element('Usermgmt.provider'); ?>
+	</div>
+
+
+	<style type="text/css">
+      .bodythe {
+      	height: 132px;
+      	padding-left: 30px;
+      }
+      .btn {
+      	font-size: small;
+        margin: 3px;
+      }
+	</style>

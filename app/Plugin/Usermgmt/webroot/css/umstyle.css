@@ -230,18 +230,19 @@ form .error-message {
 	font-size: 1.5em;
 	font-weight: normal;
 	margin: 5px 0 0 10px;
-}
+}/*
 .providerBox
 {
 	background-color: #FFFFFF;
 	border: 1px solid #CCCCCC;
-	height: auto;
+	height: 80px;
 	padding: 5px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 	margin:5px auto;
 }
+
 ul.providers {
 	list-style-type: none;
 	margin: 0 auto;
@@ -297,7 +298,7 @@ li#foursquare {
 li#foursquare:hover {
 	background-position: -150px -400px;
 }
-
+*/
 /* flash messages css */
 .info, .success, .warning, .error, .validation {
 	border: 1px solid;
@@ -332,15 +333,8 @@ li#foursquare:hover {
 	margin: 0 auto;
 	float:none;
 }
-.left {
-	float:left;
-}
-.right {
-	float:right;
-}
-.btn {
-	margin: 0px 5px 10px 5px;
-}
+
+
 .profile img {
 	border: 1px solid #DFDCDC;
 	display: block;
