@@ -59,6 +59,9 @@
 		#Theme Scripts
 		echo $this->Html->script('application.min.js?q='.QRDN);
 
+		echo $this->fetch('meta');
+		echo $this->fetch('css');
+		echo $this->fetch('script');
 
 	?>
 

@@ -1,13 +1,11 @@
 <?php
-
 App::uses('Controller', 'Controller');
-
 class AppController extends Controller {
 	
-	var $helpers = array('Form', 'Html', 'Session', 'Js', 'Usermgmt.UserAuth', 'Usermgmt.Image','Usermgmt.Ckeditor');
+	var $helpers = array('Form', 'Html', 'Session', 'Js', 'Usermgmt.UserAuth', 'Usermgmt.Image');
 	
-	public $components = array('DebugKit.Toolbar','Session', 'RequestHandler', 'Usermgmt.UserAuth','Security');
-	
+	public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth','DebugKit.Toolbar','Security');
+
 	function beforeFilter() {
 		$this->userAuth();
 	}
