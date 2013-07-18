@@ -38,7 +38,7 @@
 			<div class="controls">
 				 <?php  echo $this->Ckeditor->textarea('Content.page_content', array('type' => 'textarea', 
 					'label' => false, 'div' => false, 'style'=>'height:500px', 'class' =>'span10'), array('language'=>'en',
-					'uiColor'=> '#E51400'), 'standard');?> 
+					'uiColor'=> '#EEEEEE'), 'standard');?> 
 			</div>
 		</div>
 		<div class="um-button-row">
