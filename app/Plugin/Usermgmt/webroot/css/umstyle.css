@@ -156,7 +156,7 @@ form .um-button-row:after, .um-form-row:after {
 	#background-color:#F2F0F0;
 	border-top:1px solid #d3d3d3;
 	margin:0; 
-	padding:16px;
+	padding:16px 16px 16px 0;
 	margin-top:-1px;
 	text-align:left;
 	
