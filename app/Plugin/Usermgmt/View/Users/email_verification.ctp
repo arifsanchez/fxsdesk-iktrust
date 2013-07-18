@@ -1,9 +1,20 @@
+<style type="text/css">
+.login-body {
+	height: 415px;
+	
+}
+.login-body h2 {
+	font-size: 22px;
+}
+</style>
+
+
 <h2><b>VERIFY EMAIL</b> or <b><?php echo $this->Html->link('SIGN IN', '/login');?></b></h2>
 
 <?php echo $this->Form->create('User'); ?>
 <div class="control-group">
 	<div class="email controls">
-		<input id="UserEmail" type="text" name='data[User][email]' placeholder="Email address" class='input-block-level' data-rule-required="true" data-rule-email="true">
+		<?php echo $this->Form->input('email', array('label'=>false, 'div'=>false, 'class' => "input-block-level", 'placeholder' => "Your Email Address",)); ?>
 	</div>
 </div>
 <div class="um-button-row">

@@ -1,3 +1,14 @@
+<style type="text/css">
+.login-body {
+	height: 415px;
+	
+}
+.login-body h2 {
+	font-size: 22px;
+}
+</style>
+
+
 <h2><b>RESET PASSWORD</b> or <b><?php echo $this->Html->link('SIGN IN', '/login');?></b></h2>
 
 <?php 
@@ -6,7 +17,7 @@
 
 <div class="control-group">
 	<div class="email controls">
-		<input id="UserEmail" type="text" name='data[User][email]' placeholder="Email address" class='input-block-level' data-rule-required="true" data-rule-email="true">
+			<?php echo $this->Form->input('email', array('label'=>false, 'div'=>false, 'class' => "input-block-level", 'placeholder' => "Your Email or Username", )); ?>
 	</div>
 </div>
 
@@ -14,3 +25,7 @@
 	<?php echo $this->Form->Submit('Send Email', array('div'=>false, 'class'=>'btn btn-primary')); ?>
 </div>
 <?php echo $this->Form->end(); ?>
+
+
+
+
