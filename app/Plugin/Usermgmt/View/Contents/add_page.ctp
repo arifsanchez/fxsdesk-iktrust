@@ -37,8 +37,8 @@
 			<label class="control-label required"><?php echo __('Page Content');?></label>
 			<div class="controls">
 				 <?php  echo $this->Ckeditor->textarea('Content.page_content', array('type' => 'textarea', 
-					'label' => false, 'div' => false, 'style'=>'height:800px', 'class' =>'span10'), array('language'=>'en',
-					'uiColor'=> '#0088CC'), 'basic');?> 
+					'label' => false, 'div' => false, 'style'=>'height:500px', 'class' =>'span10'), array('language'=>'en',
+					'uiColor'=> '#E51400'), 'standard');?> 
 			</div>
 		</div>
 		<div class="um-button-row">
