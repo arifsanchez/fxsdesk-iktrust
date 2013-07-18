@@ -1,4 +1,4 @@
-<?php echo $this->element('Usermgmt.dashboard'); ?>
+
 <script type="text/javascript">
 	function validateForm() {
 		if (!confirm('Are you sure, you want to send this email?')) {

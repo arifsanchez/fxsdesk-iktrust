@@ -26,14 +26,22 @@
 
 	#JS
 		#jQuery
-		echo $this->Html->script('jquery.min.js?q='.QRDN);
+		#echo $this->Html->script('jquery.min.js?q='.QRDN);
+		/* Jquery latest version taken from http://jquery.com */
+		echo $this->Html->script('/usermgmt/js/jquery-1.9.1');
+
+		/* Jquery UI JS taken from http://jqueryui.com */
+		echo $this->Html->script('/usermgmt/js/jquery-ui-1.10.2.custom.min');
+
 		#jQuery UI
-		echo $this->Html->script('plugins/jquery-ui/jquery.ui.core.min.js?q='.QRDN);
+		#echo $this->Html->script('plugins/jquery-ui/jquery.ui.core.min.js?q='.QRDN);
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.widget.min.js?q='.QRDN);
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.mouse.min.js?q='.QRDN);
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.resizable.min.js?q='.QRDN);
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.sortable.min.js?q='.QRDN);
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.datepicker.min.js?q='.QRDN);
+		/* Jquery Datetime addon taken from http://trentrichardson.com */
+		echo $this->Html->css('/usermgmt/css/jquery-ui-timepicker-addon');
 
 		#Nice Scroll
 		echo $this->Html->script('plugins/nicescroll/jquery.nicescroll.min.js?q='.QRDN);
@@ -58,6 +66,12 @@
 
 		#Theme Scripts
 		echo $this->Html->script('application.min.js?q='.QRDN);
+
+		/* Jquery Datetime addon taken from http://trentrichardson.com */
+		echo $this->Html->script('/usermgmt/js/jquery-ui-timepicker-addon');
+
+		/* Usermgmt Plugin JS */
+		echo $this->Html->script('/usermgmt/js/umscript.js?q='.QRDN);
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -229,6 +243,8 @@
 							</div>
 							<div class="box-content">
 								<?php
+									echo $this->element('Usermgmt.message');
+									echo $this->element('Usermgmt.message_validation');
 									echo $this->fetch('content');
 								?>
 							</div>

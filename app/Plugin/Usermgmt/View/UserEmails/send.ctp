@@ -3,7 +3,7 @@ echo $this->Html->script('/usermgmt/js/chosen/chosen.jquery.js');
 echo $this->Html->script('/usermgmt/js/chosen/chosen.ajaxaddition.jquery.js');
 echo $this->Html->css('/usermgmt/css/chosen/chosen.css');
 ?>
-<?php echo $this->element('Usermgmt.dashboard'); ?>
+
 <style type="text/css">
 	.radio label {
 		float:left;

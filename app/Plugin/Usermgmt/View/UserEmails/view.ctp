@@ -1,4 +1,4 @@
-<?php echo $this->element('Usermgmt.dashboard'); ?>
+
 <div class="um-panel">
 	<div class="um-panel-header">
 		<span class="um-panel-title">

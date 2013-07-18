@@ -1,4 +1,4 @@
-<?php echo $this->element('Usermgmt.dashboard'); ?>
+
 <script type="text/javascript">
 	$(function(){
 		$('.emailcheckall').change(function() {
