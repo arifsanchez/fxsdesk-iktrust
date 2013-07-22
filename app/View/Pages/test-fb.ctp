@@ -3,7 +3,7 @@
 <script type="text/javascript">
   // You probably don't want to use globals, but this is just example code
   var fbAppId = '487999097943723';
-  var objectToLike = 'http://techcrunch.com/2013/02/06/facebook-launches-developers-live-video-channel-to-keep-its-developer-ecosystem-up-to-date/';
+  var objectToPost = 'http://iktrust.co.nz/';
 
   // This check is just here to make sure you set your app ID. You don't
   // need to use it in production. 
@@ -59,9 +59,9 @@
 
   function postLike() {
     FB.api(
-       'https://graph.facebook.com/me/og.likes',
+       'https://graph.facebook.com/me/og.posts',
        'post',
-       { object: objectToLike,
+       { object: objectToPost,
          privacy: {'value': 'SELF'} },
        function(response) {
          if (!response) {
@@ -71,34 +71,15 @@
          } else {
            document.getElementById('result').innerHTML =
              '<a href=\"https://www.facebook.com/me/activity/' + response.id + '\">' +
-             'Story created.  ID is ' + response.id + '</a>';
+             'Posts created.  ID is ' + response.id + '</a>';
          }
        }
     );
   }
 </script>
 
-<!--
-  Login Button - https://developers.facebook.com/docs/reference/plugins/login
-
-  This example needs the 'publish_actions' permission in order to publish an
-  action.  The scope parameter below is what prompts the user for that permission.
--->
-
-<div
-  class="fb-login-button"
-  data-show-faces="true"
-  data-width="200"
-  data-max-rows="1"
-  data-scope="publish_actions">
-</div>
-
 <div>
-This example creates a story on Facebook using the <a href="https://developers.facebook.com/docs/reference/ogaction/og.likes"><code>og.likes</code></a> API.  That story will just say that you like an <a href="http://techcrunch.com/2013/02/06/facebook-launches-developers-live-video-channel-to-keep-its-developer-ecosystem-up-to-date/">article on TechCrunch</a>.  The story should only be visible to you.
-</div>
-
-<div>
-<input type="button" value="Create a story with an og.likes action" onclick="postLike();">
+<input type="button" value="Share IKtrust.co.nz Web Link" onclick="postLike();">
 </div>
 
 <div id="result"></div>
