@@ -11,7 +11,9 @@
 	echo "<li class='".(($actionUrl=='Users/dashboard') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Dashboard'), '/dashboard')."</li>";
 	if($this->UserAuth->isLogged()) {
 		echo "<li class='dropdown'>";
-			echo $this->Html->link(__('Users').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			if($this->UserAuth->HP('Users', 'index')) {
+				echo $this->Html->link(__('Users').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			}
 			echo "<ul class='dropdown-menu'>";
 				if($this->UserAuth->HP('Users', 'addUser')) {
 					echo "<li class='".(($actionUrl=='Users/addUser') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Add User'), array('controller'=>'Users', 'action'=>'addUser', 'plugin'=>'usermgmt'))."</li>";
@@ -25,7 +27,9 @@
 			echo "</ul>";
 		echo "</li>";
 		echo "<li class='dropdown'>";
-			echo $this->Html->link(__('Groups').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			if($this->UserAuth->HP('UserGroups', 'index')) {
+				echo $this->Html->link(__('Groups').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			}
 			echo "<ul class='dropdown-menu'>";
 				if($this->UserAuth->HP('UserGroups', 'addGroup')) {
 					echo "<li class='".(($actionUrl=='UserGroups/addGroup') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Add Group'), array('controller'=>'UserGroups', 'action'=>'addGroup', 'plugin'=>'usermgmt'))."</li>";
@@ -36,7 +40,9 @@
 			echo "</ul>";
 		echo "</li>";
 		echo "<li class='dropdown'>";
-			echo $this->Html->link(__('Admin').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			if($this->UserAuth->HP('UserSettings', 'index')) {
+				echo $this->Html->link(__('Admin').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			}
 			echo "<ul class='dropdown-menu'>";
 				if($this->UserAuth->HP('UserGroupPermissions', 'index')) {
 					echo "<li class='".(($actionUrl=='UserGroupPermissions/index') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Group Permissions'), array('controller'=>'UserGroupPermissions', 'action'=>'index', 'plugin'=>'usermgmt'))."</li>";
@@ -53,7 +59,9 @@
 			echo "</ul>";
 		echo "</li>";
 		echo "<li class='dropdown'>";
-			echo $this->Html->link(__('Mail').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			if($this->UserAuth->HP('UserEmails', 'index')) {
+				echo $this->Html->link(__('Mail').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			}
 			echo "<ul class='dropdown-menu'>";
 				if($this->UserAuth->HP('UserEmails', 'send')) {
 					echo "<li class='".(($actionUrl=='UserEmails/send') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Send Mail'), array('controller'=>'UserEmails', 'action'=>'send', 'plugin'=>'usermgmt'))."</li>";
@@ -73,13 +81,25 @@
 			echo "</ul>";
 		echo "</li>";
 		echo "<li class='dropdown'>";
-			echo $this->Html->link(__('Pages').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			if($this->UserAuth->HP('Contents', 'index')) {
+				echo $this->Html->link(__('Pages').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			}
 			echo "<ul class='dropdown-menu'>";
 				if($this->UserAuth->HP('Contents', 'addPage')) {
 					echo "<li class='".(($actionUrl=='Contents/addPage') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Add Page'), array('controller'=>'Contents', 'action'=>'addPage', 'plugin'=>'usermgmt'))."</li>";
 				}
 				if($this->UserAuth->HP('Contents', 'index')) {
 					echo "<li class='".(($actionUrl=='Contents/index') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('All Pages'), array('controller'=>'Contents', 'action'=>'index', 'plugin'=>'usermgmt'))."</li>";
+				}
+			echo "</ul>";
+		echo "</li>";
+		echo "<li class='dropdown'>";
+			if($this->UserAuth->HP('TraderAccounts', 'listing')) {
+				echo $this->Html->link(__('Trading Accounts').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+			}
+			echo "<ul class='dropdown-menu'>";
+				if($this->UserAuth->HP('TraderAccounts', 'listing')) {
+					echo "<li class='".(($actionUrl=='TraderAccounts/listing') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('My Accounts'), array('controller'=>'TraderAccounts', 'action'=>'listing','plugin' =>''))."</li>";
 				}
 			echo "</ul>";
 		echo "</li>";
