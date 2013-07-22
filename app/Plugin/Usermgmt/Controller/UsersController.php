@@ -1265,7 +1265,7 @@ class UsersController extends UserMgmtAppController {
 	 */
 	public function dashboard() {
 		/* Do here something for user */
-
+		$this->layout = "trader.dashboard";
 	}
 	/**
 	 * It is used to activate or deactivate from all users page
