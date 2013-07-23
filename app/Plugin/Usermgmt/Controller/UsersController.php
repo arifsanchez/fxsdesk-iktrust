@@ -1264,8 +1264,13 @@ class UsersController extends UserMgmtAppController {
 	 * @return array
 	 */
 	public function dashboard() {
+		$userId = $this->UserAuth->getUserId();
 		/* Do here something for user */
-		$this->layout = "trader.dashboard";
+		if (!empty($userId)) {
+			$this->layout = "trader.dashboard";
+		} else {
+			$this->redirect(LOGOUT_REDIRECT_URL);	
+		}
 	}
 	/**
 	 * It is used to activate or deactivate from all users page

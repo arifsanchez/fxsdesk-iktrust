@@ -157,7 +157,7 @@
 								echo h($var['User']['first_name']);
 							};
 						?> 
-						<img src="<?php echo SITE_URL; ?>img/demo/user-avatar.jpg" alt="">
+						<img alt="<?php echo h($var['User']['first_name'].' '.$var['User']['last_name']); ?>" src="<?php echo $this->Image->resize('img/'.IMG_DIR, $var['UserDetail']['photo'], 27, null, true) ?>">
 					</a>
 					<ul class="dropdown-menu pull-right">
 						<?php
