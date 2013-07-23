@@ -37,13 +37,13 @@
  */
 class EmailConfig {
 
-	public $default = array(
+	public $other = array(
 		'transport' => 'Mail',
 		'from' => array('support@iktrust.com' => 'IK Trust'),
 
 	);
 
-	public $smtp = array(
+	public $default = array(
 		'transport' => 'Smtp',
 		'from' => array('support@iktrust.com' => 'IK Trust'),
 		'host' => 'mail.iktrust.com',
