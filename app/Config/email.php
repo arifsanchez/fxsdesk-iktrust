@@ -37,55 +37,10 @@
  */
 class EmailConfig {
 
-	public $other = array(
-		'transport' => 'Mail',
-		'from' => array('support@iktrust.com' => 'IK Trust'),
-
-	);
-
 	public $default = array(
-		'transport' => 'Smtp',
-		'from' => array('support@iktrust.com' => 'IK Trust'),
-		'host' => 'mail.iktrust.com',
-		'port' => 587,
-		'timeout' => 30,
-		'username' => 'support@iktrust.com',
-		'password' => 'Supp00rt5678$%',
-		'client' => null,
-		'log' => false,
-		'charset' => 'utf-8',
-		'headerCharset' => 'utf-8',
-	);
-
-	public $fast = array(
-		'from' => 'you@localhost',
-		'sender' => null,
-		'to' => null,
-		'cc' => null,
-		'bcc' => null,
-		'replyTo' => null,
-		'readReceipt' => null,
-		'returnPath' => null,
-		'messageId' => true,
-		'subject' => null,
-		'message' => null,
-		'headers' => null,
-		'viewRender' => null,
-		'template' => false,
-		'layout' => false,
-		'viewVars' => null,
-		'attachments' => null,
-		'emailFormat' => null,
-		'transport' => 'Smtp',
-		'host' => 'localhost',
-		'port' => 25,
-		'timeout' => 30,
-		'username' => 'user',
-		'password' => 'secret',
-		'client' => null,
-		'log' => true,
-		//'charset' => 'utf-8',
-		//'headerCharset' => 'utf-8',
-	);
+        'transport' => 'Postmark.Postmark',
+        'uri' => 'http://api.postmarkapp.com/email',
+        'key' => '28222ef4-cd82-4798-b71b-aa4e059607a7',
+    );
 
 }

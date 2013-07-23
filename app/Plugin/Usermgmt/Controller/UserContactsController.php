@@ -147,6 +147,8 @@ class UserContactsController extends UserMgmtAppController {
 	 */
 	private function __sendMailToAdmin($name, $email, $phone, $requirement) {
 		$emailObj = new CakeEmail();
+		$emailObj->config('default');
+		$emailObj->template('default', 'default');
 		$emailObj->emailFormat('both');
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;

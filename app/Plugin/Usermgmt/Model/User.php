@@ -274,6 +274,8 @@ class User extends UserMgmtAppModel {
 		// send email to newly created user
 		$userId=$user['User']['id'];
 		$email = new CakeEmail();
+		$email->config('default');
+		$email->template('default', 'default');
 		$email->emailFormat('both');
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
@@ -302,6 +304,8 @@ class User extends UserMgmtAppModel {
 	public function sendVerificationMail($user) {
 		$userId=$user['User']['id'];
 		$email = new CakeEmail();
+		$email->config('default');
+		$email->template('default', 'default');
 		$email->emailFormat('both');
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
@@ -331,6 +335,8 @@ class User extends UserMgmtAppModel {
 	public function sendVerificationCode($userId, $emailadd, $code) {
 		$name = $this->getNameById($userId);
 		$email = new CakeEmail();
+		$email->config('default');
+		$email->template('default', 'default');
 		$email->emailFormat('both');
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
@@ -369,6 +375,8 @@ class User extends UserMgmtAppModel {
 	public function sendForgotPasswordMail($user) {
 		$userId=$user['User']['id'];
 		$email = new CakeEmail();
+		$email->config('default');
+		$email->template('default', 'default');
 		$email->emailFormat('both');
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
@@ -398,6 +406,8 @@ class User extends UserMgmtAppModel {
 	public function sendChangePasswordMail($user) {
 		$userId=$user['User']['id'];
 		$email = new CakeEmail();
+		$email->config('default');
+		$email->template('default', 'default');
 		$email->emailFormat('both');
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;

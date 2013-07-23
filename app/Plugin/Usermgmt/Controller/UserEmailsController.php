@@ -92,6 +92,8 @@ class UserEmailsController extends AppController {
 	 * @return void
 	 */
 	public function send($confirm=null) {
+		$this->layout = "bootstrap";
+
 		ini_set('memory_limit','256M');
 		ini_set('max_execution_time', 5200);
 		$confirmRender=false;
@@ -292,6 +294,8 @@ class UserEmailsController extends AppController {
 			$fromConfig = $data['UserEmail']['from_email'];
 			$fromNameConfig = $data['UserEmail']['from_name'];
 			$emailObj = new CakeEmail();
+			$emailObj->config('default');
+			$emailObj->template('default', 'default');
 			$emailObj->from(array($fromConfig => $fromNameConfig));
 			$emailObj->sender(array($fromConfig => $fromNameConfig));
 			$emailObj->subject($data['UserEmail']['subject']);
@@ -393,6 +397,8 @@ class UserEmailsController extends AppController {
 							$fromConfig = $data['UserEmail']['from_email'];
 							$fromNameConfig = $data['UserEmail']['from_name'];
 							$emailObj = new CakeEmail();
+							$emailObj->config('default');
+							$emailObj->template('default', 'default');
 							$emailObj->from(array($fromConfig => $fromNameConfig));
 							$emailObj->sender(array($fromConfig => $fromNameConfig));
 							$emailObj->subject($data['UserEmail']['subject']);
