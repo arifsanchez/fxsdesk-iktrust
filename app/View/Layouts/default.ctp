@@ -191,7 +191,7 @@
 		</div>
 		<div id="main">
 			<div class="container-fluid">
-				<?php echo $this->element('page.header'); ?>
+				<?php #echo $this->element('page.header'); ?>
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="box">

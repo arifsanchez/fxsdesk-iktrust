@@ -39,23 +39,22 @@ class EmailConfig {
 
 	public $default = array(
 		'transport' => 'Mail',
-		'from' => 'hello@fxsolut.io',
-		//'charset' => 'utf-8',
-		//'headerCharset' => 'utf-8',
+		'from' => array('support@iktrust.com' => 'IK Trust'),
+
 	);
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('site@localhost' => 'My Site'),
-		'host' => 'localhost',
-		'port' => 25,
+		'from' => array('support@iktrust.com' => 'IK Trust'),
+		'host' => 'mail.iktrust.com',
+		'port' => 587,
 		'timeout' => 30,
-		'username' => 'user',
-		'password' => 'secret',
+		'username' => 'support@iktrust.com',
+		'password' => 'Supp00rt5678$%',
 		'client' => null,
 		'log' => false,
-		//'charset' => 'utf-8',
-		//'headerCharset' => 'utf-8',
+		'charset' => 'utf-8',
+		'headerCharset' => 'utf-8',
 	);
 
 	public $fast = array(

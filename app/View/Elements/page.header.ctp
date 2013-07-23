@@ -1,7 +1,7 @@
 <?php echo $this->Html->script('tarikh_masa'); ?>
 <div class="page-header">
 	<div class="pull-left">
-		<h1>IK Pro Dashboard</h1>
+		<h1>Trader Dashboard</h1>
 	</div>
 	<div class="pull-right">
 		<ul class="stats">
@@ -23,7 +23,7 @@
 	</div>
 </div>
 
-<div class="breadcrumbs">
+<!--div class="breadcrumbs">
 	<ul>
 		<li>
 			<a href="more-login.html">Home</a>
@@ -40,4 +40,4 @@
 	<div class="close-bread">
 		<a href="#"><i class="icon-remove"></i></a>
 	</div>
-</div>
+</div-->

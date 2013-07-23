@@ -1,6 +1,11 @@
 <div class="box-title">
 	<h3>
-		<i class="icon-reorder"></i>
-		<?php echo ucwords(strtolower($this->params['action'])); ?>
+		<?php if(!empty($page_title)){
+			echo "<i class=".$page_title['icon']."></i>";
+			echo $page_title['icon'];
+		} else {
+			echo "<i class=\"icon-bar-chart\"></i>";
+			echo ucwords(strtolower($this->params['action']));
+		};?>
 	</h3>
 </div>
