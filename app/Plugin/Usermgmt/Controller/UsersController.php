@@ -371,10 +371,10 @@ class UsersController extends UserMgmtAppController {
 								if ($user['User']['email_verified']==1) {
 									$loginValid=true;
 								} else {
-									$errorMsg = __('Your email has not been confirmed please verify your email or contact to Administrator', true);
+									$errorMsg = __('Your email has not been verified yet, please check your email for instruction', true);
 								}
 							} else {
-								$errorMsg = __('Sorry your account is not active, please contact to Administrator', true);
+								$errorMsg = __('Sorry ! Your account is not active, please contact our support team', true);
 							}
 						} else {
 							$errorMsg = __('Incorrect Email/Username or Password', true);
@@ -1371,10 +1371,10 @@ class UsersController extends UserMgmtAppController {
 						if (SEND_REGISTRATION_MAIL && EMAIL_VERIFICATION) {
 							$this->User->sendRegistrationMail($user);
 						}
-						$this->Session->setFlash(__('Thank you, your account is activated now'));
+						$this->Session->setFlash(__('Congratulation ! Account activated. You may login now.'));
 					}
 				} else {
-					$this->Session->setFlash(__('Thank you, your account is already activated'));
+					$this->Session->setFlash(__('Thank you. Your account is already activated'));
 				}
 			} else {
 				$this->Session->setFlash(__('Sorry something went wrong, please click on the link again'), 'default', array('class' => 'error'));

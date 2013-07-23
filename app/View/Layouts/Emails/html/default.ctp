@@ -135,7 +135,7 @@
 				<center>
 					<table border="0" width="600" cellpadding="0" cellspacing="0">
 						<tr>
-							<td style="color:#333333 !important; font-size:20px; font-family: Arial, Verdana, sans-serif; padding-left:10px;" height="40">
+							<td style="color:#333333 !important; font-size:14px; font-family: Arial, Verdana, sans-serif; padding-left:10px;" height="40">
 								<?php echo $this->fetch('content'); ?>
 							</td>
 						</tr>
