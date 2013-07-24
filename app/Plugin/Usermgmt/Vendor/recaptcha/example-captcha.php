@@ -17,7 +17,7 @@ $error = null;
 # was there a reCAPTCHA response?
 if ($_POST["recaptcha_response_field"]) {
         $resp = recaptcha_check_answer ($privatekey,
-                                        $_SERVER["REMOTE_ADDR"],
+                                        $_SERVER["HTTP_X_FORWARDED_FOR"],
                                         $_POST["recaptcha_challenge_field"],
                                         $_POST["recaptcha_response_field"]);
 

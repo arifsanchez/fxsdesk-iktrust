@@ -290,8 +290,8 @@ class UsersController extends UserMgmtAppController {
 							$this->LoginToken->deleteAll(array('LoginToken.user_id'=>$userId), false);
 						}
 						if(empty($user['User']['ip_address'])) {
-							if(isset($_SERVER['REMOTE_ADDR'])) {
-								$this->request->data['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+							if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+								$this->request->data['User']['ip_address']=$_SERVER['HTTP_X_FORWARDED_FOR'];
 							}
 						}
 						$this->User->saveAssociated($this->request->data);
@@ -448,8 +448,8 @@ class UsersController extends UserMgmtAppController {
 						$user['User']['last_name']=$fbData['user_profile']['last_name'];
 						$user['User']['active']=1;
 						$user['User']['email_verified']=1;
-						if(isset($_SERVER['REMOTE_ADDR'])) {
-							$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+						if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+							$user['User']['ip_address']=$_SERVER['HTTP_X_FORWARDED_FOR'];
 						}
 						$userImageUrl = 'http://graph.facebook.com/'.$fbData['user_profile']['id'].'/picture?type=large';
 						$photo = $this->updateProfilePic($userImageUrl);
@@ -522,8 +522,8 @@ class UsersController extends UserMgmtAppController {
 						$user['User']['first_name']=$name[0];
 						$user['User']['last_name']=(isset($name[1])) ? $name[1] : "";
 						$user['User']['active']=1;
-						if(isset($_SERVER['REMOTE_ADDR'])) {
-							$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+						if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+							$user['User']['ip_address']=$_SERVER['HTTP_X_FORWARDED_FOR'];
 						}
 						$user['UserDetail']['location']=$twtData['user_profile']['location'];
 						$userImageUrl = 'http://api.twitter.com/1/users/profile_image?screen_name='.$twtData['user_profile']['screen_name'].'&size=original';
@@ -583,8 +583,8 @@ class UsersController extends UserMgmtAppController {
 							$user['User']['email']=$gmailData['email'];
 							$user['User']['active']=1;
 							$user['User']['email_verified']=1;
-							if(isset($_SERVER['REMOTE_ADDR'])) {
-								$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+							if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+								$user['User']['ip_address']=$_SERVER['HTTP_X_FORWARDED_FOR'];
 							}
 							$user['UserDetail']['location']=$gmailData['location'];
 							$this->User->save($user,false);
@@ -644,8 +644,8 @@ class UsersController extends UserMgmtAppController {
 							$user['User']['email']=$yahooData['email'];
 							$user['User']['active']=1;
 							$user['User']['email_verified']=1;
-							if(isset($_SERVER['REMOTE_ADDR'])) {
-								$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+							if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+								$user['User']['ip_address']=$_SERVER['HTTP_X_FORWARDED_FOR'];
 							}
 							$user['UserDetail']['gender']=$yahooData['gender'];
 							$this->User->save($user,false);
@@ -703,8 +703,8 @@ class UsersController extends UserMgmtAppController {
 								$photo = $this->updateProfilePic($ldnData['picture-url']);
 								$user['UserDetail']['photo']=$photo;
 							}
-							if(isset($_SERVER['REMOTE_ADDR'])) {
-								$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+							if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+								$user['User']['ip_address']=$_SERVER['HTTP_X_FORWARDED_FOR'];
 							}
 							$this->User->save($user,false);
 							$userId=$this->User->getLastInsertID();
@@ -757,8 +757,8 @@ class UsersController extends UserMgmtAppController {
 						}
 						$user['User']['active']=1;
 						$user['User']['email_verified']=1;
-						if(isset($_SERVER['REMOTE_ADDR'])) {
-							$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+						if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+							$user['User']['ip_address']=$_SERVER['HTTP_X_FORWARDED_FOR'];
 						}
 						$this->User->save($user,false);
 						$userId=$this->User->getLastInsertID();
@@ -861,8 +861,8 @@ class UsersController extends UserMgmtAppController {
 							$this->request->data['User']['email_verified']=1;
 						}
 						$this->request->data['User']['active']=1;
-						if(isset($_SERVER['REMOTE_ADDR'])) {
-							$this->request->data['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+						if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+							$this->request->data['User']['ip_address']=$_SERVER['HTTP_X_FORWARDED_FOR'];
 						}
 						$salt = $this->UserAuth->makeSalt();
 						$this->request->data['User']['salt']=$salt;

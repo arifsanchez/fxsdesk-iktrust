@@ -54,11 +54,18 @@
  * For MySQL to connect via socket specify the `unix_socket` parameter instead of `host` and `port`
  */
 
+// Main DB
 define("DB_HOST", $_SERVER['DB1_HOST']);
 define("DB_NAME", $_SERVER['DB1_NAME']);
 define("DB_USER", $_SERVER['DB1_USER']);
 define("DB_PASS", $_SERVER['DB1_PASS']);
 define("DB_PORT", $_SERVER['DB1_PORT']);
+
+// MT4
+define("MTDB_HOST", $_SERVER['MTRS_DB_HOST']);
+define("MTDB_NAME", $_SERVER['MTRS_DB_NAME']);
+define("MTDB_USER", $_SERVER['MTRS_DB_USER']);
+define("MTDB_PASS", $_SERVER['MTRS_DB_PASS']);
  
 class DATABASE_CONFIG {
  
@@ -76,10 +83,10 @@ class DATABASE_CONFIG {
 	public $mt4 = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '64.207.151.182',
-		'login' => 'db138565_arif',
-		'password' => '>R1n"U8N{oP0',
-		'database' => 'IKMT4_rsdb',
+		'host' => MTDB_HOST,
+		'login' => MTDB_USER,
+		'password' => MTDB_PASS,
+		'database' => MTDB_NAME,
 		'prefix' => '',
 		'port' => '3306',
 	);

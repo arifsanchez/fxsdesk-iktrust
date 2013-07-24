@@ -407,7 +407,7 @@ class UserAuthComponent extends Component {
 			$last_action=$this->Session->read('Config.time');
 			$last_url=$c->here;
 			$user_browser=(isset($_SERVER['HTTP_USER_AGENT'])) ? $_SERVER['HTTP_USER_AGENT'] : "";
-			$ip=(isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : "";
+			$ip=(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : "";
 
 			App::import("Model", "Usermgmt.UserActivity");
 			$activityModel = new UserActivity;

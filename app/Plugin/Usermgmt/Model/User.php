@@ -190,7 +190,7 @@ class User extends UserMgmtAppModel {
 		App::import("Vendor", "Usermgmt.recaptcha/recaptchalib");
 		$recaptcha_challenge_field = (isset($_POST['recaptcha_challenge_field'])) ? $_POST['recaptcha_challenge_field'] : "";
 		$recaptcha_response_field = (isset($_POST['recaptcha_response_field'])) ? $_POST['recaptcha_response_field'] : "";
-		$resp = recaptcha_check_answer(PRIVATE_KEY_FROM_RECAPTCHA, $_SERVER['REMOTE_ADDR'], $recaptcha_challenge_field, $recaptcha_response_field);
+		$resp = recaptcha_check_answer(PRIVATE_KEY_FROM_RECAPTCHA, $_SERVER['HTTP_X_FORWARDED_FOR'], $recaptcha_challenge_field, $recaptcha_response_field);
 		$error = $resp->error;
 		if(!$resp->is_valid) {
 			$this->validationErrors['captcha'][0]=$error;
