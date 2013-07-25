@@ -14,7 +14,7 @@
 							<th>Leverage</th>
 							<th>Balance $</th>
 							<th>Credit $</th>
-							<th class='hidden-350'>Status</th>
+							<th class='hidden-350'>Trade Status</th>
 							<th class='hidden-1024'>Account Maturity</th>
 							<th class='hidden-480'>Operations</th>
 						</tr>
@@ -22,7 +22,14 @@
 					<tbody>
 						<?php foreach($MT_ACC as $acc): ?>
 						<tr>
-							<td><?php echo $acc['Mt4User']['LOGIN'];?></td>
+							<td>
+								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
+									<i class="icon-exclamation-sign"></i>
+								</button>
+								<a class="btn" href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" >
+									<?php echo $acc['Mt4User']['LOGIN'];?>
+								</a>
+							</td>
 							<td>1:<?php echo $acc['Mt4User']['LEVERAGE'];?></td>
 							<td><?php echo number_format($acc['Mt4User']['BALANCE'], 2, '.', '');?></td>
 							<td><?php echo number_format($acc['Mt4User']['CREDIT'], 2, '.', '');?></td>

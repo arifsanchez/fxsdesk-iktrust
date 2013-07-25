@@ -10,8 +10,6 @@ class Mt4Trade extends AppModel {
  * Validation rules
  *
  * @var array
-  // 
-	
  */	
 	//table information
 	var $name = 'Mt4Trade';

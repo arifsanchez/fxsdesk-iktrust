@@ -17,7 +17,7 @@
 		*
 		* @var array
 		*/
-		public $uses = array("Mt4User","Usermgmt.User");
+		public $uses = array("Mt4User","Usermgmt.User","Mt4Trade");
 
 		/**
 		* Trader Accounts listing
@@ -46,6 +46,44 @@
 				)
 			));
 			$this->set('MT_ACC',$acc);
+		}
+
+		/**
+		* Trader Account Details
+		*
+		* @param mixed What page to display
+		* @return void
+		*/
+		public function overview() {
+			$acc = $this->params['named']['acc'];
+			//Layout
+			$this->layout = "trader.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "Account Detail : ".$acc.""
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info trader
+			$user = $this->UserAuth->getUser();
+			$result = $this->Mt4User->find('first', array(
+				'conditions' =>array(
+					'Mt4User.LOGIN' => $acc,
+				)
+			));
+			$this->set('MT_ACC',$result);
+
+			//Pull top 5 transactions
+			$transact = $this->Mt4Trade->find('all', array(
+				'conditions' =>array(
+					'Mt4Trade.LOGIN' => $acc,
+
+				),
+				'limit' => 5,
+				'order' => array('Mt4Trade.TICKET DESC'), 
+			));
+			$this->set('MT_TRANSACT',$transact);
 		}
 
 	}

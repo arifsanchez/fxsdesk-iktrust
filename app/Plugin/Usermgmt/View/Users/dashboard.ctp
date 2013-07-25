@@ -5,7 +5,7 @@
 				<a href="<?php echo SITE_URL;?>TraderAccounts/listing"><span class='count'><i class="glyphicon-wallet"></i> 5</span><span class='name'>Trading Accounts</span></a>
 			</li>
 			<li class="green long">
-				<a href="#"><span><i class="icon-money"></i></span><span class='name'>Account Funding</span></a>
+				<a href="#"><span><i class="icon-money"></i></span><span class='name'>Pro Wallet Funding</span></a>
 			</li>
 			
 			<li class="image">
