@@ -73,6 +73,11 @@
 		/* Usermgmt Plugin JS */
 		echo $this->Html->script('/usermgmt/js/umscript.js?q='.QRDN);
 
+		/* Moment JS */
+		echo $this->Html->script('moment.min');
+		/* Livestamp JS */
+		echo $this->Html->script('livestamp.min');
+
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -115,7 +120,7 @@
 						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-tint"></i></a>
 						<ul class="dropdown-menu pull-right theme-colors">
 							<li class="subtitle">
-								Layout Colors
+								Change Layout Colors
 							</li>
 							<li>
 								<span class='red'></span>
@@ -187,7 +192,7 @@
 	</div>
 	<div class="container-fluid" id="content">
 		<div id="left" class="force-full no-resize">
-			<?php echo $this->element('staff.dashboard.left');?>
+			<?php echo $this->element('trader.dashboard.left');?>
 		</div>
 		<div id="main">
 			<div class="container-fluid">

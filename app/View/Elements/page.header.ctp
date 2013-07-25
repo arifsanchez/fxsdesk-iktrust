@@ -1,7 +1,15 @@
 <?php echo $this->Html->script('tarikh_masa'); ?>
 <div class="page-header">
 	<div class="pull-left">
-		<h1>Trader Dashboard</h1>
+		<h1>
+			<?php if(!empty($page_title)){
+				echo "<i class=".$page_title['icon']."></i>&nbsp;";
+				echo $page_title['name'];
+			} else {
+				echo "<i class=\"icon-bar-chart\"></i>&nbsp;";
+				echo ucwords(strtolower($this->params['action']));
+			};?>
+		</h1>
 	</div>
 	<div class="pull-right">
 		<ul class="stats">

@@ -2,7 +2,7 @@
 	<h3>
 		<?php if(!empty($page_title)){
 			echo "<i class=".$page_title['icon']."></i>";
-			echo $page_title['icon'];
+			echo $page_title['name'];
 		} else {
 			echo "<i class=\"icon-bar-chart\"></i>";
 			echo ucwords(strtolower($this->params['action']));

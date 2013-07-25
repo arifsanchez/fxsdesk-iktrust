@@ -1,9 +1,3 @@
-<?php
-	echo $this->Html->script('moment.min');
-	echo $this->Html->script('livestamp.min');
-
-?>
-
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color box-bordered">
