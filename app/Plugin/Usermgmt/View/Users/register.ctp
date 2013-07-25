@@ -39,11 +39,11 @@
 	</div>
 	<div class="pw control-group">
 		<div class="controls">
-			<?php echo $this->Form->input('cpassword', array('type'=>'password', 'label'=>false, 'div'=>false, 'class' => "input-block-level", 'placeholder' => 'Last Name', )); ?>
+			<?php echo $this->Form->input('cpassword', array('type'=>'password', 'label'=>false, 'div'=>false, 'class' => "input-block-level", 'placeholder' => 'Confirm Password', )); ?>
 		</div>
 	</div>
 	<?php if(USE_RECAPTCHA && PRIVATE_KEY_FROM_RECAPTCHA !="" && PUBLIC_KEY_FROM_RECAPTCHA !="") { ?>
-	<div class="um-form-row control-group">
+	<div class="control-group">
 		<?php   $this->Form->unlockField('recaptcha_challenge_field');
 				$this->Form->unlockField('recaptcha_response_field'); ?>
 		<label class="control-label required"><?php echo __('Prove you\'re not a robot');?></label>
