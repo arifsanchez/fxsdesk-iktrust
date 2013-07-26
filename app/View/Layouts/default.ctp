@@ -187,7 +187,7 @@
 	</div>
 	<div class="container-fluid" id="content">
 		<div id="left" class="force-full no-resize">
-			<?php echo $this->element('staff.dashboard.left');?>
+			<?php #echo $this->element('staff.dashboard.left');?>
 		</div>
 		<div id="main">
 			<div class="container-fluid">

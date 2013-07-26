@@ -31,6 +31,53 @@
 
 		}
 
+		/**
+		* Trader Identity Verification
+		*
+		* @param mixed What page to display
+		* @return void
+		*/
+		public function verifyIdentity(){
+			$this->layout = 'traders.dashboard';
+
+		}
+
+		/**
+		* Trader Security Mailbox
+		*
+		* @param mixed What page to display
+		* @return void
+		*/
+		public function securityInbox(){
+			$this->layout = 'traders.dashboard';
+		}
+
+		/**
+		* Trader Support Request
+		*
+		* @param mixed What page to display
+		* @return void
+		*/
+		public function sentSupportRequest(){
+			$this->layout = 'traders.dashboard';
+		}
+
+		/**
+		* Trader Wallet Home
+		*
+		* @param mixed What page to display
+		* @return void
+		*/
+		public function myWallet(){
+
+		}
+		
+		/**
+		* Traders Notification via email (TEST)
+		*
+		* @param mixed What page to display
+		* @return void
+		*/
 		public function notify(){
 			App::uses('CakeEmail', 'Network/Email');
 			$email = new CakeEmail();

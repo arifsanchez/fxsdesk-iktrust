@@ -13,7 +13,7 @@
 	</div>
 	<div class="pull-right">
 		<ul class="stats">
-			<li class='satgreen'>
+			<li class='satgreen btn' href="#">
 				<i class="icon-money"></i>
 				<div class="details">
 					<span class="big">IK$ 0.00</span>

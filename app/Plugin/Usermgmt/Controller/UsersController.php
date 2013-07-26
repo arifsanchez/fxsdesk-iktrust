@@ -228,6 +228,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return array
 	 */
 	public function myprofile() {
+		$this->layout = "trader.dashboard";
 		$userId = $this->UserAuth->getUserId();
 		$user = $this->User->read(null, $userId);
 		$user['UserGroup']['name']=$this->UserGroup->getGroupsByIds($user['User']['user_group_id']);
@@ -240,6 +241,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return array
 	 */
 	public function editProfile() {
+		$this->layout = "trader.dashboard";
 		$userId = $this->UserAuth->getUserId();
 		if (!empty($userId)) {
 			$gender= $this->User->getGenderArray();
@@ -900,6 +902,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function changePassword() {
+		$this->layout = "trader.dashboard";
 		$userId = $this->UserAuth->getUserId();
 		if ($this->request->isPost()) {
 			$this->User->set($this->data);

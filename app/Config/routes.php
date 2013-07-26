@@ -34,6 +34,16 @@
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
 /**
+ * Custom Trader page
+ */
+
+	Router::connect('/verifyIdentity', array('controller' => 'traders', 'action' => 'verifyIdentity'));
+	Router::connect('/securityInbox', array('controller' => 'traders', 'action' => 'securityInbox'));
+	Router::connect('/sentSupportRequest', array('controller' => 'traders', 'action' => 'sentSupportRequest'));
+
+	Router::connect('/myWallet', array('controller' => 'traders', 'action' => 'myWallet'));
+
+/**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
  */

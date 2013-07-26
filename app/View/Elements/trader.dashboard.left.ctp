@@ -4,13 +4,13 @@
 	</div>
 	<ul class="subnav-menu">
 		<li>
-			<a href="#">My Profile</a>
+			<a href="<?php echo SITE_URL;?>myprofile">My Profile</a>
 		</li>
 		<li>
-			<a href="#">Update Profile</a>
+			<a href="<?php echo SITE_URL;?>editProfile">Update Profile</a>
 		</li>
 		<li>
-			<a href="#">Verify Identity</a>
+			<a href="<?php echo SITE_URL;?>verifyIdentity">Verify Identity</a>
 		</li>
 	</ul>
 </div>
@@ -20,10 +20,10 @@
 	</div>
 	<ul class="subnav-menu">
 		<li>
-			<a href="#">Inbox</a>
+			<a href="<?php echo SITE_URL;?>securityInbox">Inbox</a>
 		</li>
 		<li>
-			<a href="#">Request Support</a>
+			<a href="<?php echo SITE_URL;?>sentSupportRequest">Request Support</a>
 		</li>
 	</ul>
 </div>
