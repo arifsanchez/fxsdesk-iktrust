@@ -61,6 +61,9 @@
 		#Notify
 		echo $this->Html->script('plugins/gritter/jquery.gritter.min.js?q='.QRDN);
 
+		#Bootbox
+		echo $this->Html->script('plugins/bootbox/jquery.bootbox.js?q='.QRDN);
+
 		#Theme Framework
 		echo $this->Html->script('eakroko.min.js?q='.QRDN);
 

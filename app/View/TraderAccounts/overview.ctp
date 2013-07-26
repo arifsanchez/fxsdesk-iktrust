@@ -14,20 +14,32 @@
 				</h3>
 			</div>
 			<div class="box-content">
-				<center>
-					<h1>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h1>
-				</center>
-				<hr/>
-				<button class="btn-block btn btn-darkblue btn-large">Manage Funds</button>
+
+				<div class="row-fluid">
+					<div class="span8">
+						<center>
+							<h1>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h1>
+						</center>
+						<hr/>
+						<button class="btn-block btn btn-darkblue btn-large">Manage Funds</button>
+					</div>
+
+					<div class="span4">
+						<center>
+							<h1>CR$ <?php echo number_format($MT_ACC['Mt4User']['CREDIT'], 2, '.', '');?></h1>
+						</center>
+						<hr/>
+						<button class="btn-block btn btn-teal btn-large">Request Credit</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="span6">
+
 		<div class="box box-color orange box-condensed box-bordered">
 			<div class="box-title">
 				<h3>
 					<i class="icon-reorder"></i>
-					Latest 5 Transactions
+					Latest Account Transactions
 				</h3>
 			</div>
 			<div class="box-content">
@@ -35,7 +47,7 @@
 					<thead>
 						<tr>
 							<th>Deal #</th>
-							<th>Type</th>
+							<th>Transactions</th>
 							<th>Confirmation Time</th>
 							<th>Amount US$</th>
 						</tr>
@@ -48,18 +60,26 @@
 
 							</td>
 							<td>
-								<?php 	
+								<?php
+
 								$type = $Transaction['Mt4Trade']['CMD'];
+								$lot = $Transaction['Mt4Trade']['VOLUME'] / 100;
 
 									switch ($type){
 										case "0":
-										echo "<span class=\"label label-red\">Sell (".$Transaction['Mt4Trade']['SYMBOL'].")</span>";
+										echo "<span class=\"label label-red\">SELL</span>&nbsp;<span class=\"label label-satgreen\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$lot." lot</span>";
 										break;
 										case "1":
-										echo "<span class=\"label label-blue\">Buy</span>";
+										echo "<span class=\"label label-green\">BUY</span>&nbsp;<span class=\"label label-satgreen\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$lot." lot</span>";
+										break;
+										case "5":
+										echo "<span class=\"label label-red\">[-] Balance</span>&nbsp;<span class=\"label label-satgreen\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$Transaction['Mt4Trade']['COMMENT']."</span>";
 										break;
 										case "6":
-										echo "<span class=\"label label-darkblue\">+ Balance</span>";
+										echo "<span class=\"label label-blue\">[+] Balance</span>&nbsp;<span class=\"label label-satgreen\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$Transaction['Mt4Trade']['COMMENT']."</span>";
+										break;
+										case "7":
+										echo "<span class=\"label label-brown	\">Credit</span>";
 										break;
 									};
 								?>
@@ -70,6 +90,47 @@
 						<?php endforeach; ?>
 					</tbody>
 				</table>
+			</div>
+		</div>
+	</div>
+	<div class="span6">
+		<?php
+
+			#debug($MT_ACC);
+			#debug($MT_TRANSACT);
+		?>
+		<div class="box box-color red box-small box-bordered">
+			<div class="box-title">
+				<h3>
+					<i class="icon-money"></i>
+					Statistics
+				</h3>
+			</div>
+			<div class="box-content">
+
+				<div class="row-fluid">
+					<div class="span4">
+						<p class="align-center">
+							<h1>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h1>
+							<hr/>
+							<h4>Total Deposit</h4>
+						</p>
+					</div>
+					<div class="span4">
+						<p class="align-center">
+							<h1>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h1>
+							<hr/>
+							<h4>Total Withdrawal</h4>
+						</p>
+					</div>
+					<div class="span4">
+						<p class="align-center">
+							<h1>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h1>
+							<hr/>
+							<h4>Profit / Loss</h4>
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

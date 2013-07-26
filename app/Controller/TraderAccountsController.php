@@ -80,7 +80,7 @@
 					'Mt4Trade.LOGIN' => $acc,
 
 				),
-				'limit' => 5,
+				'limit' => 35,
 				'order' => array('Mt4Trade.TICKET DESC'), 
 			));
 			$this->set('MT_TRANSACT',$transact);
