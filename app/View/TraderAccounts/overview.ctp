@@ -15,7 +15,7 @@
 							<h3>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h3>
 						</center>
 						<hr/>
-						<button class="btn-block btn btn-darkblue btn-large" href="<?php echo SITE_URL;?>Traders/funding">Manage Funds</button>
+						<a class="btn-block btn btn-darkblue btn-large" href="<?php echo SITE_URL;?>TraderAccounts/funding">Manage Funds</a>
 					</div>
 
 					<div class="span4">

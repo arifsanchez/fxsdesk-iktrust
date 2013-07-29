@@ -17,8 +17,8 @@
 					</div>
 
 					<div class="span3">
-						<button class="btn-block btn btn-satgreen btn-small" href="#">+</button>
-						<button class="btn-block btn btn-lightred btn-small" href="#">-</button>
+						<a class="btn-block btn btn-satgreen " href="#">+</a>
+						<a class="btn-block btn btn-lightred " href="#">-</a>
 					</div>
 				</div>
 			</div>
@@ -33,8 +33,8 @@
 				</h3>
 			</div>
 			<div class="box-content">
-				<button class="btn-block btn btn-satgreen btn-small" href="#">Wallet <i class="icon-circle-arrow-right"></i> Trading Account</button>
-				<button class="btn-block btn btn-lightred btn-small" href="#">Trading Account <i class="icon-circle-arrow-left"></i> Wallet</button>
+				<a class="btn-block btn btn-satgreen " href="#">Wallet <i class="icon-circle-arrow-right"></i> Trading Account</a>
+				<a class="btn-block btn btn-lightred " href="#">Trading Account <i class="icon-circle-arrow-left"></i> Wallet</a>
 			</div>
 		</div>
 	</div>
