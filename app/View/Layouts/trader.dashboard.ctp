@@ -115,7 +115,16 @@
 			<a href="#" id="brand"><icon class="dashboard"></i> IK TRUST</a>
 			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
 
-			<?php echo $this->element('staff.dashboard.navigate');?>
+			<?php
+				#filter out which group to display menu
+				if($this->UserAuth->isLogged()) {
+					if($var['User']['user_group_id'] == 1){
+						echo $this->element('staff.dashboard.navigate');
+					} else {
+						echo $this->element('trader.dashboard.navigate');	
+					}
+				}
+			;?>
 			
 			<div class="user">
 				<ul class="icon-nav">

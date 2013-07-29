@@ -75,7 +75,7 @@
 			if($result['Mt4User']['EMAIL'] == $user['User']['email']){
 				$this->set('MT_ACC',$result);	
 			} else {
-				$this->Session->setFlash('You are not authorized to acess trading account #'.$acc.' details.', 'fxs_flash', array('class' => 'alert alert-error'));
+				$this->Session->setFlash('You are not authorized to acess trading account #'.$acc.' details.', 'default', array('class' => 'alert alert-error'));
 				$this->redirect(array('action' => 'listing'));
 			}
 			
@@ -121,12 +121,9 @@
 				debug($result);die();
 				$this->set('MT_ACC',$result);	
 			} else {
-				$this->Session->setFlash('You are not authorized to access trading account #'.$acc.' details.', 'fxs_flash', array('class' => 'alert alert-error'));
+				$this->Session->setFlash('You are not authorized to access trading account #'.$acc.' details.', 'default', array('class' => 'alert alert-error'));
 				$this->redirect(array('action' => 'listing'));
 			}
-
-
-
 		}
 	}
 ?>

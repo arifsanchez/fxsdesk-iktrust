@@ -31,7 +31,7 @@ class ContentsController extends UserMgmtAppController {
 	 *
 	 * @var array
 	 */
-	public $uses = array('Usermgmt.Content');
+	public $uses = array('Usermgmt.User','Usermgmt.Content');
 	/**
 	 * This controller uses following components
 	 *
@@ -228,6 +228,7 @@ class ContentsController extends UserMgmtAppController {
 					'icon' => "icon-lightbulb",
 					'name' => $pageContents['Content']['page_name'],
 				);
+
 				$this->set('page_title',$page_title);
 				$invalidPage=false;
 				

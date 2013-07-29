@@ -5,7 +5,7 @@
 				<a href="<?php echo SITE_URL;?>TraderAccounts/listing"><span class='count'><i class="glyphicon-wallet"></i><span class='name'>Trading Accounts</span></a>
 			</li>
 			<li class="green long">
-				<a href="<?php echo SITE_URL;?>Traders/myWallet"><span><i class="icon-money"></i></span><span class='name'>Manage IK Wallet</span></a>
+				<a href="<?php echo SITE_URL;?>Vaults/manage"><span><i class="icon-money"></i></span><span class='name'>Manage IK Wallet</span></a>
 			</li>
 			
 			<li class="image">
@@ -24,7 +24,7 @@
 				<a href="<?php echo SITE_URL;?>contents/downloads"><span><i class="glyphicon-download"></i></span><span class='name'>Downloads</span></a>
 			</li>
 			<li class="teal long">
-				<a href="<?php echo SITE_URL;?>contents/trading-conditions"><span class='count'><i class="icon-book"></i></span><span class='name'>Trading Conditions</span></a>
+				<a href="<?php echo SITE_URL;?>contents/trading_conditions"><span class='count'><i class="icon-book"></i></span><span class='name'>Trading Conditions</span></a>
 			</li>
 			<li class="orange">
 				<a href="<?php echo SITE_URL;?>logout"><span><i class="icon-signout"></i></span><span class='name'>Sign out</span></a>

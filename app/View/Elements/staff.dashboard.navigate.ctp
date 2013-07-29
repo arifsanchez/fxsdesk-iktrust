@@ -93,16 +93,6 @@
 				}
 			echo "</ul>";
 		echo "</li>";
-		echo "<li class='dropdown'>";
-			if($this->UserAuth->HP('TraderAccounts', 'listing')) {
-				echo $this->Html->link(__('Trading Accounts').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
-			}
-			echo "<ul class='dropdown-menu'>";
-				if($this->UserAuth->HP('TraderAccounts', 'listing')) {
-					echo "<li class='".(($actionUrl=='TraderAccounts/listing') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('My Accounts'), array('controller'=>'TraderAccounts', 'action'=>'listing','plugin' =>''))."</li>";
-				}
-			echo "</ul>";
-		echo "</li>";
 	}
 	?>
 </ul>

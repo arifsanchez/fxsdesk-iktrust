@@ -15,7 +15,7 @@
 							<h3>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h3>
 						</center>
 						<hr/>
-						<button class="btn-block btn btn-darkblue btn-large">Manage Funds</button>
+						<button class="btn-block btn btn-darkblue btn-large" href="<?php echo SITE_URL;?>Traders/funding">Manage Funds</button>
 					</div>
 
 					<div class="span4">
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 
-		<div class="box box-color orange box-condensed box-bordered">
+		<div class="box green box-small box-bordered">
 			<div class="box-title">
 				<h3>
 					<i class="icon-reorder"></i>
@@ -50,7 +50,7 @@
 					<thead>
 						<tr>
 							<th>Deal #</th>
-							<th>Open Time<br/>CLose Time</th>
+							<th>Open Time<br/>Close Time</th>
 							<th>Transactions</th>
 							<th>Open Price<br/>Close Price</th>
 							<th>Amount US$</th>

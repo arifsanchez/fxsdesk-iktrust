@@ -89,24 +89,6 @@
 			);
 			$this->set('page_title',$page_title);
 		}
-
-		/**
-		* Trader Wallet Home
-		*
-		* @param mixed What page to display
-		* @return void
-		*/
-		public function myWallet(){
-			//Layout
-			$this->layout = "trader.dashboard";
-			//Page title
-			$page_title = array(
-				'icon' => "icon-money",
-				'name' => "My eWallet"
-			);
-			$this->set('page_title',$page_title);
-
-		}
 		
 		/**
 		* Traders Notification via email (TEST)
