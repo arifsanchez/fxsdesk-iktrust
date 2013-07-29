@@ -221,7 +221,16 @@ class ContentsController extends UserMgmtAppController {
 		if(!empty($urlName)) {
 			$pageContents=$this->Content->findByUrlName($urlName);
 			if(!empty($pageContents)) {
+				//Layout
+				$this->layout = "trader.dashboard";
+				//Page title
+				$page_title = array(
+					'icon' => "icon-lightbulb",
+					'name' => $pageContents['Content']['page_name'],
+				);
+				$this->set('page_title',$page_title);
 				$invalidPage=false;
+				
 				$this->set('pageContents', $pageContents);
 			}
 		}

@@ -27,7 +27,14 @@
 		*/
 		public function dashboard() {
 
-			$this->layout = 'traders.dashboard';
+			//Layout
+			$this->layout = "trader.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "Trader Dashboard"
+			);
+			$this->set('page_title',$page_title);
 
 		}
 
@@ -38,7 +45,14 @@
 		* @return void
 		*/
 		public function verifyIdentity(){
-			$this->layout = 'traders.dashboard';
+			//Layout
+			$this->layout = "trader.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-cloud-upload",
+				'name' => "Identity Verification"
+			);
+			$this->set('page_title',$page_title);
 
 		}
 
@@ -49,7 +63,14 @@
 		* @return void
 		*/
 		public function securityInbox(){
-			$this->layout = 'traders.dashboard';
+			//Layout
+			$this->layout = "trader.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-inbox",
+				'name' => "Security Inbox"
+			);
+			$this->set('page_title',$page_title);
 		}
 
 		/**
@@ -59,7 +80,14 @@
 		* @return void
 		*/
 		public function sentSupportRequest(){
-			$this->layout = 'traders.dashboard';
+			//Layout
+			$this->layout = "trader.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-umbrella",
+				'name' => "Sent Support Request"
+			);
+			$this->set('page_title',$page_title);
 		}
 
 		/**
@@ -69,6 +97,14 @@
 		* @return void
 		*/
 		public function myWallet(){
+			//Layout
+			$this->layout = "trader.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-money",
+				'name' => "My eWallet"
+			);
+			$this->set('page_title',$page_title);
 
 		}
 		
