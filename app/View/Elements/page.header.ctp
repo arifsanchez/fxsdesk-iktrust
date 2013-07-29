@@ -29,7 +29,8 @@
 
 				<i class="icon-money"></i>
 				<div class="details">
-					<span class="big">$ 322,12.00</span>
+					<?php $bal = $this->requestAction('vaults/acc1_balance'); ?>
+					<span class="big">IK$ <?php echo $bal;?></span>
 					<span>IK Wallet</span>
 				</div>
 			</li>

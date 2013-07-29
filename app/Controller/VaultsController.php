@@ -24,8 +24,27 @@ class VaultsController extends AppController {
  * This controller use vaults models and few other platform models
  * @var array
  */
-	public $uses = array("Mt4User","Usermgmt.User","Mt4Trade");
+	public $uses = array("Vault","Mt4User","Usermgmt.User","Mt4Trade");
+/**
+	 * This controller uses following components
+	 *
+	 * @var array
+	 */
+	public $components = array('RequestHandler', 'Cookie');
 
+	/**
+	 * Request Account 1 Balance
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function acc1_balance() {
+		$this->layout = "ajax";
+		$userId = $this->UserAuth->getUserId();
+		$balance = $this->Vault->getAcc1Balance($userId);
+		return $balance;
+		$this->set('balance', $balance);
+	}
 	/**
 	 * Management of Wallet
 	 *
@@ -42,23 +61,15 @@ class VaultsController extends AppController {
 		);
 		$this->set('page_title',$page_title);
 
-		//Dev data
-		$acc = '6666';
-
-		//Pull info trader
-		$user = $this->UserAuth->getUser();
-		$result = $this->Mt4User->find('first', array(
+		//Request balance from vault db
+		$userId = $this->UserAuth->getUserId();
+		$result = $this->Vault->find('first', array(
 			'conditions' =>array(
-				'Mt4User.LOGIN' => $acc,
+				'user_id' => $userId,
 			)
 		));
-		if($result['Mt4User']['EMAIL'] == $user['User']['email']){
-			$this->set('MT_ACC',$result);	
-		} else {
-			$this->Session->setFlash('You are not authorized to acess trading account #'.$acc.' details.', 'default', array('class' => 'alert alert-error'));
-			$this->redirect(array('action' => 'listing'));
-		}
-
+		$this->set('vault_acc',$result);
+		
 	}
 
 }

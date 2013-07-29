@@ -1,13 +1,31 @@
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="popup-coming-soon" style="display: none;">
+	<div class="modal-header">
+		<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+		<h3 id="myModalLabel">Features Coming Soon</h3>
+	</div>
+	<div class="modal-body">
+		<p>Thank you for your interest, these feature will be available soon.</p>
+	</div>
+	<div class="modal-footer">
+		<button data-dismiss="modal" class="btn btn-primary">Close</button>
+	</div>
+</div>
+
 <div class="row-fluid">
 	<div class="span12">
-		<div class="box box-color box-bordered">
+		<div class="box box-color lightred box-bordered">
 			<div class="box-title">
 				<h3>
 					Trading Accounts
 				</h3>
+				<div class="actions">
+					<a href="#popup-coming-soon" class="btn btn-mini" data-toggle="modal" title="Register Live Account"><i class="icon-fire"></i> Open Live Account</a>
+					<a href="#popup-coming-soon" class="btn btn-mini" data-toggle="modal" title="Register Demo Account"><i class="glyphicon-shield"></i> Open Demo Account</a>
+				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-bordered usertable">
+					<?php if(!empty($MT_ACC)){ ;?>
 					<thead>
 						<tr>
 							<th>Account Number</th>
@@ -51,11 +69,14 @@
 								<a href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-blue" rel="tooltip" title="Overview"><i class="icon-info-sign"></i></a>
 								<a href="<?php echo SITE_URL;?>TraderAccounts/funding/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-success" rel="tooltip" title="Funds"><i class="glyphicon-usd"></i></a>
 								<a href="#" class="btn btn-orange" rel="tooltip" title="History"><i class="glyphicon-table"></i></a>
-								<a href="#" class="btn btn-darkblue" rel="tooltip" title="Config"><i class="icon-cogs"></i>
+								<a href="#" class="btn btn-darkblue" rel="tooltip" title="Config"><i class="icon-cogs"></i></a>
 							</td>
 						</tr>
 						<?php endforeach; ?>
 					</tbody>
+					<?php } else { 
+						echo "<tr><td>Congratulations on your trader dashboard account opening. Please proceed creating a new trading account.</tr></td>";
+					};?>
 				</table>
 			</div>
 		</div>
