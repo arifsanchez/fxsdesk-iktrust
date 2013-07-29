@@ -12,12 +12,25 @@
 		</h1>
 	</div>
 	<div class="pull-right">
+		<ul class="minitiles">
+			<li class='orange' >
+				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>dashboard" data-original-title="Dashboard">
+					<i class="glyphicon-dashboard"></i>
+				</a>
+			</li>
+			<li class='blue' >
+				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>TraderAccounts/listing" data-original-title="Trading Accounts">
+					<i class="glyphicon-wallet"></i>
+				</a>
+			</li>
+		</ul>
 		<ul class="stats">
-			<li class='satgreen btn' href="#">
+			<li class='lime' >
+
 				<i class="icon-money"></i>
 				<div class="details">
-					<span class="big">IK$ 0.00</span>
-					<span>Pro Wallet</span>
+					<span class="big">$ 322,12.00</span>
+					<span>IK Wallet</span>
 				</div>
 			</li>
 			<li class='lightred'>

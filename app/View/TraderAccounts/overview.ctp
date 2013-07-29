@@ -1,16 +1,10 @@
-<?php
-
-	#debug($MT_ACC);
-	#debug($MT_TRANSACT);
-?>
-
 <div class="row-fluid">
-	<div class="span6">
+	<div class="span12">
 		<div class="box box-color green box-small box-bordered">
 			<div class="box-title">
 				<h3>
 					<i class="icon-money"></i>
-					Balance
+					Trading Balance
 				</h3>
 			</div>
 			<div class="box-content">
@@ -18,18 +12,27 @@
 				<div class="row-fluid">
 					<div class="span8">
 						<center>
-							<h1>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h1>
+							<h3>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h3>
 						</center>
 						<hr/>
 						<button class="btn-block btn btn-darkblue btn-large">Manage Funds</button>
 					</div>
 
 					<div class="span4">
-						<center>
-							<h1>CR$ <?php echo number_format($MT_ACC['Mt4User']['CREDIT'], 2, '.', '');?></h1>
-						</center>
-						<hr/>
-						<button class="btn-block btn btn-teal btn-large">Request Credit</button>
+						<dl>
+							<dt>Trading Account Ownership</dt>
+							<dd>
+								<?php echo $MT_ACC['Mt4User']['NAME'];?>
+							</dd>
+							<dt>Leverage</dt>
+							<dd>
+								1:<?php echo $MT_ACC['Mt4User']['LEVERAGE'];?>
+							</dd>
+							<dt>Introducer</dt>
+							<dd>
+								<?php echo $MT_ACC['Mt4User']['AGENT_ACCOUNT'];?>
+							</dd>
+						</dl>
 					</div>
 				</div>
 			</div>
@@ -47,8 +50,9 @@
 					<thead>
 						<tr>
 							<th>Deal #</th>
+							<th>Open Time<br/>CLose Time</th>
 							<th>Transactions</th>
-							<th>Confirmation Time</th>
+							<th>Open Price<br/>Close Price</th>
 							<th>Amount US$</th>
 						</tr>
 					</thead>
@@ -58,6 +62,11 @@
 							<td>
 								<?php echo $Transaction['Mt4Trade']['TICKET'];?>
 
+							</td>
+							<td>
+								<?php echo $Transaction['Mt4Trade']['OPEN_TIME'];?>
+								<br/>
+								<?php echo $Transaction['Mt4Trade']['CLOSE_TIME'];?>
 							</td>
 							<td>
 								<?php
@@ -84,55 +93,32 @@
 									};
 								?>
 							</td>
-							<td><?php echo $Transaction['Mt4Trade']['CLOSE_TIME'];?></td>
-							<td><div class="text-right"><?php echo number_format($Transaction['Mt4Trade']['PROFIT'], 2, '.', '');?></div></td>
+							<td>
+								<?php if($Transaction['Mt4Trade']['OPEN_PRICE'] == "0"){ ;?>
+									&nbsp;
+								<?php } else {
+									echo $Transaction['Mt4Trade']['OPEN_PRICE'];
+									echo "<br/>";
+									echo $Transaction['Mt4Trade']['CLOSE_PRICE'];
+								};?>
+							<td>
+								<div class="text-right">
+									<b><?php echo number_format($Transaction['Mt4Trade']['PROFIT'], 2, '.', '');?></b>
+								</div>
+							</td>
+							
 						</tr>
 						<?php endforeach; ?>
 					</tbody>
 				</table>
 			</div>
 		</div>
-	</div>
-	<div class="span6">
+		<div>
 		<?php
 
 			#debug($MT_ACC);
 			#debug($MT_TRANSACT);
 		?>
-		<div class="box box-color red box-small box-bordered">
-			<div class="box-title">
-				<h3>
-					<i class="icon-money"></i>
-					Statistics
-				</h3>
-			</div>
-			<div class="box-content">
-
-				<div class="row-fluid">
-					<div class="span4">
-						<p class="align-center">
-							<h1>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h1>
-							<hr/>
-							<h4>Total Deposit</h4>
-						</p>
-					</div>
-					<div class="span4">
-						<p class="align-center">
-							<h1>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h1>
-							<hr/>
-							<h4>Total Withdrawal</h4>
-						</p>
-					</div>
-					<div class="span4">
-						<p class="align-center">
-							<h1>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h1>
-							<hr/>
-							<h4>Profit / Loss</h4>
-						</p>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
-
 </div>

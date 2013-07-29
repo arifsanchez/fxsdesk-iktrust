@@ -1,11 +1,11 @@
 <div class="row-fluid">
 	<div class="span12">
 		<ul class="tiles">
-			<li class="orange high long">
+			<li class="blue high long">
 				<a href="<?php echo SITE_URL;?>TraderAccounts/listing"><span class='count'><i class="glyphicon-wallet"></i><span class='name'>Trading Accounts</span></a>
 			</li>
 			<li class="green long">
-				<a href="<?php echo SITE_URL;?>myWallet"><span><i class="icon-money"></i></span><span class='name'>Pro Wallet Funding</span></a>
+				<a href="<?php echo SITE_URL;?>myWallet"><span><i class="icon-money"></i></span><span class='name'>Manage IK Wallet</span></a>
 			</li>
 			
 			<li class="image">
@@ -14,7 +14,7 @@
 			<li class="brown long">
 				<a href="<?php echo SITE_URL;?>verifyIdentity"><span><i class="icon-cloud-upload"></i></span><span class='name'>Verification Documents</span></a>
 			</li>
-			<li class="blue">
+			<li class="satblue">
 				<a href="<?php echo SITE_URL;?>editProfile"><span><i class="icon-cogs"></i></span><span class='name'>Edit Profile</span></a>
 			</li>
 			<li class="red">

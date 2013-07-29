@@ -1,0 +1,1 @@
+<div id="fxs_flash"><?php echo $message; ?></div>

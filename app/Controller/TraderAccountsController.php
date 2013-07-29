@@ -61,7 +61,7 @@
 			//Page title
 			$page_title = array(
 				'icon' => "icon-signal",
-				'name' => "Account Detail : ".$acc.""
+				'name' => "Overview #".$acc.""
 			);
 			$this->set('page_title',$page_title);
 
@@ -72,7 +72,13 @@
 					'Mt4User.LOGIN' => $acc,
 				)
 			));
-			$this->set('MT_ACC',$result);
+			if($result['Mt4User']['EMAIL'] == $user['User']['email']){
+				$this->set('MT_ACC',$result);	
+			} else {
+				$this->Session->setFlash('You are not authorized to acess trading account #'.$acc.' details.', 'fxs_flash', array('class' => 'alert alert-error'));
+				$this->redirect(array('action' => 'listing'));
+			}
+			
 
 			//Pull top 5 transactions
 			$transact = $this->Mt4Trade->find('all', array(
@@ -80,11 +86,47 @@
 					'Mt4Trade.LOGIN' => $acc,
 
 				),
-				'limit' => 35,
+				'limit' => 5,
 				'order' => array('Mt4Trade.TICKET DESC'), 
 			));
 			$this->set('MT_TRANSACT',$transact);
 		}
 
+
+		/**
+		* Trader Account Funding
+		*
+		* @param mixed What page to display
+		* @return void
+		*/
+		public function funding() {
+			$acc = $this->params['named']['acc'];
+			//Layout
+			$this->layout = "trader.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-money",
+				'name' => "Funding #".$acc.""
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info trader
+			$user = $this->UserAuth->getUser();
+			$result = $this->Mt4User->find('first', array(
+				'conditions' =>array(
+					'Mt4User.LOGIN' => $acc,
+				)
+			));
+			if($result['Mt4User']['EMAIL'] == $user['User']['email']){
+				debug($result);die();
+				$this->set('MT_ACC',$result);	
+			} else {
+				$this->Session->setFlash('You are not authorized to access trading account #'.$acc.' details.', 'fxs_flash', array('class' => 'alert alert-error'));
+				$this->redirect(array('action' => 'listing'));
+			}
+
+
+
+		}
 	}
 ?>
