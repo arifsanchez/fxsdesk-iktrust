@@ -26,7 +26,9 @@ web1:
     - "mv app/Config/core.php.pagoda app/Config/core.php"
   before_deploy:
     - "app/Console/cake schema create -s 1"
+    - "y"
     - "app/Console/cake schema update -s 1"
+    - "y"
     - "mkdir -p app/tmp/cache"
     - "mkdir -p app/tmp/cache/models"
     - "mkdir -p app/tmp/cache/persistent"
