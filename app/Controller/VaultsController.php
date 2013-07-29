@@ -42,7 +42,11 @@ class VaultsController extends AppController {
 		$this->layout = "ajax";
 		$userId = $this->UserAuth->getUserId();
 		$balance = $this->Vault->getAcc1Balance($userId);
-		return $balance;
+		if($balance){
+			return $balance;
+		} else {
+			$balance = 0;
+		}
 		$this->set('balance', $balance);
 	}
 	/**
@@ -61,14 +65,17 @@ class VaultsController extends AppController {
 		);
 		$this->set('page_title',$page_title);
 
-		//Request balance from vault db
+		//Dapatkan user id
 		$userId = $this->UserAuth->getUserId();
-		$result = $this->Vault->find('first', array(
-			'conditions' =>array(
-				'user_id' => $userId,
-			)
-		));
-		$this->set('vault_acc',$result);
+		//Check jika traders first time buka vault
+		$checkVault = $this->Vault->checkVaultAccount($userId);
+
+		//Request balance from vault db
+		$acc1 = $this->Vault->getAcc1Balance($userId);
+		$this->set('acc1', $acc1);
+
+		$acc2 = $this->Vault->getAcc2Balance($userId);
+		$this->set('acc2', $acc2);
 		
 	}
 

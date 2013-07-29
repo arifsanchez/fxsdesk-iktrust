@@ -39,9 +39,8 @@
 			$user = $this->UserAuth->getUser();
 			$acc = $this->Mt4User->find('all', array(
 				'conditions' =>array(
-					#'Mt4User.EMAIL' => $user['User']['email'],
-					'Mt4User.EMAIL' => "hendracipta@gmail.com",
-					#'Mt4User.EMAIL' => "me@arif.my",
+					'Mt4User.EMAIL' => $user['User']['email'],
+					#'Mt4User.EMAIL' => "me@arif.my", //Test Account
 					'Mt4User.GROUP LIKE' => '%IK%'
 				)
 			));

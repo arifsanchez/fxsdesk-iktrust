@@ -12,7 +12,7 @@
 				<div class="row-fluid">
 					<div class="span9">
 						<center>
-							<h1>IK$ <?php echo $vault_acc['Vault']['acc_1']?></h1>
+							<h1>IK$ <?php echo $acc1; ?></h1>
 						</center>
 					</div>
 
@@ -53,7 +53,7 @@
 				<div class="row-fluid">
 					<div class="span9">
 						<center>
-							<h1>CR$ <?php echo $vault_acc['Vault']['acc_2']?></h1>
+							<h1>CR$ <?php echo $acc2; ?></h1>
 						</center>
 					</div>
 				</div>
