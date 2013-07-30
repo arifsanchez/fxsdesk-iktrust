@@ -280,6 +280,7 @@ class User extends UserMgmtAppModel {
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
 		$email->from(array( $fromConfig => $fromNameConfig));
+		$email->replyTo(array($fromConfig => $fromNameConfig));
 		$email->sender(array( $fromConfig => $fromNameConfig));
 		$email->to($user['User']['email']);
 		$email->subject(SITE_NAME.': '.__('Registration is Complete'));
@@ -310,6 +311,7 @@ class User extends UserMgmtAppModel {
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
 		$email->from(array( $fromConfig => $fromNameConfig));
+		$email->replyTo(array($fromConfig => $fromNameConfig));
 		$email->sender(array( $fromConfig => $fromNameConfig));
 		$email->to($user['User']['email']);
 		$email->subject(SITE_NAME.': '.__('Contact Email Confirmation'));
@@ -341,6 +343,7 @@ class User extends UserMgmtAppModel {
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
 		$email->from(array( $fromConfig => $fromNameConfig));
+		$email->replyTo(array($fromConfig => $fromNameConfig));
 		$email->sender(array( $fromConfig => $fromNameConfig));
 		$email->to($emailadd);
 		$email->subject(SITE_NAME.': '.__('Email Verification Code'));
@@ -381,6 +384,7 @@ class User extends UserMgmtAppModel {
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
 		$email->from(array( $fromConfig => $fromNameConfig));
+		$email->replyTo(array($fromConfig => $fromNameConfig));
 		$email->sender(array( $fromConfig => $fromNameConfig));
 		$email->to($user['User']['email']);
 		$email->subject(SITE_NAME.': '.__('Request to Reset Your Password'));
@@ -412,6 +416,7 @@ class User extends UserMgmtAppModel {
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
 		$email->from(array( $fromConfig => $fromNameConfig));
+		$email->replyTo(array($fromConfig => $fromNameConfig));
 		$email->sender(array( $fromConfig => $fromNameConfig));
 		$email->to($user['User']['email']);
 		$email->subject(SITE_NAME.': '.__('Change Password Confirmation'));

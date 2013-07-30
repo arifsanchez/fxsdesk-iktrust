@@ -153,6 +153,7 @@ class UserContactsController extends UserMgmtAppController {
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
 		$emailObj->from(array($fromConfig => $fromNameConfig));
+		$emailObj->replyTo(array($fromConfig => $fromNameConfig));
 		$emailObj->sender(array($fromConfig => $fromNameConfig));
 		$emailObj->subject(__('Contact Enquiry'));
 		$requirement = nl2br($requirement);

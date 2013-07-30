@@ -8,8 +8,8 @@
 					Trading Accounts
 				</h3>
 				<div class="actions">
-					<a href="#popup-coming-soon" class="btn btn-mini" data-toggle="modal" title="Register Live Account"><i class="icon-fire"></i> Open Live Account</a>
-					<a href="#popup-coming-soon" class="btn btn-mini" data-toggle="modal" title="Register Demo Account"><i class="glyphicon-shield"></i> Open Demo Account</a>
+					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register Live Account"><i class="icon-fire"></i> Open Live Account</a>
+					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register Demo Account"><i class="glyphicon-shield"></i> Open Demo Account</a>
 				</div>
 			</div>
 			<div class="box-content nopadding">

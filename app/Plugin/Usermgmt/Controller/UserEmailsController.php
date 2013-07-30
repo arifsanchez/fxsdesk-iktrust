@@ -400,6 +400,7 @@ class UserEmailsController extends AppController {
 							$emailObj->config('default');
 							$emailObj->template('default', 'default');
 							$emailObj->from(array($fromConfig => $fromNameConfig));
+							$emailObj->replyTo(array($fromConfig => $fromNameConfig));
 							$emailObj->sender(array($fromConfig => $fromNameConfig));
 							$emailObj->subject($data['UserEmail']['subject']);
 							$body = '';
