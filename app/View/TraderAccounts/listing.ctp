@@ -66,10 +66,12 @@
 							</td>
 							<td class='hidden-1024'><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"</span></td>
 							<td class='hidden-480'>
-								<a href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-blue" rel="tooltip" title="Overview"><i class="icon-info-sign"></i></a>
-								<a href="<?php echo SITE_URL;?>TraderAccounts/funding/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-success" rel="tooltip" title="Funds"><i class="glyphicon-usd"></i></a>
-								<a href="#" class="btn btn-orange" rel="tooltip" title="History"><i class="glyphicon-table"></i></a>
-								<a href="#" class="btn btn-darkblue" rel="tooltip" title="Config"><i class="icon-cogs"></i></a>
+								<a href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-blue" rel="tooltip" title="Trading Account Overview"><i class="icon-briefcase"></i> Manage</a>
+
+
+								<a href="<?php echo SITE_URL;?>TraderAccounts/history/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-orange" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
+
+								<a href="#popup-coming-soon" class="btn btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> Setting</a>
 							</td>
 						</tr>
 						<?php endforeach; ?>
