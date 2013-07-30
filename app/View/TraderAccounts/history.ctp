@@ -28,14 +28,15 @@ if($ajax) {
 				</div>
 			</div>
 			<div class="box-content nopadding">
-				<table class="table table-hover table-nomargin">
+
+				<table class="table table-hover table-nomargin table-condensed table-bordered">
 					<thead>
 						<tr>
 							<th>Deal #</th>
-							<th>Open Time<br/>Close Time</th>
+							<th>Open Time / Close Time</th>
 							<th>Transactions</th>
-							<th>Open Price<br/>Close Price</th>
-							<th>Amount US$</th>
+							<th>Open Price / Close Price</th>
+							<th><div class="text-right">Amount US$</div></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -93,44 +94,7 @@ if($ajax) {
 						<?php endforeach; ?>
 					</tbody>
 				</table>
-				<?php
-				if(!isset($totolText)) {
-					$totolText=__('Total Records');
-				}
-				?>
-				<div class="pagination pagination-right">
-					<ul>
-				<?php
-						echo "<li><span>".$this->Paginator->counter(array('format' => $totolText.' %count%'))."</span></li>";
-						$firstP=$this->Paginator->first(__('First'), array('tag' => 'li'));
-						if(!empty($firstP)) {
-							echo $firstP;
-						} else {
-							echo "<li class='disabled'><span>First</span></li>";
-						}
-						if($this->Paginator->hasPrev()) {
-							echo $this->Paginator->prev(__('Previous'), array('tag' => 'li'));;
-						} else {
-							echo "<li class='disabled'><span>Previous</span></li>";
-						}
-						echo $this->Paginator->numbers(array('separator'=>'', 'tag' => 'li', 'currentTag'=>'span'));
-						if($this->Paginator->hasNext()) {
-							echo $this->Paginator->next(__('Next'), array('tag' => 'li'));;
-						} else {
-							echo "<li class='disabled'><span>Next</span></li>";
-						}
-						$lastP=$this->Paginator->last(__('Last'), array('tag' => 'li'));
-						if(!empty($lastP)) {
-							echo $lastP;
-						} else {
-							echo "<li class='disabled'><span>Last</span></li>";
-						}
-						echo "<li><span>".$this->Paginator->counter(array('format' => __('Page %s of %s', '%page%', '%pages%')))."</span></li>";
-						echo "<li><span style='padding-top: 3px;height:21px;width:21px'>".$this->Html->image(SITE_URL.'usermgmt/img/loading-circle.gif', array('id' => 'busy-indicator', 'style'=>'display:none;'))."</span></li>";
-				?>
-					</ul>
-				</div>
-				<?php echo $this->Js->writeBuffer();  ?>
+				<?php echo $this->element('trader.dashboard.pagination'); ?>
 			</div>
 		</div>
 	</div>

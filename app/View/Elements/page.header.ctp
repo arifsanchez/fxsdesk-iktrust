@@ -23,17 +23,13 @@
 					<i class="glyphicon-wallet"></i>
 				</a>
 			</li>
+			<li class='satgreen' >
+				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>Vaults/manage" data-original-title="My Wallet">
+					<i class="icon-money"></i>
+				</a>
+			</li>
 		</ul>
 		<ul class="stats">
-			<li class='lime' >
-
-				<i class="icon-money"></i>
-				<div class="details">
-					<?php $bal = $this->requestAction('vaults/acc1_balance'); ?>
-					<span class="big">IK$ <?php echo $bal;?></span>
-					<span>IK Wallet</span>
-				</div>
-			</li>
 			<li class='lightred'>
 				<i class="icon-calendar"></i>
 				<div class="details">

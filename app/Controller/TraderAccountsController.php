@@ -104,8 +104,8 @@
 			$this->layout = "trader.dashboard";
 			//Page title
 			$page_title = array(
-				'icon' => "icon-money",
-				'name' => "Account Funding #".$acc.""
+				'icon' => "glyphicon-table",
+				'name' => "All Transactions #".$acc.""
 			);
 			$this->set('page_title',$page_title);
 

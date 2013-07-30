@@ -1,87 +1,125 @@
+<?php echo $this->element('popup.feature.comingsoon');?>
+
 <div class="row-fluid">
-	<div class="span7">
-		<div class="box box-color satgreen box-small box-bordered">
+	<div class="span6">
+		<div class="box box-color satblue box-small box-bordered">
 			<div class="box-title">
 				<h3>
 					<i class="icon-money"></i>
 					Wallet Balance
 				</h3>
+				<div class="pull-right">
+					<a
+						data-original-title="Deposit to IK Wallet and transfer limitless to trading account." 
+						rel="tooltip" 
+						data-placement="bottom" 
+						class="btn btn-satgreen" 
+						href="#popup-coming-soon" 
+						title="" 
+						data-toggle="modal" 
+						data-trigger="hover"  
+					>
+						<i class="icon-plus-sign"></i> DEPOSIT
+					</a>
+					&nbsp;
+					<a
+						data-original-title="The safest way to withdraw your IK Wallet fund. Select from many of our payment channel." 
+						data-placement="bottom" 
+						class="btn btn-red" 
+						href="#popup-coming-soon" 
+						title="" 
+						data-toggle="modal" 
+						data-trigger="hover"  
+						rel="tooltip" 
+					>
+						<i class="icon-minus-sign"></i> WITHDRAW
+					</a>
+					&nbsp;
+				</div>
 			</div>
 			<div class="box-content">
 
 				<div class="row-fluid">
-					<div class="span9">
+					<div class="span6">
 						<center>
-							<h1>IK$ <?php echo $acc1; ?></h1>
+							<h3>IK$ <?php echo $acc1; ?></h3>
 						</center>
 					</div>
-
-					<div class="span3">
-						<a
-							data-original-title="Deposit Fund to IK Wallet"
-							data-content="The fastest way to managed your trading fund . Deposit to IK Wallet and transfer limitless to trading account."
-							data-placement="top"
-							class="btn-block btn btn-satgreen" 
-							href="#"
-							title="" 
-							data-trigger="hover" 
-							rel="popover"
-						>
-							<i class="icon-plus-sign"></i> DP
-						</a>
-						<br/>
-						<a
-							data-original-title="Withdraw IK Wallet Balance"
-							data-content="The safest way to withdraw your IK Wallet fund. Select from many of our payment channel."
-							data-placement="bottom"
-							class="btn-block btn btn-red" 
-							href="#"
-							title="" 
-							data-trigger="hover" 
-							rel="popover"
-						>
-							<i class="icon-minus-sign"></i> WD
-						</a>
+					<div class="span6">
+						<center>
+							<h3>CR$ <?php echo $acc2; ?></h3>
+						</center>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="span5">
+	<div class="span6">
 		<div class="box box-bordered">
 			<div class="box-title">
 				<h3>
-					<i class="icon-money"></i>
+					<i class="icon-table"></i>
 					Trading Account List
 				</h3>
 			</div>
-			<div class="box-content">
+			<div class="box-content nopadding">
+				<table class="table table-hover table-nomargin table-condensed">
+					<?php if(!empty($tradeAcc)){ ;?>
+					<thead>
+						<tr>
+							<th>Account Number</th>
+							<th>Balance $</th>
+							<th>Operations</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($tradeAcc as $acc): ?>
+						<tr>
+							<td>
+								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
+									<i class="icon-exclamation-sign"></i>
+								</button>
+								<a class="btn" href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" >
+									<?php echo $acc['Mt4User']['LOGIN'];?>
+								</a>
+							</td>
+							<td><?php echo number_format($acc['Mt4User']['BALANCE'], 2, '.', '');?></td>
+							<td>
+								<a
+									data-original-title="Add funds from IK Wallet"
+									rel="tooltip"
+									data-placement="bottom"
+									class="btn btn-satgreen" 
+									href="#popup-coming-soon"
+									title="" 
+									data-trigger="hover" 
+									data-toggle="modal" 
+								>
+									<i class="icon-plus-sign"></i> 
+								</a>
+								&nbsp;
+								<a
+									data-original-title="Withdraw funds to IK Wallet"
+									data-placement="bottom"
+									class="btn btn-red" 
+									href="#popup-coming-soon"
+									title="" 
+									data-trigger="hover" 
+									data-toggle="modal" 
+									rel="tooltip"
+								>
+									<i class="icon-minus-sign"></i> 
+								</a>
+								&nbsp;
+							</td>
+						</tr>
+						<?php endforeach; ?>
+					</tbody>
+					<?php } else { 
+						echo "<tr><td>Congratulations on your trader dashboard account opening. Please proceed creating a new trading account.</tr></td>";
+					};?>
+				</table>
 			</div>
 		</div>
-	</div>
-</div>
-<div class="row-fluid">
-	<div class="span7">
-		<div class="box box-small box-bordered">
-			<div class="box-title">
-				<h3>
-					<i class="icon-money"></i>
-					Credit Balance
-				</h3>
-			</div>
-			<div class="box-content">
-
-				<div class="row-fluid">
-					<div class="span9">
-						<center>
-							<h1>CR$ <?php echo $acc2; ?></h1>
-						</center>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="span5">
-		&nbsp;
 	</div>
 </div>

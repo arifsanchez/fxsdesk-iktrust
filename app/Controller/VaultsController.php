@@ -77,6 +77,10 @@ class VaultsController extends AppController {
 		$acc2 = $this->Vault->getAcc2Balance($userId);
 		$this->set('acc2', $acc2);
 		
+		//Dapatkan senarai trading account
+		$userEmail = $this->User->getEmailById($userId);
+		$tradeAcc = $this->Mt4User->listTradeAcc($userEmail);
+		$this->set('tradeAcc', $tradeAcc);
 	}
 
 }

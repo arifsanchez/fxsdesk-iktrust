@@ -266,4 +266,17 @@ class Mt4User extends AppModel {
 			),
 		),
 	);
+
+	function listTradeAcc($userEmail=null) {
+		if($userEmail) {
+		$result = $this->find('all', array(
+			'conditions' =>array(
+				'EMAIL' => $userEmail,
+				'GROUP LIKE' => '%IK%'
+			)
+		));
+		return $result;
+		}
+		
+	}
 }

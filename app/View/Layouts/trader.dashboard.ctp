@@ -113,7 +113,7 @@
 	<div id="navigation">
 		<div class="container-fluid">
 			<a href="#" id="brand"><icon class="dashboard"></i> IK TRUST</a>
-			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
+			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle Sidebar"><i class="icon-reorder"></i></a>
 
 			<?php
 				#filter out which group to display menu
@@ -129,39 +129,11 @@
 			<div class="user">
 				<ul class="icon-nav">
 					<li class='dropdown colo'>
-						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-tint"></i></a>
+						<?php $bal = $this->requestAction('vaults/acc1_balance'); ?>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-money"></i> IK$ <?php echo $bal;?></a>
 						<ul class="dropdown-menu pull-right theme-colors">
-							<li class="subtitle">
-								Change Layout Colors
-							</li>
 							<li>
-								<span class='red'></span>
-								<span class='orange'></span>
-								<span class='green'></span>
-								<span class="brown"></span>
-								<span class="blue"></span>
-								<span class='lime'></span>
-								<span class="teal"></span>
-								<span class="purple"></span>
-								<span class="pink"></span>
-								<span class="magenta"></span>
-								<span class="grey"></span>
-								<span class="darkblue"></span>
-								<span class="lightred"></span>
-								<span class="lightgrey"></span>
-								<span class="satblue"></span>
-								<span class="satgreen"></span>
-							</li>
-						</ul>
-					</li>
-					<li class='dropdown language-select'>
-						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><img src="<?php echo SITE_URL; ?>img/demo/flags/us.gif" alt=""><span> English</span></a>
-						<ul class="dropdown-menu pull-right">
-							<li>
-								<a href="#"><img src="<?php echo SITE_URL; ?>img/demo/flags/my.gif" alt=""><span> Bahasa Malaysia</span></a>
-							</li>
-							<li>
-								<a href="#"><img src="<?php echo SITE_URL; ?>img/demo/flags/cn.gif" alt=""><span> Chinese</span></a>
+								<a href="<?php echo SITE_URL;?>Vaults/manage">Open My Wallet</a>
 							</li>
 						</ul>
 					</li>

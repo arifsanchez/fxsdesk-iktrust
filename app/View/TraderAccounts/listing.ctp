@@ -1,15 +1,4 @@
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="popup-coming-soon" style="display: none;">
-	<div class="modal-header">
-		<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-		<h3 id="myModalLabel">Features Coming Soon</h3>
-	</div>
-	<div class="modal-body">
-		<p>Thank you for your interest, these feature will be available soon.</p>
-	</div>
-	<div class="modal-footer">
-		<button data-dismiss="modal" class="btn btn-primary">Close</button>
-	</div>
-</div>
+<?php echo $this->element('popup.feature.comingsoon');?>
 
 <div class="row-fluid">
 	<div class="span12">
@@ -69,7 +58,7 @@
 								<a href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-blue" rel="tooltip" title="Trading Account Overview"><i class="icon-briefcase"></i> Manage</a>
 
 
-								<a href="<?php echo SITE_URL;?>TraderAccounts/history/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-orange" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
+								<a href="<?php echo SITE_URL;?>TraderAccounts/history/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
 
 								<a href="#popup-coming-soon" class="btn btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> Setting</a>
 							</td>

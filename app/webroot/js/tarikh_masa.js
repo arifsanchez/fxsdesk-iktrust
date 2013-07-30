@@ -7,6 +7,8 @@
         $('#tarikh').text(date);
         
         $('#masa').text(time);
+
+        
     }
 
     setInterval(masa, 2);
