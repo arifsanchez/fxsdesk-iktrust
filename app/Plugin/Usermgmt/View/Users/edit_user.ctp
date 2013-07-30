@@ -64,12 +64,12 @@ $(document).ready(function(e) {
 				<?php echo $this->Form->input('UserDetail.gender', array('label'=>false, 'div'=>false, 'type' => 'select', 'options'=>$gender)); ?>
 			</div>
 		</div>
-		<div class="um-form-row control-group">
+		<!--div class="um-form-row control-group">
 			<label class="control-label required"><?php echo __('Marital Status');?></label>
 			<div class="controls">
 				<?php echo $this->Form->input('UserDetail.marital_status', array('label'=>false, 'div'=>false, 'type' => 'select', 'options'=>$marital)); ?>
 			</div>
-		</div>
+		</div-->
 		<div class="um-form-row control-group">
 			<label class="control-label"><?php echo __('Birthday');?></label>
 			<div class="controls">
@@ -77,13 +77,13 @@ $(document).ready(function(e) {
 			</div>
 		</div>
 		<div class="um-form-row control-group">
-			<label class="control-label"><?php echo __('Cellphone');?></label>
+			<label class="control-label"><?php echo __('Mobile Phone');?></label>
 			<div class="controls">
 				<?php echo $this->Form->input('UserDetail.cellphone', array('label'=>false, 'div'=>false)); ?>
 			</div>
 		</div>
 		<div class="um-form-row control-group">
-			<label class="control-label"><?php echo __('Location');?></label>
+			<label class="control-label"><?php echo __('Current City');?></label>
 			<div class="controls">
 				<?php echo $this->Form->input('UserDetail.location', array('label'=>false, 'div'=>false)); ?>
 			</div>

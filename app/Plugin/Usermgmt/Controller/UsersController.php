@@ -1374,10 +1374,10 @@ class UsersController extends UserMgmtAppController {
 						if (SEND_REGISTRATION_MAIL && EMAIL_VERIFICATION) {
 							$this->User->sendRegistrationMail($user);
 						}
-						$this->Session->setFlash(__('Congratulation ! Account activated. You may login now.'));
+						$this->Session->setFlash(__('Congratulation ! Email has been verified.'));
 					}
 				} else {
-					$this->Session->setFlash(__('Thank you. Your account is already activated'));
+					$this->Session->setFlash(__('Opps ! Your email is already verified'));
 				}
 			} else {
 				$this->Session->setFlash(__('Sorry something went wrong, please click on the link again'), 'default', array('class' => 'error'));

@@ -24,6 +24,7 @@ web1:
   after_build:
     - "mv app/Config/database.php.pagoda app/Config/database.php"
     - "mv app/Config/core.php.pagoda app/Config/core.php"
+    - "mv app/Controller/AppController.php.pagoda app/Controller/AppController.php"
   before_deploy:
     - "mkdir -p app/tmp/cache"
     - "mkdir -p app/tmp/cache/models"

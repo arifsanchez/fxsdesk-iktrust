@@ -185,7 +185,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid" id="content">
+	<div class="container-fluid nav-hidden" id="content">
 		<div id="left" class="force-full no-resize">
 			<?php #echo $this->element('staff.dashboard.left');?>
 		</div>
