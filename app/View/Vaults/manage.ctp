@@ -63,8 +63,8 @@
 				</h3>
 			</div>
 			<div class="box-content nopadding">
+				<?php if(!empty($tradeAcc)){ ;?>
 				<table class="table table-hover table-nomargin table-condensed">
-					<?php if(!empty($tradeAcc)){ ;?>
 					<thead>
 						<tr>
 							<th>Account Number</th>
@@ -115,8 +115,9 @@
 						</tr>
 						<?php endforeach; ?>
 					</tbody>
-					<?php } else { 
-						echo "<tr><td>Congratulations on your trader dashboard account opening. Please proceed creating a new trading account.</tr></td>";
+					<?php } else {
+						echo "<table class='table table-nomargin table-condensed'>";
+						echo "<tr><td>Congratulations on your trader dashboard account opening. <br/>Open a new live trading account now.<br/><div class='pull-right'><a href='#popup-coming-soon' class='btn btn-lightred' data-toggle='modal' title='Register Live Account'><i class='icon-fire'></i> Open Live Account</a></div></tr></td>";
 					};?>
 				</table>
 			</div>

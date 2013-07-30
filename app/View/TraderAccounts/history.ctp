@@ -86,7 +86,16 @@ if($ajax) {
 								};?>
 							<td>
 								<div class="text-right">
-									<b><?php echo number_format($Transaction['Mt4Trade']['PROFIT'], 2, '.', '');?></b>
+									<b>
+									<?php 
+										$jumlah = number_format($Transaction['Mt4Trade']['PROFIT'], 2, '.', '');
+										if(strpos($jumlah,'-') === FALSE){
+											echo $jumlah;
+										} else {
+											echo "<span style='color:red'>".$jumlah."</span>";
+										}
+									?>
+									</b>
 								</div>
 							</td>
 							

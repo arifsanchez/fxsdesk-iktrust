@@ -123,7 +123,7 @@
 				//Paginate Trade history
 				$this->paginate = array(
 					'limit' => 10, 
-					'order'=>'Mt4Trade.TICKET DESC', 
+					'order'=>'Mt4Trade.OPEN_TIME DESC', 
 					'recursive'=>0,
 					'conditions' =>array(
 						'Mt4Trade.LOGIN' => $acc,
