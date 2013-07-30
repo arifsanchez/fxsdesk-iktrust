@@ -16,6 +16,7 @@
 
 				<div class="row-fluid">
 					<div class="span6">
+						<p>Record Last Modified : <?php echo $var['User']['modified'];?></p>
 						<!-- edit Profile block -->
 						<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
 						<?php echo $this->element('Usermgmt.ajax_validation', array('formId' => 'editProfileForm', 'submitButtonId' => 'editProfileSubmitBtn')); ?>
