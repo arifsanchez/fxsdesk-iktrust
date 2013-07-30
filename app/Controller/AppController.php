@@ -4,7 +4,7 @@ class AppController extends Controller {
 	
 	var $helpers = array('Form', 'Html', 'Session', 'Js', 'Usermgmt.UserAuth', 'Usermgmt.Image');
 	
-	public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth','DebugKit.Toolbar','Security');
+	public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth','Security');
 
 	function beforeFilter() {
 		$this->userAuth();

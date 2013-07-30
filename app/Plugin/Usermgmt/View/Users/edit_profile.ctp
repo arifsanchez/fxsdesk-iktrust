@@ -67,7 +67,7 @@
 						<div class="um-form-row control-group">
 							<label class="control-label"><?php echo __('Birthday');?></label>
 							<div class="controls">
-								<?php echo $this->Form->input('UserDetail.bday', array('type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'date')); ?>
+								<?php echo $this->Form->input('UserDetail.bday', array('type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'datepick')); ?>
 							</div>
 						</div>
 						<div class="um-form-row control-group">
