@@ -25,7 +25,7 @@
 				<div class="row-fluid">
 					<div class="span7">
 						<center>
-							<h3>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h3>
+							<h2>US$ <?php echo number_format($MT_ACC['Mt4User']['BALANCE'], 2, '.', '');?></h2>
 						</center>
 					</div>
 
@@ -74,7 +74,7 @@
 				</h3>
 			</div>
 			<div class="box-content">
-				<a href="#" class="btn btn-large btn-orange" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
+				<a href="<?php echo SITE_URL;?>TraderAccounts/history/acc:<?php echo $MT_ACC['Mt4User']['LOGIN'];?>" class="btn btn-large btn-orange" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
 
 				<a href="#popup-coming-soon" class="btn btn-large btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> Setting</a>
 			</div>

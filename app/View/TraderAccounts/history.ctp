@@ -1,13 +1,12 @@
 <div class="row-fluid">
 	<div class="span12">
-		<div class="box box-color lightred box-bordered">
+		<div class="box box-color grey box-bordered">
 			<div class="box-title">
 				<h3>
 					Trading Account History
 				</h3>
 				<div class="actions">
-					<a href="#popup-coming-soon" class="btn btn-mini" data-toggle="modal" title="Register Live Account"><i class="icon-fire"></i> Open Live Account</a>
-					<a href="#popup-coming-soon" class="btn btn-mini" data-toggle="modal" title="Register Demo Account"><i class="glyphicon-shield"></i> Open Demo Account</a>
+					<a href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $MT_ACC['Mt4User']['LOGIN'];?>" class="btn btn-mini" rel="tooltip" title="Trading Account Overview"><i class="icon-briefcase"></i> Back to account overview</a>
 				</div>
 			</div>
 			<div class="box-content nopadding">
