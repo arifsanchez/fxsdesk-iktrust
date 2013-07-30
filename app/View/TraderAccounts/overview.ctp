@@ -136,7 +136,7 @@
 										echo "<span class=\"label label-blue\">[+] Balance</span>&nbsp;<span class=\"label label-satgreen\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$Transaction['Mt4Trade']['COMMENT']."</span>";
 										break;
 										case "7":
-										echo "<span class=\"label label-brown	\">Credit</span>";
+										echo "<span class=\"label label-orange	\">IK Credit</span>";
 										break;
 									};
 								?>

@@ -120,16 +120,21 @@
 				#debug($result);die();
 				$this->set('MT_ACC',$result);
 
-				//Pull top 5 transactions
-				$transact = $this->Mt4Trade->find('all', array(
+				//Paginate Trade history
+				$this->paginate = array(
+					'limit' => 10, 
+					'order'=>'Mt4Trade.TICKET DESC', 
+					'recursive'=>0,
 					'conditions' =>array(
 						'Mt4Trade.LOGIN' => $acc,
-
-					),
-					'limit' => 65,
-					'order' => array('Mt4Trade.TICKET DESC'), 
 				));
-				$this->set('MT_TRANSACT',$transact);
+				$trades = $this->paginate('Mt4Trade');
+				$this->set('MT_TRANSACT',$trades);
+
+				if($this->RequestHandler->isAjax()) {
+					$this->layout = 'ajax';
+					$this->render('history');
+				}
 			} else {
 				$this->Session->setFlash('You are not authorized to access trading account #'.$acc.' details.', 'default', array('class' => 'alert alert-error'));
 				$this->redirect(array('action' => 'listing'));

@@ -1,6 +1,24 @@
+<?php
+if(!isset($updateDivId)) {
+	$updateDivId="updateIndex";
+}
+$ajax=true;
+if(isset($useAjax) && !$useAjax) {
+	$ajax=false;
+}
+if($ajax) {
+	$this->Paginator->options(array(
+		'update' => '#updateTradeHistory',
+		'evalScripts' => true,
+		'before' => $this->Js->get('#busy-indicator')->effect('fadeIn', array('buffer' => false)),
+		'complete' => $this->Js->get('#busy-indicator')->effect('fadeOut', array('buffer' => false))
+	));
+}
+?>
+
 <div class="row-fluid">
 	<div class="span12">
-		<div class="box box-color grey box-bordered">
+		<div class="box box-color grey box-bordered" id="updateTradeHistory">
 			<div class="box-title">
 				<h3>
 					Trading Account History
@@ -52,7 +70,7 @@
 										echo "<span class=\"label label-blue\">[+] Balance</span>&nbsp;<span class=\"label label-satgreen\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$Transaction['Mt4Trade']['COMMENT']."</span>";
 										break;
 										case "7":
-										echo "<span class=\"label label-brown	\">Credit</span>";
+										echo "<span class=\"label label-orange	\">IK Credit</span>";
 										break;
 									};
 								?>
@@ -75,6 +93,44 @@
 						<?php endforeach; ?>
 					</tbody>
 				</table>
+				<?php
+				if(!isset($totolText)) {
+					$totolText=__('Total Records');
+				}
+				?>
+				<div class="pagination pagination-right">
+					<ul>
+				<?php
+						echo "<li><span>".$this->Paginator->counter(array('format' => $totolText.' %count%'))."</span></li>";
+						$firstP=$this->Paginator->first(__('First'), array('tag' => 'li'));
+						if(!empty($firstP)) {
+							echo $firstP;
+						} else {
+							echo "<li class='disabled'><span>First</span></li>";
+						}
+						if($this->Paginator->hasPrev()) {
+							echo $this->Paginator->prev(__('Previous'), array('tag' => 'li'));;
+						} else {
+							echo "<li class='disabled'><span>Previous</span></li>";
+						}
+						echo $this->Paginator->numbers(array('separator'=>'', 'tag' => 'li', 'currentTag'=>'span'));
+						if($this->Paginator->hasNext()) {
+							echo $this->Paginator->next(__('Next'), array('tag' => 'li'));;
+						} else {
+							echo "<li class='disabled'><span>Next</span></li>";
+						}
+						$lastP=$this->Paginator->last(__('Last'), array('tag' => 'li'));
+						if(!empty($lastP)) {
+							echo $lastP;
+						} else {
+							echo "<li class='disabled'><span>Last</span></li>";
+						}
+						echo "<li><span>".$this->Paginator->counter(array('format' => __('Page %s of %s', '%page%', '%pages%')))."</span></li>";
+						echo "<li><span style='padding-top: 3px;height:21px;width:21px'>".$this->Html->image(SITE_URL.'usermgmt/img/loading-circle.gif', array('id' => 'busy-indicator', 'style'=>'display:none;'))."</span></li>";
+				?>
+					</ul>
+				</div>
+				<?php echo $this->Js->writeBuffer();  ?>
 			</div>
 		</div>
 	</div>
