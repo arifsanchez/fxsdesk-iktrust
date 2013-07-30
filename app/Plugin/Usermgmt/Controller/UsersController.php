@@ -1351,7 +1351,14 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function accessDenied() {
-
+		//Layout
+		$this->layout = "default";
+		//Page title
+		$page_title = array(
+			'icon' => "icon-warning-sign",
+			'name' => "Opps ! Something gone wrong."
+		);
+		$this->set('page_title',$page_title);
 	}
 	/**
 	 * It is used to verify user's email address when users click on the link sent to their email address
