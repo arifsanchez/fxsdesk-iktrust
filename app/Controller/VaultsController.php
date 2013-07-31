@@ -49,6 +49,7 @@ class VaultsController extends AppController {
 		}
 		$this->set('balance', $balance);
 	}
+
 	/**
 	 * Management of Wallet
 	 *

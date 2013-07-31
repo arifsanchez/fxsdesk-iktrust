@@ -16,7 +16,6 @@
 
 				<div class="row-fluid">
 					<div class="span6">
-						<p>Record Last Modified : <?php echo $var['User']['modified'];?></p>
 						<!-- edit Profile block -->
 						<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
 						<?php echo $this->element('Usermgmt.ajax_validation', array('formId' => 'editProfileForm', 'submitButtonId' => 'editProfileSubmitBtn')); ?>
@@ -60,16 +59,19 @@
 								<?php echo $this->Form->input('UserDetail.marital_status', array('label'=>false, 'div'=>false, 'type' => 'select', 'options'=>$marital)); ?>
 							</div>
 						</div-->
-						
+						<div class="um-form-row control-group">
+							<label class="control-label">Record Last Modified</label>
+							<div class="controls"><?php echo $var['User']['modified'];?></div>
+						</div>
 						
 					</div>
 					<div class="span6">
-						<div class="um-form-row control-group">
+						<!--div class="um-form-row control-group">
 							<label class="control-label"><?php echo __('Birthday');?></label>
 							<div class="controls">
 								<?php echo $this->Form->input('UserDetail.bday', array('type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'datepick')); ?>
 							</div>
-						</div>
+						</div-->
 						<div class="um-form-row control-group">
 							<label class="control-label"><?php echo __('Cellphone');?></label>
 							<div class="controls">

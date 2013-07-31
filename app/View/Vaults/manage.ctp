@@ -1,4 +1,6 @@
-<?php echo $this->element('popup.feature.comingsoon');?>
+<?php 
+	echo $this->element('popup.feature.comingsoon');
+?>
 
 <div class="row-fluid">
 	<div class="span6">
@@ -90,10 +92,10 @@
 									rel="tooltip"
 									data-placement="bottom"
 									class="btn btn-satgreen" 
-									href="#popup-coming-soon"
+									href="#DPtradeAcc<?php echo $acc['Mt4User']['LOGIN'];?>"
 									title="" 
 									data-trigger="hover" 
-									data-toggle="modal" 
+									data-toggle="modal"	
 								>
 									<i class="icon-plus-sign"></i> 
 								</a>
@@ -102,17 +104,21 @@
 									data-original-title="Withdraw funds to IK Wallet"
 									data-placement="bottom"
 									class="btn btn-red" 
-									href="#popup-coming-soon"
+									href="#WDtradeAcc<?php echo $acc['Mt4User']['LOGIN'];?>"
 									title="" 
 									data-trigger="hover" 
 									data-toggle="modal" 
-									rel="tooltip"
+									rel="tooltip" 
 								>
 									<i class="icon-minus-sign"></i> 
 								</a>
 								&nbsp;
 							</td>
 						</tr>
+						<?php
+							echo $this->element('popup.DPtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'], 'balance' => $acc['Mt4User']['BALANCE']));
+							echo $this->element('popup.WDtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'], 'balance' => $acc['Mt4User']['BALANCE']));
+						?>
 						<?php endforeach; ?>
 					</tbody>
 					<?php } else {

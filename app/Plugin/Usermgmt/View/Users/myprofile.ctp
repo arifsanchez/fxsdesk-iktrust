@@ -44,10 +44,10 @@
 										<td><strong><?php echo __('Gender');?></strong></td>
 										<td><?php echo h(ucwords($user['UserDetail']['gender']))?></td>
 									</tr>
-									<tr>
+									<!--tr>
 										<td><strong><?php echo __('Birthday');?></strong></td>
 										<td><?php if(!empty($user['UserDetail']['bday'])) { echo date('d-M-Y',strtotime($user['UserDetail']['bday'])); } ?></td>
-									</tr>
+									</tr-->
 									<tr>
 										<td><strong><?php echo __('Mobile Phone');?></strong></td>
 										<td><?php echo h($user['UserDetail']['cellphone'])?></td>

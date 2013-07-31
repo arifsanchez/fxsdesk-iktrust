@@ -31,6 +31,7 @@ if($ajax) {
 
 				<table class="table table-hover table-nomargin table-condensed table-bordered">
 					<thead>
+						<?php if(empty($MT_TRANSACT)){ echo "<tr><blockquote>Your trading account is fresh without any transaction. Start your trading today .</blockquote></tr>";} else {?> 
 						<tr>
 							<th>Deal #</th>
 							<th>Open Time / Close Time</th>
@@ -38,6 +39,7 @@ if($ajax) {
 							<th>Open Price / Close Price</th>
 							<th><div class="text-right">Amount US$</div></th>
 						</tr>
+						<?php } ?>
 					</thead>
 					<tbody>
 						<?php foreach($MT_TRANSACT as $Transaction): ?>

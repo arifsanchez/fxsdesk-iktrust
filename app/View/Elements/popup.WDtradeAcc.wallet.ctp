@@ -1,4 +1,4 @@
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="WDtradeAcc" style="display: none;">
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="WDtradeAcc<?php echo $login;?>" style="display: none;">
 	<div class="modal-header">
 		<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
 		<h3 id="myModalLabel"><i class="icon-money"></i> Withdraw To Wallet</h3>
@@ -8,7 +8,6 @@
 		<div class="row-fluid">
 			<div class="span6">
 				<h3><u>Trading Account</u></h3>
-				<?php $bal = $this->requestAction('vaults/acc1_balance'); ?>
 				<h4>Balance : US$ <?php echo number_format($balance, 2, '.', ''); ?></h4>
 				<form class="form-inline">
 		            <div class="input-prepend input-append">

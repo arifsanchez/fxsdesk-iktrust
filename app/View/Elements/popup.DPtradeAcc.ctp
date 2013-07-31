@@ -20,12 +20,15 @@
 			</div>
 			<div class="span6">
 				<h3><u>Transfer To</u></h3>
+				<?php if(!empty($login)){;?>
 				<h4>Account No : <?php echo $login; ?></h4>
+				<h4>Balance : US$ <?php echo number_format($balance, 2, '.', ''); ?></h4>
+				<?php };?>
 			</div>
 		</div>
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-green">Initiate Transfer</button>
-		<button data-dismiss="modal" class="btn btn-primary">Cancel</button>
+		<button data-dismiss="modal" class="btn btn-grey">Cancel</button>
 	</div>
 </div>
