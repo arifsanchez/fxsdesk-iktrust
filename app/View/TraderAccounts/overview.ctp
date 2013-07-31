@@ -89,8 +89,8 @@
 					<a href="<?php echo SITE_URL;?>TraderAccounts/history/acc:<?php echo $MT_ACC['Mt4User']['LOGIN'];?>" class="btn btn-mini"><i class="glyphicon-table"></i> View All Transactions</a>
 				</div>
 			</div>
-			<div class="box-content">
-				<table class="table table-hover table-nomargin">
+			<div class="box-content nopadding">
+				<table class="table table-hover table-nomargin table-condensed table-bordered">
 					<thead>
 						<tr>
 							<th>Deal #</th>
