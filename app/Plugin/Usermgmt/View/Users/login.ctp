@@ -1,6 +1,6 @@
 
 
-<h2><b>SIGN IN</b> or <b><?php echo $this->Html->link('REGISTER', '/register');?></b></h2>
+<h2><b>SIGN IN</b></b></h2>
 
 <?php 
 	echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN));
@@ -26,12 +26,14 @@
 		</div>
 	</div>
 	<div class="submit">
-		<?php echo $this->Form->Submit('Sign In', array('div'=>false, 'class'=>'btn btn-primary', 'id'=>'loginSubmitBtn')); ?>
-		<?php echo $this->Html->link(__('Forgot Password?'), '/forgotPassword', array('class'=>'right btn')); ?>
-		<?php echo $this->Html->link(__('Email Verification'), '/emailVerification', array('class'=>'right btn')); ?>
+		<?php echo $this->Form->Submit('Sign In', array('div'=>false, 'class'=>'btn btn-red', 'id'=>'loginSubmitBtn')); ?>
+		<?php echo $this->Html->link(__('Forgot Password?'), '/forgotPassword', array('class'=>'right btn btn-blue')); ?>
+		<?php echo $this->Html->link(__('Email Verification'), '/emailVerification', array('class'=>'right btn btn-satblue')); ?>
 	</div>
 <?php echo $this->Form->end(); ?>
-
+<hr>
+<h2><b>SOCIAL SIGN IN</b></b></h2>
+<blockquote>Login / register using your favourite social profile</blockquote>
 <div class="login-body bodythe">
 	<?php echo $this->element('Usermgmt.provider'); ?>
 </div>

@@ -31,7 +31,7 @@ class UsersController extends UserMgmtAppController {
 	 *
 	 * @var array
 	 */
-	public $uses = array('Usermgmt.User', 'Usermgmt.UserGroup', 'Usermgmt.UserSetting', 'Usermgmt.TmpEmail', 'Usermgmt.UserDetail', 'Usermgmt.UserActivity', 'Usermgmt.LoginToken', 'Usermgmt.UserGroupPermission', 'Usermgmt.UserContact');
+	public $uses = array('Vault','Usermgmt.User', 'Usermgmt.UserGroup', 'Usermgmt.UserSetting', 'Usermgmt.TmpEmail', 'Usermgmt.UserDetail', 'Usermgmt.UserActivity', 'Usermgmt.LoginToken', 'Usermgmt.UserGroupPermission', 'Usermgmt.UserContact');
 	/**
 	 * This controller uses following components
 	 *
@@ -1269,6 +1269,10 @@ class UsersController extends UserMgmtAppController {
 	public function dashboard() {
 		$userId = $this->UserAuth->getUserId();
 		/* Do here something for user */
+		
+		//Check jika traders first time buka vault
+		$checkVault = $this->Vault->checkVaultAccount($userId);
+
 		if (!empty($userId)) {
 			$this->layout = "trader.dashboard";
 		} else {

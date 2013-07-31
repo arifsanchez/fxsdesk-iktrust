@@ -1,4 +1,9 @@
-<?php echo $this->element('popup.feature.comingsoon');?>
+<?php 
+	echo $this->element('popup.feature.comingsoon');
+	echo $this->element('popup.DPtradeAcc', array('login' => $MT_ACC['Mt4User']['LOGIN']));
+	echo $this->element('popup.WDtradeAcc', array('login' => $MT_ACC['Mt4User']['LOGIN']));
+
+?>
 
 <div class="row-fluid">
 	<div class="span7">
@@ -24,9 +29,10 @@
 							data-content="The fastest way to fund your trading accounts. Easily transfer from your IK Wallet to selected trading account."
 							data-placement="top"
 							class="btn-block btn btn-satgreen" 
-							href="#"
+							href="#DPtradeAcc"
 							title="" 
-							data-trigger="hover" 
+							data-trigger="hover"
+							data-toggle="modal"
 							rel="popover"
 						>
 							Trading Account&nbsp;
@@ -39,9 +45,10 @@
 							data-content="The safest way to withdraw your trading accounts. Easily transfer from your trading account to IK Wallet ."
 							data-placement="bottom"
 							class="btn-block btn btn-red" 
-							href="#"
+							href="#WDtradeAcc"
 							title="" 
 							data-trigger="hover" 
+							data-toggle="modal"
 							rel="popover"
 						>
 							Trading Account&nbsp;
@@ -63,6 +70,7 @@
 				</h3>
 			</div>
 			<div class="box-content">
+
 				<a href="<?php echo SITE_URL;?>TraderAccounts/history/acc:<?php echo $MT_ACC['Mt4User']['LOGIN'];?>" class="btn btn-large btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
 
 				<a href="#popup-coming-soon" class="btn btn-large btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> Setting</a>

@@ -7,7 +7,6 @@
 
 <?php if(USE_FB_LOGIN || USE_TWT_LOGIN || USE_GMAIL_LOGIN || USE_YAHOO_LOGIN || USE_LDN_LOGIN || USE_FS_LOGIN) { ?>
 <div class="providerBox test3">
-	<div class="sign_with"><h4><?php echo __('or Sign in using the following'); ?></h4></div>
 	<ul class="providers minitiles">
 		<?php if(USE_FB_LOGIN){ ?>
 		<li id="facebook" class="blue" title='<?php echo __('Facebook Connect');?>' onclick="javascript:login_popup('fb');return false;"><a href="#"><i class="icon-facebook"></i></a></li>
