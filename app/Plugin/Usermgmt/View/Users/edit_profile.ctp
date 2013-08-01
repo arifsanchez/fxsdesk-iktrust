@@ -88,7 +88,7 @@
 								<?php echo $this->Form->input('UserDetail.web_page', array('label'=>false, 'div'=>false, 'type' => 'text')); ?>
 							</div>
 						</div>
-						<div class="form-actions">
+						<div class="form-actions pull-right">
 							<?php echo $this->Form->Submit('Update Profile', array('class'=>'btn btn-primary', 'id'=>'editProfileSubmitBtn')); ?>
 						</div>
 						<?php echo $this->Form->end(); ?>

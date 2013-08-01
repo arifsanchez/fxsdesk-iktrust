@@ -228,7 +228,15 @@ class UsersController extends UserMgmtAppController {
 	 * @return array
 	 */
 	public function myprofile() {
+		//Layout
 		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "glyphicon-vcard",
+			'name' => "Profile"
+		);
+		$this->set('page_title',$page_title);
+
 		$userId = $this->UserAuth->getUserId();
 		$user = $this->User->read(null, $userId);
 		$user['UserGroup']['name']=$this->UserGroup->getGroupsByIds($user['User']['user_group_id']);
@@ -241,7 +249,15 @@ class UsersController extends UserMgmtAppController {
 	 * @return array
 	 */
 	public function editProfile() {
+		//Layout
 		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "glyphicon-vcard",
+			'name' => "Update Profile"
+		);
+		$this->set('page_title',$page_title);
+
 		$userId = $this->UserAuth->getUserId();
 		if (!empty($userId)) {
 			#debug($this->request->data); die();
