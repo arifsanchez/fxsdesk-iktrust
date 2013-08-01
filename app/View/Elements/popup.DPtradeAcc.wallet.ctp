@@ -8,7 +8,6 @@
 		<div class="row-fluid">
 			<div class="span6">
 				<h3><u>Wallet Balance</u></h3>
-				<?php $bal = $this->requestAction('vaults/acc1_balance'); ?>
 				<h4>IK$ <?php echo $bal; ?></h4>
 				<form class="form-inline">
 		            <div class="input-prepend input-append">

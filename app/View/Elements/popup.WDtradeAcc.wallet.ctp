@@ -19,7 +19,6 @@
 			</div>
 			<div class="span6">
 				<h3><u>Transfer To</u></h3>
-				<?php $bal = $this->requestAction('vaults/acc1_balance'); ?>
 				<h4>Wallet IK$ <?php echo $bal; ?></h4>
 				
 			</div>

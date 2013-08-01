@@ -1,5 +1,7 @@
 <?php 
 	echo $this->element('popup.feature.comingsoon');
+	echo $this->element('popup.deposit', array('bal' => $acc1));
+	echo $this->element('popup.withdraw');
 ?>
 
 <div class="row-fluid">
@@ -16,7 +18,7 @@
 						rel="tooltip" 
 						data-placement="bottom" 
 						class="btn btn-satgreen" 
-						href="#popup-coming-soon" 
+						href="#DepositWallet" 
 						title="" 
 						data-toggle="modal" 
 						data-trigger="hover"  
@@ -28,7 +30,7 @@
 						data-original-title="The safest way to withdraw your IK Wallet fund. Select from many of our payment channel." 
 						data-placement="bottom" 
 						class="btn btn-red" 
-						href="#popup-coming-soon" 
+						href="#WithdrawWallet" 
 						title="" 
 						data-toggle="modal" 
 						data-trigger="hover"  
@@ -116,8 +118,8 @@
 							</td>
 						</tr>
 						<?php
-							echo $this->element('popup.DPtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'], 'balance' => $acc['Mt4User']['BALANCE']));
-							echo $this->element('popup.WDtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'], 'balance' => $acc['Mt4User']['BALANCE']));
+							echo $this->element('popup.DPtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $acc['Mt4User']['BALANCE']));
+							echo $this->element('popup.WDtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $acc['Mt4User']['BALANCE']));
 						?>
 						<?php endforeach; ?>
 					</tbody>
