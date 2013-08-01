@@ -10,9 +10,9 @@
 			<div class="span12">
 				<ul class="thumbnails">
 					<li class="span4">
-					    <a data-placement="top" title="" rel="tooltip" class="btn" href="#" data-original-title="Bank Transfer, 0% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/bn_150x100.png" alt="Bank Transfer"></a>
+					    <a data-placement="top" title="" rel="tooltip" class="btn" href="#" data-original-title="Bank Transfer, 0% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/bt_150x100.png" alt="Bank Transfer"></a>
 					    <div class="caption">
-					      <p align="center"><a href="#" class="btn btn-satgreen btn-mini">Bank Transfer</a></p>
+					      <p align="center"><a href="#" class="btn btn-satgreen btn-block">Bank transfer</a></p>
 					    </div>
 					</li>
 					<li class="span4">
@@ -22,7 +22,7 @@
 					    </div>
 					</li>
 					<li class="span4">
-					    <a data-placement="top" title="" rel="tooltip" class="btn" href="#" data-original-title="Webmoney, 1% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/wm_150x100.png" alt="Webmoney"></a>
+					    <a data-placement="top" title="" rel="tooltip" class="btn" href="#" data-original-title="Webmoney, 1.2% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/wm_150x100.png" alt="Webmoney"></a>
 					    <div class="caption">
 					      <p align="center"><a href="#" class="btn btn-satgreen btn-block">Webmoney</a></p>
 					    </div>
@@ -41,13 +41,13 @@
 					    </div>
 					</li>
 					<li class="span4">
-					    <a data-placement="top" title="" rel="tooltip" class="btn" href="#" data-original-title="IK Prepaid Card, 0% Commission"><img src="http://placehold.it/150x100" alt="IK Prepaid"></a>
+					    <a data-placement="top" title="" rel="tooltip" class="btn" href="#" data-original-title="IK Topup Card, 0% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/ik_150x100.png" alt="IK Topup Card"></a>
 					    <div class="caption">
-					      <p align="center"><a href="#" class="btn btn-satgreen btn-block">IK Prepaid</a></p>
+					      <p align="center"><a href="#" class="btn btn-satgreen btn-block">IK Topup Card</a></p>
 					    </div>
 					</li>
 					<li class="span4">
-					    <a data-placement="top" title="" rel="tooltip" class="btn" href="#" data-original-title="Payza, 0% Commission"><img src="http://placehold.it/150x100" alt="Payza"></a>
+					    <a data-placement="top" title="" rel="tooltip" class="btn" href="#" data-original-title="Payza, 1.5% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/pz_150x100.png" alt="Payza"></a>
 					    <div class="caption">
 					      <p align="center"><a href="#" class="btn btn-satgreen btn-block">Payza</a></p>
 					    </div>
@@ -57,6 +57,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		Info regarding our payment channel and partners payment channel <a class="btn btn-satblue btn-block" href="<?php echo SITE_URL;?>contents/finance_channel">Read More</a>
+		<center>Read info regarding our payment channel and partners payment channel</center>
+		<a class="btn btn-satblue btn-block" href="<?php echo SITE_URL;?>contents/finance_channel">Read More</a>
 	</div>
 </div>

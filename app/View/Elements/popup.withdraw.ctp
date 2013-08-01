@@ -10,6 +10,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		Info regarding our payment channel and partners payment channel <a class="btn btn-satblue btn-block" href="<?php echo SITE_URL;?>contents/finance_channel">Read More</a>
+		<center>Read info regarding our payment channel and partners payment channel</center>
+		<a href="<?php echo SITE_URL;?>contents/finance_channel">Read More</a>
 	</div>
 </div>
