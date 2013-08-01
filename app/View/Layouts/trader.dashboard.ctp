@@ -112,7 +112,7 @@
 <body class="theme-lightred" data-layout-sidebar="fixed" data-layout-topbar="fixed">
 	<div id="navigation">
 		<div class="container-fluid">
-			<a href="#" id="brand"><icon class="dashboard"></i> IK TRUST</a>
+			<a href="<?php echo SITE_URL;?>" id="brand"><icon class="dashboard"></i> IK TRUST</a>
 			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle Sidebar"><i class="icon-reorder"></i></a>
 
 			<?php

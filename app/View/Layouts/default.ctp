@@ -23,6 +23,8 @@
 		echo $this->Html->css('style.css?q='.QRDN);
 		#Color CSS
 		echo $this->Html->css('themes.css?q='.QRDN);
+		#Datepicker
+		echo $this->Html->css('plugins/datepicker/datepicker.css?q='.QRDN);
 
 	#JS
 		#jQuery
@@ -39,9 +41,10 @@
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.mouse.min.js?q='.QRDN);
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.resizable.min.js?q='.QRDN);
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.sortable.min.js?q='.QRDN);
-		echo $this->Html->script('plugins/jquery-ui/jquery.ui.datepicker.min.js?q='.QRDN);
-		/* Jquery Datetime addon taken from http://trentrichardson.com */
-		echo $this->Html->css('/usermgmt/css/jquery-ui-timepicker-addon');
+		echo $this->Html->script('plugins/jquery-ui/jquery.ui.spinner.js?q='.QRDN);
+
+		#Bootstrap
+		echo $this->Html->script('bootstrap.min.js?q='.QRDN);
 
 		#Nice Scroll
 		echo $this->Html->script('plugins/nicescroll/jquery.nicescroll.min.js?q='.QRDN);
@@ -49,8 +52,8 @@
 		#Slim Scroll
 		echo $this->Html->script('plugins/slimscroll/jquery.slimscroll.min.js?q='.QRDN);
 
-		#Bootstrap
-		echo $this->Html->script('bootstrap.min.js?q='.QRDN);
+		#Datepicker
+		echo $this->Html->script('plugins/datepicker/bootstrap-datepicker.js?q='.QRDN);
 
 		#Sparkline
 		echo $this->Html->script('plugins/sparklines/jquery.sparklines.min.js?q='.QRDN);
@@ -61,17 +64,22 @@
 		#Notify
 		echo $this->Html->script('plugins/gritter/jquery.gritter.min.js?q='.QRDN);
 
+		#Bootbox
+		echo $this->Html->script('plugins/bootbox/jquery.bootbox.js?q='.QRDN);
+
 		#Theme Framework
 		echo $this->Html->script('eakroko.min.js?q='.QRDN);
 
 		#Theme Scripts
 		echo $this->Html->script('application.min.js?q='.QRDN);
 
-		/* Jquery Datetime addon taken from http://trentrichardson.com */
-		echo $this->Html->script('/usermgmt/js/jquery-ui-timepicker-addon');
-
 		/* Usermgmt Plugin JS */
 		echo $this->Html->script('/usermgmt/js/umscript.js?q='.QRDN);
+
+		/* Moment JS */
+		echo $this->Html->script('moment.min');
+		/* Livestamp JS */
+		echo $this->Html->script('livestamp.min');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -104,10 +112,18 @@
 <body class="theme-lightred" data-layout-sidebar="fixed" data-layout-topbar="fixed">
 	<div id="navigation">
 		<div class="container-fluid">
-			<a href="#" id="brand"><icon class="dashboard"></i> IK TRUST</a>
+			<a href="<?php echo SITE_URL;?>" id="brand"><icon class="dashboard"></i> IK TRUST</a>
 			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
 
-			<?php echo $this->element('staff.dashboard.navigate');?>
+			<?php 
+				if($this->UserAuth->isLogged()){
+					echo $this->element('staff.dashboard.navigate');
+				} else {
+					echo $this->element('public.navigate');
+				}
+				
+
+			?>
 			
 			<div class="user">
 				<ul class="icon-nav">
@@ -150,12 +166,13 @@
 					</li>
 				</ul>
 				<div class="dropdown">
-					<?php $userId = $this->UserAuth->getUserId();?>
+					<?php 
+						$userId = $this->UserAuth->getUserId();
+						if(!empty($userId)){
+					?>
 					<a href="#" class='dropdown-toggle' data-toggle="dropdown">
 						<?php 
-							if(!empty($userId)){
-								echo h($var['User']['first_name']);
-							};
+							echo h($var['User']['first_name']);
 						?> 
 						<img alt="<?php echo h($var['User']['first_name'].' '.$var['User']['last_name']); ?>" src="<?php echo $this->Image->resize('img/'.IMG_DIR, $var['UserDetail']['photo'], 27, null, true) ?>">
 					</a>
@@ -180,6 +197,7 @@
 						} else {
 							echo "<li class='".(($actionUrl=='Users/login') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Sign In'), '/login')."</li>";
 						} ?>
+					<?php }; ?>
 					</ul>
 				</div>
 			</div>
@@ -195,7 +213,7 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="box">
-							<?php echo $this->element('page.title'); ?>
+							<?php #echo $this->element('page.title'); ?>
 							<div class="box-content">
 								<?php
 									echo $this->element('Usermgmt.message');
