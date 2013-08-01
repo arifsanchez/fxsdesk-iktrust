@@ -94,10 +94,10 @@
 					<thead>
 						<tr>
 							<th>Deal #</th>
-							<th>Open Time<br/>Close Time</th>
+							<th>Open Time / Close Time</th>
 							<th>Transactions</th>
-							<th>Open Price<br/>Close Price</th>
-							<th>Amount US$</th>
+							<th>Open Price / Close Price</th>
+							<th><div class="text-right">Amount US$&nbsp;</div></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -147,7 +147,14 @@
 								};?>
 							<td>
 								<div class="text-right">
-									<b><?php echo number_format($Transaction['Mt4Trade']['PROFIT'], 2, '.', '');?></b>
+									<b><?php
+										$jumlah = number_format($Transaction['Mt4Trade']['PROFIT'], 2, '.', '');
+										if(strpos($jumlah,'-') === FALSE){
+											echo $jumlah;
+										} else {
+											echo "<span style='color:red'>".$jumlah."</span>";
+										}
+									;?>&nbsp;</b>
 								</div>
 							</td>
 							

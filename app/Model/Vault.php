@@ -108,7 +108,11 @@ public $validate = array(
 			$this->create();
 			$new['user_id'] = $userId;
 			$this->save($new);
+
+			return true;
 		}
+
+		return true;
 	}
 
 }

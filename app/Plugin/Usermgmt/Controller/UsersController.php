@@ -1287,11 +1287,10 @@ class UsersController extends UserMgmtAppController {
 	public function dashboard() {
 		$userId = $this->UserAuth->getUserId();
 		/* Do here something for user */
-		
-		//Check jika traders first time buka vault
-		$checkVault = $this->Vault->checkVaultAccount($userId);
 
 		if (!empty($userId)) {
+			//Check jika traders first time buka vault
+			$checkVault = $this->Vault->checkVaultAccount($userId);
 			$this->layout = "trader.dashboard";
 		} else {
 			$this->redirect(LOGOUT_REDIRECT_URL);	
