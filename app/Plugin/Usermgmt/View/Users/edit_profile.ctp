@@ -5,17 +5,18 @@
 		<div class="box box-small lightred box-color box-bordered">
 			<div class="box-title">
 				<h3>
-					<i class="icon-money"></i>
+					<i class="icon-pencil"></i>
 					Update Profile
 				</h3>
 				<div class="actions">
+					<button data-placement="bottom" rel="tooltip" data-original-title="Last update : <?php echo $var['User']['modified'];?>" class="btn btn-mini"><i class="icon-exclamation-sign"></i></button>
 					<a href="<?php echo SITE_URL;?>myprofile" class="btn btn-mini"><i class="icon-user"></i> View My profile</a>
 				</div>
 			</div>
 			<div class="box-content">
 
 				<div class="row-fluid">
-					<div class="span6">
+					<div class="span6 form-horizontal form-bordered">
 						<!-- edit Profile block -->
 						<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
 						<?php echo $this->element('Usermgmt.ajax_validation', array('formId' => 'editProfileForm', 'submitButtonId' => 'editProfileSubmitBtn')); ?>
@@ -26,7 +27,7 @@
 						<div class="control-group">
 							<label class="control-label required"><?php echo __('Username');?></label>
 							<div class="controls">
-								<?php echo $this->Form->input('username', array('label'=>false, 'readonly'=>$changeUserName, 'class' => 'form-horizontal form-bordered')); ?>
+								<?php echo $this->Form->input('username', array('label'=>false, 'readonly'=>$changeUserName)); ?>
 							</div>
 						</div>
 						<div class="control-group">
@@ -53,13 +54,10 @@
 								<?php echo $this->Form->input('UserDetail.gender', array('label'=>false, 'div'=>false, 'type' => 'select', 'options'=>$gender)); ?>
 							</div>
 						</div>
-						<div class="control-group">
-							<label class="control-label">Record Last Modified</label>
-							<div class="controls"><?php echo $var['User']['modified'];?></div>
-						</div>
+
 						
 					</div>
-					<div class="span6">
+					<div class="span6 form-horizontal form-bordered">
 						<div class="control-group">
 							<label class="control-label"><?php echo __('Birthday');?></label>
 							<div class="controls">
@@ -73,13 +71,13 @@
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label"><?php echo __('Location');?></label>
+							<label class="control-label"><?php echo __('Current City');?></label>
 							<div class="controls">
 								<?php echo $this->Form->input('UserDetail.location', array('label'=>false, 'div'=>false)); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label"><?php echo __('Photo');?></label>
+							<label class="control-label"><?php echo __('Profile Photo');?></label>
 							<div class="controls">
 								<?php echo $this->Form->input('UserDetail.photo', array('label'=>false, 'div'=>false, 'type' => 'file')); ?>
 							</div>
