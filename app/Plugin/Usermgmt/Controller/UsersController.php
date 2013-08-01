@@ -244,6 +244,7 @@ class UsersController extends UserMgmtAppController {
 		$this->layout = "trader.dashboard";
 		$userId = $this->UserAuth->getUserId();
 		if (!empty($userId)) {
+			#debug($this->request->data); die();
 			$gender= $this->User->getGenderArray();
 			$this->set('gender', $gender);
 			$marital= $this->User->getMaritalArray();
@@ -296,6 +297,7 @@ class UsersController extends UserMgmtAppController {
 								$this->request->data['User']['ip_address']=$_SERVER['HTTP_X_FORWARDED_FOR'];
 							}
 						}
+
 						$this->User->saveAssociated($this->request->data);
 						$this->Session->setFlash(__('Your profile has been successfully updated'));
 						$this->redirect('/myprofile');

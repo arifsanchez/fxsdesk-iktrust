@@ -23,6 +23,8 @@
 		echo $this->Html->css('style.css?q='.QRDN);
 		#Color CSS
 		echo $this->Html->css('themes.css?q='.QRDN);
+		#Datepicker
+		echo $this->Html->css('plugins/datepicker/datepicker.css?q='.QRDN);
 
 	#JS
 		#jQuery
@@ -39,9 +41,10 @@
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.mouse.min.js?q='.QRDN);
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.resizable.min.js?q='.QRDN);
 		echo $this->Html->script('plugins/jquery-ui/jquery.ui.sortable.min.js?q='.QRDN);
-		echo $this->Html->script('plugins/jquery-ui/jquery.ui.datepicker.min.js?q='.QRDN);
-		/* Jquery Datetime addon taken from http://trentrichardson.com */
-		echo $this->Html->css('/usermgmt/css/jquery-ui-timepicker-addon');
+		echo $this->Html->script('plugins/jquery-ui/jquery.ui.spinner.js?q='.QRDN);
+
+		#Bootstrap
+		echo $this->Html->script('bootstrap.min.js?q='.QRDN);
 
 		#Nice Scroll
 		echo $this->Html->script('plugins/nicescroll/jquery.nicescroll.min.js?q='.QRDN);
@@ -49,8 +52,8 @@
 		#Slim Scroll
 		echo $this->Html->script('plugins/slimscroll/jquery.slimscroll.min.js?q='.QRDN);
 
-		#Bootstrap
-		echo $this->Html->script('bootstrap.min.js?q='.QRDN);
+		#Datepicker
+		echo $this->Html->script('plugins/datepicker/bootstrap-datepicker.js?q='.QRDN);
 
 		#Sparkline
 		echo $this->Html->script('plugins/sparklines/jquery.sparklines.min.js?q='.QRDN);
@@ -69,9 +72,6 @@
 
 		#Theme Scripts
 		echo $this->Html->script('application.min.js?q='.QRDN);
-
-		/* Jquery Datetime addon taken from http://trentrichardson.com */
-		echo $this->Html->script('/usermgmt/js/jquery-ui-timepicker-addon');
 
 		/* Usermgmt Plugin JS */
 		echo $this->Html->script('/usermgmt/js/umscript.js?q='.QRDN);
@@ -200,6 +200,5 @@
 		</p>
 		<a href="#" class="gototop"><i class="icon-arrow-up"></i></a>
 	</div>
-		
 	</body>
 </html>

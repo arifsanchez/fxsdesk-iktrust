@@ -1,14 +1,14 @@
 jQuery(document).ready(function($){
 	// Date picker
-	$('.date').datepicker({
+	/*$('.date').datepicker({
 		inline: true,
 		dateFormat: "yy-mm-dd",
 		changeMonth: true,
 		changeYear: true,
 		yearRange: "-50:+5",
-	});
+	});*/
 	// Datetime picker
-	$('.datetime').datetimepicker({
+	/*$('.datetime').datetimepicker({
 		inline: true,
 		dateFormat: "yy-mm-dd",
 		changeMonth: true,
@@ -17,7 +17,7 @@ jQuery(document).ready(function($){
 		controlType: 'select',
 		timeFormat: 'HH:mm ss',
 		showSecond: true,
-	});
+	});*/
 	// adding title to links in table header
 	$(document).on("mouseenter", "table tr th a", function() {
 		$(this).attr('title', 'Click to sort records');
