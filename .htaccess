@@ -1,7 +1,9 @@
 <IfModule mod_rewrite.c>
    	RewriteEngine On
-	RewriteCond %{HTTP:X-Forwarded-Proto} =http
-	RewriteRule (.*) https://%{HTTP_HOST}/$1 [R]
    	RewriteRule    ^$ app/webroot/    [L]
    	RewriteRule    (.*) app/webroot/$1 [L]
 </IfModule>
+
+	RewriteEngine On
+	RewriteCond %{HTTP:X-Forwarded-Proto} =http
+	RewriteRule (.*) https://%{HTTP_HOST}/$1 [R]
