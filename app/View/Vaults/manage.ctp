@@ -1,7 +1,7 @@
 <?php 
 	echo $this->element('popup.feature.comingsoon');
 	echo $this->element('popup.deposit', array('bal' => $acc1));
-	echo $this->element('popup.withdraw');
+	echo $this->element('popup.withdraw', array('bal' => $acc1));
 ?>
 
 <div class="row-fluid">

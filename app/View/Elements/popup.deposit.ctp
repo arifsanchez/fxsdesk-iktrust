@@ -1,7 +1,11 @@
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="DepositWallet" style="display: none;">
 	<div class="modal-header">
 		<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-		<h3 id="myModalLabel"><i class="icon-money"></i> Deposit to Wallet<span class="pull-right">IK$ <?php echo $bal; ?>&nbsp;</span></h3>
+		<h3 id="myModalLabel"><i class="icon-money"></i> Deposit to Wallet
+			<span class="pull-right">
+				<button class="btn btn-success" disabled>IK$ <?php echo $bal; ?></button>&nbsp;
+			</span>
+		</h3>
 	</div>
 	<div class="modal-body">
 		<p>Deposit to IK Wallet and transfer limitless to trading account.</p>
