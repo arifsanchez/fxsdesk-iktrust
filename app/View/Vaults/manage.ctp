@@ -10,7 +10,7 @@
 			<div class="box-title">
 				<h3>
 					<i class="icon-money"></i>
-					Wallet Balance
+					Balance
 				</h3>
 				<div class="pull-right">
 					<a
