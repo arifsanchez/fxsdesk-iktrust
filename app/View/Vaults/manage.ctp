@@ -59,7 +59,7 @@
 		</div>
 	</div>
 	<div class="span6">
-		<div class="box box-bordered">
+		<div class="box box-bordered box-color blue">
 			<div class="box-title">
 				<h3>
 					<i class="icon-table"></i>
@@ -129,6 +129,77 @@
 					};?>
 				</table>
 			</div>
+		</div>
+		<!--div class="box box-bordered box-color orange">
+			<div class="box-title">
+				<h3>
+					<i class="icon-table"></i>
+					IK Investment Account
+				</h3>
+			</div>
+			<div class="box-content nopadding">
+				<?php if(!empty($investAcc)){ ;?>
+				<table class="table table-hover table-nomargin table-condensed">
+					<thead>
+						<tr>
+							<th>Account Number</th>
+							<th>Balance $</th>
+							<th>Operations</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($investAcc as $vest): ?>
+						<tr>
+							<td>
+								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $vest['Mt4User']['GROUP'];?>">
+									<i class="icon-exclamation-sign"></i>
+								</button>
+								<a class="btn" href="<?php echo SITE_URL;?>TraderAccounts/overview/vest:<?php echo $vest['Mt4User']['LOGIN'];?>" >
+									<?php echo $vest['Mt4User']['LOGIN'];?>
+								</a>
+							</td>
+							<td><?php echo number_format($vest['Mt4User']['BALANCE'], 2, '.', '');?></td>
+							<td>
+								<a
+									data-original-title="Add funds from IK Wallet"
+									rel="tooltip"
+									data-placement="bottom"
+									class="btn btn-satgreen" 
+									href="#DPtradeAcc<?php echo $vest['Mt4User']['LOGIN'];?>"
+									title="" 
+									data-trigger="hover" 
+									data-toggle="modal"	
+								>
+									<i class="icon-plus-sign"></i> 
+								</a>
+								&nbsp;
+								<a
+									data-original-title="Withdraw funds to IK Wallet"
+									data-placement="bottom"
+									class="btn btn-red" 
+									href="#WDtradeAcc<?php echo $acc['Mt4User']['LOGIN'];?>"
+									title="" 
+									data-trigger="hover" 
+									data-toggle="modal" 
+									rel="tooltip" 
+								>
+									<i class="icon-minus-sign"></i> 
+								</a>
+								&nbsp;
+							</td>
+						</tr>
+						<?php
+							echo $this->element('popup.DPtradeAcc.wallet', array('login' => $vest['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $vest['Mt4User']['BALANCE']));
+							echo $this->element('popup.WDtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $vest['Mt4User']['BALANCE']));
+						?>
+						<?php endforeach; ?>
+					</tbody>
+					<?php } else {
+						echo "<table class='table table-nomargin table-condensed'>";
+						echo "<tr><td>IK Investment offer long term investment with return starting at 10% per year. Minimum capital $10 and up to $1000<br/><div class='pull-right'><a href='#popup-coming-soon' class='btn btn-lightred' data-toggle='modal' title='Read More Info'><i class='icon-fire'></i> Read More Info</a></div></tr></td>";
+					};?>
+				</table>
+			</div-->
 		</div>
 	</div>
 </div>
