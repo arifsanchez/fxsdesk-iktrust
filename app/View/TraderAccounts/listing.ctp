@@ -2,7 +2,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<div class="box box-color lightred box-bordered">
+		<div class="box box-color blue box-bordered">
 			<div class="box-title">
 				<h3>
 					Trading Accounts
