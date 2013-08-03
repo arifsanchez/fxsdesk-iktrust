@@ -1,7 +1,7 @@
 <div class="row-fluid">
 	<div class="span12">
 		<ul class="tiles">
-			<li class="green highlong">
+			<li class="green high long">
 				<a href="<?php echo SITE_URL;?>Vaults/manage"><span><i class="icon-money"></i></span><span class='name'>Manage IK Wallet</span></a>
 			</li>
 
@@ -12,13 +12,13 @@
 			<li class="image">
 				<a href="<?php echo SITE_URL;?>myprofile"><img alt="<?php echo h($var['User']['first_name'].' '.$var['User']['last_name']); ?>" src="<?php echo $this->Image->resize('img/'.IMG_DIR, $var['UserDetail']['photo'], 84, null, true) ?>"><span class='name'><?php echo $var['User']['first_name']; ?></span></a>
 			</li>
-			<li class="brown">
+			<li class="brown long">
 				<a href="<?php echo SITE_URL;?>Traders/verifyIdentity"><span><i class="icon-cloud-upload"></i></span><span class='name'>Verification Documents</span></a>
 			</li>
 			<li class="satblue">
 				<a href="<?php echo SITE_URL;?>editProfile"><span><i class="icon-cogs"></i></span><span class='name'>Edit Profile</span></a>
 			</li>
-			<li class="red">
+			<li class="red long">
 				<a href="<?php echo SITE_URL;?>Traders/securityInbox"><span class='count'><i class="icon-envelope"></i></span><span class='name'>Security Mail</span></a>
 			</li>
 			<li class="darkblue">
