@@ -7,8 +7,8 @@ class AppController extends Controller {
 	public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth','Security');
 
 	function beforeFilter() {
-		$this->Security->blackHoleCallback = 'forceSSL';
-        $this->Security->requireSecure();
+		#$this->Security->blackHoleCallback = 'forceSSL';
+        #$this->Security->requireSecure();
 		$this->userAuth();
 	}
 	

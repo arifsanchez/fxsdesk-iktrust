@@ -1,6 +1,6 @@
-
-
-<h2><b>SIGN IN</b></b></h2>
+<h2>
+	<b>SIGN IN</b>
+</h2>
 
 <?php 
 	echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN));
