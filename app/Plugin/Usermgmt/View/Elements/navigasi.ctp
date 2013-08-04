@@ -21,11 +21,6 @@ $inactiveClass='';
 							if($this->UserAuth->HP('Users', 'online')) {
 								echo "<li class='".(($actionUrl=='Users/online') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Online Users'), array('controller'=>'Users', 'action'=>'online', 'plugin'=>'usermgmt'))."</li>";
 							}
-						echo "</ul>";
-					echo "</li>";
-					echo "<li class='dropdown'>";
-						echo $this->Html->link(__('Groups').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
-						echo "<ul class='dropdown-menu'>";
 							if($this->UserAuth->HP('UserGroups', 'addGroup')) {
 								echo "<li class='".(($actionUrl=='UserGroups/addGroup') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Add Group'), array('controller'=>'UserGroups', 'action'=>'addGroup', 'plugin'=>'usermgmt'))."</li>";
 							}
@@ -72,7 +67,7 @@ $inactiveClass='';
 						echo "</ul>";
 					echo "</li>";
 					echo "<li class='dropdown'>";
-						echo $this->Html->link(__('Pages').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+						echo $this->Html->link(__('Contents').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
 						echo "<ul class='dropdown-menu'>";
 							if($this->UserAuth->HP('Contents', 'addPage')) {
 								echo "<li class='".(($actionUrl=='Contents/addPage') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Add Page'), array('controller'=>'Contents', 'action'=>'addPage', 'plugin'=>'usermgmt'))."</li>";

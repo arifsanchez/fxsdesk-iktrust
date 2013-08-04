@@ -200,5 +200,7 @@
 		</p>
 		<a href="#" class="gototop"><i class="icon-arrow-up"></i></a>
 	</div>
+
+	<?php echo $this->element('3rdparty.plugin');?>
 	</body>
 </html>
