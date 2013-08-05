@@ -112,3 +112,5 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+define('FULL_BASE_URL','https://live.iktrust.com');
