@@ -39,7 +39,7 @@
 			<label class="control-label required"><?php echo __('Page Content');?></label>
 			<div class="controls">
 				<?php  echo $this->Ckeditor->textarea('Content.page_content', array('type' => 'textarea', 'label' => false, 'div' => false, 'style'=>'height:500px'), array('language'=>'en',
-'#EEEEEE'), 'standard');?>
+'#EEEEEE'), 'full');?>
 			</div>
 		</div>
 		<div class="um-button-row">

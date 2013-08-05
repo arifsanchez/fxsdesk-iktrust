@@ -84,6 +84,114 @@ class VaultsController extends AppController {
 		$this->set('tradeAcc', $tradeAcc);
 	}
 
+	/**
+	 * Deposit :: Bank Trasfer
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function dp_banktransfer() {
+		//Layout
+		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "glyphicon-bank",
+			'name' => "Deposit via Bank Transfer"
+		);
+		$this->set('page_title',$page_title);
+
+	}
+
+	/**
+	 * Deposit :: Credit Card
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function dp_creditcard() {
+		//Layout
+		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "icon-money",
+			'name' => "Deposit via Credit Card"
+		);
+		$this->set('page_title',$page_title);
+
+	}
+
+	/**
+	 * Deposit :: Perfect Money
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function dp_perfectmoney() {
+		//Layout
+		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "icon-money",
+			'name' => "Deposit via Perfect Money"
+		);
+		$this->set('page_title',$page_title);
+
+	}
+
+	/**
+	 * Deposit :: Webmoney
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function dp_webmoney() {
+		//Layout
+		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "icon-money",
+			'name' => "Deposit via Webmoney"
+		);
+		$this->set('page_title',$page_title);
+
+	}
+	
+	/**
+	 * Deposit :: IK Topup Card
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function dp_ikcard() {
+		//Layout
+		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "icon-money",
+			'name' => "Deposit via IK Topup Card"
+		);
+		$this->set('page_title',$page_title);
+
+	}
+
+	/**
+	 * Deposit :: Payza
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function dp_payza() {
+		//Layout
+		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "icon-money",
+			'name' => "Deposit via Payza"
+		);
+		$this->set('page_title',$page_title);
+
+	}
+
 }
 
 ?>

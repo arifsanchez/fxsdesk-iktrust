@@ -1,6 +1,6 @@
 <?php 
 	echo $this->element('popup.feature.comingsoon');
-	echo $this->element('popup.deposit', array('bal' => $acc1));
+	echo $this->element('popup.deposit', array('bal' => $acc1,'uname' => $var['User']['username'], 'uid' => $var['User']['id']));
 	echo $this->element('popup.withdraw', array('bal' => $acc1));
 ?>
 
@@ -203,3 +203,5 @@
 		</div>
 	</div>
 </div>
+
+<?php #debug($var['User']['username']); ?>
