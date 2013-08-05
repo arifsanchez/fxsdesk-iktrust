@@ -29,7 +29,7 @@ function UsermgmtInIt(&$controller) {
 	$usm = new UserSetting;
 	$allSettings=$usm->getAllSettings();
 	if(!defined("SITE_URL")) {
-		define("SITE_URL", Router::url('//', true));
+		define("SITE_URL", Router::url('/', true));
 	}
 	date_default_timezone_set((isset($allSettings['defaultTimeZone'])) ? $allSettings['defaultTimeZone']['value'] : 'America/New_York');
 	if(!defined("SITE_NAME")) {
