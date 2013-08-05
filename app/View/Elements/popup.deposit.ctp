@@ -3,7 +3,7 @@
 		<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
 		<h3 id="myModalLabel"><i class="icon-money"></i> Deposit to Wallet
 			<span class="pull-right">
-				<button class="btn btn-success" disabled>IK$ <?php echo $bal; ?></button>&nbsp;
+				<button class="btn btn-success" disabled><b>IK$ <?php echo $bal; ?></b></button>&nbsp;
 			</span>
 		</h3>
 	</div>
