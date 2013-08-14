@@ -75,18 +75,20 @@ public $validate = array(
 	 * @return boolean
 	*/
 	function getAcc1Balance($userId=null) {
+		$balance = 0;
 		if($userId) {
-		$result = $this->find('first', array(
-			'conditions' =>array(
-				'user_id' => $userId,
-			)
-		));
-		$balance = $result['Vault']['acc_1'];
+			$result = $this->find('first', array(
+				'conditions' =>array(
+					'user_id' => $userId,
+				)
+			));
+			$balance = $result['Vault']['acc_1'];
 		}
 		return $balance;
 	}
 
 	function getAcc2Balance($userId=null) {
+		$balance = 0;
 		if($userId) {
 		$result = $this->find('first', array(
 			'conditions' =>array(

@@ -1,4 +1,15 @@
 <!-- LiveChat -->
+<style>
+    #livechat-compact-container,
+    #livechat-full {
+    	left: 20px;
+		right: auto;
+    } 
+    .operators-bar img {
+    	border-radius: 30px !important;
+    } 
+</style>
+
 <script type="text/javascript">
   var __lc = {};
   __lc.license = 1656311;

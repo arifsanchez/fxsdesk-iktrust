@@ -268,6 +268,7 @@ class Mt4User extends AppModel {
 	);
 
 	function listTradeAcc($userEmail=null) {
+		$result = '';
 		if($userEmail) {
 		$result = $this->find('all', array(
 			'conditions' =>array(
@@ -278,5 +279,15 @@ class Mt4User extends AppModel {
 		return $result;
 		}
 		
+	}
+
+	function kiraTotalAffilliate() {
+		$result ='';
+		$result = $this->find('count', array(
+			'conditions' =>array(
+				'GROUP LIKE' => '%Aff%'
+			)
+		));
+		return $result;
 	}
 }

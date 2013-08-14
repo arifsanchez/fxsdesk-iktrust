@@ -20,7 +20,7 @@
 		public $uses = array("Mt4User","Usermgmt.User","Mt4Trade");
 
 		/**
-		* Trader Accounts listing
+		* TRADER :: Accounts listing
 		*
 		* @param mixed What page to display
 		* @return void
@@ -48,7 +48,7 @@
 		}
 
 		/**
-		* Trader Account Details
+		* TRADER :: Account Details
 		*
 		* @param mixed What page to display
 		* @return void
@@ -93,7 +93,7 @@
 
 
 		/**
-		* Trader Account History
+		* TRADER :: Account History
 		*
 		* @param mixed What page to display
 		* @return void
@@ -138,6 +138,40 @@
 			} else {
 				$this->Session->setFlash('You are not authorized to access trading account #'.$acc.' details.', 'default', array('class' => 'alert alert-error'));
 				$this->redirect(array('action' => 'listing'));
+			}
+		}
+
+		/**
+		* PARTNER :: Trader Accounts listing
+		*/
+		public function mynetwork() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "Traders Network"
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info partner
+			$user = $this->UserAuth->getUser();
+
+			//Paginate Partner Network Listing
+			$this->paginate = array(
+				'limit' => 45, 
+				'order'=> 'Mt4User.REGDATE DESC', 
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4User.GROUP LIKE' => '%IK%',
+					'Mt4User.AGENT_ACCOUNT' => $user['User']['partnertag']
+			));
+			$trades = $this->paginate('Mt4User');
+			$this->set('MT_ACC',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('mynetwork');
 			}
 		}
 	}

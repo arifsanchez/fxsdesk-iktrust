@@ -108,80 +108,38 @@
 	<link rel="apple-touch-icon-precomposed" href="<?php echo SITE_URL;?>/img/fxs-2--144px.png" />
 
 </head>
-<?php
-	$userId = $this->UserAuth->getUserId();
-	$groupId = $this->UserAuth->getGroupId($userId);
 
-	if($groupId == 1){
-		echo "<body class='theme-blue' data-layout-sidebar='fixed' data-layout-topbar='fixed'>";
-	} else if($groupId == 4){
-		echo "<body class='theme-lightgrey' data-layout-sidebar='fixed' data-layout-topbar='fixed'>";
-	} else {
-		echo "<body class='theme-lightred' data-layout-sidebar='fixed' data-layout-topbar='fixed'>";
-	}
-?>
+<body class="theme-lightgrey" data-layout-sidebar="fixed" data-layout-topbar="fixed">
 	<div id="navigation">
 		<div class="container-fluid">
 			<a href="<?php echo SITE_URL;?>" id="brand"><icon class="dashboard"></i> IK TRUST</a>
-			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
+			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle Sidebar"><i class="icon-reorder"></i></a>
 
-			<?php 
-				if($this->UserAuth->isLogged()){
-					echo $this->element('staff.dashboard.navigate');
-				} else {
-					echo $this->element('public.navigate');
-				}
-				
-
-			?>
+			<?php
+				echo $this->element('partner.dashboard.navigate');
+			;?>
 			
 			<div class="user">
 				<ul class="icon-nav">
 					<li class='dropdown colo'>
-						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-tint"></i></a>
+						<?php
+							$bal = 0;
+							$bal = $this->requestAction('vaults/acc1_balance'); ?>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-money"></i> IK$ <?php echo (!empty($bal) ? $bal : '0.00');?></a>
 						<ul class="dropdown-menu pull-right theme-colors">
-							<li class="subtitle">
-								Layout Colors
-							</li>
 							<li>
-								<span class='red'></span>
-								<span class='orange'></span>
-								<span class='green'></span>
-								<span class="brown"></span>
-								<span class="blue"></span>
-								<span class='lime'></span>
-								<span class="teal"></span>
-								<span class="purple"></span>
-								<span class="pink"></span>
-								<span class="magenta"></span>
-								<span class="grey"></span>
-								<span class="darkblue"></span>
-								<span class="lightred"></span>
-								<span class="lightgrey"></span>
-								<span class="satblue"></span>
-								<span class="satgreen"></span>
-							</li>
-						</ul>
-					</li>
-					<li class='dropdown language-select'>
-						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><img src="<?php echo SITE_URL; ?>img/demo/flags/us.gif" alt=""><span> English</span></a>
-						<ul class="dropdown-menu pull-right">
-							<li>
-								<a href="#"><img src="<?php echo SITE_URL; ?>img/demo/flags/my.gif" alt=""><span> Bahasa Malaysia</span></a>
-							</li>
-							<li>
-								<a href="#"><img src="<?php echo SITE_URL; ?>img/demo/flags/cn.gif" alt=""><span> Chinese</span></a>
+								<a href="<?php echo SITE_URL;?>Partners/vault">Open My Wallet</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<div class="dropdown">
-					<?php
-						if(!empty($userId)){
-					?>
+					<?php $userId = $this->UserAuth->getUserId();?>
 					<a href="#" class='dropdown-toggle' data-toggle="dropdown">
 						<?php 
-							echo h($var['User']['first_name']);
+							if(!empty($userId)){
+								echo h($var['User']['first_name']);
+							};
 						?> 
 						<img alt="<?php echo h($var['User']['first_name'].' '.$var['User']['last_name']); ?>" src="<?php echo $this->Image->resize('img/'.IMG_DIR, $var['UserDetail']['photo'], 27, null, true) ?>">
 					</a>
@@ -197,7 +155,7 @@
 						}
 						if($this->UserAuth->isLogged()) {
 							if($this->UserAuth->HP('Users', 'editProfile')) {
-								echo "<li class='".(($actionUrl=='Users/editProfile') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Edit Profile'), array('controller'=>'Users', 'action'=>'editProfile', 'plugin'=>'usermgmt'))."</li>";
+								echo "<li class='".(($actionUrl=='Users/editProfile') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Update Profile'), array('controller'=>'Users', 'action'=>'editProfile', 'plugin'=>'usermgmt'))."</li>";
 							}
 							if($this->UserAuth->HP('Users', 'changePassword')) {
 								echo "<li class='".(($actionUrl=='Users/changePassword') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Change Password'), array('controller'=>'Users', 'action'=>'changePassword', 'plugin'=>'usermgmt'))."</li>";
@@ -206,31 +164,25 @@
 						} else {
 							echo "<li class='".(($actionUrl=='Users/login') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Sign In'), '/login')."</li>";
 						} ?>
-					<?php }; ?>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid nav-hidden" id="content">
+	<div class="container-fluid" id="content">
 		<div id="left" class="force-full no-resize">
-			<?php #echo $this->element('staff.dashboard.left');?>
+			<?php echo $this->element('partner.dashboard.left');?>
 		</div>
 		<div id="main">
 			<div class="container-fluid">
-				<?php #echo $this->element('page.header'); ?>
+				<?php echo $this->element('page.header.partner'); ?>
 				<div class="row-fluid">
 					<div class="span12">
-						<div class="box">
-							<?php #echo $this->element('page.title'); ?>
-							<div class="box-content">
-								<?php
-									echo $this->element('Usermgmt.message');
-									echo $this->element('Usermgmt.message_validation');
-									echo $this->fetch('content');
-								?>
-							</div>
-						</div>
+						<?php
+							echo $this->element('Usermgmt.message');
+							echo $this->element('Usermgmt.message_validation');
+							echo $this->fetch('content');
+						?>
 					</div>
 				</div>
 			</div>
@@ -242,6 +194,7 @@
 		</p>
 		<a href="#" class="gototop"><i class="icon-arrow-up"></i></a>
 	</div>
-		
+
+	<?php #echo $this->element('3rdparty.plugin');?>
 	</body>
 </html>

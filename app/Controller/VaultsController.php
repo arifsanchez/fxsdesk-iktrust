@@ -20,12 +20,13 @@ class VaultsController extends AppController {
  */
 	public $name = 'Vaults';
 
-/**
- * This controller use vaults models and few other platform models
- * @var array
- */
+	/**
+	 * This controller use vaults models and few other platform models
+	 * @var array
+	 */
 	public $uses = array("Vault","Mt4User","Usermgmt.User","Mt4Trade");
-/**
+	
+	/**
 	 * This controller uses following components
 	 *
 	 * @var array

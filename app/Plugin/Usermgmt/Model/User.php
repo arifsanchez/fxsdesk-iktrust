@@ -624,6 +624,7 @@ class User extends UserMgmtAppModel {
 		}
 		return $groupId;
 	}
+
 	/**
 	 * Used to get all users
 	 *

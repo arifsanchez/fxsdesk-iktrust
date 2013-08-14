@@ -113,4 +113,4 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
-define('FULL_BASE_URL','https://live.iktrust.com');
+#define('FULL_BASE_URL','https://live.iktrust.com');

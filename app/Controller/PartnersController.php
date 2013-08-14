@@ -13,22 +13,37 @@
 		public $name = 'Partners';
 
 		/**
-		* This controller does not use a model
-		*
+		* This controller use vaults models and few other platform models
 		* @var array
 		*/
-		public $uses = array();
+		public $uses = array("Vault","Mt4User","Usermgmt.User","Mt4Trade");
 
 		/**
 		* Partner Dashboard
-		*
-		* @param mixed What page to display
-		* @return void
 		*/
-		public function dashboard() {
+		public function cabinet() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-dashboard",
+				'name' => "Partner Cabinet"
+			);
+			$this->set('page_title',$page_title);
+		}
 
-			$this->layout = 'partners.dashboard';
-
+		/**
+		* Partner Wallet
+		*/
+		public function vault() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-money",
+				'name' => "Partner Vault"
+			);
+			$this->set('page_title',$page_title);
 		}
 
 	}

@@ -80,7 +80,7 @@
 			<a href="#" class="gototop"><i class="icon-arrow-up"></i></a>
 		</div>
 	</div>
-	<?php echo $this->element('3rdparty.plugin');?>
+	<?php #echo $this->element('3rdparty.plugin');?>
 </body>
 
 </html>

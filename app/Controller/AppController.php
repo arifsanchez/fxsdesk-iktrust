@@ -9,7 +9,7 @@ class AppController extends Controller {
 	function beforeFilter() {
 		parent::beforeFilter();
     	$this->_setupSecurity();
-    	
+
 		$this->userAuth();
 	}
 	
@@ -20,7 +20,7 @@ class AppController extends Controller {
 	public function _setupSecurity() {
 	    $this->Security->blackHoleCallback = '_badRequest';
 	    if(Configure::read('forceSSL')) {
-	        $this->Security->requireSecure('*');
+	        $this->Security->requireSecure();
 	    }
 	}
 
@@ -29,7 +29,7 @@ class AppController extends Controller {
 	* Handles both missing SSL problems and general bad requests.
 	*/
 
-	public function _badRequest() {
+	function _badRequest() {
 	    if(Configure::read('forceSSL') && !$this->RequestHandler->isSSL()) {
 	        $this->_forceSSL();
 	    } else {
@@ -42,7 +42,7 @@ class AppController extends Controller {
 	* Redirect to the same page, but with the https protocol and exit.
 	*/
 
-	public function _forceSSL() {
+	function _forceSSL() {
 	    $this->redirect('https://' . env('SERVER_NAME') . $this->here);
 	    exit;
 	}
