@@ -68,38 +68,32 @@ public $validate = array(
 	);
 
 	/**
-	 * Get Account 1 Balance
+	 * Get Trader Wallet Account Balance
 	 *
 	 * @access public
 	 * @param array $userIds user ids
 	 * @return boolean
 	*/
-	function getAcc1Balance($userId=null) {
+	function getAccBalance($userId=null) {
 		$balance = 0;
 		if($userId) {
-			$result = $this->find('first', array(
+			$balance = $this->find('first', array(
 				'conditions' =>array(
 					'user_id' => $userId,
 				)
 			));
-			$balance = $result['Vault']['acc_1'];
+		return $balance['Vault']['acc_1'];
 		}
-		return $balance;
 	}
 
-	function getAcc2Balance($userId=null) {
-		$balance = 0;
-		if($userId) {
-		$result = $this->find('first', array(
-			'conditions' =>array(
-				'user_id' => $userId,
-			)
-		));
-		$balance = $result['Vault']['acc_2'];
-		}
-		return $balance;
-	}
 
+	/**
+	 * Initial Check If Vault Account Exist
+	 *
+	 * @access public
+	 * @param array $userIds user ids
+	 * @return boolean
+	*/
 	function checkVaultAccount($userId=null) {
 		$checkid = $this->find('first', array(
 			'conditions' =>array(

@@ -20,3 +20,18 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
   })();
 </script>
+<!-- LiveChat -->
+
+<!-- Pingdom Real User Monitoring -->
+<script>
+var _prum = [['id', '520c4632abe53df525000000'],
+             ['mark', 'firstbyte', (new Date()).getTime()]];
+(function() {
+    var s = document.getElementsByTagName('script')[0]
+      , p = document.createElement('script');
+    p.async = 'async';
+    p.src = '//rum-static.pingdom.net/prum.min.js';
+    s.parentNode.insertBefore(p, s);
+})();
+</script>
+<!-- Pingdom Real User Monitoring -->

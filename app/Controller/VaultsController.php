@@ -42,12 +42,8 @@ class VaultsController extends AppController {
 	public function acc1_balance() {
 		$this->layout = "ajax";
 		$userId = $this->UserAuth->getUserId();
-		$balance = $this->Vault->getAcc1Balance($userId);
-		if($balance){
-			return $balance;
-		} else {
-			$balance = 0;
-		}
+		$balance = $this->Vault->getAccBalance($userId);
+		debug($balance);die();
 		$this->set('balance', $balance);
 	}
 

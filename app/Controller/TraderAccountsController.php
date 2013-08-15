@@ -159,12 +159,13 @@
 
 			//Paginate Partner Network Listing
 			$this->paginate = array(
-				'limit' => 45, 
-				'order'=> 'Mt4User.REGDATE DESC', 
+				'limit' => 15, 
+				'order'=> 'Mt4User.REGDATE DESC',
 				'recursive'=>0,
 				'conditions' =>array(
 					'Mt4User.GROUP LIKE' => '%IK%',
-					'Mt4User.AGENT_ACCOUNT' => $user['User']['partnertag']
+					'Mt4User.AGENT_ACCOUNT LIKE' => '888808'
+					#'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
 			));
 			$trades = $this->paginate('Mt4User');
 			$this->set('MT_ACC',$trades);
