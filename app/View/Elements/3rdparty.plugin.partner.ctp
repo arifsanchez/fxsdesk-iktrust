@@ -1,0 +1,37 @@
+<!-- LiveChat -->
+<style>
+    #livechat-compact-container,
+    #livechat-full {
+    	left: 20px;
+		right: auto;
+    } 
+    .operators-bar img {
+    	border-radius: 30px !important;
+    } 
+</style>
+
+<script type="text/javascript">
+  var __lc = {};
+  __lc.license = 1656311;
+
+  (function() {
+    var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+    lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+  })();
+</script>
+<!-- LiveChat -->
+
+<!-- Pingdom Real User Monitoring -->
+<script>
+var _prum = [['id', '520ceed4abe53d900c000000'],
+             ['mark', 'firstbyte', (new Date()).getTime()]];
+(function() {
+    var s = document.getElementsByTagName('script')[0]
+      , p = document.createElement('script');
+    p.async = 'async';
+    p.src = '//rum-static.pingdom.net/prum.min.js';
+    s.parentNode.insertBefore(p, s);
+})();
+</script>
+<!-- Pingdom Real User Monitoring -->

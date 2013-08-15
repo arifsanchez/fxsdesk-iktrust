@@ -106,7 +106,7 @@
 	?>
 	<!-- Apple devices Homescreen icon -->
 	<link rel="apple-touch-icon-precomposed" href="<?php echo SITE_URL;?>/img/fxs-2--144px.png" />
-
+	<?php echo $this->element('3rdparty.plugin.trader');?>
 </head>
 
 <body class="theme-lightred" data-layout-sidebar="fixed" data-layout-topbar="fixed">
@@ -202,6 +202,6 @@
 		<a href="#" class="gototop"><i class="icon-arrow-up"></i></a>
 	</div>
 
-	<?php echo $this->element('3rdparty.plugin');?>
+	
 	</body>
 </html>
