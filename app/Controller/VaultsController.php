@@ -43,8 +43,12 @@ class VaultsController extends AppController {
 		$this->layout = "ajax";
 		$userId = $this->UserAuth->getUserId();
 		$balance = $this->Vault->getAccBalance($userId);
-		#debug($balance);die();
-		$this->set('balance', $balance);
+		#debug($balance['Vault']['acc_1']);die();
+		if ($this->request->is('requested')) {
+			return $balance['Vault']['acc_1'];
+		} else {
+			$this->set('balance', $balance['Vault']['acc_1']);
+		}
 	}
 
 	/**
@@ -70,10 +74,8 @@ class VaultsController extends AppController {
 
 		//Request balance from vault db
 		$acc1 = $this->Vault->getAccBalance($userId);
-		$this->set('acc1', $acc1);
-
-		$acc2 = $this->Vault->getAcc2Balance($userId);
-		$this->set('acc2', $acc2);
+		$this->set('acc1', $acc1['Vault']['acc_1']);
+		$this->set('acc2', $acc1['Vault']['acc_2']);
 		
 		//Dapatkan senarai trading account
 		$userEmail = $this->User->getEmailById($userId);
