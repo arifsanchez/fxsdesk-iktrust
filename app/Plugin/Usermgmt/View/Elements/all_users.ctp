@@ -19,6 +19,7 @@
 	</thead>
 	<tbody>
 <?php   if (!empty($users)) {
+			#debug($users); die();
 			$page = $this->request->params['paging']['User']['page'];
 			$limit = $this->request->params['paging']['User']['limit'];
 			$i=($page-1) * $limit;
@@ -28,7 +29,11 @@
 				echo "<td>".$i."</td>";
 				echo "<td>".$row['User']['id']."</td>";
 				echo "<td>".h($row['User']['first_name'])." ".h($row['User']['last_name'])."</td>";
-				echo "<td>".h($row['User']['username'])."</td>";
+				if($row['User']['fb_id'] == null){
+					echo "<td><a href='".SITE_URL."".h($row['User']['username'])."'>".h($row['User']['username'])."</a></td>";
+				} else {
+					echo "<td><a href='https://facebook.com/".h($row['User']['username'])."'>".h($row['User']['username'])."</a></td>";
+				}
 				echo "<td>".h($row['User']['email'])."</td>";
 				echo "<td>".h($row['UserGroup']['name'])."</td>";
 				echo "<td id='emailVerified".$row['User']['id']."'>";
