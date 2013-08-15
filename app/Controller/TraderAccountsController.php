@@ -164,8 +164,8 @@
 				'recursive'=>0,
 				'conditions' =>array(
 					'Mt4User.GROUP LIKE' => '%IK%',
-					'Mt4User.AGENT_ACCOUNT LIKE' => '888808'
-					#'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
+					#'Mt4User.AGENT_ACCOUNT LIKE' => '888808'
+					'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
 			));
 			$trades = $this->paginate('Mt4User');
 			$this->set('MT_ACC',$trades);

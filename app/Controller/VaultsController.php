@@ -43,7 +43,7 @@ class VaultsController extends AppController {
 		$this->layout = "ajax";
 		$userId = $this->UserAuth->getUserId();
 		$balance = $this->Vault->getAccBalance($userId);
-		debug($balance);die();
+		#debug($balance);die();
 		$this->set('balance', $balance);
 	}
 
@@ -69,7 +69,7 @@ class VaultsController extends AppController {
 		$checkVault = $this->Vault->checkVaultAccount($userId);
 
 		//Request balance from vault db
-		$acc1 = $this->Vault->getAcc1Balance($userId);
+		$acc1 = $this->Vault->getAccBalance($userId);
 		$this->set('acc1', $acc1);
 
 		$acc2 = $this->Vault->getAcc2Balance($userId);

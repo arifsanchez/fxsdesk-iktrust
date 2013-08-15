@@ -86,6 +86,25 @@ public $validate = array(
 		}
 	}
 
+	/**
+	 * Get Trader Wallet Virtual Account Balance
+	 *
+	 * @access public
+	 * @param array $userIds user ids
+	 * @return boolean
+	*/
+	function getAcc2Balance($userId=null) {
+		$balance = 0;
+		if($userId) {
+			$balance = $this->find('first', array(
+				'conditions' =>array(
+					'user_id' => $userId,
+				)
+			));
+		return $balance['Vault']['acc_2'];
+		}
+	}
+
 
 	/**
 	 * Initial Check If Vault Account Exist
