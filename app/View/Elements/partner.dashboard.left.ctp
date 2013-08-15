@@ -1,29 +1,15 @@
 <div class="subnav">
 	<div class="subnav-title">
-		<a href="#" class='toggle-subnav'><i class="icon-user-md"></i><span>Personal Details</span></a>
+		<a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>Partner Stats</span></a>
 	</div>
-	<ul class="subnav-menu">
-		<li>
-			<a href="<?php echo SITE_URL;?>myprofile">My Profile</a>
-		</li>
-		<li>
-			<a href="<?php echo SITE_URL;?>editProfile">Update Profile</a>
-		</li>
-		<li>
-			<a href="<?php echo SITE_URL;?>verifyIdentity">Verify Identity</a>
-		</li>
-	</ul>
-</div>
-<div class="subnav">
-	<div class="subnav-title">
-		<a href="#" class='toggle-subnav'><i class="icon-medkit"></i><span>IK Mailbox</span></a>
+	<div class="subnav-content">
+		<div class="pagestats">
+			<span class="left"><b>Total Accounts</b></span>
+			<span class="left label label-success"><i class="icon-group"></i> <?php $TotalDownline = $this->requestAction('partners/kiraTotalDownline') ; echo $TotalDownline;?></span>
+		</div>
+		<div class="pagestats">
+			<span class="left"><b>Total Agents</b></span>
+			<span class="left"><i class="icon-group"></i> <?php $TotalAgent = $this->requestAction('partners/kiraTotalAgent') ; echo $TotalAgent;?></span>
+		</div>
 	</div>
-	<ul class="subnav-menu">
-		<li>
-			<a href="<?php echo SITE_URL;?>securityInbox">Inbox</a>
-		</li>
-		<li>
-			<a href="<?php echo SITE_URL;?>sentSupportRequest">Request Support</a>
-		</li>
-	</ul>
 </div>

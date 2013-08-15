@@ -290,4 +290,26 @@ class Mt4User extends AppModel {
 		));
 		return $result;
 	}
+
+	function kiraTotalDownline($partnertag=null) {
+		$result ='';
+		$result = $this->find('count', array(
+			'conditions' =>array(
+				'AGENT_ACCOUNT' => $partnertag,
+				'GROUP LIKE' => '%IK%'
+			)
+		));
+		return $result;
+	}
+
+	function kiraTotalAgent($partnertag=null) {
+		$result ='';
+		$result = $this->find('count', array(
+			'conditions' =>array(
+				'AGENT_ACCOUNT' => $partnertag,
+				'GROUP LIKE' => '%Aff%'
+			)
+		));
+		return $result;
+	}
 }

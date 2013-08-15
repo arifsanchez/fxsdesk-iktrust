@@ -58,5 +58,37 @@
 			$this->set('acc2', $acc1['Vault']['acc_2']);
 		}
 
+		/***
+		* Partner :: request kira total downline
+		***/
+
+		public function kiraTotalDownline(){
+			$this->layout = "ajax";
+			$user = $this->UserAuth->getUser();
+			$partnertag = $user['User']['partnertag'];
+			$TotalDownline = $this->Mt4User->kiraTotalDownline($partnertag);
+			if ($this->request->is('requested')) {
+				return $TotalDownline;
+			} else {
+				$this->set('balance', $TotalDownline);
+			}
+		}
+
+		/***
+		* Partner :: request kira total affilliate / sub ib
+		***/
+
+		public function kiraTotalAgent(){
+			$this->layout = "ajax";
+			$user = $this->UserAuth->getUser();
+			$partnertag = $user['User']['partnertag'];
+			$TotalAgent = $this->Mt4User->kiraTotalAgent($partnertag);
+			if ($this->request->is('requested')) {
+				return $TotalAgent;
+			} else {
+				$this->set('balance', $TotalAgent);
+			}
+		}
+
 	}
 ?>

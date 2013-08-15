@@ -6,7 +6,7 @@
 			</li>
 
 			<li class="lightgrey long">
-				<a href="<?php echo SITE_URL;?>Partners/mynetwork"><span class='count'><i class="icon-group"></i><span class='name'>My Networks</span></a>
+				<a href="<?php echo SITE_URL;?>TraderAccounts/mynetwork"><span class='count'><i class="icon-group"></i><span class='name'>My Networks</span></a>
 			</li>
 			
 			<li class="image">
