@@ -10,7 +10,7 @@
 <?php
 	if($this->UserAuth->isLogged()) {
 		
-		echo "<li class='".(($actionUrl=='Users/dashboard') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Dashboard'), '/dashboard')."</li>";
+		echo "<li class='".(($actionUrl=='Partners/cabinet') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Cabinet'), array('controller'=>'Partners', 'action'=>'cabinet','plugin' =>''))."</li>";
 
 		/** My Wallet **/
 		if($this->UserAuth->HP('Partners', 'vault')) {

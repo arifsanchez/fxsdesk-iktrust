@@ -30,6 +30,8 @@
 				'name' => "Partner Cabinet"
 			);
 			$this->set('page_title',$page_title);
+
+
 		}
 
 		/**
@@ -44,6 +46,16 @@
 				'name' => "Partner Vault"
 			);
 			$this->set('page_title',$page_title);
+
+			//Dapatkan user id
+			$userId = $this->UserAuth->getUserId();
+			//Check jika traders first time buka vault
+			$checkVault = $this->Vault->checkVaultAccount($userId);
+
+			//Request balance from vault db
+			$acc1 = $this->Vault->getAccBalance($userId);
+			$this->set('acc1', $acc1['Vault']['acc_1']);
+			$this->set('acc2', $acc1['Vault']['acc_2']);
 		}
 
 	}

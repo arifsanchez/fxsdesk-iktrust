@@ -45,7 +45,8 @@ class VaultsController extends AppController {
 		$balance = $this->Vault->getAccBalance($userId);
 		#debug($balance['Vault']['acc_1']);die();
 		if ($this->request->is('requested')) {
-			return $balance['Vault']['acc_1'];
+			$bal = $balance['Vault']['acc_1'];
+			return $bal;
 		} else {
 			$this->set('balance', $balance['Vault']['acc_1']);
 		}
