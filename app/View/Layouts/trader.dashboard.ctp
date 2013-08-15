@@ -130,6 +130,7 @@
 				<ul class="icon-nav">
 					<li class='dropdown colo'>
 						<?php 
+							$bal = "0.00";
 							$bal = $this->requestAction('vaults/acc1_balance'); ?>
 						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-money"></i> IK$ <?php echo (!empty($bal) ? $bal : '0.00');?></a>
 						<ul class="dropdown-menu pull-right theme-colors">
