@@ -175,19 +175,76 @@
 				$this->render('mynetwork');
 			}
 		}
-	}
 
-	/**
-	* PARTNER :: Client listing
-	*/
-	public function myclient() {
-		
-	}
+		/**
+		* PARTNER :: Client listing
+		*/
+		public function myclient() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "My Clients"
+			);
+			$this->set('page_title',$page_title);
 
-	/**
-	* PARTNER :: Agent listing
-	*/
-	public function myagent() {
+			//Pull info partner
+			$user = $this->UserAuth->getUser();
 
+			//Paginate Partner Network Listing
+			$this->paginate = array(
+				'limit' => 15, 
+				'order'=> 'Mt4User.REGDATE DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4User.GROUP LIKE' => '%IK%',
+					'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
+				),
+				'group' => array('Mt4User.EMAIL')
+			);
+			$trades = $this->paginate('Mt4User');
+			$this->set('MT_ACC',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('myclient');
+			}
+		}
+
+		/**
+		* PARTNER :: Agent listing
+		*/
+		public function myagent() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "My Agents"
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info partner
+			$user = $this->UserAuth->getUser();
+
+			//Paginate Partner Network Listing
+			$this->paginate = array(
+				'limit' => 15, 
+				'order'=> 'Mt4User.REGDATE DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4User.GROUP LIKE' => '%Aff%',
+					'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
+				)
+			);
+			$trades = $this->paginate('Mt4User');
+			$this->set('MT_ACC',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('myagent');
+			}
+		}
 	}
 ?>
