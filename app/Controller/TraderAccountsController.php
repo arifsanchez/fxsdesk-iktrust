@@ -176,4 +176,18 @@
 			}
 		}
 	}
+
+	/**
+	* PARTNER :: Client listing
+	*/
+	public function myclient() {
+		
+	}
+
+	/**
+	* PARTNER :: Agent listing
+	*/
+	public function myagent() {
+
+	}
 ?>

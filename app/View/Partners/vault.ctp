@@ -59,6 +59,136 @@
 		</div>
 	</div>
 	<div class="span6">
+		<div class="box box-bordered box-color blue">
+			<div class="box-title">
+				<h3>
+					<i class="icon-table"></i>
+					Partner Trading Account
+				</h3>
+			</div>
+			<div class="box-content nopadding">
+				<?php if(!empty($tradeAcc)){ ;?>
+				<table class="table table-hover table-nomargin table-condensed">
+					<thead>
+						<tr>
+							<th>Account Number</th>
+							<th>Balance $</th>
+							<th>Operations</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php #foreach($tradeAcc as $acc): ?>
+						<tr>
+							<td>
+								<button class="btn btn-warning" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $tradeAcc['Mt4User']['NAME'];?>">
+									<i class="icon-user-md"></i>
+								</button>
+								<a class="btn" href="<?php echo SITE_URL;?>#" >
+									<?php echo $tradeAcc['Mt4User']['LOGIN'];?>
+								</a>
+							</td>
+							<td><?php echo number_format($tradeAcc['Mt4User']['BALANCE'], 2, '.', '');?></td>
+							<td>
+								<a
+									data-original-title="Add funds from IK Wallet"
+									rel="tooltip"
+									data-placement="bottom"
+									class="btn btn-satgreen" 
+									href="#DPtradeAcc<?php echo $tradeAcc['Mt4User']['LOGIN'];?>"
+									title="" 
+									data-trigger="hover" 
+									data-toggle="modal"	
+								>
+									<i class="icon-plus-sign"></i> 
+								</a>
+								&nbsp;
+								<a
+									data-original-title="Withdraw funds to IK Wallet"
+									data-placement="bottom"
+									class="btn btn-red" 
+									href="#WDtradeAcc<?php echo $tradeAcc['Mt4User']['LOGIN'];?>"
+									title="" 
+									data-trigger="hover" 
+									data-toggle="modal" 
+									rel="tooltip" 
+								>
+									<i class="icon-minus-sign"></i> 
+								</a>
+								&nbsp;
+							</td>
+						</tr>
+						<?php
+							#echo $this->element('popup.DPtradeAcc.wallet', array('login' => $tradeAcc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $tradeAcc['Mt4User']['BALANCE']));
+							#echo $this->element('popup.WDtradeAcc.wallet', array('login' => $tradeAcc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $tradeAcc['Mt4User']['BALANCE']));
+						?>
+						<?php #endforeach; ?>
+					</tbody>
+					<?php } else {
+						echo "<table class='table table-nomargin table-condensed'>";
+						echo "<tr><td>You dont have any partner account in trading server. Please contact your account manager.</tr></td>";
+					};?>
+				</table>
+			</div>
+		</div>
+		<div class="box box-bordered box-color orange">
+			<div class="box-title">
+				<h3>
+					<i class="icon-table"></i>
+					Partner Commission Account
+				</h3>
+			</div>
+			<div class="box-content nopadding">
+				<?php if(!empty($tradeAcc)){ ;?>
+				<table class="table table-hover table-nomargin table-condensed">
+					<thead>
+						<tr>
+							<th>Account Number</th>
+							<th>Balance $</th>
+							<th>Operations</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php #foreach($tradeAcc as $acc): ?>
+						<tr>
+							<td>
+								<button class="btn btn-warning" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $var['User']['username'];?>">
+									<i class="icon-user-md"></i>
+								</button>
+								<a class="btn" href="<?php echo SITE_URL;?>Partners/trading_account_overview" >
+									<?php echo $var['User']['username'];?>
+								</a>
+								
+							</td>
+							<td><?php echo number_format($tradeAcc['Mt4User']['BALANCE'], 2, '.', '');?></td>
+							<td>
+								<a
+									data-original-title="Sell IK$ to other traders"
+									data-placement="bottom"
+									class="btn btn-red" 
+									href="#WDtradeAcc<?php echo $tradeAcc['Mt4User']['LOGIN'];?>"
+									title="" 
+									data-trigger="hover" 
+									data-toggle="modal" 
+									rel="tooltip" 
+								>
+									Sell @ MarketPlace
+								</a>
+								&nbsp;
+							</td>
+						</tr>
+						<?php
+							echo $this->element('popup.DPtradeAcc.wallet', array('login' => $tradeAcc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $tradeAcc['Mt4User']['BALANCE']));
+							echo $this->element('popup.WDtradeAcc.wallet', array('login' => $tradeAcc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $tradeAcc['Mt4User']['BALANCE']));
+						?>
+						<?php #endforeach; ?>
+					</tbody>
+					<?php } else {
+						echo "<table class='table table-nomargin table-condensed'>";
+						echo "<tr><td>You dont have any partner account in trading server. Please contact your account manager.</tr></td>";
+					};?>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
 

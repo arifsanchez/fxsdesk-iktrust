@@ -80,7 +80,7 @@ class VaultsController extends AppController {
 		
 		//Dapatkan senarai trading account
 		$userEmail = $this->User->getEmailById($userId);
-		$tradeAcc = $this->Mt4User->listTradeAcc($userEmail);
+		$tradeAcc = $this->Mt4User->listPartnerAcc($userEmail);
 		$this->set('tradeAcc', $tradeAcc);
 	}
 

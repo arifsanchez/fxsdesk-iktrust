@@ -56,6 +56,28 @@
 			$acc1 = $this->Vault->getAccBalance($userId);
 			$this->set('acc1', $acc1['Vault']['acc_1']);
 			$this->set('acc2', $acc1['Vault']['acc_2']);
+
+			//Dapatkan senarai trading account
+			$user = $this->UserAuth->getUser();
+			$partnertag = $user['User']['partnertag'];
+			$tradeAcc = $this->Mt4User->listPartnerAcc($partnertag);
+			$this->set('tradeAcc', $tradeAcc);
+		}
+
+		/***
+		* Partner :: request kira total trader di dalam network , group by email
+		***/
+
+		public function kiraTotalClient(){
+			$this->layout = "ajax";
+			$user = $this->UserAuth->getUser();
+			$partnertag = $user['User']['partnertag'];
+			$TotalClient = $this->Mt4User->kiraTotalClient($partnertag);
+			if ($this->request->is('requested')) {
+				return $TotalClient;
+			} else {
+				$this->set('TotalClient', $TotalClient);
+			}
 		}
 
 		/***
@@ -70,7 +92,7 @@
 			if ($this->request->is('requested')) {
 				return $TotalDownline;
 			} else {
-				$this->set('balance', $TotalDownline);
+				$this->set('TotalDownline', $TotalDownline);
 			}
 		}
 
@@ -86,7 +108,54 @@
 			if ($this->request->is('requested')) {
 				return $TotalAgent;
 			} else {
-				$this->set('balance', $TotalAgent);
+				$this->set('TotalAgent', $TotalAgent);
+			}
+		}
+
+		/***
+		* Partner :: trading_account_overview
+		***/
+
+		public function trading_account_overview(){
+			$acc = $this->params['named']['acc'];
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "glyphicon-table",
+				'name' => "All Transactions #".$acc.""
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info trader
+			$user = $this->UserAuth->getUser();
+			$result = $this->Mt4User->find('first', array(
+				'conditions' =>array(
+					'Mt4User.LOGIN' => $acc,
+				)
+			));
+			if($result['Mt4User']['LOGIN'] == $user['User']['partnertag']){
+				#debug($result);die();
+				$this->set('MT_ACC',$result);
+
+				//Paginate Trade history
+				$this->paginate = array(
+					'limit' => 10, 
+					'order'=>'Mt4Trade.OPEN_TIME DESC', 
+					'recursive'=>0,
+					'conditions' =>array(
+						'Mt4Trade.LOGIN' => $acc,
+				));
+				$trades = $this->paginate('Mt4Trade');
+				$this->set('MT_TRANSACT',$trades);
+
+				if($this->RequestHandler->isAjax()) {
+					$this->layout = 'ajax';
+					$this->render('history');
+				}
+			} else {
+				$this->Session->setFlash('You are not authorized to access trading account #'.$acc.' details.', 'default', array('class' => 'alert alert-error'));
+				$this->redirect(array('action' => 'listing'));
 			}
 		}
 

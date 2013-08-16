@@ -2,7 +2,7 @@
 	<div class="span12">
 		<ul class="tiles">
 			<li class="green high long">
-				<a href="<?php echo SITE_URL;?>Partners/vault"><span><i class="icon-money"></i></span><span class='name'>Manage IK Wallet</span></a>
+				<a href="<?php echo SITE_URL;?>Partners/vault"><span><i class="icon-money"></i></span><span class='name'>Partner Vault</span></a>
 			</li>
 
 			<li class="lightgrey long">
