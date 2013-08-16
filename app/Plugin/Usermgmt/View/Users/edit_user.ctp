@@ -41,6 +41,12 @@ $(document).ready(function(e) {
 			</div>
 		</div>
 		<div class="um-form-row control-group">
+			<label class="control-label"><?php echo __('Partner Tag');?></label>
+			<div class="controls">
+				<?php echo $this->Form->input('User.partnertag', array('label'=>false, 'div'=>false)); ?>
+			</div>
+		</div>
+		<div class="um-form-row control-group">
 			<label class="control-label required"><?php echo __('First Name');?></label>
 			<div class="controls">
 				<?php echo $this->Form->input('first_name', array('label'=>false, 'div'=>false)); ?>
@@ -59,7 +65,7 @@ $(document).ready(function(e) {
 			</div>
 		</div>
 		<div class="um-form-row control-group">
-			<label class="control-label required"><?php echo __('Gender');?></label>
+			<label class="control-label"><?php echo __('Gender');?></label>
 			<div class="controls">
 				<?php echo $this->Form->input('UserDetail.gender', array('label'=>false, 'div'=>false, 'type' => 'select', 'options'=>$gender)); ?>
 			</div>
