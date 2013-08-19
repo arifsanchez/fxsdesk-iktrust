@@ -15,7 +15,7 @@
 $Mint = new Mint (array
 (
 	'server'	=> '64.207.151.182',
-	'username'	=> 'db138565_arif',
+	'username'	=> 'db138565_mint',
 	'password'	=> '>R1n"U8N{oP0',
 	'database'	=> 'IKmint_lytics',
 	'tblPrefix'	=> 'mint_'
