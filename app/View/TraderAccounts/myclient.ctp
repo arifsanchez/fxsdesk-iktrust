@@ -37,7 +37,7 @@ if($ajax) {
 						<tr>
 							<th>Account Number</th>
 							<th>Email</th>
-							<th>Phone $</th>
+							<th>Phone</th>
 							<th>Country</th>
 							<th class='hidden-480'>Operations</th>
 						</tr>
