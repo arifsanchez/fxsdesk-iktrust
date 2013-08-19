@@ -28,3 +28,7 @@ var _prum = [['id', '520cf03fabe53d4f15000000'],
 })();
 </script>
 <!-- Pingdom Real User Monitoring -->
+
+<!-- Analytics -->
+<script src="http://analytics.qxsolut.io/?js" type="text/javascript"></script>
+<!-- Analytics -->

@@ -14,17 +14,17 @@
 	<div class="pull-right">
 		<ul class="minitiles">
 			<li class='orange'>
-				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>partners/cabinet" data-original-title="Partner Cabinet">
+				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>partners/cabinet?me:<?php echo $var['User']['username'];?>" data-original-title="Partner Cabinet">
 					<i class="glyphicon-dashboard"></i>
 				</a>
 			</li>
 			<li class='lightgrey'>
-				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>TraderAccounts/mynetwork" data-original-title="My Network">
+				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>TraderAccounts/mynetwork?me:<?php echo $var['User']['username'];?>" data-original-title="My Network">
 					<i class="icon-group"></i>
 				</a>
 			</li>
 			<li class='satgreen'>
-				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>Partners/vault" data-original-title="Partner Vault">
+				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>Partners/vault?me:<?php echo $var['User']['username'];?>" data-original-title="Partner Vault">
 					<i class="icon-money"></i>
 				</a>
 			</li>

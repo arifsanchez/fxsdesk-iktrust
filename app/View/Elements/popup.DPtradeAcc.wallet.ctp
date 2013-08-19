@@ -3,31 +3,24 @@
 		<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
 		<h3 id="myModalLabel"><i class="icon-money"></i> Transfer From Wallet</h3>
 	</div>
+	
 	<div class="modal-body">
-		<p>Internal transfer from wallet is the easiest way to funds your trading account.</p>
-		<div class="row-fluid">
-			<div class="span6">
-				<h3><u>Wallet Balance</u></h3>
-				<h4>IK$ <?php echo $bal; ?></h4>
-				<form class="form-inline">
-		            <div class="input-prepend input-append">
-		              <span class="add-on">$</span>
-		              <input type="text" class="span6">
-		              <span class="add-on">.00</span>
-		            </div>
-		        </form>
-			</div>
-			<div class="span6">
-				<h3><u>Transfer To</u></h3>
-				<?php if(!empty($login)){;?>
-				<h4>Account No : <?php echo $login; ?></h4>
-				<h4>Balance : US$ <?php echo number_format($balance, 2, '.', ''); ?></h4>
-				<?php };?>
-			</div>
-		</div>
+	<?php 
+
+		echo $this->Form->create('Vault', array('action' => 'procdpaccwallet'));
+		echo "<blockquote>Current Wallet balance <span class='label label-important'>IK$ ". $bal."</span></blockquote>";
+		echo $this->Form->input('amount', array('label' =>'Amount To Transfer'));
+		echo $this->Form->hidden('acc_trading', array('value' => $login));
+		$options = array(
+		    'label' => 'Submit Transfer Request',
+		    'div' => null,
+		    'class' => 'btn btn-green'
+		);
+		echo $this->Form->end($options); 
+	?>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-green">Initiate Transfer</button>
 		<button data-dismiss="modal" class="btn btn-grey">Cancel</button>
 	</div>
+
 </div>

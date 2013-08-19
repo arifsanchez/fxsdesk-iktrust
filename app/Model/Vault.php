@@ -87,7 +87,6 @@ public $validate = array(
 		}
 	}
 
-
 	/**
 	 * Initial Check If Vault Account Exist
 	 *

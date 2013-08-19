@@ -24,7 +24,7 @@ class VaultsController extends AppController {
 	 * This controller use vaults models and few other platform models
 	 * @var array
 	 */
-	public $uses = array("Vault","Mt4User","Usermgmt.User","Mt4Trade");
+	public $uses = array("Vault","VaultTransaction","Mt4User","Usermgmt.User","Mt4Trade");
 	
 	/**
 	 * This controller uses following components
@@ -80,8 +80,32 @@ class VaultsController extends AppController {
 		
 		//Dapatkan senarai trading account
 		$userEmail = $this->User->getEmailById($userId);
-		$tradeAcc = $this->Mt4User->listPartnerAcc($userEmail);
+		$tradeAcc = $this->Mt4User->listTradeAcc($userEmail);
 		$this->set('tradeAcc', $tradeAcc);
+	}
+
+	/**
+	 * Wallet Transaction History
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function mywallet_history() {
+		//Layout
+		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "icon-money",
+			'name' => "My Wallet History"
+		);
+		$this->set('page_title',$page_title);
+
+		//Dapatkan user id
+		$userId = $this->UserAuth->getUserId();
+		//Check jika traders first time buka vault
+		$checkVault = $this->Vault->checkVaultAccount($userId);
+
+		//list with paginate all transaction history
 	}
 
 	/**
@@ -190,6 +214,55 @@ class VaultsController extends AppController {
 		);
 		$this->set('page_title',$page_title);
 
+	}
+
+	/**
+	 * Deposit :: Process depos acc from wallet
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function procdpaccwallet() {
+		//request baki acc1
+		$userId = $this->UserAuth->getUserId();
+		$acc1 = $this->Vault->getAccBalance($userId);
+		$vaultId = $acc1['Vault']['id'];
+		$bakiAcc1Wallet = $acc1['Vault']['acc_1'];
+		#debug($bakiAcc1Wallet);
+
+		//get berapa amount nak transfer dari form
+		$request = $this->request->data;
+
+		if($request){
+			$i = $request['Vault']['amount'];
+			$acc = $request['Vault']['acc_trading'];
+
+			App::uses('CakeNumber', 'Utility');
+			$intmount = CakeNumber::precision($i,2);
+			#debug($intmount);
+
+			if ($intmount > $bakiAcc1Wallet){
+
+				$this->Session->setFlash(__('Wallet Balance Insufficient for the transfer request.'));
+				$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
+			} else if($intmount == 0){
+				$this->Session->setFlash(__('Sorry, you have not enter any amount to transfer.'));
+				$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
+			} else {
+				$data = array(
+					'vault_id' => $vaultId,
+					'jumlah' => $intmount,
+					'type' => 1,
+					'status' => 1,
+					'description' => "TR IK WALLET #".$acc
+				);
+				//sent to transfer request queue
+				$this->VaultTransaction->create();
+				$this->VaultTransaction->save($data);
+				$this->Session->setFlash(__('Transfer request has been sent to IK Trust HQ'));
+				$this->redirect(array('controller' =>'vaults', 'action' => 'mywallet_history'));
+			}
+		}
 	}
 
 }
