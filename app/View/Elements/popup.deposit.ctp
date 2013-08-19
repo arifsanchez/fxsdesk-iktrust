@@ -20,7 +20,7 @@
 					    </div>
 					</li>
 					<li class="span4">
-					    <a data-placement="top" title="" rel="tooltip" class="btn" href="<?php echo SITE_URL;?>Vaults/dp_ikcard/for:<?php echo $uname;?>/i:<?php echo $uid;?>" data-original-title="IK Topup Card, 0% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/ik_150x100.png" alt="IK Topup Card"></a>
+					    <a data-placement="top" title="" rel="tooltip" class="btn" href="<?php echo SITE_URL;?>Vaults/dp_ikmarketplace/for:<?php echo $uname;?>/i:<?php echo $uid;?>" data-original-title="IK Marketplace, 0% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/ik_150x100.png" alt="IK Marketplace"></a>
 					    <div class="caption">
 					      <p align="center"><a href="<?php echo SITE_URL;?>Vaults/dp_ikmarketplace/for:<?php echo $uname;?>/i:<?php echo $uid;?>" class="btn btn-satgreen btn-block">IK Marketplace</a></p>
 					    </div>

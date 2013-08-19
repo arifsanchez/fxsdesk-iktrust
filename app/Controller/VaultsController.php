@@ -234,6 +234,24 @@ class VaultsController extends AppController {
 	}
 
 	/**
+	 * Deposit :: IK Marketplace
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function dp_ikmarketplace() {
+		//Layout
+		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "icon-money",
+			'name' => "Deposit via IK Marketplace"
+		);
+		$this->set('page_title',$page_title);
+
+	}
+
+	/**
 	 * Deposit :: Payza
 	 *
 	 * @access public
