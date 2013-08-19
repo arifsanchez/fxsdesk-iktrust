@@ -111,4 +111,17 @@ public $validate = array(
 		return true;
 	}
 
+	/**
+	 * Kira Total Wallet
+	 *
+	 * @access public
+	*/
+	function kiraTotalWallet() {
+		$total = 0;
+		$total = $this->find('all', array(
+			'fields' => array('sum(Vault.acc_1) AS total')
+		));
+		return $total;
+	}
+
 }

@@ -647,4 +647,20 @@ class User extends UserMgmtAppModel {
 		}
 		return $users;
 	}
+
+	/**
+	 * Used to count all users
+	 *
+	 * @access public
+	 * @return boolean
+	 */
+	function kiraTotalClient(){
+		$users=array();
+		$users = $this->find('count', array(
+			'conditions' => array(
+				'User.active' => 1
+			)
+		));
+		return $users;
+	}
 }

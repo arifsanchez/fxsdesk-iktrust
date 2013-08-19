@@ -54,5 +54,5 @@ var _prum = [['id', '520c4632abe53df525000000'],
 <!-- Pingdom Real User Monitoring -->
 
 <!-- Analytics -->
-<script src="http://analytics.qxsolut.io/?js" type="text/javascript"></script>
+<script src="//analytics.qxsolut.io/?js" type="text/javascript"></script>
 <!-- Analytics -->

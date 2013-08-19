@@ -31,4 +31,15 @@ class VaultTransaction extends AppModel {
 			'order' => ''
 		)
 	);
+
+	/**
+	 * Kira Total Approved Transaction
+	 *
+	 * @access public
+	 * @param array $userIds user ids
+	 * @return boolean
+	*/
+	function kiraTotalApproveTransaction($userId=null) {
+
+	}
 }

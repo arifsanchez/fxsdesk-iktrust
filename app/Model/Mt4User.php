@@ -338,4 +338,31 @@ class Mt4User extends AppModel {
 		));
 		return $result;
 	}
+
+	/**
+	 * Kira Total Trading Account Float
+	 *
+	 * @access public
+	*/
+	function kiraTotalTracc() {
+		$total = 0;
+		$total = $this->find('all', array(
+			'conditions' => array('GROUP LIKE' => '%IK%'),
+			'fields' => array('sum(BALANCE) AS total')
+		));
+		return $total;
+	}
+
+	/**
+	 * Kira Total Trading Account Float
+	 *
+	 * @access public
+	*/
+	function kiraTotalAccs() {
+		$total = 0;
+		$total = $this->find('count', array(
+			'conditions' => array('GROUP LIKE' => '%IK%')
+		));
+		return $total;
+	}
 }

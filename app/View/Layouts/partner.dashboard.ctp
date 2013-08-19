@@ -139,7 +139,7 @@
 						$activeClass='active';
 						$inactiveClass='';
 						if($this->UserAuth->isLogged()) {
-							echo "<li>".$this->Html->link(__('Sign Out'), '/logout')."</li>";
+							echo "<li>".$this->Html->link(__('Sign Out'), '/logout?me:'.$var['User']['username'])."</li>";
 						} else {
 							echo "<li class='".(($actionUrl=='Users/login') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Sign In'), '/login')."</li>";
 						} ?>

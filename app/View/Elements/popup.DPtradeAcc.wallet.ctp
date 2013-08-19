@@ -9,7 +9,21 @@
 
 		echo $this->Form->create('Vault', array('action' => 'procdpaccwallet'));
 		echo "<blockquote>Current Wallet balance <span class='label label-important'>IK$ ". $bal."</span></blockquote>";
-		echo $this->Form->input('amount', array('label' =>'Amount To Transfer'));
+		
+		echo $this->Form->label('Amount To Transfer');
+		echo "<div class='controls'><div class='input-append input-prepend'>";
+		echo $this->Form->input('amount', array(
+			'label' => false,
+			'data-rule-required' => 'true',
+			'data-rule-number' => 'true',
+			'placeholder' => 'Max IK$'.$bal,
+			'class' => 'input-small',
+			'div' => false,
+			'before' => "<span class='add-on'>$</span>",
+			'after' => "<span class='add-on'>.00</span>"
+		));
+		echo "</div></div>";
+
 		echo $this->Form->hidden('acc_trading', array('value' => $login));
 		$options = array(
 		    'label' => 'Submit Transfer Request',

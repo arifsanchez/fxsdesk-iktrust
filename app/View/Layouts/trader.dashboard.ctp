@@ -158,16 +158,16 @@
 						$activeClass='active';
 						$inactiveClass='';
 						if($this->UserAuth->HP('Users', 'myprofile')) {
-							echo "<li class='".(($actionUrl=='Users/myprofile') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('View Profile'), array('controller'=>'Users', 'action'=>'myprofile', 'plugin'=>'usermgmt'))."</li>";
+							echo "<li class='".(($actionUrl=='Users/myprofile') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('View Profile'), array('controller'=>'Users', 'action'=>'myprofile?me:'.$var['User']['username'], 'plugin'=>'usermgmt'))."</li>";
 						}
 						if($this->UserAuth->isLogged()) {
 							if($this->UserAuth->HP('Users', 'editProfile')) {
-								echo "<li class='".(($actionUrl=='Users/editProfile') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Update Profile'), array('controller'=>'Users', 'action'=>'editProfile', 'plugin'=>'usermgmt'))."</li>";
+								echo "<li class='".(($actionUrl=='Users/editProfile') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Update Profile'), array('controller'=>'Users', 'action'=>'editProfile?me:'.$var['User']['username'], 'plugin'=>'usermgmt'))."</li>";
 							}
 							if($this->UserAuth->HP('Users', 'changePassword')) {
-								echo "<li class='".(($actionUrl=='Users/changePassword') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Change Password'), array('controller'=>'Users', 'action'=>'changePassword', 'plugin'=>'usermgmt'))."</li>";
+								echo "<li class='".(($actionUrl=='Users/changePassword') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Change Password'), array('controller'=>'Users', 'action'=>'changePassword?me:'.$var['User']['username'], 'plugin'=>'usermgmt'))."</li>";
 							}
-							echo "<li>".$this->Html->link(__('Sign Out'), '/logout')."</li>";
+							echo "<li>".$this->Html->link(__('Sign Out'), '/logout?me:'.$var['User']['username'])."</li>";
 						} else {
 							echo "<li class='".(($actionUrl=='Users/login') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Sign In'), '/login')."</li>";
 						} ?>

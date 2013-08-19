@@ -53,6 +53,26 @@ class VaultsController extends AppController {
 	}
 
 	/**
+	 * Request Total IK Wallet
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function kiraTotalWallet() {
+		$this->layout = "ajax";
+		if($this->UserAuth->isLogged()){
+			$total = $this->Vault->kiraTotalWallet();
+			#debug($total['0']['0']['total']);die();
+			$total = $total['0']['0']['total'];
+			if ($this->request->is('requested')) {
+				return $total;
+			} else {
+				$this->set('TotalWallet', $total);
+			}
+		}
+	}
+
+	/**
 	 * Management of Wallet
 	 *
 	 * @access public
@@ -264,6 +284,8 @@ class VaultsController extends AppController {
 			}
 		}
 	}
+
+
 
 }
 

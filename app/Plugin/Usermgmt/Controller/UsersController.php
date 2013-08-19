@@ -1612,6 +1612,7 @@ class UsersController extends UserMgmtAppController {
 		$user = $this->User->findByUsername($username);
 		$this->set('user', $user);
 	}
+	
 	/**
 	 * It is used to search emails on send email page
 	 *
@@ -1638,4 +1639,25 @@ class UsersController extends UserMgmtAppController {
 		echo json_encode(array('q' => $query, 'results' => $resultToPrint));
 		exit;
 	}
+
+	/**
+	* Retrieve total number active client
+	*
+	* @access public
+	* @return array
+	*/
+
+	public function kiraTotalClient() {
+		$this->layout = "ajax";
+		if($this->UserAuth->isLogged()){
+			$total = $this->User->kiraTotalClient();
+			#debug($total);die();
+			if ($this->request->is('requested')) {
+				return $total;
+			} else {
+				$this->set('TotalWallet', $total);
+			}
+		}
+	}
+
 }
