@@ -124,8 +124,23 @@ class VaultsController extends AppController {
 		$userId = $this->UserAuth->getUserId();
 		//Check jika traders first time buka vault
 		$checkVault = $this->Vault->checkVaultAccount($userId);
+		$acc1 = $this->Vault->getAccBalance($userId);
 
 		//list with paginate all transaction history
+		$this->paginate = array(
+			'order' => 'VaultTransaction.created DESC',
+			'limit' => 10,
+			'conditions' =>array(
+				'VaultTransaction.vault_id' => $acc1['Vault']['id'],
+		));
+		$Wtransact = $this->paginate('VaultTransaction');
+		#debug($Wtransact); die();
+		$this->set('Wtransact',$Wtransact);
+
+		if($this->RequestHandler->isAjax()) {
+			$this->layout = 'ajax';
+			$this->render('mywallet_history');
+		}
 	}
 
 	/**

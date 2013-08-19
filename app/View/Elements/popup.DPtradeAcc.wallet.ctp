@@ -19,7 +19,7 @@
 			'placeholder' => 'Max IK$'.$bal,
 			'class' => 'input-small',
 			'div' => false,
-			'before' => "<span class='add-on'>$</span>",
+			'before' => "<span class='add-on'><i class='icon-money'></i></span>",
 			'after' => "<span class='add-on'>.00</span>"
 		));
 		echo "</div></div>";

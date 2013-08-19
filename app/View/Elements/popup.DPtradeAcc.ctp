@@ -14,7 +14,7 @@
 				<h4>IK$ <?php echo $bal; ?></h4>
 				<form class="form-inline">
 		            <div class="input-prepend input-append">
-		              <span class="add-on">$</span>
+		              <span class="add-on"><i class="icon-money"></i></span>
 		              <input type="text" class="span6">
 		              <span class="add-on">.00</span>
 		            </div>
