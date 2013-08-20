@@ -14,21 +14,21 @@
 			<div class="span12">
 				<ul class="thumbnails">
 					<li class="span4">
-					    <a data-placement="top" title="" rel="tooltip" class="btn" href="<?php echo SITE_URL;?>Vaults/dp_banktransfer/for:<?php echo $uname;?>/i:<?php echo $uid;?>" data-original-title="Bank Transfer, 0% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/bt_150x100.png" alt="Bank Transfer"></a>
+					    <a data-placement="top" title="" rel="tooltip" class="btn" href="<?php echo SITE_URL;?>Vaults/dp_banktransfer/for:<?php echo $var['User']['username'];?>" data-original-title="Bank Transfer, 0% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/bt_150x100.png" alt="Bank Transfer"></a>
 					    <div class="caption">
-					      <p align="center"><a href="<?php echo SITE_URL;?>Vaults/dp_banktransfer/for:<?php echo $uname;?>/i:<?php echo $uid;?>" class="btn btn-satgreen btn-block">Bank transfer</a></p>
+					      <p align="center"><a href="<?php echo SITE_URL;?>Vaults/dp_banktransfer/for:<?php echo $var['User']['username'];?>" class="btn btn-satgreen btn-block">Bank transfer</a></p>
 					    </div>
 					</li>
 					<li class="span4">
-					    <a data-placement="top" title="" rel="tooltip" class="btn" href="<?php echo SITE_URL;?>Vaults/dp_ikmarketplace/for:<?php echo $uname;?>/i:<?php echo $uid;?>" data-original-title="IK Marketplace, 0% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/ik_150x100.png" alt="IK Marketplace"></a>
+					    <a data-placement="top" title="" rel="tooltip" class="btn" href="<?php echo SITE_URL;?>Vaults/dp_ikmarketplace/for:<?php echo $var['User']['username'];?>" data-original-title="IK Marketplace, 0% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/ik_150x100.png" alt="IK Marketplace"></a>
 					    <div class="caption">
-					      <p align="center"><a href="<?php echo SITE_URL;?>Vaults/dp_ikmarketplace/for:<?php echo $uname;?>/i:<?php echo $uid;?>" class="btn btn-satgreen btn-block">IK Marketplace</a></p>
+					      <p align="center"><a href="<?php echo SITE_URL;?>Vaults/dp_ikmarketplace/for:<?php echo $var['User']['username'];?>" class="btn btn-satgreen btn-block">IK Marketplace</a></p>
 					    </div>
 					</li>
 					<li class="span4">
-					    <a data-placement="top" title="" rel="tooltip" class="btn" href="<?php echo SITE_URL;?>Vaults/dp_creditcard/for:<?php echo $uname;?>/i:<?php echo $uid;?>" data-original-title="Credit Card, 3.5% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/cc_150x100.png" alt="Credit Card"></a>
+					    <a data-placement="top" title="" rel="tooltip" class="btn" href="<?php echo SITE_URL;?>Vaults/dp_creditcard/for:<?php echo $var['User']['username'];?>" data-original-title="Credit Card, 3.5% Commission"><img src="<?php echo SITE_URL;?>img/payment_channel/cc_150x100.png" alt="Credit Card"></a>
 					    <div class="caption">
-					      <p align="center"><a href="<?php echo SITE_URL;?>Vaults/dp_creditcard/for:<?php echo $uname;?>/i:<?php echo $uid;?>" class="btn btn-satgreen btn-block">Paypal</a></p>
+					      <p align="center"><a href="<?php echo SITE_URL;?>Vaults/dp_creditcard/for:<?php echo $var['User']['username'];?>" class="btn btn-satgreen btn-block">Paypal</a></p>
 					    </div>
 					</li>
 					
