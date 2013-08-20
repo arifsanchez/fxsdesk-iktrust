@@ -35,11 +35,23 @@ class VaultTransaction extends AppModel {
 	/**
 	 * Kira Total Approved Transaction
 	 *
-	 * @access public
-	 * @param array $userIds user ids
-	 * @return boolean
 	*/
 	function kiraTotalApproveTransaction($userId=null) {
 
+	}
+
+	/**
+	 * Kira Total Transfer to TradAcc Transaction
+	 *
+	*/
+	function kiraTotalNewTRW_TRACC() {
+		$result ='';
+		$result = $this->find('count', array(
+			'conditions' =>array(
+				'type' => 1,
+				'status' => 1
+			),
+		));
+		return $result;
 	}
 }

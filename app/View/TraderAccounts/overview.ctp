@@ -1,7 +1,7 @@
 <?php 
 	echo $this->element('popup.feature.comingsoon');
-	echo $this->element('popup.DPtradeAcc', array('login' => $MT_ACC['Mt4User']['LOGIN'], 'balance' => $MT_ACC['Mt4User']['BALANCE']));
-	echo $this->element('popup.WDtradeAcc', array('login' => $MT_ACC['Mt4User']['LOGIN'], 'balance' => $MT_ACC['Mt4User']['BALANCE']));
+	echo $this->element('popup.DPtradeAcc', array('login' => $MT_ACC['Mt4User']['LOGIN'], 'bal' => $acc1));
+	echo $this->element('popup.WDtradeAcc', array('login' => $MT_ACC['Mt4User']['LOGIN'], 'bal' => $acc1));
 ?>
 
 <div class="row-fluid">

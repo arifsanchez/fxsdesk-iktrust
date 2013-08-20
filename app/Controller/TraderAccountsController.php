@@ -17,7 +17,7 @@
 		*
 		* @var array
 		*/
-		public $uses = array("Mt4User","Usermgmt.User","Mt4Trade");
+		public $uses = array("Vault", "Mt4User","Usermgmt.User","Mt4Trade");
 
 		/**
 		* TRADER :: Accounts listing
@@ -63,6 +63,11 @@
 				'name' => "Account Overview #".$acc.""
 			);
 			$this->set('page_title',$page_title);
+
+			//Request balance from vault db
+			$userId = $this->UserAuth->getUserId();
+			$acc1 = $this->Vault->getAccBalance($userId);
+			$this->set('acc1', $acc1['Vault']['acc_1']);
 
 			//Pull info trader
 			$user = $this->UserAuth->getUser();
@@ -244,6 +249,46 @@
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
 				$this->render('myagent');
+			}
+		}
+
+		/**
+		* Staff Kira Total Trader Accounts
+		*
+		* @access public
+		* @return array
+		*/
+		public function kiraTotalTraders() {
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$total = $this->Mt4User->kiraTotalAccs();
+				#debug($total['0']['0']['total']);die();
+				#$total = $total['0']['0']['total'];
+				if ($this->request->is('requested')) {
+					return $total;
+				} else {
+					$this->set('TotalAccs', $total);
+				}
+			}
+		}
+
+		/**
+		* Staff Kira Total Agent Accounts
+		*
+		* @access public
+		* @return array
+		*/
+		public function kiraTotalAgent() {
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$total = $this->Mt4User->kiraTotalAffilliate();
+				#debug($total['0']['0']['total']);die();
+				#$total = $total['0']['0']['total'];
+				if ($this->request->is('requested')) {
+					return $total;
+				} else {
+					$this->set('TotalAccs', $total);
+				}
 			}
 		}
 	}

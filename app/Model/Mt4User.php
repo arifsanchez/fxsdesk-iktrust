@@ -266,7 +266,12 @@ class Mt4User extends AppModel {
 			),
 		),
 	);
-
+	
+	/**
+	 * List Trading Accounts bawah single user
+	 *
+	 * @access public
+	*/
 	function listTradeAcc($userEmail=null) {
 		$result = '';
 		if($userEmail) {
@@ -281,6 +286,11 @@ class Mt4User extends AppModel {
 		
 	}
 
+	/**
+	 * List Partner Accounts bawah HQ dalam trading server
+	 *
+	 * @access public
+	*/
 	function listPartnerAcc($partnertag=null) {
 		$result = '';
 		if($partnertag) {
@@ -295,6 +305,24 @@ class Mt4User extends AppModel {
 		
 	}
 
+	/**
+	 * Kira Total Trading Accounts bawah HQ
+	 *
+	 * @access public
+	*/
+	function kiraTotalAccs() {
+		$total = 0;
+		$total = $this->find('count', array(
+			'conditions' => array('GROUP LIKE' => '%IK%')
+		));
+		return $total;
+	}
+
+	/**
+	 * Kira Total Affilliate Account bawah HQ
+	 *
+	 * @access public
+	*/
 	function kiraTotalAffilliate() {
 		$result ='';
 		$result = $this->find('count', array(
@@ -305,6 +333,11 @@ class Mt4User extends AppModel {
 		return $result;
 	}
 
+	/**
+	 * Kira Total Trading Account bawah partner group by email
+	 *
+	 * @access public
+	*/
 	function kiraTotalClient($partnertag=null) {
 		$result ='';
 		$result = $this->find('count', array(
@@ -317,6 +350,11 @@ class Mt4User extends AppModel {
 		return $result;
 	}
 
+	/**
+	 * Kira Total Trading Account bawah partner
+	 *
+	 * @access public
+	*/
 	function kiraTotalDownline($partnertag=null) {
 		$result ='';
 		$result = $this->find('count', array(
@@ -328,6 +366,11 @@ class Mt4User extends AppModel {
 		return $result;
 	}
 
+	/**
+	 * Kira Total Affilliate Account bawah partner
+	 *
+	 * @access public
+	*/
 	function kiraTotalAgent($partnertag=null) {
 		$result ='';
 		$result = $this->find('count', array(
@@ -353,16 +396,4 @@ class Mt4User extends AppModel {
 		return $total;
 	}
 
-	/**
-	 * Kira Total Trading Account Float
-	 *
-	 * @access public
-	*/
-	function kiraTotalAccs() {
-		$total = 0;
-		$total = $this->find('count', array(
-			'conditions' => array('GROUP LIKE' => '%IK%')
-		));
-		return $total;
-	}
 }

@@ -34,7 +34,7 @@ class VaultsController extends AppController {
 	public $components = array('RequestHandler', 'Cookie');
 
 	/**
-	 * Request Account 1 Balance
+	 * USER : Request Account 1 Balance
 	 *
 	 * @access public
 	 * @return array
@@ -49,26 +49,6 @@ class VaultsController extends AppController {
 			return $bal;
 		} else {
 			$this->set('balance', $balance['Vault']['acc_1']);
-		}
-	}
-
-	/**
-	 * Request Total IK Wallet
-	 *
-	 * @access public
-	 * @return array
-	 */
-	public function kiraTotalWallet() {
-		$this->layout = "ajax";
-		if($this->UserAuth->isLogged()){
-			$total = $this->Vault->kiraTotalWallet();
-			#debug($total['0']['0']['total']);die();
-			$total = $total['0']['0']['total'];
-			if ($this->request->is('requested')) {
-				return $total;
-			} else {
-				$this->set('TotalWallet', $total);
-			}
 		}
 	}
 
@@ -318,7 +298,44 @@ class VaultsController extends AppController {
 		}
 	}
 
+	/**
+	 * STAFF : Request Total IK Wallet
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function kiraTotalWallet() {
+		$this->layout = "ajax";
+		if($this->UserAuth->isLogged()){
+			$total = $this->Vault->kiraTotalWallet();
+			#debug($total['0']['0']['total']);die();
+			$total = $total['0']['0']['total'];
+			if ($this->request->is('requested')) {
+				return $total;
+			} else {
+				$this->set('TotalWallet', $total);
+			}
+		}
+	}
 
+	/**
+	 * STAFF : Kira Total Transfer to TradAcc Transaction with status New
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function kiraTotalNewTRW_TRACC() {
+		$this->layout = "ajax";
+		if($this->UserAuth->isLogged()){
+			$total = $this->VaultTransaction->kiraTotalNewTRW_TRACC();
+			#debug($total);die();
+			if ($this->request->is('requested')) {
+				return $total;
+			} else {
+				$this->set('totalTRW_TRACC', $total);
+			}
+		}
+	}
 
 }
 
