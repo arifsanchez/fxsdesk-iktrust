@@ -658,7 +658,25 @@ class User extends UserMgmtAppModel {
 		$users=array();
 		$users = $this->find('count', array(
 			'conditions' => array(
-				'User.active' => 1
+				'User.active' => 1,
+				'User.user_group_id' => 2
+			)
+		));
+		return $users;
+	}
+
+	/**
+	 * Used to count all partners
+	 *
+	 * @access public
+	 * @return boolean
+	 */
+	function kiraTotalPartner(){
+		$users=array();
+		$users = $this->find('count', array(
+			'conditions' => array(
+				'User.active' => 1,
+				'User.user_group_id' => 4
 			)
 		));
 		return $users;

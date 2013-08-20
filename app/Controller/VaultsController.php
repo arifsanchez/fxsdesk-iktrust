@@ -296,10 +296,10 @@ class VaultsController extends AppController {
 
 			if ($intmount > $bakiAcc1Wallet){
 
-				$this->Session->setFlash(__('Wallet Balance Insufficient for the transfer request.'));
+				$this->Session->setFlash(__('Wallet Balance Insufficient for the transfer request.'),'default',array('class' => 'error'));
 				$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
 			} else if($intmount == 0){
-				$this->Session->setFlash(__('Sorry, you have not enter any amount to transfer.'));
+				$this->Session->setFlash(__('Sorry, you have not enter any amount to transfer.'),'default',array('class' => 'info'));
 				$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
 			} else {
 				$data = array(
@@ -312,7 +312,7 @@ class VaultsController extends AppController {
 				//sent to transfer request queue
 				$this->VaultTransaction->create();
 				$this->VaultTransaction->save($data);
-				$this->Session->setFlash(__('Transfer request has been sent to IK Trust HQ'));
+				$this->Session->setFlash(__('Transfer request has been sent to IK Trust HQ'),'default',array('class' => 'success'));
 				$this->redirect(array('controller' =>'vaults', 'action' => 'mywallet_history'));
 			}
 		}

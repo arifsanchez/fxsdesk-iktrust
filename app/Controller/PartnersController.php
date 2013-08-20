@@ -154,7 +154,7 @@
 					$this->render('history');
 				}
 			} else {
-				$this->Session->setFlash('You are not authorized to access trading account #'.$acc.' details.', 'default', array('class' => 'alert alert-error'));
+				$this->Session->setFlash(__('You are not authorized to access trading account #'.$acc.' details.'), 'default', array('class' => 'error'));
 				$this->redirect(array('action' => 'listing'));
 			}
 		}

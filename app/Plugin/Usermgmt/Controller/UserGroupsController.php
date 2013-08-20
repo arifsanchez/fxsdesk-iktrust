@@ -195,7 +195,7 @@ class UserGroupsController extends UserMgmtAppController {
 			if ($this->request->isPost()) {
 				$users=$this->User->isUserAssociatedWithGroup($groupId);
 				if($users) {
-					$this->Session->setFlash(__('Sorry some users are associated with this group, You cannot delete this group'), 'default', array('class' => 'warning'));
+					$this->Session->setFlash(__('Sorry some users are associated with this group, You cannot delete this group'), 'default', array('class' => 'info'));
 				} else {
 					if ($this->UserGroup->delete($groupId, false)) {
 						$this->Session->setFlash(__('Group is successfully deleted'));

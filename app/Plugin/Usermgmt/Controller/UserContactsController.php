@@ -129,7 +129,7 @@ class UserContactsController extends UserMgmtAppController {
 				if ($contactValidate) {
 					$this->UserContact->save($this->request->data,false);
 					$this->__sendMailToAdmin($this->request->data['UserContact']['name'], $this->request->data['UserContact']['email'], $this->request->data['UserContact']['phone'], $this->request->data['UserContact']['requirement']);
-					$this->Session->setFlash(__('thank you for contacting us. we will be in touch with you very soon'));
+					$this->Session->setFlash(__('Thank you for contacting us. we will be in touch with you very soon'),'default',array('class' => 'success'));
 					$this->redirect('/');
 				}
 			}

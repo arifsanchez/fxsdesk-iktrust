@@ -176,7 +176,7 @@ class UserEmailsController extends AppController {
 						}
 					} else {
 						if($this->request->data['UserEmail']['type']=='GROUPS') {
-							$this->Session->setFlash('No users found in selected group', 'default', array('class' => 'warning'));
+							$this->Session->setFlash(__('No users found in selected group'), 'default', array('class' => 'info'));
 						}
 					}
 				}
@@ -340,14 +340,14 @@ class UserEmailsController extends AppController {
 			}
 			if($sent) {
 				$this->UserEmail->saveField('is_email_sent', 1, false);
-				$this->Session->setFlash($i.' Email(s) sent');
+				$this->Session->setFlash(__($i.' Email(s) sent'),'default',array('class' => 'success'));
 				return true;
 			} else {
-				$this->Session->setFlash('We could not send Email', 'default', array('class' => 'warning'));
+				$this->Session->setFlash(__('We could not send Email'), 'default', array('class' => 'error'));
 				return false;
 			}
 		} else {
-			$this->Session->setFlash('These is some problem in saving data, please try again', 'default', array('class' => 'warning'));
+			$this->Session->setFlash(__('These is some problem in saving data, please try again'), 'default', array('class' => 'error'));
 			return false;
 		}
 	}
@@ -437,10 +437,10 @@ class UserEmailsController extends AppController {
 									$contactDetail['UserContact']['reply_message'] = 'Reply On '.date('d M Y', time()).' at '.date('h:i A', time()).'<br/>'.$data['UserEmail']['message'].'<br/><br/>'.$msg;
 								}
 								$this->UserContact->save($contactDetail, false);
-								$this->Session->setFlash('Contact Reply has been sent successfully');
+								$this->Session->setFlash(__('Contact Reply has been sent successfully'),'default',array('class' => 'success'));
 								$this->redirect(array('controller'=>'UserContacts', 'action'=>'index', 'page'=>$page));
 							} else {
-								$this->Session->setFlash('We could not send Reply Email', 'default', array('class' => 'warning'));
+								$this->Session->setFlash(__('We could not send Reply Email'), 'default', array('class' => 'error'));
 								$this->redirect(array('action'=>'sendReply', $userContactId));
 							}
 						}
@@ -495,12 +495,12 @@ class UserEmailsController extends AppController {
 				}
 				$userEmailRecipients = $this->UserEmailRecipient->find('all', array('conditions'=>array('UserEmailRecipient.user_email_id'=>$userEmailId), 'recursive'=>0, 'fields'=>array('UserEmailRecipient.*', 'User.first_name', 'User.last_name')));
 			} else {
-				$this->Session->setFlash('Invalid email id', 'default', array('class' => 'warning'));
+				$this->Session->setFlash(__('Invalid email id'), 'default', array('class' => 'info'));
 				$this->redirect(array('action'=>'index', 'page'=>$page));
 			}
 			$this->set(compact('userEmail', 'userEmailRecipients'));
 		} else {
-			$this->Session->setFlash('Invalid email id', 'default', array('class' => 'warning'));
+			$this->Session->setFlash(__('Invalid email id'), 'default', array('class' => 'info'));
 			$this->redirect(array('action'=>'index', 'page'=>$page));
 		}
 	}

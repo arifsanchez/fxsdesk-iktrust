@@ -125,7 +125,7 @@ class UserGroupPermissionsController extends UserMgmtAppController {
 
 		$subGroups=$this->UserGroup->getSubGroupNamesAndIds($group_id);
 		if(empty($subGroups)) {
-			$this->Session->setFlash('No sub group exists of this group', 'default', array('class' => 'warning'));
+			$this->Session->setFlash('No sub group exists of this group', 'default', array('class' => 'info'));
 			if($c > -2) {
 				$this->redirect('/subPermissions/?g='.$group_id);
 			}

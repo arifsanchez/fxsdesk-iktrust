@@ -124,7 +124,7 @@ class ContentsController extends UserMgmtAppController {
 			} else {
 				if ($contentValidate) {
 					$this->Content->save($this->request->data,false);
-					$this->Session->setFlash(__('The page has been saved'));
+					$this->Session->setFlash(__('The page has been saved'),'default',array('class' => 'success'));
 					$this->redirect('/allPages');
 				}
 			}
@@ -160,7 +160,7 @@ class ContentsController extends UserMgmtAppController {
 				} else {
 					if ($contentValidate) {
 						$this->Content->save($this->request->data,false);
-						$this->Session->setFlash(__('The page has been saved'));
+						$this->Session->setFlash(__('The page has been saved'),'default',array('class' => 'success'));
 						$this->redirect(array('action'=>'editPage', $pageId, 'page'=>$page));
 					}
 				}
@@ -203,7 +203,7 @@ class ContentsController extends UserMgmtAppController {
 		if (!empty($pageId)) {
 			if ($this->request->isPost()) {
 				if ($this->Content->delete($pageId)) {
-					$this->Session->setFlash(__('Selected page has been deleted successfully'));
+					$this->Session->setFlash(__('Selected page has been deleted successfully'),'default',array('class' => 'success'));
 				}
 			}
 		}

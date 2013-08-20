@@ -31,7 +31,7 @@
 		</div>
 
 		<div class="pagestats">
-			<span class="left"><b>Trading Accounts</b></span>
+			<span class="left"><b>Trade Accounts</b></span>
 			<span class="left"><i class="icon-user"></i> 
 				<?php $TotalAccs = $this->requestAction('Mt4Users/kiraTotalAccs') ; echo $TotalAccs;?>
 			</span>

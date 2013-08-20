@@ -290,7 +290,7 @@ class UsersController extends UserMgmtAppController {
 						}
 
 						$this->User->saveAssociated($this->request->data);
-						$this->Session->setFlash(__('Your profile has been successfully updated'));
+						$this->Session->setFlash(__('Your profile has been successfully updated'), 'default', array('class' => 'success'));
 						$this->redirect('/myprofile');
 					}
 				}
@@ -403,7 +403,8 @@ class UsersController extends UserMgmtAppController {
 						$redirect = (!empty($OriginAfterLogin)) ? $OriginAfterLogin : LOGIN_REDIRECT_URL;
 						$this->redirect($redirect);
 					} else {
-						$this->Session->setFlash($errorMsg);
+						$this->Session->setFlash(__($errorMsg), 'default', array('class' => 'error'));
+
 					}
 				}
 			}
@@ -479,13 +480,13 @@ class UsersController extends UserMgmtAppController {
 						if($login) {
 							$user = $this->User->findById($user['User']['id']);
 							if ($user['User']['active']==0) {
-								$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'), 'default', array('class' => 'warning'));
+								$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'), 'default', array('class' => 'info'));
 							} else {
 								$this->UserAuth->login($user);
 								$this->Session->write('UserAuth.FacebookLogin', true);
 							}
 						} else {
-							$this->Session->setFlash(__('Sorry your email is not verified yet'), 'default', array('class' => 'error'));
+							$this->Session->setFlash(__('Sorry your email is not verified yet'), 'default', array('class' => 'success'));
 						}
 					}
 				}
@@ -533,12 +534,12 @@ class UsersController extends UserMgmtAppController {
 						$this->Session->write('UserAuth.TwitterLogin', true);
 						$this->Session->write('UserAuth.TwitterChangePass', true);
 					} else {
-						$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'), 'default', array('class' => 'info'));
+						$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later.'), 'default', array('class' => 'info'));
 					}
 				} else {
 					if($user['User']['id'] !=1) {
 						if ($user['User']['id'] != 1 and $user['User']['active']==0) {
-							$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'), 'default', array('class' => 'warning'));
+							$this->Session->setFlash(__('Sorry your account is not active, please contact our support staff.'), 'default', array('class' => 'info'));
 						} else {
 							$user['User']['twt_access_token']=$twtData['user_profile']['accessToken'];
 							$user['User']['twt_access_secret']=$twtData['user_profile']['accessSecret'];
@@ -601,7 +602,7 @@ class UsersController extends UserMgmtAppController {
 							}
 							$user = $this->User->findById($user['User']['id']);
 							if ($user['User']['active']==0) {
-								$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'), 'default', array('class' => 'warning'));
+								$this->Session->setFlash(__('Sorry your account is not active, please contact our Support staff.'), 'default', array('class' => 'info'));
 							} else {
 								$this->UserAuth->login($user);
 								$this->Session->write('UserAuth.GmailLogin', true);
@@ -661,7 +662,7 @@ class UsersController extends UserMgmtAppController {
 								$this->User->save($user,false);
 							}
 							if ($user['User']['active']==0) {
-								$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'), 'default', array('class' => 'warning'));
+								$this->Session->setFlash(__('Sorry your account is not active, please contact our Support Staff'), 'default', array('class' => 'info'));
 							} else {
 								$this->UserAuth->login($user);
 								$this->Session->write('UserAuth.YahooLogin', true);
@@ -715,7 +716,7 @@ class UsersController extends UserMgmtAppController {
 					} else {
 						if($user['User']['id'] !=1) {
 							if ($user['User']['active']==0) {
-								$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'), 'default', array('class' => 'warning'));
+								$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'), 'default', array('class' => 'info'));
 							} else {
 								$this->UserAuth->login($user);
 								$this->Session->write('UserAuth.LinkedinLogin', true);
@@ -769,7 +770,7 @@ class UsersController extends UserMgmtAppController {
 				} else {
 					if($user['User']['id'] !=1) {
 						if ($user['User']['active']==0) {
-							$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'), 'default', array('class' => 'warning'));
+							$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'), 'default', array('class' => 'info'));
 						} else {
 							$this->UserAuth->login($user);
 							$this->Session->write('UserAuth.FoursquareLogin', true);
@@ -804,9 +805,10 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function logout($msg=true) {
+		$this->log('User '. $this->UserAuth->getUserId().' logout', 'UserAccess');
 		$this->UserAuth->logout();
 		if($msg) {
-			$this->Session->setFlash(__('You are successfully signed out'));
+			$this->Session->setFlash(__('You are successfully signed out'), 'default', array('class' => 'success'));
 		}
 		$this->redirect(LOGOUT_REDIRECT_URL);
 	}
@@ -895,7 +897,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function changePassword() {
-		$this->layout = "trader.dashboard";
+		
 		$userId = $this->UserAuth->getUserId();
 		if ($this->request->isPost()) {
 			$this->User->set($this->data);
@@ -972,7 +974,7 @@ class UsersController extends UserMgmtAppController {
 						$emailSent += $this->Session->read('UserAuth.EmailVerifyCode');
 					}
 					if($emailSent >2) {
-						$this->Session->setFlash(__('Sorry we have sent already 2 emails for verification code'), 'default', array('class' => 'warning'));
+						$this->Session->setFlash(__('Sorry we have sent already 2 emails for verification code'), 'default', array('class' => 'info'));
 					} else {
 						$code= rand(10000, 1000000);
 						$tmpEmail = $this->TmpEmail->findByEmail($this->request->data['User']['email']);
@@ -1209,7 +1211,7 @@ class UsersController extends UserMgmtAppController {
 						$this->logout(false);
 					}
 				} else {
-					$this->Session->setFlash(__('Your are not allowed to delete account'), 'default', array('class' => 'warning'));
+					$this->Session->setFlash(__('Your are not allowed to delete account'), 'default', array('class' => 'info'));
 				}
 			}
 			$this->redirect('/dashboard');
@@ -1422,7 +1424,7 @@ class UsersController extends UserMgmtAppController {
 				}
 				// check for unverified account
 				if ($user['User']['id'] != 1 and $user['User']['email_verified']==0) {
-					$this->Session->setFlash(__('Your registration has not been confirmed yet please verify your email before reset password'), 'default', array('class' => 'warning'));
+					$this->Session->setFlash(__('Your registration has not been confirmed yet please verify your email before reset password'), 'default', array('class' => 'info'));
 					return;
 				}
 				$this->User->sendForgotPasswordMail($user);
@@ -1655,7 +1657,27 @@ class UsersController extends UserMgmtAppController {
 			if ($this->request->is('requested')) {
 				return $total;
 			} else {
-				$this->set('TotalWallet', $total);
+				$this->set('TotalClient', $total);
+			}
+		}
+	}
+
+	/**
+	* Retrieve total number active partner
+	*
+	* @access public
+	* @return array
+	*/
+
+	public function kiraTotalPartner() {
+		$this->layout = "ajax";
+		if($this->UserAuth->isLogged()){
+			$total = $this->User->kiraTotalPartner();
+			#debug($total);die();
+			if ($this->request->is('requested')) {
+				return $total;
+			} else {
+				$this->set('TotalPartner', $total);
 			}
 		}
 	}
