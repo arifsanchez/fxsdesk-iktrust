@@ -34,17 +34,17 @@ if($ajax) {
 							<th>Account Number</th>
 							<th>Email</th>
 							<th>Phone</th>
-							<th>Balance $</th>
-							<th class='hidden-350'>Account Status</th>
-							<th class='hidden-1024'>Account Maturity</th>
-							<th class='hidden-480'>Operations</th>
+							<th>Commission $</th>
+							<th>Downline</th>
+							<th>Account Status</th>
+							<th>Operations</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach($MT_ACC as $acc): ?>
 						<tr>
 							<td>
-								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['NAME'];?>">
+								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="Agent since <?php echo $acc['Mt4User']['REGDATE'];?>">
 									<i class="icon-exclamation-sign"></i>
 								</button>
 								<a class="btn" href="#" >
@@ -53,8 +53,9 @@ if($ajax) {
 							</td>
 							<td><?php echo $acc['Mt4User']['EMAIL'];?></td>
 							<td><?php echo $acc['Mt4User']['PHONE'];?></td>
-							<td><?php echo number_format($acc['Mt4User']['BALANCE'], 2, '.', '');?></td>
-							<td class='hidden-350'>
+							<td><div class="text-right"><span class="label label-lime"><?php echo number_format($acc['Mt4User']['BALANCE'], 2, '.', '');?></span></div></td>
+							<td><div class="text-center"><span class="badge badge-warning"><?php $TotalDownline = $this->requestAction('partners/kiraAccBawahAff/agent:'.$acc['Mt4User']['LOGIN'].'') ; echo $TotalDownline;?></span></div></td>
+							<td>
 								<?php 	
 								$accstatus = $acc['Mt4User']['ENABLE'];
 
@@ -67,13 +68,12 @@ if($ajax) {
 									};
 								?>
 							</td>
-							<td class='hidden-1024'><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"</span></td>
-							<td class='hidden-480'>
+							<td>
 
 
-								<a href="#popup-coming-soon" class="btn btn-grey" rel="tooltip" title="Transactions History" data-toggle="modal"><i class="glyphicon-table"></i> Transactions</a>
+								<a href="#popup-coming-soon" class="btn btn-mini btn-grey" rel="tooltip" title="Transactions History" data-toggle="modal"><i class="glyphicon-table"></i> </a>
 
-								<a href="#popup-coming-soon" class="btn btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> Setting</a>
+								<a href="#popup-coming-soon" class="btn btn-mini btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> </a>
 							</td>
 						</tr>
 						<?php endforeach; ?>
