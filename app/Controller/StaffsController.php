@@ -17,7 +17,7 @@
 		*
 		* @var array
 		*/
-		public $uses = array();
+		public $uses = array("Vault","VaultTransaction","Mt4User","Usermgmt.User","Mt4Trade");
 
 		/**
 		* Staff Dashboard
@@ -65,12 +65,43 @@
 
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
-				$this->render('admin_listing');
+				$this->render('tracc_listing');
+			}
+		}
+
+		/**
+		* STAFF :: Accounts listing
+		*/
+		public function agent_listing() {
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "All Agent Accounts"
+			);
+			$this->set('page_title',$page_title);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4User.REGDATE DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4User.GROUP LIKE' => '%Aff%',
+				)
+			);
+			$trades = $this->paginate('Mt4User');
+			$this->set('MT_ACC',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('agent_listing');
 			}
 		}
 		
 		/**
-		* Staff :: Deposit Main Window
+		* STAFF :: Deposit Main Window
 		*
 		*/
 		public function deposit_request() {

@@ -24,7 +24,7 @@
 						</a>
 					</li>
 					<li class="satblue">
-						<a href="<?php echo SITE_URL;?>Staffs/admin_listing?me:<?php echo $var['User']['username'];?>">
+						<a href="<?php echo SITE_URL;?>Staffs/tracc_listing?me:<?php echo $var['User']['username'];?>">
 							<i class="icon-user"></i>
 							<div class="details">
 								<span class="big"><?php $TotalTraders = $this->requestAction('TraderAccounts/kiraTotalTraders') ; echo $TotalTraders;?></span>
@@ -101,7 +101,7 @@
 					</li>
 
 					<li class="lightgrey">
-						<a href="<?php echo SITE_URL;?>Users/index?me:<?php echo $var['User']['username'];?>">
+						<a href="<?php echo SITE_URL;?>Staffs/agent_listing?me:<?php echo $var['User']['username'];?>">
 							<i class="icon-group"></i>
 							<div class="details">
 								<span class="big"><span class="big"><?php $TotalRegAgents = $this->requestAction('TraderAccounts/kiraTotalAgent') ; echo $TotalRegAgents;?></span></span>

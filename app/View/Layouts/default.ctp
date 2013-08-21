@@ -137,7 +137,7 @@
 			?>
 			
 			<div class="user">
-				<ul class="icon-nav">
+				<!--ul class="icon-nav">
 					<li class='dropdown colo'>
 						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-tint"></i></a>
 						<ul class="dropdown-menu pull-right theme-colors">
@@ -175,7 +175,7 @@
 							</li>
 						</ul>
 					</li>
-				</ul>
+				</ul-->
 				<div class="dropdown">
 					<?php
 						if(!empty($userId)){

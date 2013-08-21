@@ -8,7 +8,7 @@
 
 <ul class='main-nav'>
 <?php
-	echo "<li class='".(($actionUrl=='Staffs/backoffice') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Dashboard'), array('controller'=>'Staffs', 'action'=>'backoffice?me:'.$var['User']['username']))."</li>";
+	echo "<li class='".(($actionUrl=='Staffs/backoffice') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Dashboard'), array('controller'=>'Staffs', 'action'=>'backoffice?me:'.$var['User']['username'], 'plugin' => ''))."</li>";
 	if($this->UserAuth->isLogged()) {
 		echo "<li class='dropdown'>";
 			if($this->UserAuth->HP('Users', 'index')) {
