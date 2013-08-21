@@ -118,8 +118,8 @@
 							</td>
 						</tr>
 						<?php
-							echo $this->element('popup.DPtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $acc['Mt4User']['BALANCE']));
-							echo $this->element('popup.WDtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $acc['Mt4User']['BALANCE']));
+							echo $this->element('popup.DPtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'],'bal' => $acc1, 'traccbal' => $acc['Mt4User']['BALANCE']));
+							echo $this->element('popup.WDtradeAcc.wallet', array('login' => $acc['Mt4User']['LOGIN'],'bal' => $acc1, 'traccbal' => $acc['Mt4User']['BALANCE']));
 						?>
 						<?php endforeach; ?>
 					</tbody>

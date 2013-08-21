@@ -6,14 +6,14 @@
 	
 	<div class="modal-body">
 	<div class="row-fluid">
-		<div class="span6 box box-borderedbox">
+		<div class="span5">
 			<?php 
 
 				echo $this->Form->create('Vault', array('action' => 'procdpaccwallet'));
-				echo "<blockquote>Current Wallet balance <span class='label label-important'>IK$ ". $bal."</span></blockquote>";
+				echo "<blockquote>Current IK Wallet balance <br/><span class='label label-important'>IK$ ". $bal."</span></blockquote>";
 			?>
 		</div>
-		<div class="span6">
+		<div class="span7">
 			<?php
 				echo $this->Form->label('Amount To Transfer');
 				echo "<div class='controls'><div class='input-append input-prepend'>";
@@ -22,7 +22,7 @@
 					'data-rule-required' => 'true',
 					'data-rule-number' => 'true',
 					'placeholder' => 'Max IK$'.$bal,
-					'class' => 'input-small',
+					'class' => 'input-medium',
 					'div' => false,
 					'before' => "<span class='add-on'><i class='icon-money'></i></span>",
 					'after' => "<span class='add-on'>.00</span>"
