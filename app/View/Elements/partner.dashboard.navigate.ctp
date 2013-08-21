@@ -18,10 +18,29 @@
 			echo "<li class='".(($actionUrl=='Partners/vault') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Partner Vault'), array('controller'=>'Partners', 'action'=>'vault?me:'.$var['User']['username'],'plugin' =>''))."</li>";
 		}
 
-		/** My Network **/
-		if($this->UserAuth->HP('TraderAccounts', 'mynetwork')) {
-			echo "<li class='".(($actionUrl=='TraderAccounts/mynetwork') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('My Networks'), array('controller'=>'TraderAccounts', 'action'=>'mynetwork?me:'.$var['User']['username'],'plugin' =>''))."</li>";
+		/** Partner Network **/
+		if($this->UserAuth->HP('Partners', 'mynetwork')) {
+			echo "<li class='dropdown'>";
+				echo $this->Html->link(__('Partner Network').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+
+				echo "<ul class='dropdown-menu'>";
+					if($this->UserAuth->HP('Partners', 'myclient')) {
+						echo "<li class='".(($actionUrl=='Partners/myclient') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Clients'), array('controller'=>'Partners', 'action'=>'myclient?me:'.$var['User']['username'], 'plugin'=>''))."</li>";
+					}
+
+					if($this->UserAuth->HP('Partners', 'mynetwork')) {
+						echo "<li class='".(($actionUrl=='Partners/mynetwork') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Accounts'), array('controller'=>'Partners', 'action'=>'mynetwork?me:'.$var['User']['username'], 'plugin'=>''))."</li>";
+					}
+
+					if($this->UserAuth->HP('Partners', 'myagent')) {
+						echo "<li class='".(($actionUrl=='Partners/myagent') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Agents'), array('controller'=>'Partners', 'action'=>'myagent?me:'.$var['User']['username'], 'plugin'=>''))."</li>";
+					}
+
+				echo "</ul>";
+			echo "</li>";
 		}
+
+
 
 	}
 	?>

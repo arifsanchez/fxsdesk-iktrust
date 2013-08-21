@@ -20,15 +20,11 @@ if($ajax) {
 
 <div class="row-fluid">
 	<div class="span12">
-		<div class="box box-color blue box-bordered" id="updateNetworklisting">
+		<div class="box box-color box-small blue box-bordered" id="updateNetworklisting">
 			<div class="box-title">
 				<h3>
-					All Trading Accounts
+					Registered Trading Accounts
 				</h3>
-				<div class="actions">
-					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register Client Live Account"><i class="icon-fire"></i> Create Live Account</a>
-					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register  Client Demo Account"><i class="glyphicon-shield"></i> Create Demo Account</a>
-				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-bordered usertable">

@@ -23,12 +23,8 @@ if($ajax) {
 		<div class="box box-color blue box-bordered" id="updateNetworklisting">
 			<div class="box-title">
 				<h3>
-					Clientbase
+					Clientele
 				</h3>
-				<div class="actions">
-					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register Client Live Account"><i class="icon-fire"></i> Create Live Account</a>
-					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register  Client Demo Account"><i class="glyphicon-shield"></i> Create Demo Account</a>
-				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-bordered usertable">
@@ -39,23 +35,25 @@ if($ajax) {
 							<th>Email</th>
 							<th>Phone</th>
 							<th>Country</th>
-							<th class='hidden-480'>Operations</th>
+							<th>Operations</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach($MT_ACC as $acc): ?>
 						<tr>
 							<td>
-								<a class="btn" href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" >
+								<a class="btn btn-mini btn-blue" href="#" >
 									<?php echo $acc['Mt4User']['NAME'];?>
 								</a>
 							</td>
 							<td><?php echo $acc['Mt4User']['EMAIL'];?></td>
 							<td><?php echo $acc['Mt4User']['PHONE'];?></td>
 							<td><?php echo $acc['Mt4User']['COUNTRY'];?></td>
-							<td class='hidden-480'>
+							<td>
 
-								<a href="#popup-coming-soon" class="btn btn-magenta" rel="tooltip" title="Email Client" data-toggle="modal"><i class="icon-envelope-alt"></i> Sent Email</a>
+								<a href="#popup-coming-soon" class="btn btn-mini btn-satblue" rel="tooltip" title="Email Client" data-toggle="modal"><i class="icon-envelope-alt"></i> Sent Email</a>
+
+								<a href="#popup-coming-soon" class="btn btn-mini btn-green" rel="tooltip" title="Deposit to client wallet" data-toggle="modal"><i class="icon-money"></i> Transfer IK$</a>
 							</td>
 						</tr>
 						<?php endforeach; ?>

@@ -23,12 +23,8 @@ if($ajax) {
 		<div class="box box-color blue box-bordered" id="updateNetworklisting">
 			<div class="box-title">
 				<h3>
-					My Networks
+					Registered Trading Accounts
 				</h3>
-				<div class="actions">
-					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register Client Live Account"><i class="icon-fire"></i> Create Live Account</a>
-					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register  Client Demo Account"><i class="glyphicon-shield"></i> Create Demo Account</a>
-				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-bordered usertable">
@@ -36,29 +32,29 @@ if($ajax) {
 					<thead>
 						<tr>
 							<th>Account Number</th>
-							<th>Email</th>
-							<th>Phone</th>
+							<th>Leverage</th>
 							<th>Balance $</th>
-							<th class='hidden-350'>Account Status</th>
-							<th class='hidden-1024'>Account Maturity</th>
-							<th class='hidden-480'>Operations</th>
+							<th>Credit $</th>
+							<th>Trade Status</th>
+							<th>Account Maturity</th>
+							<th>Operations</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach($MT_ACC as $acc): ?>
 						<tr>
 							<td>
-								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
+								<button class="btn btn-mini btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
 									<i class="icon-exclamation-sign"></i>
 								</button>
-								<a class="btn" href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" >
+								<a class="btn btn-mini" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['NAME'];?>" href="#" >
 									<?php echo $acc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>
-							<td><?php echo $acc['Mt4User']['EMAIL'];?></td>
-							<td><?php echo $acc['Mt4User']['PHONE'];?></td>
-							<td><?php echo number_format($acc['Mt4User']['BALANCE'], 2, '.', '');?></td>
-							<td class='hidden-350'>
+							<td>1:<?php echo $acc['Mt4User']['LEVERAGE'];?></td>
+							<td><div class="text-right"><span class="label label-important"><?php echo number_format($acc['Mt4User']['BALANCE'], 2, '.', '');?></span></div></td>
+							<td><?php echo number_format($acc['Mt4User']['CREDIT'], 2, '.', '');?></td>
+							<td>
 								<?php 	
 								$accstatus = $acc['Mt4User']['ENABLE'];
 
@@ -67,17 +63,15 @@ if($ajax) {
 										echo "<span class=\"label label-satgreen\">Active</span>";
 										break;
 										default:
-										echo "<span class=\"label label-lightred\">Inactive</span>";
+										echo "<span class=\"label label-lightred\">Disable</span>";
 									};
 								?>
 							</td>
-							<td class='hidden-1024'><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"</span></td>
-							<td class='hidden-480'>
+							<td><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"</span></td>
+							<td>
+								<a href="#popup-coming-soon" class="btn btn-mini btn-grey" rel="tooltip" title="Transactions History" data-toggle="modal"><i class="glyphicon-table"></i> </a>
 
-
-								<a href="#popup-coming-soon" class="btn btn-grey" rel="tooltip" title="Transactions History" data-toggle="modal"><i class="glyphicon-table"></i> Transactions</a>
-
-								<a href="#popup-coming-soon" class="btn btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> Setting</a>
+								<a href="#popup-coming-soon" class="btn btn-mini btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> </a>
 							</td>
 						</tr>
 						<?php endforeach; ?>
