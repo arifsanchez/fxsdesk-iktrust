@@ -22,7 +22,7 @@
 					'data-rule-required' => 'true',
 					'data-rule-number' => 'true',
 					'placeholder' => 'Max IK$'.$bal,
-					'class' => 'input-small',
+					'class' => 'input-medium',
 					'div' => false,
 					'before' => "<span class='add-on'><i class='icon-money'></i></span>",
 					'after' => "<span class='add-on'>.00</span>"

@@ -18,14 +18,15 @@
 					<i class="glyphicon-dashboard"></i>
 				</a>
 			</li>
-			<li class='blue' >
-				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>TraderAccounts/listing?me:<?php echo $var['User']['username'];?>" data-original-title="Trading Accounts">
-					<i class="glyphicon-wallet"></i>
-				</a>
-			</li>
 			<li class='satgreen' >
 				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>Vaults/manage?me:<?php echo $var['User']['username'];?>" data-original-title="My Wallet">
 					<i class="icon-money"></i>
+
+				</a>
+			</li>
+			<li class='blue' >
+				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>TraderAccounts/listing?me:<?php echo $var['User']['username'];?>" data-original-title="My Accounts">
+					<i class="glyphicon-wallet"></i>
 				</a>
 			</li>
 		</ul>

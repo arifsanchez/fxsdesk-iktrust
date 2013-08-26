@@ -149,6 +149,47 @@
 			);
 			$this->set('page_title',$page_title);
 
+			//check for param request
+			$filter = $this->params->named['filter'];
+			#debug($filter); die();
+			if($filter == 'pending'){
+				//list with paginate all pending request
+				$this->paginate = array(
+					'order' => 'VaultTransaction.created DESC',
+					'limit' => 35,
+					'recursive' => -1,
+					'conditions' => array('VaultTransaction.status' => 2)
+				);
+
+				$this->set('filter' = $filter);
+			} else if($filter == 'approve'){
+				//list with paginate all approved
+				$this->paginate = array(
+					'order' => 'VaultTransaction.created DESC',
+					'limit' => 35,
+					'recursive' => -1,
+					'conditions' => array('VaultTransaction.status' => 3)
+				);
+				$this->set('filter' = $filter);
+			} else if($filter == 'new'){
+				//list with paginate all transaction history
+				$this->paginate = array(
+					'order' => 'VaultTransaction.created DESC',
+					'limit' => 35,
+					'recursive' => -1,
+					'conditions' => array('VaultTransaction.status' => 1)
+				);
+				$this->set('filter' = $filter);
+			}
+			
+			$Wtransact = $this->paginate('VaultTransaction');
+			$this->set('Wtransact',$Wtransact);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('transfer_request');
+			}
+
 		}
 	}
 ?>

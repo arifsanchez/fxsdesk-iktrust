@@ -74,14 +74,30 @@ class VaultsController extends AppController {
 		$checkVault = $this->Vault->checkVaultAccount($userId);
 
 		//Request balance from vault db
-		$acc1 = $this->Vault->getAccBalance($userId);
-		$this->set('acc1', $acc1['Vault']['acc_1']);
-		$this->set('acc2', $acc1['Vault']['acc_2']);
+		$vacc = $this->Vault->getAccBalance($userId);
+		$this->set('acc1', $vacc['Vault']['acc_1']);
+		$this->set('acc2', $vacc['Vault']['acc_2']);
 		
 		//Dapatkan senarai trading account
 		$userEmail = $this->User->getEmailById($userId);
 		$tradeAcc = $this->Mt4User->listTradeAcc($userEmail);
 		$this->set('tradeAcc', $tradeAcc);
+
+		//request transaction dari vault == latest
+		$vtrans = $this->VaultTransaction->listAllLatest($vacc['Vault']['id']);
+		$this->set('vtrans_latest', $vtrans);
+
+		//request transaction dari vault == new
+		$vtrans1 = $this->VaultTransaction->listAllNew($vacc['Vault']['id']);
+		$this->set('vtrans_new', $vtrans1);
+
+		//request transaction dari vault == pending
+		$vtrans2 = $this->VaultTransaction->listAllPending($vacc['Vault']['id']);
+		$this->set('vtrans_pending', $vtrans2);
+
+		//request transaction dari vault == approve
+		$vtrans3 = $this->VaultTransaction->listAllApprove($vacc['Vault']['id']);
+		$this->set('vtrans_approve', $vtrans3);
 	}
 
 	/**
