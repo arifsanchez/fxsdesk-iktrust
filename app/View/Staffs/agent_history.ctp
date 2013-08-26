@@ -18,7 +18,21 @@ if($ajax) {
 
 <div class="row-fluid">
 	<div class="span12">
+		<div class="downline-tag">
+			<p>Trading Accounts Reffered:
+		    <?php foreach($downlines as $downline):?>
+		    	<span class="label label-lightrey"><?php echo $downline;?></span>
+		    <?php endforeach; ?>
+		    </p>
+		</div>
 		<div class="box box-color grey box-bordered" id="updateTradeHistory">
+			<div class="downline-tag">
+				<p>Trading Accounts Reffered:
+			    <?php foreach($downlines as $downline):?>
+			    	<span class="label label-lightrey"><?php echo $downline;?></span>
+			    <?php endforeach; ?>
+			    </p>
+			</div>
 			<div class="box-title">
 				<h3>
 					Agent Transactions History
@@ -89,7 +103,7 @@ if($ajax) {
 							</td>
 							<td>
 								<?php
-									echo $this->Time->nice($Transaction['Mt4Trade']['OPEN_TIME'];
+									echo $this->Time->nice($Transaction['Mt4Trade']['OPEN_TIME']);
 								;?>
 							<td>
 								<div class="text-right">

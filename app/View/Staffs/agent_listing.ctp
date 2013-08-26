@@ -34,7 +34,7 @@ if($ajax) {
 							<th>Account Number</th>
 							<th>Email</th>
 							<th>Phone</th>
-							<th>Commission $</th>
+							<th><?php echo $this->Paginator->sort('Mt4User.BALANCE', __('Commissions')); ?></th>
 							<th>Downline</th>
 							<th>Account Status</th>
 							<th>Operations</th>
@@ -51,7 +51,7 @@ if($ajax) {
 									<?php echo $acc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>
-							<td><?php echo $acc['Mt4User']['EMAIL'];?></td>
+							<td><b><?php echo ucwords(strtolower($acc['Mt4User']['NAME']));?></b><br/><?php echo $acc['Mt4User']['EMAIL'];?></td>
 							<td><?php echo $acc['Mt4User']['PHONE'];?></td>
 							<td><div class="text-right"><span class="label label-lime"><?php echo number_format($acc['Mt4User']['BALANCE'], 2, '.', '');?></span></div></td>
 							<td><div class="text-center"><span class="badge badge-warning"><?php $TotalDownline = $this->requestAction('partners/kiraAccBawahAff/agent:'.$acc['Mt4User']['LOGIN'].'') ; echo $TotalDownline;?></span></div></td>

@@ -84,8 +84,8 @@
 
 			//Paginate Trader Accounts Listing
 			$this->paginate = array(
-				'limit' => 35, 
-				'order'=> 'Mt4User.REGDATE DESC',
+				'limit' => 15, 
+				'order'=> 'Mt4User.BALANCE DESC',
 				'recursive'=>0,
 				'conditions' =>array(
 					'Mt4User.GROUP LIKE' => '%Aff%',
@@ -113,8 +113,14 @@
 			);
 			$this->set('page_title',$page_title);
 
-			//start cari details of transactions
+			
+			//start cari agent ID
 			$tracc_id = $this->request->params['named']['process'];
+
+			//listing downline
+			$downlines = $this->Mt4User->listingDownline($tracc_id);
+			$this->set('downlines', $downlines);
+
 			//Paginate Trader Accounts Listing
 			$this->paginate = array(
 				'limit' => 35, 
