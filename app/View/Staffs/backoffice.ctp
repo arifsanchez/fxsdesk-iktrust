@@ -112,5 +112,28 @@
 				</ul>
 			</div>
 		</div>
+
+		<!-- Market Watch -->
+		<div class="box box-color lime box-bordered">
+			<div class="box-title">
+				<h3>
+					<i class="icon-th-large"></i>
+					Market Watch
+				</h3>
+			</div>
+			<div class="box-content">
+				<ul class="stats">
+					<li class="red">
+						<a href="<?php echo SITE_URL;?>Staffs/semua_open_post?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-spinner"></i>
+							<div class="details">
+								<span class="big"><span class="big"><?php $TotalOpenPost = $this->requestAction('Staffs/JumlahOpenPost') ; echo $TotalOpenPost;?></span></span>
+								<span>Open Post</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>

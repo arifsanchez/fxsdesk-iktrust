@@ -99,6 +99,97 @@
 				$this->render('agent_listing');
 			}
 		}
+
+		/**
+		* STAFF :: Accounts history
+		*/
+		public function agent_history() {
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-group",
+				'name' => "Agent Acc History"
+			);
+			$this->set('page_title',$page_title);
+
+			//start cari details of transactions
+			$tracc_id = $this->request->params['named']['process'];
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4Trade.LOGIN LIKE' => $tracc_id,
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			$this->set('agentPost',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('agent_history');
+			}
+		}
+
+		/**
+		* STAFF : Listing Semua Open Position
+		***/
+		public function semua_open_post(){
+			
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-spinner",
+				'name' => "All Open Posts"
+			);
+			$this->set('page_title',$page_title);
+
+			$time = "1970-01-01 00:00:00";
+			#debug($time);die();
+			$this->paginate = array(
+				'limit' => 30, 
+				'order'=> 'Mt4Trade.OPEN_TIME DESC',
+				'recursive'=>0,
+				'conditions' => array(
+					'CLOSE_TIME' => $time,
+				)
+			);
+			$openPost = $this->paginate('Mt4Trade');
+			#debug($openPost);die();
+			$this->set('openPost',$openPost);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('semua_open_post');
+			}
+		}
+
+		/**
+		* STAFF : Kira Semua Open Position
+		***/
+		public function JumlahOpenPost(){
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$time = "1970-01-01 00:00:00";
+				$total = $this->Mt4Trade->find('count',
+					array(
+						'order'=> 'Mt4Trade.OPEN_TIME DESC',
+						'recursive'=>0,
+						'conditions' => array(
+							'CLOSE_TIME' => $time,
+						)
+					)
+				);
+				if ($this->request->is('requested')) {
+					return $total;
+				} else {
+					$this->set('JumlahOpenPost', $total);
+				}
+			}
+		}
 		
 		/**
 		* STAFF :: Deposit Main Window
