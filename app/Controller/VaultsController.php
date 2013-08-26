@@ -98,6 +98,10 @@ class VaultsController extends AppController {
 		//request transaction dari vault == approve
 		$vtrans3 = $this->VaultTransaction->listAllApprove($vacc['Vault']['id']);
 		$this->set('vtrans_approve', $vtrans3);
+
+		//request transaction dari vault == decline
+		$vtrans4 = $this->VaultTransaction->listAllDecline($vacc['Vault']['id']);
+		$this->set('vtrans_decline', $vtrans4);
 	}
 
 	/**
@@ -311,6 +315,8 @@ class VaultsController extends AppController {
 				$this->Session->setFlash(__('Transfer request has been sent to IK Trust HQ'),'default',array('class' => 'success'));
 				$this->redirect(array('controller' =>'vaults', 'action' => 'mywallet_history'));
 			}
+		} else {
+			$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
 		}
 	}
 

@@ -66,7 +66,7 @@
 					</li>
 
 					<li class="orange">
-						<a href="<?php echo SITE_URL;?>Staffs/transfer_request?me:<?php echo $var['User']['username'];?>" rel="tooltip" data-placement="bottom" data-original-title="New Transfer Request">
+						<a href="<?php echo SITE_URL;?>Staffs/transfer_request/filter:new?me:<?php echo $var['User']['username'];?>" rel="tooltip" data-placement="bottom" data-original-title="New Transfer Request">
 							<i class="icon-money"></i>
 							<div class="details">
 								<span class="big"><?php $TotalTRW_TRACC = $this->requestAction('vaults/kiraTotalNewTRW_TRACC'); echo $TotalTRW_TRACC;?></span>

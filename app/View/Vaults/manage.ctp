@@ -80,6 +80,9 @@
 					<li>
 						<a data-toggle="tab" href="#wal_approve"><i class="glyphicon-ok_2"></i> Approved</a>
 					</li>
+					<li>
+						<a data-toggle="tab" href="#wal_decline"><i class="glyphicon-remove_2"></i> Declined</a>
+					</li>
 				</ul>
 				<div class="tab-content padding tab-content-inline tab-content-bottom">
 					<div id="wal_latest" class="tab-pane active">
@@ -124,6 +127,9 @@
 												case 3:
 												echo "<span class='label label-satgreen'>APPROVE</span>";
 												break;
+												case 4:
+												echo "<span class='label label-red'>DECLINE</span>";
+												break;
 											};
 										?>
 									</td>
@@ -165,7 +171,7 @@
 										?>
 									</td>
 									<td><?php echo $vt_new['VaultTransaction']['description'];?></td>
-									<td><div class="text-right"><?php echo $vt_new['VaultTransaction']['jumlah'];?></div></td>
+									<td><div class="text-right"><span class='label label-orange'><?php echo $vt_new['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_new['VaultTransaction']['created']);?></td>
 								</tr>
 								<?php endforeach; ?>
@@ -203,7 +209,7 @@
 										?>
 									</td>
 									<td><?php echo $vt_pending['VaultTransaction']['description'];?></td>
-									<td><div class="text-right"><?php echo $vt_pending['VaultTransaction']['jumlah'];?></div></td>
+									<td><div class="text-right"><span class='label label-satblue'><?php echo $vt_pending['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_pending['VaultTransaction']['created']);?></td>
 								</tr>
 								<?php endforeach; ?>
@@ -241,12 +247,50 @@
 										?>
 									</td>
 									<td><?php echo $vt_app['VaultTransaction']['description'];?></td>
-									<td><div class="text-right"><?php echo $vt_app['VaultTransaction']['jumlah'];?></div></td>
+									<td><div class="text-right"><span class='label label-satgreen'><?php echo $vt_app['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_app['VaultTransaction']['created']);?></td>
 								</tr>
 								<?php endforeach; ?>
 							</tbody>
 							<?php } else { echo "You have 0 <span class='label label-satgreen'>APPROVE</span> transaction request at this moment."; };
+							?>
+						</table>
+					</div>
+					<div id="wal_decline" class="tab-pane">
+						<table class="table table-hover table-nomargin table-bordered usertable">
+							<?php if(!empty($vtrans_decline)){ ;?>
+							<thead>
+								<tr>
+									<th>Type</th>
+									<th>Comment</th>
+									<th>Total $</th>
+									<th>Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach($vtrans_decline as $vt_dec): ?>
+								<tr>
+									<td>
+										<?php
+											$type = $vt_dec['VaultTransaction']['type'];
+
+											switch ($type){
+												case "1":
+												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
+												break;
+												case "2":
+												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
+												break;
+											};
+										?>
+									</td>
+									<td><?php echo $vt_dec['VaultTransaction']['description'];?></td>
+									<td><div class="text-right"><span class='label label-red'><?php echo $vt_dec['VaultTransaction']['jumlah'];?></span></div></td>
+									<td><?php echo $this->Time->nice($vt_dec['VaultTransaction']['created']);?></td>
+								</tr>
+								<?php endforeach; ?>
+							</tbody>
+							<?php } else { echo "You have 0 <span class='label label-red'>DECLINE</span> transaction request at this moment."; };
 							?>
 						</table>
 					</div>

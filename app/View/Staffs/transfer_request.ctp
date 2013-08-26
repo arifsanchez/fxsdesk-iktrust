@@ -22,7 +22,7 @@
 	<div class="span12">
 		<div class="box box-mini box-bordered" id="updateTradeHistory">
 			<div class="box-title">
-				<h3>Transfer Request</h3>
+				<h3><?php echo strtoupper($filter);?> Transfer Request</h3>
 				<div class="pull-right">
 					FILTER : 
 					&nbsp;
@@ -65,13 +65,26 @@
 						<i class="glyphicon-ok_2"></i> APPROVED
 					</a>
 					&nbsp;
+					<a
+						data-original-title="Declined Transaction : Wallet to Trading Account Request" 
+						data-placement="bottom" 
+						class="btn btn-red" 
+						href="<?php echo SITE_URL;?>Staffs/transfer_request/filter:decline?me:<?php echo $var['User']['username'];?>" 
+						title="" 
+						data-toggle="modal" 
+						data-trigger="hover"  
+						rel="tooltip" 
+					>
+						<i class="glyphicon-remove_2"></i> DECLINE
+					</a>
+					&nbsp;
 				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-condensed table-bordered">
 					<thead>
 						<tr>
-							<th>Reference Key</th>
+							<th>Client Name</th>
 							<th>Type</th>
 							<th>Status</th>
 							<th>Comment</th>
@@ -81,15 +94,21 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($Wtransact as $Transaction): ?>
+						<?php 
+							#debug($Wtransact); die();
+							foreach($Wtransact as $Transaction): 
+						?>
 						<tr>
 							<td>
-								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $Transaction['VaultTransaction']['description'];?>">
-									<i class="icon-exclamation-sign"></i>
+								<button class="btn  btn-mini btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $Transaction['VaultTransaction']['description'];?>">
+									<i class="icon-exclamation-sign"></i> <?php
+									$TRid = $Transaction['VaultTransaction']['id'];
+									echo "IKW".$TRid;
+								?>
 								</button>
 								<?php
-									$TRid = $Transaction['VaultTransaction']['id'];
-									echo "IKW".base64_encode($TRid);
+									$username = $Transaction['Vault']['User']['username'];
+									echo $username;
 								?>
 
 							</td>
@@ -100,10 +119,10 @@
 
 									switch ($type1){
 										case "1":
-											echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
+											echo "<span class='label label-satgreen'>WT <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
 										break;
 										case "2":
-											echo "<span class='label label-satgreen'>DP -> WALLET</span>";
+											echo "<span class='label label-satgreen'>DEPO -> WT</span>";
 										break;
 									};
 								?>
@@ -113,14 +132,17 @@
 									$status1 = $Transaction['VaultTransaction']['status'];
 									
 									switch ($status1){
-										case "1":
+										case 1:
 										echo "<span class='label label-orange'>NEW</span>";
 										break;
-										case "2":
+										case 2:
 										echo "<span class='label label-satblue'>PENDING</span>";
 										break;
-										case "3":
+										case 3:
 										echo "<span class='label label-satgreen'>APPROVE</span>";
+										break;
+										case 4:
+										echo "<span class='label label-red'>DECLINE</span>";
 										break;
 									};
 								?>
@@ -128,7 +150,7 @@
 							<td><?php echo ucwords(strtolower($Transaction['VaultTransaction']['description']));?></td>
 							<td><div class="text-right"><?php echo number_format($Transaction['VaultTransaction']['jumlah'], 2, '.', '');?></div></td>
 							<td><span data-livestamp="<?php echo $Transaction['VaultTransaction']['created'];?>"></span></td>
-							<td><a href="#popup-coming-soon" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $Transaction['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i> View Details</a></td>
+							<td><a href="<?php echo SITE_URL;?>Staffs/transfer_detail/process:<?php echo $TRid;?>?me:<?php echo $var['User']['username'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $Transaction['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i> View Details</a></td>
 						</tr>
 						<?php endforeach; ?>
 					</tbody>

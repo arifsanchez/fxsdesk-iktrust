@@ -157,29 +157,38 @@
 				$this->paginate = array(
 					'order' => 'VaultTransaction.created DESC',
 					'limit' => 35,
-					'recursive' => -1,
+					'recursive' => 2,
 					'conditions' => array('VaultTransaction.status' => 2)
 				);
 
-				$this->set('filter' = $filter);
+				$this->set('filter' , $filter);
 			} else if($filter == 'approve'){
 				//list with paginate all approved
 				$this->paginate = array(
 					'order' => 'VaultTransaction.created DESC',
 					'limit' => 35,
-					'recursive' => -1,
+					'recursive' => 2,
 					'conditions' => array('VaultTransaction.status' => 3)
 				);
-				$this->set('filter' = $filter);
+				$this->set('filter' , $filter);
+			} else if($filter == 'decline'){
+				//list with paginate all declined
+				$this->paginate = array(
+					'order' => 'VaultTransaction.created DESC',
+					'limit' => 35,
+					'recursive' => 2,
+					'conditions' => array('VaultTransaction.status' => 4)
+				);
+				$this->set('filter' , $filter);
 			} else if($filter == 'new'){
 				//list with paginate all transaction history
 				$this->paginate = array(
 					'order' => 'VaultTransaction.created DESC',
 					'limit' => 35,
-					'recursive' => -1,
+					'recursive' => 2,
 					'conditions' => array('VaultTransaction.status' => 1)
 				);
-				$this->set('filter' = $filter);
+				$this->set('filter' , $filter);
 			}
 			
 			$Wtransact = $this->paginate('VaultTransaction');
@@ -188,6 +197,45 @@
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
 				$this->render('transfer_request');
+			}
+
+		}
+
+		/**
+		* Staff :: Transfer Detail Main Window
+		*
+		*/
+		public function transfer_detail() {
+
+			//check for param request
+			#debug($this->request->params['named']['process']); die();
+			if($this->request->params['named']['process'] == null){
+				//jika kosong hantar terus ke page listing
+				$this->Session->setFlash(__('Sorry :( Invalid Tradsaction.'),'default',array('class' => 'error'));
+				$this->redirect(array('action' => 'transfer_request/filter:new'));
+			} else {
+				//Layout
+				$this->layout = "staff.dashboard";
+				//Page title
+				$page_title = array(
+					'icon' => "icon-money",
+					'name' => "Transfer Detail"
+				);
+				$this->set('page_title',$page_title);
+
+				//start cari details of transactions
+				$vt_id = $this->request->params['named']['process'];
+				$details = $this->VaultTransaction->find('first', array(
+					'conditions' => array(
+						'VaultTransaction.id' => $vt_id
+					),
+				));
+				$this->set('TranDetails', $details);
+
+				//call in user details tambahan
+				$userId = $details['Vault']['user_id'];
+				$user =$this->User->getUserById($userId);
+				$this->set('userDetails',$user);
 			}
 
 		}

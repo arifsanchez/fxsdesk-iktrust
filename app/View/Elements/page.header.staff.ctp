@@ -14,7 +14,7 @@
 	<div class="pull-right">
 		<ul class="minitiles">
 			<li class='orange' >
-				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>partners/cabinet?me:<?php echo $var['User']['username'];?>" data-original-title="Partner Cabinet">
+				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>Staffs/backoffice?me:<?php echo $var['User']['username'];?>" data-original-title="Staff Backoffice">
 					<i class="glyphicon-dashboard"></i>
 				</a>
 			</li>
