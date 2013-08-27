@@ -18,18 +18,11 @@ if($ajax) {
 
 <div class="row-fluid">
 	<div class="span12">
-		<div class="downline-tag">
-			<p>Trading Accounts Reffered:
-		    <?php foreach($downlines as $downline):?>
-		    	<span class="label label-lightrey"><?php echo $downline;?></span>
-		    <?php endforeach; ?>
-		    </p>
-		</div>
-		<div class="box box-color grey box-bordered" id="updateTradeHistory">
+		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
 			<div class="downline-tag">
-				<p>Trading Accounts Reffered:
+				<p>Accounts Downline
 			    <?php foreach($downlines as $downline):?>
-			    	<span class="label label-lightrey"><?php echo $downline;?></span>
+			    	<span class="label label-lime"><?php echo $downline;?></span>
 			    <?php endforeach; ?>
 			    </p>
 			</div>

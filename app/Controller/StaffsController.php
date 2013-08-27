@@ -104,18 +104,20 @@
 		* STAFF :: Accounts history
 		*/
 		public function agent_history() {
+			//start cari agent ID
+			$tracc_id = $this->request->params['named']['process'];
+
 			//Layout
 			$this->layout = "staff.dashboard";
 			//Page title
 			$page_title = array(
 				'icon' => "icon-group",
-				'name' => "Agent Acc History"
+				'name' => "Agent #".$tracc_id." History"
 			);
 			$this->set('page_title',$page_title);
 
 			
-			//start cari agent ID
-			$tracc_id = $this->request->params['named']['process'];
+			
 
 			//listing downline
 			$downlines = $this->Mt4User->listingDownline($tracc_id);
