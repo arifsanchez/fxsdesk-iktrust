@@ -1,11 +1,11 @@
 <?php
-App::uses('VaultTransaction', 'Model');
+App::uses('VaultTransactionComment', 'Model');
 
 /**
- * VaultTransaction Test Case
+ * VaultTransactionComment Test Case
  *
  */
-class VaultTransactionTest extends CakeTestCase {
+class VaultTransactionCommentTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,11 +13,11 @@ class VaultTransactionTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
+		'app.vault_transaction_comment',
 		'app.vault_transaction',
 		'app.vault',
 		'app.user',
-		'app.user_detail',
-		'app.vault_transaction_comment'
+		'app.user_detail'
 	);
 
 /**
@@ -27,7 +27,7 @@ class VaultTransactionTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->VaultTransaction = ClassRegistry::init('VaultTransaction');
+		$this->VaultTransactionComment = ClassRegistry::init('VaultTransactionComment');
 	}
 
 /**
@@ -36,7 +36,7 @@ class VaultTransactionTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->VaultTransaction);
+		unset($this->VaultTransactionComment);
 
 		parent::tearDown();
 	}

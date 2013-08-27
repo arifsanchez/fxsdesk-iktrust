@@ -112,7 +112,7 @@ public $validate = array(
 	}
 
 	/**
-	 * Kira Total Wallet
+	 * STAFF :: Kira Total Wallet
 	 *
 	 * @access public
 	*/

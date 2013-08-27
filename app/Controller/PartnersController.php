@@ -97,6 +97,21 @@
 		}
 
 		/***
+		* Partner :: request kira total downline
+		***/
+
+		public function kiraAccBawahAff(){
+			$this->layout = "ajax";
+			$partnertag = $this->request->params['named']['agent'];
+			$TotalDownline = $this->Mt4User->kiraTotalDownline($partnertag);
+			if ($this->request->is('requested')) {
+				return $TotalDownline;
+			} else {
+				$this->set('TotalDownline', $TotalDownline);
+			}
+		}
+
+		/***
 		* Partner :: request kira total affilliate / sub ib
 		***/
 
@@ -156,6 +171,156 @@
 			} else {
 				$this->Session->setFlash(__('You are not authorized to access trading account #'.$acc.' details.'), 'default', array('class' => 'error'));
 				$this->redirect(array('action' => 'listing'));
+			}
+		}
+
+		/**
+		* PARTNER :: Trader Accounts listing
+		*/
+		public function mynetwork() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "All Trading Accounts"
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info partner
+			$user = $this->UserAuth->getUser();
+
+			//Paginate Partner Network Listing
+			$this->paginate = array(
+				'limit' => 15, 
+				'order'=> 'Mt4User.REGDATE DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4User.GROUP LIKE' => '%IK%',
+					#'Mt4User.AGENT_ACCOUNT LIKE' => '888808'
+					'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
+			));
+			$trades = $this->paginate('Mt4User');
+			$this->set('MT_ACC',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('mynetwork');
+			}
+		}
+
+		/**
+		* PARTNER :: Client listing
+		*/
+		public function myclient() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "All Registered Clients"
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info partner
+			$user = $this->UserAuth->getUser();
+
+			//Paginate Partner Network Listing
+			$this->paginate = array(
+				'limit' => 15, 
+				'order'=> 'Mt4User.REGDATE DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4User.GROUP LIKE' => '%IK%',
+					'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
+				),
+				'group' => array('Mt4User.EMAIL')
+			);
+			$trades = $this->paginate('Mt4User');
+			$this->set('MT_ACC',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('myclient');
+			}
+		}
+
+		/**
+		* PARTNER :: Agent listing
+		*/
+		public function myagent() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "All Agents"
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info partner
+			$user = $this->UserAuth->getUser();
+
+			//Paginate Partner Network Listing
+			$this->paginate = array(
+				'limit' => 15, 
+				'order'=> 'Mt4User.REGDATE DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4User.GROUP LIKE' => '%Aff%',
+					'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
+				)
+			);
+			$trades = $this->paginate('Mt4User');
+			$this->set('MT_ACC',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('myagent');
+			}
+		}
+
+		/**
+		* PARTNER :: Agent Accounts history
+		*/
+		public function myagent_history() {
+			//start cari agent ID
+			$tracc_id = $this->request->params['named']['process'];
+
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-group",
+				'name' => "Agent #".$tracc_id." History"
+			);
+			$this->set('page_title',$page_title);
+
+			//check if the one nak check ni dibawah partnership downline dia
+			$user = $this->UserAuth->getUser();
+			$partnertag = $user['User']['partnertag']; // cari partnertag
+
+			//cari agent_account untuk $tracc_id
+
+			//listing downline
+			$downlines = $this->Mt4User->listingDownline($tracc_id);
+			$this->set('downlines', $downlines);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4Trade.LOGIN LIKE' => $tracc_id,
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			$this->set('agentPost',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('myagent_history');
 			}
 		}
 

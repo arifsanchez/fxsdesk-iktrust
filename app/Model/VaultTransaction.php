@@ -31,6 +31,27 @@ class VaultTransaction extends AppModel {
 			'order' => ''
 		)
 	);
+	
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'VaultTransactionComment' => array(
+			'className' => 'VaultTransactionComment',
+			'foreignKey' => 'vault_transaction_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
 
 	/**
 	 * Kira Total Approved Transaction
@@ -54,4 +75,94 @@ class VaultTransaction extends AppModel {
 		));
 		return $result;
 	}
+
+	/**
+	 * TRADER :: List down latest transactions for $user_id
+	 *
+	*/
+	function listAllLatest($vaultId=null){
+		$result ='';
+		$result = $this->find('all', array(
+			'conditions' =>array(
+				'vault_id' => $vaultId,
+			),
+			'order' => 'VaultTransaction.created DESC',
+			'recursive' => -1,
+			'limit' => 10
+		));
+		return $result;
+	}
+
+	/**
+	 * TRADER :: List down new transactions for $user_id
+	 *
+	*/
+	function listAllNew($vaultId=null){
+		$result ='';
+		$result = $this->find('all', array(
+			'conditions' =>array(
+				'vault_id' => $vaultId,
+				'status' => 1
+			),
+			'order' => 'VaultTransaction.created DESC',
+			'recursive' => -1,
+			'limit' => 5
+		));
+		return $result;
+	}
+
+	/**
+	 * TRADER :: List down pending transactions for $user_id
+	 *
+	*/
+	function listAllPending($vaultId=null){
+		$result ='';
+		$result = $this->find('all', array(
+			'conditions' =>array(
+				'vault_id' => $vaultId,
+				'status' => 2
+			),
+			'order' => 'VaultTransaction.created DESC',
+			'recursive' => -1,
+			'limit' => 5
+		));
+		return $result;
+	}
+
+	/**
+	 * TRADER :: List down approve transactions for $user_id
+	 *
+	*/
+	function listAllApprove($vaultId=null){
+		$result ='';
+		$result = $this->find('all', array(
+			'conditions' =>array(
+				'vault_id' => $vaultId,
+				'status' => 3
+			),
+			'order' => 'VaultTransaction.created DESC',
+			'recursive' => -1,
+			'limit' => 5
+		));
+		return $result;
+	}
+
+	/**
+	 * TRADER :: List down approve transactions for $user_id
+	 *
+	*/
+	function listAllDecline($vaultId=null){
+		$result ='';
+		$result = $this->find('all', array(
+			'conditions' =>array(
+				'vault_id' => $vaultId,
+				'status' => 4
+			),
+			'order' => 'VaultTransaction.created DESC',
+			'recursive' => -1,
+			'limit' => 5
+		));
+		return $result;
+	}
+
 }

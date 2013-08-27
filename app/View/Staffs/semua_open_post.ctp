@@ -21,45 +21,42 @@ if($ajax) {
 		<div class="box box-color grey box-bordered" id="updateTradeHistory">
 			<div class="box-title">
 				<h3>
-					Trading Account History
+					Current Open Position
 				</h3>
-				<div class="actions">
-					<a href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $MT_ACC['Mt4User']['LOGIN'];?>" class="btn btn-mini" rel="tooltip" title="Trading Account Overview"><i class="icon-briefcase"></i> Back to account overview</a>
-				</div>
 			</div>
 			<div class="box-content nopadding">
-
 				<table class="table table-hover table-nomargin table-condensed table-bordered">
 					<thead>
-						<?php if(empty($MT_TRANSACT)){ echo "<tr><blockquote>Your trading account is fresh without any transaction. Start your trading today .</blockquote></tr>";} else {?> 
+						<?php 
+							if(empty($openPost)){ 
+								echo "<tr><blockquote>There is 0 Open Position at the moment.</blockquote></tr>";
+							} else {?> 
 						<tr>
-							<th>Deal #</th>
-							<th>Open Time / Close Time</th>
+							<th><?php echo $this->Paginator->sort('Mt4Trade.LOGIN', __('Post Info')); ?></th>
 							<th>Transactions</th>
-							<th>Open Price / Close Price</th>
+							<th>Open Time</th>
+							<th>Open Price</th>
 							<th><div class="text-right">Amount US$</div></th>
 						</tr>
 						<?php } ?>
 					</thead>
 					<tbody>
-						<?php foreach($MT_TRANSACT as $Transaction): ?>
+						<?php foreach($openPost as $Transaction): ?>
 						<tr>
 							<td>
-								<?php echo $Transaction['Mt4Trade']['TICKET'];?>
+								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="Ticket #<?php echo $Transaction['Mt4Trade']['TICKET'];?>">
+									<i class="icon-exclamation-sign"></i>
+								</button>
+								<?php echo $Transaction['Mt4Trade']['LOGIN'];?>
 
 							</td>
-							<td>
-								<?php echo $Transaction['Mt4Trade']['OPEN_TIME'];?>
-								<br/>
-								<?php echo $Transaction['Mt4Trade']['CLOSE_TIME'];?>
-							</td>
+							
 							<td>
 								<?php
 
 								$type = $Transaction['Mt4Trade']['CMD'];
 								$lot = $Transaction['Mt4Trade']['VOLUME'] / 100;
-
-									//	Order type: 0 - BUY, 1 - SELL, 2 - BUY LIMIT, 3 - SELL LIMIT, 4 - BUY STOP, 5 - SELL STOP, 6 - BALANCE, 7 - CREDIT
+								//	Order type: 0 - BUY, 1 - SELL, 2 - BUY LIMIT, 3 - SELL LIMIT, 4 - BUY STOP, 5 - SELL STOP, 6 - BALANCE, 7 - CREDIT
 									switch ($type){
 										case "0":
 										echo "<span class=\"label label-green\">BUY</span>&nbsp;<span class=\"label label-magenta\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$lot." lot</span>";
@@ -80,7 +77,7 @@ if($ajax) {
 										echo "<span class=\"label label-red\">SELL STOP</span>&nbsp;<span class=\"label label-magenta\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$Transaction['Mt4Trade']['COMMENT']."</span>";
 										break;
 										case "6":
-										echo "<span class=\"label label-blue\">Balance</span>&nbsp;<span class=\"label label-magenta\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$Transaction['Mt4Trade']['COMMENT']."</span>";
+										echo "<span class=\"label label-blue\">[+] Balance</span>&nbsp;<span class=\"label label-magenta\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$Transaction['Mt4Trade']['COMMENT']."</span>";
 										break;
 										case "7":
 										echo "<span class=\"label label-orange	\">IK Credit</span>";
@@ -92,13 +89,12 @@ if($ajax) {
 								?>
 							</td>
 							<td>
-								<?php if($Transaction['Mt4Trade']['OPEN_PRICE'] == "0"){ ;?>
-									&nbsp;
-								<?php } else {
+								<?php echo $this->Time->nice($Transaction['Mt4Trade']['OPEN_TIME']);?>
+							</td>
+							<td>
+								<?php
 									echo $Transaction['Mt4Trade']['OPEN_PRICE'];
-									echo "<br/>";
-									echo $Transaction['Mt4Trade']['CLOSE_PRICE'];
-								};?>
+								;?>
 							<td>
 								<div class="text-right">
 									<b>

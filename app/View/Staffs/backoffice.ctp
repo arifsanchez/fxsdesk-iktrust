@@ -24,7 +24,7 @@
 						</a>
 					</li>
 					<li class="satblue">
-						<a href="<?php echo SITE_URL;?>Staffs/admin_listing?me:<?php echo $var['User']['username'];?>">
+						<a href="<?php echo SITE_URL;?>Staffs/tracc_listing?me:<?php echo $var['User']['username'];?>">
 							<i class="icon-user"></i>
 							<div class="details">
 								<span class="big"><?php $TotalTraders = $this->requestAction('TraderAccounts/kiraTotalTraders') ; echo $TotalTraders;?></span>
@@ -66,7 +66,7 @@
 					</li>
 
 					<li class="orange">
-						<a href="<?php echo SITE_URL;?>Staffs/transfer_request?me:<?php echo $var['User']['username'];?>" rel="tooltip" data-placement="bottom" data-original-title="New Transfer Request">
+						<a href="<?php echo SITE_URL;?>Staffs/transfer_request/filter:new?me:<?php echo $var['User']['username'];?>" rel="tooltip" data-placement="bottom" data-original-title="New Transfer Request">
 							<i class="icon-money"></i>
 							<div class="details">
 								<span class="big"><?php $TotalTRW_TRACC = $this->requestAction('vaults/kiraTotalNewTRW_TRACC'); echo $TotalTRW_TRACC;?></span>
@@ -101,11 +101,34 @@
 					</li>
 
 					<li class="lightgrey">
-						<a href="<?php echo SITE_URL;?>Users/index?me:<?php echo $var['User']['username'];?>">
+						<a href="<?php echo SITE_URL;?>Staffs/agent_listing?me:<?php echo $var['User']['username'];?>">
 							<i class="icon-group"></i>
 							<div class="details">
 								<span class="big"><span class="big"><?php $TotalRegAgents = $this->requestAction('TraderAccounts/kiraTotalAgent') ; echo $TotalRegAgents;?></span></span>
 								<span>Agents</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Market Watch -->
+		<div class="box box-color lime box-bordered">
+			<div class="box-title">
+				<h3>
+					<i class="icon-th-large"></i>
+					Market Watch
+				</h3>
+			</div>
+			<div class="box-content">
+				<ul class="stats">
+					<li class="red">
+						<a href="<?php echo SITE_URL;?>Staffs/semua_open_post?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-spinner"></i>
+							<div class="details">
+								<span class="big"><span class="big"><?php $TotalOpenPost = $this->requestAction('Staffs/JumlahOpenPost') ; echo $TotalOpenPost;?></span></span>
+								<span>Open Post</span>
 							</div>
 						</a>
 					</li>

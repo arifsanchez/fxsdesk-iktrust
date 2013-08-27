@@ -18,11 +18,6 @@
 					<i class="glyphicon-dashboard"></i>
 				</a>
 			</li>
-			<li class='lightgrey'>
-				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>TraderAccounts/mynetwork?me:<?php echo $var['User']['username'];?>" data-original-title="My Network">
-					<i class="icon-group"></i>
-				</a>
-			</li>
 			<li class='satgreen'>
 				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>Partners/vault?me:<?php echo $var['User']['username'];?>" data-original-title="Partner Vault">
 					<i class="icon-money"></i>

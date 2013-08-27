@@ -46,7 +46,7 @@
 				<div class="row-fluid">
 					<div class="span6">
 						<center>
-							<h3>IK$ <?php echo $acc1; ?></h3>
+							<h3>IK$ <?php echo $this->Number->currency($acc1, 'IK$ '); ?></h3>
 						</center>
 					</div>
 					<div class="span6">
@@ -87,7 +87,7 @@
 									<?php echo $tradeAcc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>
-							<td><?php echo number_format($tradeAcc['Mt4User']['BALANCE'], 2, '.', '');?></td>
+							<td><?php echo $this->Number->currency($tradeAcc['Mt4User']['BALANCE'], '$');?></td>
 							<td>
 								<a
 									data-original-title="Add funds from IK Wallet"
@@ -154,12 +154,12 @@
 								<button class="btn btn-warning" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $var['User']['username'];?>">
 									<i class="icon-user-md"></i>
 								</button>
-								<a class="btn" href="<?php echo SITE_URL;?>Partners/trading_account_overview" >
-									<?php echo $var['User']['username'];?>
+								<a class="btn" href="#" data-placement="right" title="" rel="tooltip" data-original-title="Commission &amp; rewards account.">
+									IK-PCA-<?php echo $var['User']['id'];?>
 								</a>
 								
 							</td>
-							<td><?php echo number_format($tradeAcc['Mt4User']['BALANCE'], 2, '.', '');?></td>
+							<td>0.00</td>
 							<td>
 								<a
 									data-original-title="Sell IK$ to other traders"

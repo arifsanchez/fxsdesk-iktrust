@@ -35,12 +35,12 @@
 					<thead>
 						<?php if(empty($Wtransact)){ echo "<tr><blockquote>Your IK Wallet account is fresh without any transaction. Start your earning great rewards today .</blockquote></tr>";} else {?> 
 						<tr>
-							<th>Transaction Key #</th>
+							<th>Reference Key</th>
 							<th>Type</th>
 							<th>Status</th>
 							<th>Comment</th>
 							<th><div class="text-right">Amount IK$</div></th>
-							<th>Created</th>
+							<th>Requested</th>
 							<th><div class="text-right">Operations</div></th>
 						</tr>
 						<?php } ?>
@@ -52,8 +52,10 @@
 								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $Transaction['VaultTransaction']['description'];?>">
 									<i class="icon-exclamation-sign"></i>
 								</button>
-
-								TR<?php echo $Transaction['VaultTransaction']['id'];?>W
+								<?php
+									$TRid = $Transaction['VaultTransaction']['id'];
+									echo "IKW".base64_encode($TRid);
+								?>
 
 							</td>
 							
@@ -63,31 +65,32 @@
 
 									switch ($type){
 										case "1":
-										echo "<span class=\"label label-satgreen\">DEPO TO TRADING ACC</span>";
+										echo "<span class='label label-satgreen'>DEPO TO TRADING ACC</span>";
 										break;
 										case "2":
-										echo "<span class=\"label label-satgreen\">DEPO TO WALLET</span>";
+										echo "<span class='label label-satgreen'>DEPO TO WALLET</span>";
 										break;
 									};
 								?>
 							</td>
 							<td>
 								<?php
-									
 									$status = $Transaction['VaultTransaction']['status'];
 									
-									switch ($type){
-										case "1":
-										echo "<span class=\"label label-orange\">NEW</span>";
+									switch ($status){
+										case 1:
+										echo "<span class='label label-orange'>NEW</span>";
 										break;
-										case "2":
-										echo "<span class=\"label label-satblue\">PROCESSING</span>";
+										case 2:
+										echo "<span class='label label-satblue'>PROCESSING</span>";
 										break;
-										case "3":
-										echo "<span class=\"label label-satgreen\">APPROVE</span>";
+										case 3:
+										echo "<span class='label label-satgreen'>APPROVE</span>";
+										break;
+										case 4:
+										echo "<span class='label label-red'>DECLINE</span>";
 										break;
 									};
-
 								?>
 							</td>
 							<td><?php echo ucwords(strtolower($Transaction['VaultTransaction']['description']));?></td>
