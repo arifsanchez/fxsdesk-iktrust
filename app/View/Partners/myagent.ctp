@@ -34,8 +34,8 @@ if($ajax) {
 							<th>Account Number</th>
 							<th>Email</th>
 							<th>Phone</th>
-							<th>Commission $</th>
-							<th>Downline</th>
+							<th><div class="text-right">Commission $</div></th>
+							<th><div class="text-center">Downline</div></th>
 							<th>Account Status</th>
 							<th>Operations</th>
 						</tr>
@@ -47,7 +47,7 @@ if($ajax) {
 								<button class="btn btn-mini btn-info" data-placement="right" title="" rel="tooltip" data-original-title="Agent Since <?php echo $acc['Mt4User']['REGDATE'];?>">
 									<i class="icon-exclamation-sign"></i>
 								</button>
-								<a class="btn btn-mini " data-placement="right" title="" rel="tooltip" data-original-title=" Agents #<?php echo $acc['Mt4User']['LOGIN'];?>" href="#" >
+								<a class="btn btn-mini " data-placement="right" title="" rel="tooltip" data-original-title=" Agents #<?php echo $acc['Mt4User']['LOGIN'];?>" href="<?php echo SITE_URL;?>partners/myagent_history/process:<?php echo $acc['Mt4User']['LOGIN']?>" >
 									<?php echo $acc['Mt4User']['NAME'];?>
 								</a>
 							</td>

@@ -19,16 +19,9 @@ if($ajax) {
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
-			<div class="downline-tag">
-				<p>Accounts Downline
-			    <?php foreach($downlines as $downline):?>
-			    	<span class="label label-lime"><?php echo $downline;?></span>
-			    <?php endforeach; ?>
-			    </p>
-			</div>
 			<div class="box-title">
 				<h3>
-					Agent Transactions History
+					Trading Account History
 				</h3>
 			</div>
 			<div class="box-content nopadding">
