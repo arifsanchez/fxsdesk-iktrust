@@ -30,6 +30,9 @@ if($ajax) {
 				<h3>
 					Agent Transactions History
 				</h3>
+				<div class="actions">
+					<a href="<?php echo SITE_URL;?>Staffs/agent_listing" class="btn btn-mini" rel="tooltip" title="Agent Accounts Listing"><i class="icon-briefcase"></i> Back to agents listing</a>
+				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-condensed table-bordered">

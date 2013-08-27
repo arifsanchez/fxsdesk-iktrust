@@ -276,7 +276,7 @@
 			$tracc_id = $this->request->params['named']['process'];
 
 			//Layout
-			$this->layout = "staff.dashboard";
+			$this->layout = "partner.dashboard";
 			//Page title
 			$page_title = array(
 				'icon' => "icon-group",
