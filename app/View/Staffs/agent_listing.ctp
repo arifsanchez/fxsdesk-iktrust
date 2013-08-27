@@ -47,7 +47,7 @@ if($ajax) {
 								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="Agent since <?php echo $acc['Mt4User']['REGDATE'];?>">
 									<i class="icon-exclamation-sign"></i>
 								</button>
-								<a class="btn" href="#" >
+								<a class="btn" href="<?php echo SITE_URL;?>staffs/agent_history/process:<?php echo $acc['Mt4User']['LOGIN']?>" >
 									<?php echo $acc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>

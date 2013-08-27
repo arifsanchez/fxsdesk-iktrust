@@ -19,17 +19,13 @@ if($ajax) {
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
-			<div class="downline-tag">
-				<p>Accounts Downline
-			    <?php foreach($downlines as $downline):?>
-			    	<span class="label label-lime"><?php echo $downline;?></span>
-			    <?php endforeach; ?>
-			    </p>
-			</div>
 			<div class="box-title">
 				<h3>
-					Agent Transactions History
+					Trading Account History
 				</h3>
+				<div class="actions">
+					<a href="<?php echo SITE_URL;?>Staffs/tracc_listing" class="btn btn-mini" rel="tooltip" title="Trading Accounts Listing"><i class="icon-briefcase"></i> Back to accounts listing</a>
+				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-condensed table-bordered">

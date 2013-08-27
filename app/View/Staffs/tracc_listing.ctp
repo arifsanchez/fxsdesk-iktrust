@@ -35,9 +35,9 @@ if($ajax) {
 							<th>Leverage</th>
 							<th>Balance $</th>
 							<th>Credit $</th>
-							<th class='hidden-350'>Trade Status</th>
-							<th class='hidden-1024'>Account Maturity</th>
-							<th class='hidden-480'>Operations</th>
+							<th>Trade Status</th>
+							<th>Account Maturity</th>
+							<th>Operations</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -47,14 +47,14 @@ if($ajax) {
 								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
 									<i class="icon-exclamation-sign"></i>
 								</button>
-								<a class="btn" href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" >
+								<a class="btn" href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" >
 									<?php echo $acc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>
 							<td>1:<?php echo $acc['Mt4User']['LEVERAGE'];?></td>
 							<td><?php echo number_format($acc['Mt4User']['BALANCE'], 2, '.', '');?></td>
 							<td><?php echo number_format($acc['Mt4User']['CREDIT'], 2, '.', '');?></td>
-							<td class='hidden-350'>
+							<td>
 								<?php 	
 								$accstatus = $acc['Mt4User']['ENABLE'];
 
@@ -67,11 +67,9 @@ if($ajax) {
 									};
 								?>
 							</td>
-							<td class='hidden-1024'><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"</span></td>
-							<td class='hidden-480'>
-
-
-								<a href="<?php echo SITE_URL;?>TraderAccounts/history/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
+							<td><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"</span></td>
+							<td>
+								<a href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
 
 								<a href="#popup-coming-soon" class="btn btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> Setting</a>
 							</td>

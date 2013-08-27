@@ -69,6 +69,44 @@
 			}
 		}
 
+		/******
+		* STAFF :: Tracc History
+		******/
+		public function tracc_history(){
+			//start cari agent ID
+			$tracc_id = $this->request->params['named']['process'];
+
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-group",
+				'name' => "Accounts #".$tracc_id." History"
+			);
+			$this->set('page_title',$page_title);
+
+			//listing downline
+			$downlines = $this->Mt4User->listingDownline($tracc_id);
+			$this->set('downlines', $downlines);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4Trade.LOGIN LIKE' => $tracc_id,
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			$this->set('agentPost',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('tracc_history');
+			}
+		}
+
 		/**
 		* STAFF :: Accounts listing
 		*/
@@ -115,9 +153,6 @@
 				'name' => "Agent #".$tracc_id." History"
 			);
 			$this->set('page_title',$page_title);
-
-			
-			
 
 			//listing downline
 			$downlines = $this->Mt4User->listingDownline($tracc_id);

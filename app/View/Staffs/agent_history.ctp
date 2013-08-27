@@ -30,6 +30,9 @@ if($ajax) {
 				<h3>
 					Agent Transactions History
 				</h3>
+				<div class="actions">
+					<a href="<?php echo SITE_URL;?>Staffs/agent_listing" class="btn btn-mini" rel="tooltip" title="Agent Accounts Listing"><i class="icon-briefcase"></i> Back to agents listing</a>
+				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-condensed table-bordered">
@@ -70,7 +73,7 @@ if($ajax) {
 										case "2":
 										echo "<span class=\"label label-green\">BUY LIMIT</span>&nbsp;<span class=\"label label-magenta\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$lot." lot</span>";
 										break;
-										case "1":
+										case "3":
 										echo "<span class=\"label label-red\">SELL LIMIT</span>&nbsp;<span class=\"label label-magenta\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$lot." lot</span>";
 										break;
 										case "4":

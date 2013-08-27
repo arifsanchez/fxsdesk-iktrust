@@ -4,6 +4,10 @@
 			<li class="green high long">
 				<a href="<?php echo SITE_URL;?>Partners/vault"><span><i class="icon-money"></i></span><span class='name'>Partner Vault</span></a>
 			</li>
+			
+			<li class="teal long">
+				<a href="<?php echo SITE_URL;?>Partners/history"><span><i class="icon-book"></i></span><span class='name'>Trading Acc History</span></a>
+			</li>
 
 			<li class="blue">
 				<a href="<?php echo SITE_URL;?>Partners/myclient"><span class='count'><i class="icon-group"></i><span class='name'>Clients</span></a>
@@ -14,14 +18,10 @@
 			<li class="grey">
 				<a href="<?php echo SITE_URL;?>Partners/myagent"><span class='count'><i class="icon-group"></i><span class='name'>Agents</span></a>
 			</li>
+			
 			<li class="orange">
 				<a href="<?php echo SITE_URL;?>logout"><span><i class="icon-signout"></i></span><span class='name'>Sign out</span></a>
 			</li>
 		</ul>
 	</div>
-</div>
-
-<?php 
-	#echo pr($var);
-?>
-			
+</div>			

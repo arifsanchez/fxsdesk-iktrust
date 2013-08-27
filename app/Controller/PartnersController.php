@@ -16,7 +16,7 @@
 		* This controller use vaults models and few other platform models
 		* @var array
 		*/
-		public $uses = array("Vault","Mt4User","Usermgmt.User","Mt4Trade");
+		public $uses = array("Vault","VaultTransaction","Mt4User","Usermgmt.User","Mt4Trade");
 
 		/**
 		* Partner Dashboard
@@ -53,15 +53,74 @@
 			$checkVault = $this->Vault->checkVaultAccount($userId);
 
 			//Request balance from vault db
-			$acc1 = $this->Vault->getAccBalance($userId);
-			$this->set('acc1', $acc1['Vault']['acc_1']);
-			$this->set('acc2', $acc1['Vault']['acc_2']);
+			$vacc = $this->Vault->getAccBalance($userId);
+			$this->set('acc1', $vacc['Vault']['acc_1']);
+			$this->set('acc2', $vacc['Vault']['acc_2']);
 
 			//Dapatkan senarai trading account
 			$user = $this->UserAuth->getUser();
 			$partnertag = $user['User']['partnertag'];
 			$tradeAcc = $this->Mt4User->listPartnerAcc($partnertag);
 			$this->set('tradeAcc', $tradeAcc);
+
+			//request transaction dari vault == latest
+			$vtrans = $this->VaultTransaction->listAllLatest($vacc['Vault']['id']);
+			$this->set('vtrans_latest', $vtrans);
+
+			//request transaction dari vault == new
+			$vtrans1 = $this->VaultTransaction->listAllNew($vacc['Vault']['id']);
+			$this->set('vtrans_new', $vtrans1);
+
+			//request transaction dari vault == pending
+			$vtrans2 = $this->VaultTransaction->listAllPending($vacc['Vault']['id']);
+			$this->set('vtrans_pending', $vtrans2);
+
+			//request transaction dari vault == approve
+			$vtrans3 = $this->VaultTransaction->listAllApprove($vacc['Vault']['id']);
+			$this->set('vtrans_approve', $vtrans3);
+
+			//request transaction dari vault == decline
+			$vtrans4 = $this->VaultTransaction->listAllDecline($vacc['Vault']['id']);
+			$this->set('vtrans_decline', $vtrans4);
+		}
+
+		/**
+		 * PARTNER :: Vault History
+		 *
+		 * @access public
+		 * @return array
+		 */
+		public function vault_history() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-money",
+				'name' => "Vault History"
+			);
+			$this->set('page_title',$page_title);
+
+			//Dapatkan user id
+			$userId = $this->UserAuth->getUserId();
+			//Check jika traders first time buka vault
+			$checkVault = $this->Vault->checkVaultAccount($userId);
+			$acc1 = $this->Vault->getAccBalance($userId);
+
+			//list with paginate all transaction history
+			$this->paginate = array(
+				'order' => 'VaultTransaction.created DESC',
+				'limit' => 10,
+				'conditions' =>array(
+					'VaultTransaction.vault_id' => $acc1['Vault']['id'],
+			));
+			$Wtransact = $this->paginate('VaultTransaction');
+			#debug($Wtransact); die();
+			$this->set('Wtransact',$Wtransact);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('vault_history');
+			}
 		}
 
 		/***
@@ -210,6 +269,44 @@
 		}
 
 		/**
+		* PARTNER :: Trader Accounts History
+		*/
+		public function mynetwork_history() {
+			//start cari tracc no
+			$tracc_id = $this->request->params['named']['process'];
+
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-group",
+				'name' => "Accounts #".$tracc_id." History"
+			);
+			$this->set('page_title',$page_title);
+
+			//listing downline
+			$downlines = $this->Mt4User->listingDownline($tracc_id);
+			$this->set('downlines', $downlines);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4Trade.LOGIN LIKE' => $tracc_id,
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			$this->set('agentPost',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('tracc_history');
+			}
+		}
+
+		/**
 		* PARTNER :: Client listing
 		*/
 		public function myclient() {
@@ -288,7 +385,7 @@
 			$tracc_id = $this->request->params['named']['process'];
 
 			//Layout
-			$this->layout = "staff.dashboard";
+			$this->layout = "partner.dashboard";
 			//Page title
 			$page_title = array(
 				'icon' => "icon-group",
@@ -321,6 +418,41 @@
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
 				$this->render('myagent_history');
+			}
+		}
+
+		/**
+		* PARTNER :: Trading Account History
+		*
+		*/
+		public function history() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "glyphicon-table",
+				'name' => "Partner Account History"
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info trader
+			$user = $this->UserAuth->getUser();
+			$acc = $user['User']['partnertag'];
+
+			//Paginate Trade history
+			$this->paginate = array(
+				'limit' => 30, 
+				'order'=>'Mt4Trade.OPEN_TIME DESC', 
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4Trade.LOGIN' => $acc,
+			));
+			$trades = $this->paginate('Mt4Trade');
+			$this->set('MT_TRANSACT',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('history');
 			}
 		}
 

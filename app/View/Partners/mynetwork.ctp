@@ -33,7 +33,7 @@ if($ajax) {
 						<tr>
 							<th>Account Number</th>
 							<th>Leverage</th>
-							<th>Balance $</th>
+							<th><div class="text-right">Balance $</div></th>
 							<th>Credit $</th>
 							<th>Trade Status</th>
 							<th>Account Maturity</th>
@@ -47,7 +47,7 @@ if($ajax) {
 								<button class="btn btn-mini btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
 									<i class="icon-exclamation-sign"></i>
 								</button>
-								<a class="btn btn-mini" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['NAME'];?>" href="#" >
+								<a class="btn btn-mini" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['NAME'];?>" href="<?php echo SITE_URL;?>partners/mynetwork_history/process:<?php echo $acc['Mt4User']['LOGIN']?>" >
 									<?php echo $acc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>
