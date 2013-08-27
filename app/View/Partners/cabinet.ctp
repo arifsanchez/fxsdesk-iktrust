@@ -24,9 +24,4 @@
 			</li>
 		</ul>
 	</div>
-</div>
-
-<?php 
-	#echo pr($var);
-?>
-			
+</div>			
