@@ -26,6 +26,12 @@
 		#Datepicker
 		echo $this->Html->css('plugins/datepicker/datepicker.css?q='.QRDN);
 
+		#choosen
+		echo $this->Html->css('plugins/chosen/chosen.css?q='.QRDN);
+
+		#Datatable
+		echo $this->Html->css('plugins/datatable/TableTools.css?q='.QRDN);
+
 	#JS
 		#jQuery
 		#echo $this->Html->script('jquery.min.js?q='.QRDN);
