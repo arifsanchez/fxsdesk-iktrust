@@ -52,8 +52,8 @@ if($ajax) {
 								</a>
 							</td>
 							<td>1:<?php echo $acc['Mt4User']['LEVERAGE'];?></td>
-							<td><?php echo number_format($acc['Mt4User']['BALANCE'], 2, '.', '');?></td>
-							<td><?php echo number_format($acc['Mt4User']['CREDIT'], 2, '.', '');?></td>
+							<td><?php echo $this->Number->currency($acc['Mt4User']['BALANCE'], '');?></td>
+							<td><?php echo $this->Number->currency($acc['Mt4User']['CREDIT'], '');?></td>
 							<td>
 								<?php 	
 								$accstatus = $acc['Mt4User']['ENABLE'];
@@ -67,7 +67,7 @@ if($ajax) {
 									};
 								?>
 							</td>
-							<td><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"</span></td>
+							<td><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"></span></td>
 							<td>
 								<a href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
 

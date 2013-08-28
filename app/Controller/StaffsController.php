@@ -373,5 +373,67 @@
 			}
 
 		}
+
+		/*****
+		* STAFF :: Change status on the transaction
+		******/
+		public function updateTransactionStatus(){
+			debug($this->request->data); die();
+
+			#setiap status update 
+			## > update status field at VaultTransaction
+			## > add comment to VaultTransactionComment
+			## > sent email status update to finance & user email
+			
+			#initiate finance process
+			## > deduct duit dari wallet 
+			## > update acc1 field at Vault
+			## > run proc_WT_TRACC 
+
+		}
+
+		/*****
+		* STAFF :: Update comment on the transaction
+		******/
+		public function updateTranComment(){
+			debug($this->request->data); die();
+		}
+
+		/**
+		 * STAFF :: Process depos wallet to tracc
+		 *
+		 * @access public
+		 * @return array
+		 */
+		public function proc_WT_TRACC() {
+			debug($this->request->data); die();
+			//check info
+
+			//confirm ? status code 3 (approve)
+
+			// add to vault_transaction comment
+		}
+		/***
+		* BACKEND balance trigger : Request httpsocket to web gateway
+		****/
+		public function addBalTracc($traccId=null,$jumlah=null,$type=null){
+
+			$randKey = rand(1000000, 9999999);
+			debug($trackingid);
+
+			App::uses('HttpSocket', 'Network/Http');
+			$HttpSocket = new HttpSocket();
+
+			$data = array(
+				'cmd' => 'UserChangeBalance',
+				'login' => $traccId, 
+				'amount' => $jumlah,
+				'comment' => $type.' '.$randKey,
+			);
+			
+			$results = $HttpSocket->post('http://iktrust.co.uk/webservice/ikwebgateway/triggerBalance.php', $data);
+
+			return json_decode($results->body); 
+		}
 	}
 ?>
