@@ -42,9 +42,9 @@
 						<tr>
 							<th>Type</th>
 							<th>Status</th>
-							<th>Tracc #</th>
+							<th>Tracc</th>
 							<th>Amount</th>
-							<th>Wallet #</th>
+							<th>Wallet</th>
 							<th>Wallet Balance</th>
 							<th>Operation</th>
 						</tr>
@@ -67,9 +67,9 @@
 							</td>
 							<td>
 								<?php
-									$status1 = $TranDetails['VaultTransaction']['status'];
+									$status = $TranDetails['VaultTransaction']['status'];
 									
-									switch ($status1){
+									switch ($status){
 										case 1:
 										echo "<span class='label label-orange'>NEW</span>";
 										break;
@@ -91,19 +91,33 @@
 							<td><?php echo $this->Number->Currency($TranDetails['Vault']['acc_1'], 'IK$ ');?></td>
 							<td>
 								<div class="btn-group">
+									<?php if($status != 3){?>
 									<a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> Update Status <span class="caret"></span></a>
 									<ul class="dropdown-menu dropdown-warning">
+										<?php if($status == 1){?>
 										<li>
 											<?php 
 												echo $this->Form->create('Staff', array('action' => 'updateTransactionStatus', 'style' => 'margin-bottom:1px !important'));
+												echo $this->Form->hidden('transid', array('value' => $TranDetails['VaultTransaction']['id']));
+												echo $this->Form->hidden('jumlah', array('value' => $TranDetails['VaultTransaction']['jumlah']));
+												echo $this->Form->hidden('userId', array('value' => $userDetails['User']['id']));
+												echo $this->Form->hidden('staffId', array('value' => $var['User']['id']));
+												echo $this->Form->hidden('traccId', array('value' => $TranDetails['VaultTransaction']['tracc_no']));
 												echo $this->Form->hidden('status', array('value' => 2));
 												echo $this->Form->button('Pending', array('class' => 'btn btn-satblue btn-block'));
 												echo $this->Form->end();
 											?>
 										</li>
+										<?php }?>
+										<?php if($status == 2){?>
 										<li>
 											<?php 
 												echo $this->Form->create('Staff', array('action' => 'updateTransactionStatus', 'style' => 'margin-bottom:1px !important'));
+												echo $this->Form->hidden('transid', array('value' => $TranDetails['VaultTransaction']['id']));
+												echo $this->Form->hidden('jumlah', array('value' => $TranDetails['VaultTransaction']['jumlah']));
+												echo $this->Form->hidden('userId', array('value' => $userDetails['User']['id']));
+												echo $this->Form->hidden('staffId', array('value' => $var['User']['id']));
+												echo $this->Form->hidden('traccId', array('value' => $TranDetails['VaultTransaction']['tracc_no']));
 												echo $this->Form->hidden('status', array('value' => 4));
 												echo $this->Form->button('Decline', array('class' => 'btn btn-red btn-block'));
 												echo $this->Form->end();
@@ -112,12 +126,21 @@
 										<li>
 											<?php 
 												echo $this->Form->create('Staff', array('action' => 'updateTransactionStatus',  'style' => 'margin-bottom:1px !important'));
+												echo $this->Form->hidden('transid', array('value' => $TranDetails['VaultTransaction']['id']));
+												echo $this->Form->hidden('jumlah', array('value' => $TranDetails['VaultTransaction']['jumlah']));
+												echo $this->Form->hidden('userId', array('value' => $userDetails['User']['id']));
+												echo $this->Form->hidden('staffId', array('value' => $var['User']['id']));
+												echo $this->Form->hidden('traccId', array('value' => $TranDetails['VaultTransaction']['tracc_no']));
 												echo $this->Form->hidden('status', array('value' => 3));
 												echo $this->Form->button('Approve', array('class' => 'btn btn-green btn-block'));
 												echo $this->Form->end();
 											?>
 										</li>
+										<?php }?>
 									</ul>
+									<?php }else{ ?>
+										<a class="btn btn-success" href="#"><i class="icon-cog"></i> View Account </a>
+									<?php }?>
 								</div>
 							</td>
 						</tr>
