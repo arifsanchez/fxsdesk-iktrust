@@ -488,7 +488,7 @@
 		/***
 		* BACKEND balance trigger : Request httpsocket to web gateway
 		****/
-		public function addBalTracc($traccId=null,$tambahJumlah=null,$type=null){
+		public function addBalTracc($data){
 
 			$randKey = rand(1000000, 9999999);
 
@@ -497,15 +497,15 @@
 
 			$mt4data = array(
 				'cmd' => 'UserChangeBalance',
-				'login' => ''.$traccId.'', 
-				'amount' => ''.$tambahJumlah.'',
-				'comment' => "".$type.""
+				'login' => $data['traccId'], 
+				'amount' => $data['tambahJumlah'],
+				'comment' => $data['type'].' '.$randKey
 			);
 			
 			$results = $HttpSocket->post('http://iktrust.co.uk/webservice/ikwebgateway/triggerBalance.php', $mt4data);
 
-			debug($results->body); die();
-			return json_decode($results->body); 
+			$what = json_decode($results->body); 
+			debug($what->result); die();
 		}
 	}
 ?>
