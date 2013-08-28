@@ -548,6 +548,19 @@ class User extends UserMgmtAppModel {
 		$res = $this->findById($userId);
 		return $res;
 	}
+
+	/**
+	 * Used to get user name and pix by user id
+	 *
+	 * @access public
+	 * @param integer $userId user id
+	 * @return string
+	 */
+	public function getUserNamePixById($userId) {
+		$res = $this->find('first', array('conditions' => array('User.id' => $userId),'fields' => array('first_name', 'last_name','UserDetail.photo')));
+		return $res;
+	}
+
 	/**
 	 * Used to get gender array
 	 *

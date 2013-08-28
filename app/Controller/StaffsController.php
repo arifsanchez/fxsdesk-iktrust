@@ -17,7 +17,7 @@
 		*
 		* @var array
 		*/
-		public $uses = array("Vault","VaultTransaction","Mt4User","Usermgmt.User","Mt4Trade");
+		public $uses = array("Vault","VaultTransaction","VaultTransactionComment","Mt4User","Usermgmt.User","Mt4Trade");
 
 		/**
 		* Staff Dashboard
@@ -378,10 +378,10 @@
 		* STAFF :: Change status on the transaction
 		******/
 		public function updateTransactionStatus(){
-			debug($this->request->data); die();
-
 			#setiap status update 
 			## > update status field at VaultTransaction
+			$vtId = $this->request->data['Staff']['status'];
+			debug($vtId);die();
 			## > add comment to VaultTransactionComment
 			## > sent email status update to finance & user email
 			
@@ -392,11 +392,35 @@
 
 		}
 
+
+		/*****
+		* STAFF :: Dapatkan who is who info
+		******/
+		public function requestUserInfo(){
+			#debug($this->request->requested);
+			$userId = $this->request->requested;
+			$result = $this->User->getUserNamePixById($userId);
+			return $result;
+		}
 		/*****
 		* STAFF :: Update comment on the transaction
 		******/
 		public function updateTranComment(){
-			debug($this->request->data); die();
+			#debug($this->request->data); die();
+			if($this->request->data['Staff']){
+				$data = array(
+					'vault_transaction_id' => $this->request->data['Staff']['vault_transaction_id'],
+					'comment' => $this->request->data['Staff']['comment'],
+					'user_id' => $this->request->data['Staff']['user_id']
+				);
+				$this->VaultTransactionComment->create();
+				$this->VaultTransactionComment->save($data);
+				$this->Session->setFlash(__('Comment for transaction #'.$data['vault_transaction_id'].' updated.'),'default',array('class' => 'success'));
+				$this->redirect($this->referer());
+			} else {
+				$this->redirect($this->referer());
+			}
+
 		}
 
 		/**

@@ -18,7 +18,9 @@
 					<div class="span8">
 						<b><?php echo h($userDetails['User']['first_name'].' '.$userDetails['User']['last_name']); ?></b>
 						<p><i class="glyphicon-e-mail"></i> <?php echo h($userDetails['User']['email']);?></p>
+						<?php if(!empty($userDetails['UserDetail']['cellphone'])){ ?>
 						<p><i class="icon-phone"></i> <?php echo h($userDetails['UserDetail']['cellphone']);?></p>
+						<?php } ?>
 						<span class="time">
 							<small>Registered on <?php echo $this->Time->format('jS F Y',$userDetails['User']['created'],null, null); ?></small>
 						</span>
@@ -140,7 +142,6 @@
 							<span class="name"><?php echo h($userDetails['User']['first_name'].' '.$userDetails['User']['last_name']); ?></span>
 							<p>Request transfer <?php echo $this->Number->currency($TranDetails['VaultTransaction']['jumlah'], 'IK$ ');?> from Wallet #<?php echo $TranDetails['Vault']['id'];?> to Tracc #<?php echo $TranDetails['VaultTransaction']['tracc_no'];?></p>
 							<span class="time">
-								<?php #echo $this->Time->timeAgoInWords();?>
 								<span data-livestamp="<?php echo $TranDetails['VaultTransaction']['created'];?>"></span>
 							</span>
 						</div>
@@ -148,26 +149,37 @@
 					<!-- //VaultTransactionComment start
 						* if $TranDetails['Vault']['user_id'] == $TranDetails['VaultTransactionComment']['user_id'] -> add class left else staff / partner -> right class
 					-->
+					<?php foreach($TranDetails['VaultTransactionComment'] as $TranComment): 
 
-					<li class="right">
+						if($TranDetails['Vault']['user_id'] == $TranComment['user_id']){
+							echo "<li class='left'>";
+						}else{
+							echo "<li class='right'>";
+						}
+
+						$userInfo = $this->requestAction('staffs/requestUserInfo', array('uid' => $TranComment['user_id']));
+						#debug($userInfo);
+					?>
 						<div class="image">
-							<img alt="<?php echo h($var['User']['first_name'].' '.$var['User']['last_name']); ?>" src="<?php echo $this->Image->resize('img/'.IMG_DIR, $var['UserDetail']['photo'], 84, null, true) ?>">
+							<img alt="<?php echo h($userInfo['User']['first_name'].' '.$userInfo['User']['last_name']); ?>" src="<?php echo $this->Image->resize('img/'.IMG_DIR, $userInfo['UserDetail']['photo'], 84, null, true) ?>">
 						</div>
 						<div class="message">
 							<span class="caret"></span>
-							<span class="name"><?php echo h($var['User']['first_name'].' '.$var['User']['last_name']); ?></span>
-							<p>Lorem ipsum aute ut ullamco et nisi ad. Lorem ipsum adipisicing nisi Excepteur eiusmod ex culpa laboris. Lorem ipsum est ut...</p>
+							<span class="name"><?php echo h($userInfo['User']['first_name'].' '.$userInfo['User']['last_name']); ?></span>
+							<p><?php echo (__($TranComment['comment']));?></p>
 							<span class="time">
-								12 minutes ago
+								<span data-livestamp="<?php echo $TranComment['created'];?>"></span>
 							</span>
 						</div>
 					</li>
-
+				<?php endforeach; ?>
 					<li class="insert">
 						<?php echo $this->Form->create('Staff', array('action' => 'updateTranComment','class'=> 'form-messages')); ?>
 						<!--form method="POST" action="#" class='form-messages'-->
 							<div class="text">
-								<?php 
+								<?php
+									echo $this->Form->hidden('user_id', array('value' => $var['User']['id']));
+									echo $this->Form->hidden('vault_transaction_id', array('value' => $TranDetails['VaultTransaction']['id']));
 									echo $this->Form->input('comment', array('type' => 'text', 'placeholder' => 'Insert comment here !', 'class' => 'input-block-level', 'div' => false, 'label' => false));
 								?>
 							</div>
