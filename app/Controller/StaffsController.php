@@ -519,7 +519,7 @@
 			$results = $HttpSocket->post('http://iktrust.co.uk/webservice/ikwebgateway/triggerBalance.php', $mt4data);
 
 			$what = json_decode($results->body); 
-			debug($what->result); die();
+			$this->log('StatusCode '.$what->result, 'mt4balance');
 		}
 	}
 ?>
