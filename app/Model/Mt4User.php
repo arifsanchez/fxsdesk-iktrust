@@ -417,7 +417,8 @@ class Mt4User extends AppModel {
 				'LOGIN LIKE' => $login,
 			),
 			'fields' => array(
-				'BALANCE'
+				'BALANCE',
+				'NAME'
 			)
 		));
 		return $bakiAcc;

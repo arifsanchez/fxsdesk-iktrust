@@ -21,8 +21,10 @@ if($ajax) {
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
 			<div class="row-fluid">
 				<div class="span2">
-					<p><b>Account Balance</b></p>
-					<p><span class="label label-red"><?php echo $this->Number->Currency($bakiAcc, 'IK$ ');?></span></p>
+					<p><b>Account Name</b><br/>
+					<span class="label label-blue"><?php echo $nama_agent;?></span></p>
+					<p><b>Account Balance</b><br/>
+					<span class="label label-red"><?php echo $this->Number->Currency($bakiAcc, 'IK$ ');?></span></p>
 				</div>
 				<div class="span10">
 				<?php if(!empty($downlines)){ ?>

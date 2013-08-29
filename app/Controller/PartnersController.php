@@ -415,10 +415,11 @@
 			$user = $this->UserAuth->getUser();
 			$partnertag = $user['User']['partnertag']; // cari partnertag
 
-			//cari agent_account untuk $tracc_id
+			//cari agent_account untuk $tracc_id -TO DO
 
-			//dapatkan agent account balance
+			//dapatkan agent account balance & name
 			$bakiAcc = $this->Mt4User->bakiAcc($tracc_id);
+			$this->set('nama_agent',$bakiAcc['Mt4User']['NAME']);
 			$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
 
 			//listing downline

@@ -91,7 +91,7 @@
 			<div class="box-content">
 				<ul class="stats">
 					<li class="grey">
-						<a href="<?php echo SITE_URL;?>Users/index?me:<?php echo $var['User']['username'];?>">
+						<a href="#">
 							<i class="icon-group"></i>
 							<div class="details">
 								<span class="big"><span class="big"><?php $TotalRegPartners = $this->requestAction('usermgmt/Users/kiraTotalPartner') ; echo $TotalRegPartners;?></span></span>

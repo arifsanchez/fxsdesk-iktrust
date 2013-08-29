@@ -155,6 +155,7 @@
 			$this->set('page_title',$page_title);
 
 			$bakiAcc = $this->Mt4User->bakiAcc($tracc_id);
+			$this->set('nama_agent',$bakiAcc['Mt4User']['NAME']);
 			$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
 
 			//listing downline
