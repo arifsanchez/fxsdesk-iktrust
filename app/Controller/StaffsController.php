@@ -434,6 +434,20 @@
 				#debug($this->request); die();
 			}
 
+			//Jika status = 4
+			## > refund semula ke dalam IK Wallet
+			if($status == 4){
+				$vaultId = $this->Vault->find('first', array(
+					'conditions' =>array(
+						'user_id' => $userId,
+					)
+				));
+				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
+				$data = array('acc_1' => $new_balance);
+				$this->Vault->id = $vaultId['Vault']['id'];
+				$this->Vault->save($data);
+			}
+
 			//Jika status = 3
 			## > run proc_WT_TRACC 
 			if($status == 3){
