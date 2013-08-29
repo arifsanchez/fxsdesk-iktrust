@@ -19,13 +19,30 @@ if($ajax) {
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
-			<div class="downline-tag">
-				<p>Accounts Downline
-			    <?php foreach($downlines as $downline):?>
-			    	<span class="label label-lime"><?php echo $downline;?></span>
-			    <?php endforeach; ?>
-			    </p>
+			<div class="row-fluid">
+				<div class="span2">
+					<p><b>Account Balance</b></p>
+					<p><span class="label label-red"><?php echo $this->Number->Currency($bakiAcc, 'IK$ ');?></span></p>
+				</div>
+				<div class="span10">
+				<?php if(!empty($downlines)){ ?>
+				
+					<p><b>Agent Downline</b></p>
+					<p>
+				    <?php foreach($downlines as $downline):?>
+				    <?php #debug($downline);?>
+				    	<a data-content="<?php echo $downline['Mt4User']['NAME'];?>, <?php echo $downline['Mt4User']['EMAIL'];?>, <?php echo $downline['Mt4User']['PHONE'];?>, <?php echo $downline['Mt4User']['CITY'];?>, <?php echo $this->Number->Currency($downline['Mt4User']['BALANCE'],'$ ');?>
+				    	" data-placement="bottom" title="" rel="popover" class="btn btn-lime btn-mini" href="#" data-original-title="Account No# <?php echo $downline['Mt4User']['LOGIN'];?>">
+				    		<span class=""><?php echo $downline['Mt4User']['LOGIN'];?></span>
+				    	</a>
+				    	
+				    <?php endforeach; ?>
+				    </p>
+				
+				<?php } ?>
+				</div>
 			</div>
+
 			<div class="box-title">
 				<h3>
 					Agent Transactions History

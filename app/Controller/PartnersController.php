@@ -417,6 +417,10 @@
 
 			//cari agent_account untuk $tracc_id
 
+			//dapatkan agent account balance
+			$bakiAcc = $this->Mt4User->bakiAcc($tracc_id);
+			$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
+
 			//listing downline
 			$downlines = $this->Mt4User->listingDownline($tracc_id);
 			$this->set('downlines', $downlines);

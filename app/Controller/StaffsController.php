@@ -154,8 +154,12 @@
 			);
 			$this->set('page_title',$page_title);
 
+			$bakiAcc = $this->Mt4User->bakiAcc($tracc_id);
+			$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
+
 			//listing downline
 			$downlines = $this->Mt4User->listingDownline($tracc_id);
+			#debug($downlines); die();
 			$this->set('downlines', $downlines);
 
 			//Paginate Trader Accounts Listing
@@ -393,25 +397,25 @@
 			$this->VaultTransaction->save($data);
 
 			## > add comment to VaultTransactionComment
-			$status_code = $status;
-			switch ($status_code){
+			$message = $status;
+			switch ($message){
 				case "1":
-				$status_code = "NEW";
+				$message = "Status have been updated to NEW request.";
 				break;
 				case "2":
-				$status_code = "PENDING";
+				$message = "We have received your request and proceeding within 24 hours time. Status have been updated to PENDING for processing request.";
 				break;
 				case "3":
-				$status_code = "APPROVE";
+				$message = "Congratulations ! Your transfer request have been APPROVED.";
 				break;
 				case "4":
-				$status_code = "DECLINE";
+				$message = "Sorry ! Your transfer request have been DECLINED. Please contact our finance department for further info.";
 				break;
 			};
 
 			$data = array(
 				'vault_transaction_id' => $transId,
-				'comment' => "Updated to status ".$status_code,
+				'comment' => "$message",
 				'user_id' => $staffId
 			);
 			$this->VaultTransactionComment->create();

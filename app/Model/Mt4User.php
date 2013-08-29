@@ -400,12 +400,27 @@ class Mt4User extends AppModel {
 	* STAFF : Listing Semua Downline Account Number
 	***/
 	public function listingDownline($affId=null){
-		$listDownline = $this->find('list', array(
+		$listDownline = $this->find('all', array(
 			'conditions' =>array(
 				'AGENT_ACCOUNT LIKE' => $affId,
 			)
 		));
 		return $listDownline;
+	}
+
+	/**
+	* STAFF : Dapatkan total balance dalam account
+	***/
+	public function bakiAcc($login=null){
+		$bakiAcc = $this->find('first', array(
+			'conditions' =>array(
+				'LOGIN LIKE' => $login,
+			),
+			'fields' => array(
+				'BALANCE'
+			)
+		));
+		return $bakiAcc;
 	}
 
 }
