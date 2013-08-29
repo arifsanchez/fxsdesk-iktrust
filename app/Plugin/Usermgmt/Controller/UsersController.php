@@ -110,7 +110,7 @@ class UsersController extends UserMgmtAppController {
 	 */
 	public function index() {
         $this->layout = 'staff.dashboard.addon';
-		$this->paginate = array('limit' => 10, 'order'=>'User.id desc', 'recursive'=>1, 'conditions' => array('User.user_group_id' => 2));
+		$this->paginate = array('order'=>'User.id desc', 'recursive'=>1, 'conditions' => array('User.user_group_id' => 2));
 		$users = $this->paginate('User');
 		$i=0;
 		foreach($users as $user) {

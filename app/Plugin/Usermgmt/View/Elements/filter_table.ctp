@@ -21,11 +21,11 @@
 											<th>Name</th>
 											<th>Username</th>
 											<th>Email</th>
-											<th>Groups(s)</th>
+											
 											<th>Email Verified</th>
 											<th>Status</th>
 											<th>Created</th>
-											<th>Action</th>
+											<th></th>
 										</tr>
 										<tr>
 										    <th>SL</th>
@@ -34,7 +34,7 @@
 											<th>Name</th>
 											<th>Username</th>
 											<th>Email</th>
-											<th>Groups(s)</th>
+											
 											<th>Email Verified</th>
 											<th>Status</th>
 											<th>Created</th>
@@ -52,7 +52,7 @@
 												echo "<tr id='rowId".$row['User']['id']."'>";
 												echo "<td>".$i."</td>";
 												echo "<td>".$row['User']['id']."</td>";
-												echo "<td><img src='".$this->Image->resize('img/'.IMG_DIR, $row['UserDetail']['photo'], 50, null, true)."'></td>";
+												echo "<td><img src='".$this->Image->resize('img/'.IMG_DIR, $row['UserDetail']['photo'], 60, null, true)."'></td>";
 												echo "<td>".h($row['User']['first_name'])." ".h($row['User']['last_name'])."</td>";
 												if($row['User']['fb_id'] == null){
 													echo "<td><a href='".SITE_URL."".h($row['User']['username'])."'>".h($row['User']['username'])."</a></td>";
@@ -60,7 +60,7 @@
 													echo "<td><a href='https://facebook.com/".h($row['User']['username'])."'>".h($row['User']['username'])."</a></td>";
 												}
 												echo "<td>".h($row['User']['email'])."</td>";
-												echo "<td>".h($row['UserGroup']['name'])."</td>";
+												
 												echo "<td id='emailVerified".$row['User']['id']."'>";
 												if ($row['User']['email_verified']==1) {
 													echo __('Yes');
@@ -70,17 +70,17 @@
 												echo"</td>";
 												echo "<td id='activeInactive".$row['User']['id']."'>";
 												if ($row['User']['active']==1) {
-													echo __('Active');
+													echo "<span class=\"label label-satgreen\">Active</span>";
 												} else {
-													echo __('Inactive');
+													echo "<span class=\"label label-lightred\">Disable</span>";
 												}
 												echo"</td>";
 												echo "<td>".date('d-M-Y',strtotime($row['User']['created']))."</td>";
 												$loadingImg = '<img src="'.SITE_URL.'usermgmt/img/loading-circle.gif">';
 												echo "<td class='action'>";
 												echo "<div class='btn-group'>";
-												echo "<a href='#'' data-toggle='dropdown' class='btn btn-danger dropdown-toggle'><i class='icon-user'></i> Control Panel <span class='caret'></span></a>";
-												echo "<ul class='dropdown-menu dropdown-danger'>";
+												echo "<a href='#'' data-toggle='dropdown' class='btn btn-darkblue dropdown-toggle'><i class='icon-user'></i> Control Panel <span class='caret'></span></a>";
+												echo "<ul class='dropdown-menu'>";
 												echo"<li>";
 													echo $this->Html->link("<i class='icon-user'></i> User Profile" ,
 													array('controller'=>'Users', 'action'=>'viewUser', $row['User']['id'], 'page'=>$page), 
@@ -109,7 +109,7 @@
 														if ($row['User']['active']==0) {
 															$activeInactiveImg = "<i class='icon-thumbs-up'></i> Activate";
 														} else {
-															$activeInactiveImg = "<i class='icon-thumbs-down'></i> Diactivate";
+															$activeInactiveImg = "<i class='icon-thumbs-down'></i> Deactivate";
 														}
 														echo $this->Js->link($activeInactiveImg, array('action' => 'makeActiveInactive', $row['User']['id']), array('escape' => false, 'before'=>"var targetId = event.currentTarget.id; $('#'+targetId).html('".$loadingImg."');", 'success'=>"var targetId = event.currentTarget.id; if(data) { $('#'+targetId).html(data); }"));
 													}
