@@ -17,7 +17,7 @@
 		*
 		* @var array
 		*/
-		public $uses = array("Vault","VaultTransaction","Mt4User","Usermgmt.User","Mt4Trade");
+		public $uses = array("Vault","VaultTransaction","VaultTransactionComment","Mt4User","Usermgmt.User","Mt4Trade");
 
 		/**
 		* Staff Dashboard
@@ -372,6 +372,154 @@
 				$this->set('userDetails',$user);
 			}
 
+		}
+
+		/*****
+		* STAFF :: Change status on the transaction
+		******/
+		public function updateTransactionStatus(){
+			
+			#setiap status update params
+			$status = $this->request->data['Staff']['status'];
+			$transId = $this->request->data['Staff']['transid'];
+			$jumlah = $this->request->data['Staff']['jumlah'];
+			$userId = $this->request->data['Staff']['userId'];
+			$staffId = $this->request->data['Staff']['staffId'];
+			$traccId = $this->request->data['Staff']['traccId'];
+
+			## > update status field at VaultTransaction
+			$data = array('status' => $status);
+			$this->VaultTransaction->id = $transId;
+			$this->VaultTransaction->save($data);
+
+			## > add comment to VaultTransactionComment
+			$status_code = $status;
+			switch ($status_code){
+				case "1":
+				$status_code = "NEW";
+				break;
+				case "2":
+				$status_code = "PENDING";
+				break;
+				case "3":
+				$status_code = "APPROVE";
+				break;
+				case "4":
+				$status_code = "DECLINE";
+				break;
+			};
+
+			$data = array(
+				'vault_transaction_id' => $transId,
+				'comment' => "Updated to status ".$status_code,
+				'user_id' => $staffId
+			);
+			$this->VaultTransactionComment->create();
+			$this->VaultTransactionComment->save($data);
+
+			#initiate finance process
+			//Jika status = 2
+			## > deduct duit dari wallet 
+			## > update acc1 field at Vault
+			if($status == 2){
+				$vaultId = $this->Vault->find('first', array(
+					'conditions' =>array(
+						'user_id' => $userId,
+					)
+				));
+				$new_balance = $vaultId['Vault']['acc_1'] - $jumlah;
+				$data = array('acc_1' => $new_balance);
+				$this->Vault->id = $vaultId['Vault']['id'];
+				$this->Vault->save($data);
+				#debug($this->request); die();
+			}
+
+			//Jika status = 4
+			## > refund semula ke dalam IK Wallet
+			if($status == 4){
+				$vaultId = $this->Vault->find('first', array(
+					'conditions' =>array(
+						'user_id' => $userId,
+					)
+				));
+				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
+				$data = array('acc_1' => $new_balance);
+				$this->Vault->id = $vaultId['Vault']['id'];
+				$this->Vault->save($data);
+			}
+
+			//Jika status = 3
+			## > run proc_WT_TRACC 
+			if($status == 3){
+				$data = array(
+				'traccId' => $traccId,
+				'tambahJumlah' => $jumlah,
+				'type' => "WT TRACC",
+				);
+				#debug($data); die();
+				$process = $this->addBalTracc($data);
+				$this->log("WT TRACC, ".$jumlah, 'mt4Balance');
+			}
+
+			## > sent email status update to finance & user email
+
+			## > sent session flash and back to reffered page
+			$this->Session->setFlash(__('Status for transaction #'.$transId.' updated.'),'default',array('class' => 'success'));
+			$this->redirect($this->referer());
+		}
+
+
+		/*****
+		* STAFF :: Dapatkan who is who info
+		******/
+		public function requestUserInfo(){
+			#debug($this->request->requested);
+			$userId = $this->request->requested;
+			$result = $this->User->getUserNamePixById($userId);
+			return $result;
+		}
+		/*****
+		* STAFF :: Update comment on the transaction
+		******/
+		public function updateTranComment(){
+			#debug($this->request->data); die();
+			if($this->request->data['Staff']){
+				$data = array(
+					'vault_transaction_id' => $this->request->data['Staff']['vault_transaction_id'],
+					'comment' => $this->request->data['Staff']['comment'],
+					'user_id' => $this->request->data['Staff']['user_id']
+				);
+				$this->VaultTransactionComment->create();
+				$this->VaultTransactionComment->save($data);
+				$this->Session->setFlash(__('Comment for transaction #'.$data['vault_transaction_id'].' updated.'),'default',array('class' => 'success'));
+				$this->redirect($this->referer());
+			} else {
+				$this->redirect($this->referer());
+			}
+
+		}
+
+		/***
+		* BACKEND balance trigger : Request httpsocket to web gateway
+		****/
+		public function addBalTracc($data){
+
+			$randKey = rand(1000000, 9999999);
+
+			App::uses('HttpSocket', 'Network/Http');
+			$HttpSocket = new HttpSocket();
+
+			$mt4data = array(
+				'cmd' => 'UserChangeBalance',
+				'login' => $data['traccId'], 
+				'amount' => $data['tambahJumlah'],
+				'comment' => $data['type'].' '.$randKey
+			);
+			
+			$results = $HttpSocket->post('http://iktrust.co.uk/webservice/ikwebgateway/triggerBalance.php', $mt4data);
+
+			$what = json_decode($results->body); 
+			$this->log('StatusCode '.$what->result, 'mt4balance');
 		}
 	}
 ?>

@@ -305,9 +305,10 @@ class VaultsController extends AppController {
 				$data = array(
 					'vault_id' => $vaultId,
 					'jumlah' => $intmount,
+					'tracc_no' => $acc,
 					'type' => 1,
 					'status' => 1,
-					'description' => "TR IK WALLET #".$acc
+					'description' => "TR IK WALLET #".$vaultId
 				);
 				//sent to transfer request queue
 				$this->VaultTransaction->create();

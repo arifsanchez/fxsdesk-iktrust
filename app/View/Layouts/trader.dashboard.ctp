@@ -132,10 +132,18 @@
 						<?php 
 							$bal = "0.00";
 							$bal = $this->requestAction('vaults/acc1_balance'); ?>
-						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-money"></i> IK$ <?php echo (!empty($bal) ? $bal : '0.00');?></a>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-money"></i> 
+							<?php 
+								if($bal == 0.00){
+									echo "IK$ 0.00";
+								} else {
+									echo $this->Number->Currency($bal, 'IK$ '); 
+								}
+							?>
+						</a>
 						<ul class="dropdown-menu pull-right theme-colors">
 							<li>
-								<a href="<?php echo SITE_URL;?>Vaults/manage">Open My Wallet</a>
+								<a href="<?php echo SITE_URL;?>Vaults/manage?me:<?php echo $var['User']['username'];?>">Open My Wallet</a>
 							</li>
 						</ul>
 					</li>

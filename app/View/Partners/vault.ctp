@@ -45,12 +45,24 @@
 				<div class="row-fluid">
 					<div class="span6">
 						<center>
-							<h3><?php echo $this->Number->currency($acc1, 'IK$ '); ?></h3>
+							<h3><?php 
+								if($acc1 == 0.00){
+									echo "IK$ 0.00";
+								} else {
+									echo $this->Number->Currency($acc1, 'IK$ '); 
+								}
+							?></h3>
 						</center>
 					</div>
 					<div class="span6">
 						<center>
-							<h3>CR$ 0.00</h3>
+							<h3><?php 
+								if($acc2 == 0.00){
+									echo "CR$ 0.00";
+								} else {
+									echo $this->Number->Currency($acc2, 'CR$ '); 
+								}
+							?></h3>
 						</center>
 					</div>
 				</div>
@@ -137,7 +149,7 @@
 								</tr>
 								<?php endforeach; ?>
 							</tbody>
-							<?php } else { echo "Conratulations on your fresh account. There is no transaction made yet ."; };
+							<?php } else { echo "Congratulations on your fresh account. There is no transaction made yet ."; };
 							?>
 						</table>
 					</div>
@@ -326,7 +338,7 @@
 									<?php echo $tradeAcc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>
-							<td><?php echo $this->Number->currency($tradeAcc['Mt4User']['BALANCE'], '$');?></td>
+							<td><?php echo $this->Number->currency($tradeAcc['Mt4User']['BALANCE'], '$ ');?></td>
 							<td>
 								<a
 									data-original-title="Add funds from IK Wallet"

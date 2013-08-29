@@ -31,7 +31,25 @@
 			);
 			$this->set('page_title',$page_title);
 
+		}
 
+		/**
+		 * PARTNER : Request Account 1 Balance
+		 *
+		 * @access public
+		 * @return array
+		 */
+		public function acc1_balance() {
+			$this->layout = "ajax";
+			$userId = $this->UserAuth->getUserId();
+			$balance = $this->Vault->getAccBalance($userId);
+			#debug($balance['Vault']['acc_1']);die();
+			if ($this->request->is('requested')) {
+				$bal = $balance['Vault']['acc_1'];
+				return $bal;
+			} else {
+				$this->set('balance', $balance['Vault']['acc_1']);
+			}
 		}
 
 		/**

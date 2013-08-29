@@ -121,6 +121,27 @@
 			;?>
 			
 			<div class="user">
+				<ul class="icon-nav">
+					<li class='dropdown colo'>
+						<?php 
+							$bal = "0.00";
+							$bal = $this->requestAction('partners/acc1_balance'); ?>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-money"></i> 
+							<?php 
+								if($bal == 0.00){
+									echo "IK$ 0.00";
+								} else {
+									echo $this->Number->Currency($bal, 'IK$ '); 
+								}
+							?>
+						</a>
+						<ul class="dropdown-menu pull-right theme-colors">
+							<li>
+								<a href="<?php echo SITE_URL;?>partners/vault?me:<?php echo $var['User']['username'];?>">Partner Vault</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
 				<div class="dropdown">
 					<?php $userId = $this->UserAuth->getUserId();?>
 					<a href="#" class='dropdown-toggle' data-toggle="dropdown">
