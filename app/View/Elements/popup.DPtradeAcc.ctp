@@ -10,7 +10,7 @@
 			<?php 
 
 				echo $this->Form->create('Vault', array('action' => 'procdpaccwallet'));
-				echo "<blockquote>Current IK Wallet balance <br/><span class='label label-important'>IK$ ". $bal."</span></blockquote>";
+				echo "<blockquote>Current IK Wallet balance <br/><span class='label label-important'>". $this->Number->Currency($bal, 'IK$ ')."</span></blockquote>";
 			?>
 		</div>
 		<div class="span7">
@@ -21,7 +21,7 @@
 					'label' => false,
 					'data-rule-required' => 'true',
 					'data-rule-number' => 'true',
-					'placeholder' => 'Max IK$'.$bal,
+					'placeholder' => 'Max '.$this->Number->Currency($bal, 'IK$ '),
 					'class' => 'input-medium',
 					'div' => false,
 					'before' => "<span class='add-on'><i class='icon-money'></i></span>",

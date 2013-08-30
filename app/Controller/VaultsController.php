@@ -144,6 +144,44 @@ class VaultsController extends AppController {
 	}
 
 	/**
+	 * TRADER :: Wallet Transaction 
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function mywallet_transaction() {
+		//check for param request
+		#debug($this->request->params['named']['process']); die();
+		if($this->request->params['named']['process'] == null){
+			//jika kosong hantar terus ke page listing
+			$this->Session->setFlash(__('Sorry :( Invalid Transaction.'),'default',array('class' => 'error'));
+			$this->redirect(array('action' => 'mywallet_history/filter:new'));
+		} else {
+			//Layout
+			$this->layout = "trader.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-money",
+				'name' => "Transaction Detail"
+			);
+			$this->set('page_title',$page_title);
+
+			//start cari details of transactions
+			$vt_id = $this->request->params['named']['process'];
+			$details = $this->VaultTransaction->find('first', array(
+				'conditions' => array(
+					'VaultTransaction.id' => $vt_id
+				),
+			));
+			$this->set('TranDetails', $details);
+
+			//call in user details tambahan
+			$userId = $details['Vault']['user_id'];
+			$user =$this->User->getUserById($userId);
+			$this->set('userDetails',$user);
+		}
+	}
+	/**
 	 * Deposit :: Bank Trasfer
 	 *
 	 * @access public

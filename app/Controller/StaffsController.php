@@ -350,7 +350,7 @@
 			#debug($this->request->params['named']['process']); die();
 			if($this->request->params['named']['process'] == null){
 				//jika kosong hantar terus ke page listing
-				$this->Session->setFlash(__('Sorry :( Invalid Tradsaction.'),'default',array('class' => 'error'));
+				$this->Session->setFlash(__('Sorry :( Invalid Transaction.'),'default',array('class' => 'error'));
 				$this->redirect(array('action' => 'transfer_request/filter:new'));
 			} else {
 				//Layout

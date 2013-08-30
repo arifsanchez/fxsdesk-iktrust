@@ -1,15 +1,16 @@
+<?php #Page for listing out traders with affilliate account ?>
+
 <?php echo $this->element('popup.feature.comingsoon');?>
 
 <div class="row-fluid">
 	<div class="span12">
-		<div class="box box-color blue box-bordered">
+		<div class="box box-color grey box-bordered">
 			<div class="box-title">
 				<h3>
-					Trading Accounts
+					Affilliate Accounts
 				</h3>
 				<div class="actions">
-					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register Live Account"><i class="icon-fire"></i> Open Live Account</a>
-					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register Demo Account"><i class="glyphicon-shield"></i> Open Demo Account</a>
+					<a href="#popup-coming-soon" class="btn" data-toggle="modal" title="Register Agent Account"><i class="icon-fire"></i> New Agent Account</a>
 				</div>
 			</div>
 			<div class="box-content nopadding">
@@ -17,7 +18,7 @@
 					<?php if(!empty($MT_ACC)){ ;?>
 					<thead>
 						<tr>
-							<th>Account Number</th>
+							<th>Agent Number</th>
 							<th>Leverage</th>
 							<th>Balance $</th>
 							<th>Credit $</th>
@@ -33,7 +34,7 @@
 								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
 									<i class="icon-exclamation-sign"></i>
 								</button>
-								<a class="btn" href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" >
+								<a class="btn" href="<?php echo SITE_URL;?>TraderAccounts/affilliate_history/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" >
 									<?php echo $acc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>
@@ -55,18 +56,15 @@
 							</td>
 							<td><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"</span></td>
 							<td>
-								<a href="<?php echo SITE_URL;?>TraderAccounts/overview/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-blue" rel="tooltip" title="Trading Account Overview"><i class="icon-briefcase"></i> Manage</a>
+								<a href="<?php echo SITE_URL;?>TraderAccounts/affilliate_history/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
 
-
-								<a href="<?php echo SITE_URL;?>TraderAccounts/history/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
-
-								<a href="#popup-coming-soon" class="btn btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> Setting</a>
+								<a href="#popup-coming-soon" class="btn btn-darkblue" rel="tooltip" title="Affilliate Promotion Tools" data-toggle="modal"><i class="icon-comments-alt"></i> Promo Tools</a>
 							</td>
 						</tr>
 						<?php endforeach; ?>
 					</tbody>
 					<?php } else { 
-						echo "<tr><td>Congratulations on your trader dashboard account opening. Please proceed creating a new trading account.</tr></td>";
+						echo "<tr><td>Sorry, you do not have any affilliate account under this email address.</tr></td>";
 					};?>
 				</table>
 			</div>

@@ -54,7 +54,7 @@
 								</button>
 								<?php
 									$TRid = $Transaction['VaultTransaction']['id'];
-									echo "IKW".base64_encode($TRid);
+									echo "WTRAN".$TRid;
 								?>
 
 							</td>
@@ -96,7 +96,7 @@
 							<td><?php echo ucwords(strtolower($Transaction['VaultTransaction']['description']));?></td>
 							<td><div class="text-right"><?php echo number_format($Transaction['VaultTransaction']['jumlah'], 2, '.', '');?></div></td>
 							<td><span data-livestamp="<?php echo $Transaction['VaultTransaction']['created'];?>"></span></td>
-							<td><a href="#popup-coming-soon" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $Transaction['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i> View Details</a></td>
+							<td><a href="<?php echo SITE_URL;?>vaults/mywallet_transaction/process:<?php echo $TRid;?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $Transaction['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i> View Details</a></td>
 						</tr>
 						<?php endforeach; ?>
 					</tbody>

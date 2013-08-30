@@ -16,7 +16,7 @@
 					'label' => false,
 					'data-rule-required' => 'true',
 					'data-rule-number' => 'true',
-					'placeholder' => 'Max US$'.$traccbal,
+					'placeholder' => 'Max '.$this->Number->Currency($traccbal, 'US$ '),
 					'class' => 'input-medium',
 					'div' => false,
 					'before' => "<span class='add-on'><i class='icon-money'></i></span>",
@@ -35,7 +35,7 @@
 		</div>
 		<div class="span5">
 			<?php 
-				echo "<blockquote>".$login." Account balance <br/><span class='label label-important'>US$ ". number_format($traccbal, 2, '.', '')."</span></blockquote>";
+				echo "<blockquote>".$login." Account balance <br/><span class='label label-important'>". $this->Number->Currency($traccbal, 'US$ ')."</span></blockquote>";
 			?>
 		</div>
 		

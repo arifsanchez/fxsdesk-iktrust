@@ -23,6 +23,11 @@
 			echo "<li class='".(($actionUrl=='TraderAccounts/listing') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('My Accounts'), array('controller'=>'TraderAccounts', 'action'=>'listing?me:'.$var['User']['username'],'plugin' =>''))."</li>";
 		}
 
+		/** My Affilliate **/
+		if($this->UserAuth->HP('TraderAccounts', 'affilliate')) {
+			echo "<li class='".(($actionUrl=='TraderAccounts/affilliate') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('My Partnership'), array('controller'=>'TraderAccounts', 'action'=>'affilliate?me:'.$var['User']['username'],'plugin' =>''))."</li>";
+		}
+
 	}
 	?>
 </ul>
