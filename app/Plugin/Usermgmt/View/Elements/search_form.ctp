@@ -1,3 +1,6 @@
+<?php echo $this->Html->css('../usermgmt/css/umstyle'); ?>
+
+
 <div class="searchForm">
 <?php
 $isAjax=true;
@@ -128,7 +131,7 @@ if($isAjax) {
 		echo $jq;
 	}
 	if($clear) {
-		echo "<div class='search_submit'>".$this->Form->hidden("search_clear", array('id' => 'searchClearId', 'value' => 0))."<button type='button' id='searchButtonId' class='btn btn-danger'>Clear</button></div>";
+		echo "<div class='search_submit'>".$this->Form->hidden("search_clear", array('id' => 'searchClearId', 'value' => 'reset!'))."<button type='reset' id='searchButtonId' class='btn btn-danger'>Clear</button></div>";
 	}
 	echo "<div class='search_submit'>".$this->Form->submit(__('Search'), array('div'=>false, 'id' => 'searchSubmitId', 'class'=>'btn btn-primary'))."</div>";
 	echo "<div style='clear:both'></div>";

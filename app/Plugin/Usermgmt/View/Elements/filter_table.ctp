@@ -1,6 +1,9 @@
 
 	
 <?php #https://github.com/arifsanchez/usermanagement_plugin ;?>
+<?php echo $this->Search->searchForm('User', array('legend' => false, 'updateDivId' => 'updateUserIndex')); ?>
+<?php echo $this->element('Usermgmt.paginator', array('useAjax' => true, 'updateDivId' => 'updateUserIndex')); ?>
+
 
 				<div class="row-fluid">
 					<div class="span12">
@@ -12,33 +15,19 @@
 								</h3>
 							</div>
 							<div class="box-content nopadding">
-								<table class="table table-hover table-nomargin table-bordered dataTable-columnfilter dataTable">
+									<table class="table table-hover table-nomargin table-bordered dataTable dataTable-fixedcolumn dataTable-scroll-x dataTable-scroll-y">
 									<thead>
-										<tr class='thefilter'>
-											<th>SL</th>
-											<th>User Id</th>
-											<th>Photo</th>
-											<th>Name</th>
-											<th>Username</th>
-											<th>Email</th>
-											
-											<th>Email Verified</th>
-											<th>Status</th>
-											<th>Created</th>
-											<th></th>
-										</tr>
 										<tr>
-										    <th>SL</th>
-											<th>User Id</th>
-											<th>Photo</th>
-											<th>Name</th>
-											<th>Username</th>
-											<th>Email</th>
 											
-											<th>Email Verified</th>
-											<th>Status</th>
-											<th>Created</th>
-											<th>Action</th>
+											<th class="sorting"><?php echo $this->Paginator->sort('User.id', __('User Id')); ?></th>
+											<th><?php echo __('Photo');?></th>
+											<th class="sorting"><?php echo $this->Paginator->sort('User.first_name', __('Name')); ?></th>
+											<th class="sorting"><?php echo $this->Paginator->sort('User.username', __('Username')); ?></th>
+											<th class="sorting"><?php echo $this->Paginator->sort('User.email', __('Email')); ?></th>
+											<th class="sorting"><?php echo $this->Paginator->sort('User.email_verified', __('Email Verified')); ?></th>
+											<th class="sorting"><?php echo $this->Paginator->sort('User.active', __('Status')); ?></th>
+											<th class="sorting"><?php echo $this->Paginator->sort('User.created', __('Created')); ?></th>
+											<th style="width:150px;"><?php echo __('Action');?></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -50,7 +39,7 @@
 											foreach ($users as $row) {
 												$i++;
 												echo "<tr id='rowId".$row['User']['id']."'>";
-												echo "<td>".$i."</td>";
+												//echo "<td>".$i."</td>";
 												echo "<td>".$row['User']['id']."</td>";
 												echo "<td><img src='".$this->Image->resize('img/'.IMG_DIR, $row['UserDetail']['photo'], 60, null, true)."'></td>";
 												echo "<td>".h($row['User']['first_name'])." ".h($row['User']['last_name'])."</td>";
@@ -154,6 +143,7 @@
 										} ?>
 									</tbody>
 								</table>
+								<?php if(!empty($users)) { echo $this->element('Usermgmt.pagination', array("totolText" => __('Number of Users'))); } ?>
 							</div>
 						</div>
 					</div>

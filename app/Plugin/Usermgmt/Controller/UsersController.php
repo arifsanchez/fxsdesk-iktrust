@@ -109,8 +109,14 @@ class UsersController extends UserMgmtAppController {
 	 * @return array
 	 */
 	public function index() {
-        $this->layout = 'staff.dashboard.addon';
-		$this->paginate = array('order'=>'User.id desc', 'recursive'=>1, 'conditions' => array('User.user_group_id' => 2));
+        $this->layout = 'staff.dashboard';
+        //Page title
+			$page_title = array(
+				'icon' => "glyphicon-parents",
+				'name' => "All Clients"
+			);
+			$this->set('page_title',$page_title);
+		$this->paginate = array('limit' => 10, 'order'=>'User.id desc', 'recursive'=>1, 'conditions' => array('User.user_group_id' => 2));
 		$users = $this->paginate('User');
 		$i=0;
 		foreach($users as $user) {
@@ -120,7 +126,7 @@ class UsersController extends UserMgmtAppController {
 		$this->set('users', $users);
 		if($this->RequestHandler->isAjax()) {
 			$this->layout = 'ajax';
-			$this->render('/Elements/all_users');
+			$this->render('/Elements/filter_table');
 		}
 	}
 	/**
