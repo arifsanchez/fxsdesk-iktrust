@@ -19,6 +19,23 @@ if($ajax) {
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color grey box-bordered" id="updateTradeHistory">
+			<?php if(!empty($downlines)){ ?>
+			<div class="row-fluid">
+				<div class="span12">
+					<p><b>Agent Downline</b></p>
+					<p>
+				    <?php foreach($downlines as $downline):?>
+				    <?php #debug($downline);?>
+				    	<a data-content="<?php echo $downline['Mt4User']['NAME'];?>, <?php echo $downline['Mt4User']['EMAIL'];?>, <?php echo $downline['Mt4User']['PHONE'];?>, <?php echo $downline['Mt4User']['CITY'];?>, <?php echo $this->Number->Currency($downline['Mt4User']['BALANCE'],'$ ');?>
+				    	" data-placement="bottom" title="" rel="popover" class="btn btn-lime btn-mini" href="#" data-original-title="Account No# <?php echo $downline['Mt4User']['LOGIN'];?>">
+				    		<span class=""><?php echo $downline['Mt4User']['LOGIN'];?></span>
+				    	</a>
+				    	
+				    <?php endforeach; ?>
+				    </p>
+				</div>
+			</div>
+			<?php } ?>
 			<div class="box-title">
 				<h3>
 					Affilliate Account History
@@ -34,9 +51,8 @@ if($ajax) {
 						<?php if(empty($MT_TRANSACT)){ echo "<tr><blockquote>Your affilliate account is fresh without any transaction. Start promoting your affilliate link and earn great rewards today .</blockquote></tr>";} else {?> 
 						<tr>
 							<th>Deal #</th>
-							<th>Open Time / Close Time</th>
+							<th>Date Time</th>
 							<th>Transactions</th>
-							<th>Open Price / Close Price</th>
 							<th><div class="text-right">Amount US$</div></th>
 						</tr>
 						<?php } ?>
@@ -49,9 +65,7 @@ if($ajax) {
 
 							</td>
 							<td>
-								<?php echo $Transaction['Mt4Trade']['OPEN_TIME'];?>
-								<br/>
-								<?php echo $Transaction['Mt4Trade']['CLOSE_TIME'];?>
+								<?php echo $this->Time->nice($Transaction['Mt4Trade']['OPEN_TIME']);?>
 							</td>
 							<td>
 								<?php
@@ -80,7 +94,7 @@ if($ajax) {
 										echo "<span class=\"label label-red\">SELL STOP</span>&nbsp;<span class=\"label label-magenta\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$Transaction['Mt4Trade']['COMMENT']."</span>";
 										break;
 										case "6":
-										echo "<span class=\"label label-blue\">Balance</span>&nbsp;<span class=\"label label-magenta\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$Transaction['Mt4Trade']['COMMENT']."</span>";
+										echo "<span class=\"label label-blue\">Commissions</span>&nbsp;<span class=\"label label-magenta\">".$Transaction['Mt4Trade']['SYMBOL']."</span>&nbsp;<span class=\"label label-lightgrey\">".$Transaction['Mt4Trade']['COMMENT']."</span>";
 										break;
 										case "7":
 										echo "<span class=\"label label-orange	\">IK Credit</span>";
@@ -91,14 +105,6 @@ if($ajax) {
 									};
 								?>
 							</td>
-							<td>
-								<?php if($Transaction['Mt4Trade']['OPEN_PRICE'] == "0"){ ;?>
-									&nbsp;
-								<?php } else {
-									echo $Transaction['Mt4Trade']['OPEN_PRICE'];
-									echo "<br/>";
-									echo $Transaction['Mt4Trade']['CLOSE_PRICE'];
-								};?>
 							<td>
 								<div class="text-right">
 									<b>

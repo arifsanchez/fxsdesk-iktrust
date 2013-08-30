@@ -198,8 +198,16 @@
 					'Mt4User.LOGIN' => $acc,
 				)
 			));
+
+			//check jika email di mt4 sama dgn email dalam dashboard
 			if($result['Mt4User']['EMAIL'] == $user['User']['email']){
-				#debug($result);die();
+				
+				//Pull data reffered client
+				//listing downline
+				$downlines = $this->Mt4User->listingDownline($acc);
+				$this->set('downlines', $downlines);
+
+				//hantar to view , data mt4acc
 				$this->set('MT_ACC',$result);
 
 				//Paginate Trade history

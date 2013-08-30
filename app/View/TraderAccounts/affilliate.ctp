@@ -5,6 +5,8 @@
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color grey box-bordered">
+			
+
 			<div class="box-title">
 				<h3>
 					Affilliate Accounts
@@ -19,11 +21,9 @@
 					<thead>
 						<tr>
 							<th>Agent Number</th>
-							<th>Leverage</th>
 							<th>Balance $</th>
-							<th>Credit $</th>
 							<th>Trade Status</th>
-							<th>Account Maturity</th>
+							<th>Agent Since</th>
 							<th>Operations</th>
 						</tr>
 					</thead>
@@ -38,9 +38,7 @@
 									<?php echo $acc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>
-							<td>1:<?php echo $acc['Mt4User']['LEVERAGE'];?></td>
-							<td><?php echo number_format($acc['Mt4User']['BALANCE'], 2, '.', '');?></td>
-							<td><?php echo number_format($acc['Mt4User']['CREDIT'], 2, '.', '');?></td>
+							<td><?php echo $this->Number->Currency($acc['Mt4User']['BALANCE'], 'IK$ ');?></td>
 							<td>
 								<?php 	
 								$accstatus = $acc['Mt4User']['ENABLE'];
@@ -50,7 +48,7 @@
 										echo "<span class=\"label label-satgreen\">Active</span>";
 										break;
 										default:
-										echo "<span class=\"label label-lightred\">Disable</span>";
+										echo "<span class=\"label label-lightred\">Non-Trading</span>";
 									};
 								?>
 							</td>
@@ -59,6 +57,8 @@
 								<a href="<?php echo SITE_URL;?>TraderAccounts/affilliate_history/acc:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
 
 								<a href="#popup-coming-soon" class="btn btn-darkblue" rel="tooltip" title="Affilliate Promotion Tools" data-toggle="modal"><i class="icon-comments-alt"></i> Promo Tools</a>
+
+								<a href="#popup-coming-soon" class="btn btn-lime" rel="tooltip" title="Check All Downline" data-toggle="modal"><i class="icon-comments-alt"></i> Reffered Client</a>
 							</td>
 						</tr>
 						<?php endforeach; ?>
