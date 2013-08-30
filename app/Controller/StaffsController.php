@@ -596,6 +596,12 @@
 		/***
 		*	STAFF :: All Commissions
 		****/
+		public function report_close_order(){
+
+		}
+		/***
+		*	STAFF :: All Commissions
+		****/
 		public function totalOrderBySymbol(){
 			/*$result = $this->Mt4Trade->find('count', array(
 				'group' => array('Mt4Trade.LOGIN'),
