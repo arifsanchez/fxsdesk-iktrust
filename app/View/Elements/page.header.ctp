@@ -29,6 +29,11 @@
 					<i class="glyphicon-wallet"></i>
 				</a>
 			</li>
+			<li class='grey' >
+				<a data-placement="bottom" title="" rel="tooltip" href="<?php echo SITE_URL;?>TraderAccounts/affilliate?me:<?php echo $var['User']['username'];?>" data-original-title="My Partnership">
+					<i class="glyphicon-wallet"></i>
+				</a>
+			</li>
 		</ul>
 		<ul class="stats">
 			<li class='lightred'>

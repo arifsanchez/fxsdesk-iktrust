@@ -35,7 +35,46 @@
 				</ul>
 			</div>
 		</div>
+	</div>
 
+	<div class="span6">
+		<!-- Servicing Partners -->
+		<div class="box box-color red box-bordered">
+			<div class="box-title">
+				<h3>
+					<i class="icon-th-large"></i>
+					Partners
+				</h3>
+			</div>
+			<div class="box-content">
+				<ul class="stats">
+					<li class="grey">
+						<a href="#">
+							<i class="icon-group"></i>
+							<div class="details">
+								<span class="big"><span class="big"><?php $TotalRegPartners = $this->requestAction('usermgmt/Users/kiraTotalPartner') ; echo $TotalRegPartners;?></span></span>
+								<span>Partners</span>
+							</div>
+						</a>
+					</li>
+
+					<li class="lightgrey">
+						<a href="<?php echo SITE_URL;?>Staffs/agent_listing?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-group"></i>
+							<div class="details">
+								<span class="big"><span class="big"><?php $TotalRegAgents = $this->requestAction('TraderAccounts/kiraTotalAgent') ; echo $TotalRegAgents;?></span></span>
+								<span>Agents</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span6">
 		<div class="box box-color box-bordered magenta box-small">
 			<div class="box-title">
 				<h3>
@@ -78,41 +117,7 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="span6">
-		<!-- Servicing Partners -->
-		<div class="box box-color red box-bordered">
-			<div class="box-title">
-				<h3>
-					<i class="icon-th-large"></i>
-					Partners
-				</h3>
-			</div>
-			<div class="box-content">
-				<ul class="stats">
-					<li class="grey">
-						<a href="#">
-							<i class="icon-group"></i>
-							<div class="details">
-								<span class="big"><span class="big"><?php $TotalRegPartners = $this->requestAction('usermgmt/Users/kiraTotalPartner') ; echo $TotalRegPartners;?></span></span>
-								<span>Partners</span>
-							</div>
-						</a>
-					</li>
-
-					<li class="lightgrey">
-						<a href="<?php echo SITE_URL;?>Staffs/agent_listing?me:<?php echo $var['User']['username'];?>">
-							<i class="icon-group"></i>
-							<div class="details">
-								<span class="big"><span class="big"><?php $TotalRegAgents = $this->requestAction('TraderAccounts/kiraTotalAgent') ; echo $TotalRegAgents;?></span></span>
-								<span>Agents</span>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-
 		<!-- Market Watch -->
 		<div class="box box-color lime box-bordered">
 			<div class="box-title">
@@ -135,5 +140,67 @@
 				</ul>
 			</div>
 		</div>
+	</div>	
+</div>
+
+<div class="row-fluid">
+	<div class="span6">
+		<div class="box box-color box-bordered brown box-small">
+			<div class="box-title">
+				<h3>
+					<i class="icon-th-large"></i>
+					Traders Monitoring
+				</h3>
+			</div>
+			<div class="box-content">
+				<ul class="stats">
+					<li class="grey">
+						<a href="<?php echo SITE_URL;?>Staffs/report_rebate?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-money"></i>
+							<div class="details">
+								<span class="big"><span class="big">Report</span></span>
+								<span>Rebates</span>
+							</div>
+						</a>
+					</li>
+					
+					<li class="orange">
+						<a href="<?php echo SITE_URL;?>Staffs/report_close_order?me:<?php echo $var['User']['username'];?>" rel="tooltip" data-placement="bottom" data-original-title="New Transfer Request">
+							<i class="icon-spinner"></i>
+							<div class="details">
+								<span class="big">Report</span>
+								<span>Closed Orders</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
+	<div class="span6">
+		<!-- Market Watch -->
+		<div class="box box-color brown box-bordered">
+			<div class="box-title">
+				<h3>
+					<i class="icon-th-large"></i>
+					Partners Monitoring
+				</h3>
+			</div>
+			<div class="box-content">
+				<ul class="stats">
+					<li class="grey">
+						<a href="<?php echo SITE_URL;?>Staffs/report_commission?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-money"></i>
+							<div class="details">
+								<span class="big"><span class="big">Report</span></span>
+								<span>Commissions</span>
+							</div>
+						</a>
+					</li>
+
+					
+				</ul>
+			</div>
+		</div>
+	</div>	
 </div>

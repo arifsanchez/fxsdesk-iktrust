@@ -526,5 +526,93 @@
 			$what = json_decode($results->body); 
 			$this->log('StatusCode '.$what->result, 'mt4balance');
 		}
+
+		/***
+		*	STAFF :: All Commissions
+		****/
+		public function report_commission(){
+
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-money",
+				'name' => "All Commissions History"
+			);
+			$this->set('page_title',$page_title);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4Trade.COMMENT LIKE' => '%agent%',
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			#debug($trades); die();
+			$this->set('reportComm',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('report_commission');
+			}
+		}
+
+		/***
+		*	STAFF :: All Commissions
+		****/
+		public function report_rebate(){
+
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-money",
+				'name' => "All Rebates History"
+			);
+			$this->set('page_title',$page_title);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4Trade.COMMENT LIKE' => '%rebate%',
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			#debug($trades); die();
+			$this->set('reportComm',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('report_rebate');
+			}
+		}
+
+		/***
+		*	STAFF :: All Commissions
+		****/
+		public function totalOrderBySymbol(){
+			/*$result = $this->Mt4Trade->find('count', array(
+				'group' => array('Mt4Trade.LOGIN'),
+				'recursive'=>0,
+				'conditions' =>array(
+				''
+				)
+			));
+			*/
+
+			$semalam = strtotime("yesterday");
+			App::uses('CakeTime', 'Utility');
+			$semalam =  CakeTime::nice($semalam);
+			debug($semalam);
+			#debug($result); 
+			die();
+		}
+
 	}
 ?>
