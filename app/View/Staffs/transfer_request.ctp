@@ -24,7 +24,7 @@
 			<div class="box-title">
 				<h3><?php echo strtoupper($filter);?> Transfer Request</h3>
 				<div class="pull-right">
-					FILTER : 
+					FILTER BY STATUS: 
 					&nbsp;
 					<a
 						data-original-title="New Transaction : Wallet to Trading Account Request" 
@@ -115,40 +115,18 @@
 							
 							<td>
 								<?php
-									$type1 = $Transaction['VaultTransaction']['type'];
-
-									switch ($type1){
-										case "1":
-											echo "<span class='label label-satgreen'>WT <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-										break;
-										case "2":
-											echo "<span class='label label-satgreen'>DEPO -> WT</span>";
-										break;
-									};
+									$type = $Transaction['VaultTransaction']['type'];
+									echo $this->element('requestVaultTransType', array('type' => $type));
 								?>
 							</td>
 							<td>
 								<?php
-									$status1 = $Transaction['VaultTransaction']['status'];
-									
-									switch ($status1){
-										case 1:
-										echo "<span class='label label-orange'>NEW</span>";
-										break;
-										case 2:
-										echo "<span class='label label-satblue'>PENDING</span>";
-										break;
-										case 3:
-										echo "<span class='label label-satgreen'>APPROVE</span>";
-										break;
-										case 4:
-										echo "<span class='label label-red'>DECLINE</span>";
-										break;
-									};
+									$status = $Transaction['VaultTransaction']['status'];
+									echo $this->element('requestVaultStatLabel', array('status' => $status));
 								?>
 							</td>
 							<td><?php echo ucwords(strtolower($Transaction['VaultTransaction']['description']));?></td>
-							<td><div class="text-right"><?php echo number_format($Transaction['VaultTransaction']['jumlah'], 2, '.', '');?></div></td>
+							<td><div class="text-right"><?php echo $this->Number->Currency($Transaction['VaultTransaction']['jumlah'], '');?></div></td>
 							<td><span data-livestamp="<?php echo $Transaction['VaultTransaction']['created'];?>"></span></td>
 							<td><a href="<?php echo SITE_URL;?>Staffs/transfer_detail/process:<?php echo $TRid;?>?me:<?php echo $var['User']['username'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $Transaction['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i> View Details</a></td>
 						</tr>

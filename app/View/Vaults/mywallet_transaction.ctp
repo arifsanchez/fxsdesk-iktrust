@@ -27,40 +27,19 @@
 						<tr>
 							<td>
 								<?php
-									$type1 = $TranDetails['VaultTransaction']['type'];
-
-									switch ($type1){
-										case "1":
-											echo "<span class='label label-satgreen'>WT <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-										break;
-										case "2":
-											echo "<span class='label label-satgreen'>FINANCE CHANNEL -> WT</span>";
-										break;
-									};
+									$type = $TranDetails['VaultTransaction']['type'];
+									echo $this->element('requestVaultTransType', array('type' => $type));
 								?>
 							</td>
 							<td>
 								<?php
 									$status = $TranDetails['VaultTransaction']['status'];
-									
-									switch ($status){
-										case 1:
-										echo "<span class='label label-orange'>NEW</span>";
-										break;
-										case 2:
-										echo "<span class='label label-satblue'>PENDING</span>";
-										break;
-										case 3:
-										echo "<span class='label label-satgreen'>APPROVE</span>";
-										break;
-										case 4:
-										echo "<span class='label label-red'>DECLINE</span>";
-										break;
-									};
+									echo $this->element('requestVaultStatLabel', array('status' => $status));
 								?>
 							</td>
+							<td><?php echo $TranDetails['VaultTransaction']['tracc_no'];?></td>
 							<td><?php echo $this->Number->Currency($TranDetails['VaultTransaction']['jumlah'], '$ ');?></td>
-							<td><?php echo $TranDetails['Vault']['id'];?></td>
+							
 							<td><?php echo $this->Number->Currency($TranDetails['Vault']['acc_1'], 'IK$ ');?></td>
 							
 						</tr>
@@ -84,7 +63,7 @@
 						<div class="message">
 							<span class="caret"></span>
 							<span class="name"><?php echo h($userDetails['User']['first_name'].' '.$userDetails['User']['last_name']); ?></span>
-							<p>Request transfer <?php echo $this->Number->currency($TranDetails['VaultTransaction']['jumlah'], 'IK$ ');?> from Wallet #<?php echo $TranDetails['Vault']['id'];?> to Tracc #<?php echo $TranDetails['VaultTransaction']['tracc_no'];?></p>
+							<p>Request for transfer created.</p>
 							<span class="time">
 								<span data-livestamp="<?php echo $TranDetails['VaultTransaction']['created'];?>"></span>
 							</span>
@@ -95,13 +74,14 @@
 					-->
 					<?php foreach($TranDetails['VaultTransactionComment'] as $TranComment): 
 
+						#debug($TranComment);
 						if($TranDetails['Vault']['user_id'] == $TranComment['user_id']){
 							echo "<li class='left'>";
 						}else{
 							echo "<li class='right'>";
 						}
 
-						$userInfo = $this->requestAction('staffs/requestUserInfo', array('uid' => $TranComment['user_id']));
+						$userInfo = $this->requestAction('vaults/requestUserInfo_trader', array('uid' => $TranComment['user_id']));
 						#debug($userInfo);
 					?>
 						<div class="image">

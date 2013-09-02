@@ -53,36 +53,14 @@
 						<tr>
 							<td>
 								<?php
-									$type1 = $TranDetails['VaultTransaction']['type'];
-
-									switch ($type1){
-										case "1":
-											echo "<span class='label label-satgreen'>WT <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-										break;
-										case "2":
-											echo "<span class='label label-satgreen'>FINANCE CHANNEL -> WT</span>";
-										break;
-									};
+									$type = $TranDetails['VaultTransaction']['type'];
+									echo $this->element('requestVaultTransType', array('type' => $type));
 								?>
 							</td>
 							<td>
 								<?php
 									$status = $TranDetails['VaultTransaction']['status'];
-									
-									switch ($status){
-										case 1:
-										echo "<span class='label label-orange'>NEW</span>";
-										break;
-										case 2:
-										echo "<span class='label label-satblue'>PENDING</span>";
-										break;
-										case 3:
-										echo "<span class='label label-satgreen'>APPROVE</span>";
-										break;
-										case 4:
-										echo "<span class='label label-red'>DECLINE</span>";
-										break;
-									};
+									echo $this->element('requestVaultStatLabel', array('status' => $status));
 								?>
 							</td>
 							<td><?php echo $TranDetails['VaultTransaction']['tracc_no'];?></td>
@@ -94,64 +72,25 @@
 									<?php if($status != 3){?>
 									<a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> Update Status <span class="caret"></span></a>
 									<ul class="dropdown-menu dropdown-warning">
-										<?php if($status == 1){?>
-										<li>
-											<?php 
-												echo $this->Form->create('Staff', array('action' => 'updateTransactionStatus', 'style' => 'margin-bottom:1px !important'));
-												echo $this->Form->hidden('transid', array('value' => $TranDetails['VaultTransaction']['id']));
-												echo $this->Form->hidden('jumlah', array('value' => $TranDetails['VaultTransaction']['jumlah']));
-												echo $this->Form->hidden('userId', array('value' => $userDetails['User']['id']));
-												echo $this->Form->hidden('staffId', array('value' => $var['User']['id']));
-												echo $this->Form->hidden('traccId', array('value' => $TranDetails['VaultTransaction']['tracc_no']));
-												echo $this->Form->hidden('status', array('value' => 2));
-												echo $this->Form->button('Pending', array('class' => 'btn btn-satblue btn-block'));
-												echo $this->Form->end();
-											?>
-										</li>
-										<?php }?>
-										<?php if($status == 2){?>
-										<li>
-											<?php 
-												echo $this->Form->create('Staff', array('action' => 'updateTransactionStatus', 'style' => 'margin-bottom:1px !important'));
-												echo $this->Form->hidden('transid', array('value' => $TranDetails['VaultTransaction']['id']));
-												echo $this->Form->hidden('jumlah', array('value' => $TranDetails['VaultTransaction']['jumlah']));
-												echo $this->Form->hidden('userId', array('value' => $userDetails['User']['id']));
-												echo $this->Form->hidden('staffId', array('value' => $var['User']['id']));
-												echo $this->Form->hidden('traccId', array('value' => $TranDetails['VaultTransaction']['tracc_no']));
-												echo $this->Form->hidden('status', array('value' => 4));
-												echo $this->Form->button('Decline', array('class' => 'btn btn-red btn-block'));
-												echo $this->Form->end();
-											?>
-										</li>
-										<li>
-											<?php 
-												echo $this->Form->create('Staff', array('action' => 'updateTransactionStatus',  'style' => 'margin-bottom:1px !important'));
-												echo $this->Form->hidden('transid', array('value' => $TranDetails['VaultTransaction']['id']));
-												echo $this->Form->hidden('jumlah', array('value' => $TranDetails['VaultTransaction']['jumlah']));
-												echo $this->Form->hidden('userId', array('value' => $userDetails['User']['id']));
-												echo $this->Form->hidden('staffId', array('value' => $var['User']['id']));
-												echo $this->Form->hidden('traccId', array('value' => $TranDetails['VaultTransaction']['tracc_no']));
-												echo $this->Form->hidden('status', array('value' => 3));
-												echo $this->Form->button('Approve', array('class' => 'btn btn-green btn-block'));
-												echo $this->Form->end();
-											?>
-										</li>
-										<?php }?>
-										<?php if($status == 4){?>
-										<li>
-											<?php 
-												echo $this->Form->create('Staff', array('action' => 'updateTransactionStatus',  'style' => 'margin-bottom:1px !important'));
-												echo $this->Form->hidden('transid', array('value' => $TranDetails['VaultTransaction']['id']));
-												echo $this->Form->hidden('jumlah', array('value' => $TranDetails['VaultTransaction']['jumlah']));
-												echo $this->Form->hidden('userId', array('value' => $userDetails['User']['id']));
-												echo $this->Form->hidden('staffId', array('value' => $var['User']['id']));
-												echo $this->Form->hidden('traccId', array('value' => $TranDetails['VaultTransaction']['tracc_no']));
-												echo $this->Form->hidden('status', array('value' => 1));
-												echo $this->Form->button('RESET', array('class' => 'btn btn-magenta btn-block'));
-												echo $this->Form->end();
-											?>
-										</li>
-										<?php }?>
+										<?php
+											/*switch ($type) {
+												case '1':
+													echo $this->element('StaffTransStatus_type', array('status' => $status, 'TranDetails' => $TranDetails, 'type' => $type));
+													break;
+												case '4':
+													echo $this->element('StaffTransStatus_type4', array('status' => $status, 'TranDetails' => $TranDetails));
+													break;
+												
+												default:
+													echo "";
+													break;
+											}*/
+
+											echo $this->element('StaffTransStatus_type', array('status' => $status, 'TranDetails' => $TranDetails, 'type' => $type));
+											
+											#echo $this->element('StaffTransStatus.type4');
+										?>
+										
 									</ul>
 									<?php }else{ ?>
 										<a class="btn btn-success" href="#"><i class="icon-cog"></i> View Account </a>
@@ -178,7 +117,7 @@
 						<div class="message">
 							<span class="caret"></span>
 							<span class="name"><?php echo h($userDetails['User']['first_name'].' '.$userDetails['User']['last_name']); ?></span>
-							<p>Request transfer <?php echo $this->Number->currency($TranDetails['VaultTransaction']['jumlah'], 'IK$ ');?> from Wallet #<?php echo $TranDetails['Vault']['id'];?> to Tracc #<?php echo $TranDetails['VaultTransaction']['tracc_no'];?></p>
+							<p>Request for transfer created.</p>
 							<span class="time">
 								<span data-livestamp="<?php echo $TranDetails['VaultTransaction']['created'];?>"></span>
 							</span>

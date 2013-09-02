@@ -84,7 +84,7 @@
 			</div>
 			<div class="box-content">
 				<ul class="stats">
-					<li class="satgreen">
+					<!--li class="satgreen">
 						<a href="<?php echo SITE_URL;?>Staffs/deposit_request?me:<?php echo $var['User']['username'];?>"  rel="tooltip" data-placement="bottom" data-original-title="New Deposit Request">
 							<i class="icon-money"></i>
 							<div class="details">
@@ -102,13 +102,13 @@
 								<span>Withdraw</span>
 							</div>
 						</a>
-					</li>
+					</li-->
 
 					<li class="orange">
 						<a href="<?php echo SITE_URL;?>Staffs/transfer_request/filter:new?me:<?php echo $var['User']['username'];?>" rel="tooltip" data-placement="bottom" data-original-title="New Transfer Request">
 							<i class="icon-money"></i>
 							<div class="details">
-								<span class="big"><?php $TotalTRW_TRACC = $this->requestAction('vaults/kiraTotalNewTRW_TRACC'); echo $TotalTRW_TRACC;?></span>
+								<span class="big"><?php $TotalTRW_TRACC = $this->requestAction('vaults/kiraTotalNewTRW_TRACC'); echo $TotalTRW_TRACC;?> NEW</span>
 								<span>Transfer</span>
 							</div>
 						</a>

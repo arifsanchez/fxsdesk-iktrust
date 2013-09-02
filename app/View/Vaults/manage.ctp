@@ -46,7 +46,7 @@
 				<div class="row-fluid">
 					<div class="span6">
 						<center>
-							<h3><?php echo $this->Number->currency($acc1, 'IK$ ');?></h3>
+							<h3><?php if($acc1 == 0){echo "IK$ 0.00";} else {echo $this->Number->currency($acc1, 'IK$ ');} ?></h3>
 						</center>
 					</div>
 					<div class="span6">
@@ -94,6 +94,7 @@
 									<th>Status</th>
 									<th>Total $</th>
 									<th>Date</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -102,39 +103,18 @@
 									<td>
 										<?php
 											$type = $vt_latest['VaultTransaction']['type'];
-
-											switch ($type){
-												case "1":
-												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-												break;
-												case "2":
-												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
-												break;
-											};
+											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
 									<td>
 										<?php
 											$status = $vt_latest['VaultTransaction']['status'];
-											
-											switch ($status){
-												case 1:
-												echo "<span class='label label-orange'>NEW</span>";
-												break;
-												case 2:
-												echo "<span class='label label-satblue'>PENDING</span>";
-												break;
-												case 3:
-												echo "<span class='label label-satgreen'>APPROVE</span>";
-												break;
-												case 4:
-												echo "<span class='label label-red'>DECLINE</span>";
-												break;
-											};
+											echo $this->element('requestVaultStatLabel', array('status' => $status));
 										?>
 									</td>
 									<td><div class="text-right"><?php echo $vt_latest['VaultTransaction']['jumlah'];?></div></td>
 									<td><?php echo $this->Time->nice($vt_latest['VaultTransaction']['created']);?></td>
+									<td><a href="<?php echo SITE_URL;?>vaults/mywallet_transaction/process:<?php echo $vt_latest['VaultTransaction']['id'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $vt_latest['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i></a></td>
 								</tr>
 								<?php endforeach; ?>
 							</tbody>
@@ -151,6 +131,7 @@
 									<th>Comment</th>
 									<th>Total $</th>
 									<th>Date</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -159,20 +140,13 @@
 									<td>
 										<?php
 											$type = $vt_new['VaultTransaction']['type'];
-
-											switch ($type){
-												case "1":
-												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-												break;
-												case "2":
-												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
-												break;
-											};
+											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
 									<td><?php echo $vt_new['VaultTransaction']['description'];?></td>
 									<td><div class="text-right"><span class='label label-orange'><?php echo $vt_new['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_new['VaultTransaction']['created']);?></td>
+									<td><a href="<?php echo SITE_URL;?>vaults/mywallet_transaction/process:<?php echo $vt_latest['VaultTransaction']['id'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $vt_latest['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i></a></td>
 								</tr>
 								<?php endforeach; ?>
 							</tbody>
@@ -189,6 +163,7 @@
 									<th>Comment</th>
 									<th>Total $</th>
 									<th>Date</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -197,20 +172,13 @@
 									<td>
 										<?php
 											$type = $vt_pending['VaultTransaction']['type'];
-
-											switch ($type){
-												case "1":
-												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-												break;
-												case "2":
-												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
-												break;
-											};
+											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
 									<td><?php echo $vt_pending['VaultTransaction']['description'];?></td>
 									<td><div class="text-right"><span class='label label-satblue'><?php echo $vt_pending['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_pending['VaultTransaction']['created']);?></td>
+									<td><a href="<?php echo SITE_URL;?>vaults/mywallet_transaction/process:<?php echo $vt_latest['VaultTransaction']['id'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $vt_latest['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i></a></td>
 								</tr>
 								<?php endforeach; ?>
 							</tbody>
@@ -227,6 +195,7 @@
 									<th>Comment</th>
 									<th>Total $</th>
 									<th>Date</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -235,20 +204,13 @@
 									<td>
 										<?php
 											$type = $vt_app['VaultTransaction']['type'];
-
-											switch ($type){
-												case "1":
-												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-												break;
-												case "2":
-												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
-												break;
-											};
+											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
 									<td><?php echo $vt_app['VaultTransaction']['description'];?></td>
 									<td><div class="text-right"><span class='label label-satgreen'><?php echo $vt_app['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_app['VaultTransaction']['created']);?></td>
+									<td><a href="<?php echo SITE_URL;?>vaults/mywallet_transaction/process:<?php echo $vt_latest['VaultTransaction']['id'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $vt_latest['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i></a></td>
 								</tr>
 								<?php endforeach; ?>
 							</tbody>
@@ -265,6 +227,7 @@
 									<th>Comment</th>
 									<th>Total $</th>
 									<th>Date</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -273,20 +236,14 @@
 									<td>
 										<?php
 											$type = $vt_dec['VaultTransaction']['type'];
-
-											switch ($type){
-												case "1":
-												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-												break;
-												case "2":
-												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
-												break;
-											};
+											echo $this->element('requestVaultTransType', array('type' => $type));
+											
 										?>
 									</td>
 									<td><?php echo $vt_dec['VaultTransaction']['description'];?></td>
 									<td><div class="text-right"><span class='label label-red'><?php echo $vt_dec['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_dec['VaultTransaction']['created']);?></td>
+									<td><a href="<?php echo SITE_URL;?>vaults/mywallet_transaction/process:<?php echo $vt_latest['VaultTransaction']['id'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $vt_latest['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i></a></td>
 								</tr>
 								<?php endforeach; ?>
 							</tbody>

@@ -24,7 +24,7 @@ class VaultsController extends AppController {
 	 * This controller use vaults models and few other platform models
 	 * @var array
 	 */
-	public $uses = array("Vault","VaultTransaction","Mt4User","Usermgmt.User","Mt4Trade");
+	public $uses = array("Vault","VaultTransaction","VaultTransactionComment","Mt4User","Usermgmt.User","Mt4Trade");
 	
 	/**
 	 * This controller uses following components
@@ -173,6 +173,7 @@ class VaultsController extends AppController {
 					'VaultTransaction.id' => $vt_id
 				),
 			));
+
 			$this->set('TranDetails', $details);
 
 			//call in user details tambahan
@@ -183,25 +184,40 @@ class VaultsController extends AppController {
 	}
 
 	/*****
-		* Trader :: Update comment on the transaction
-		******/
-		public function updateTranComment_trader(){
-			#debug($this->request->data); die();
-			if($this->request->data['Staff']){
-				$data = array(
-					'vault_transaction_id' => $this->request->data['Staff']['vault_transaction_id'],
-					'comment' => $this->request->data['Staff']['comment'],
-					'user_id' => $this->request->data['Staff']['user_id']
-				);
-				$this->VaultTransactionComment->create();
-				$this->VaultTransactionComment->save($data);
-				$this->Session->setFlash(__('Comment for transaction #'.$data['vault_transaction_id'].' updated.'),'default',array('class' => 'success'));
-				$this->redirect($this->referer());
-			} else {
-				$this->redirect($this->referer());
-			}
+	* Trader :: Update comment on the transaction
+	******/
+	public function updateTranComment_trader(){
+	#debug($this->request->data); die();
+		$this->layout = "ajax";
+		if($this->request->data['Vault']){
+			$data = array(
+				'vault_transaction_id' => $this->request->data['Vault']['vault_transaction_id'],
+				'comment' => $this->request->data['Vault']['comment'],
+				'user_id' => $this->request->data['Vault']['user_id']
+			);
 
+			#debug($data);die();
+			$this->VaultTransactionComment->create();
+			$this->VaultTransactionComment->save($data);
+			$this->Session->setFlash(__('Comment for transaction #'.$data['vault_transaction_id'].' updated.'),'default',array('class' => 'success'));
+			$this->redirect(array('controller' => 'Vaults', 'action' => 'mywallet_transaction/process:'.$data['vault_transaction_id'], 'plugin' => ''));
+		} else {
+			$this->Session->setFlash(__('Sorry ! , Invalid request.'),'default',array('class' => 'error'));
+			$this->redirect(array('controller' => 'Vaults', 'action' => 'mywallet_transaction/process:'.$data['vault_transaction_id'], 'plugin' => ''));
 		}
+
+	}
+
+	/*****
+	* TRADER :: Dapatkan who is who info for trader
+	******/
+	public function requestUserInfo_trader(){
+		#debug($this->request->params['uid']);
+		$this->layout = "ajax"; 
+		$userId = $this->request->params['uid'];
+		$result = $this->User->getUserNamePixById($userId);
+		return $result;
+	}
 
 	/**
 	 * Deposit :: Bank Trasfer
@@ -330,7 +346,7 @@ class VaultsController extends AppController {
 	}
 
 	/**
-	 * Deposit :: Process depos acc from wallet
+	 * TRADER :: Request transfer from wallet to tracc
 	 *
 	 * @access public
 	 * @return array
@@ -369,6 +385,58 @@ class VaultsController extends AppController {
 					'type' => 1,
 					'status' => 1,
 					'description' => "TR IK WALLET #".$vaultId
+				);
+				//sent to transfer request queue
+				$this->VaultTransaction->create();
+				$this->VaultTransaction->save($data);
+				$this->Session->setFlash(__('Transfer request has been sent to IK Trust HQ'),'default',array('class' => 'success'));
+				$this->redirect(array('controller' =>'vaults', 'action' => 'mywallet_history'));
+			}
+		} else {
+			$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
+		}
+	}
+
+	/**
+	 * TRADER :: Request transfer from tracc to wallet
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function procwdaccwallet() {
+		
+		//sorting data masuk
+		$request = $this->request->data;
+		$userId = $this->UserAuth->getUserId();
+		$acc1 = $this->Vault->getAccBalance($userId);
+		$tracc = $request['Vault']['acc_trading'];
+		$vaultId = $acc1['Vault']['id'];
+		$bakiTracc = $this->Mt4User->bakiAcc($tracc);
+		
+		#debug($request); die();
+		if($request){
+			$i = $request['Vault']['amount'];
+			
+			#debug($bakiTracc); die();
+			App::uses('CakeNumber', 'Utility');
+			$intmount = CakeNumber::precision($i,2);
+			#debug($intmount);
+
+			if ($intmount > $bakiTracc['Mt4User']['BALANCE']){
+
+				$this->Session->setFlash(__('Trading Account Balance Insufficient for the transfer request.'),'default',array('class' => 'error'));
+				$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
+			} else if($intmount == 0){
+				$this->Session->setFlash(__('Sorry, you have not enter any amount to transfer.'),'default',array('class' => 'info'));
+				$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
+			} else {
+				$data = array(
+					'vault_id' => $vaultId,
+					'jumlah' => $intmount,
+					'tracc_no' => $tracc,
+					'type' => 4,
+					'status' => 1,
+					'description' => "TR IK TRACC #".$tracc
 				);
 				//sent to transfer request queue
 				$this->VaultTransaction->create();

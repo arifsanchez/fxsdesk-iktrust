@@ -69,7 +69,6 @@ class VaultTransaction extends AppModel {
 		$result ='';
 		$result = $this->find('count', array(
 			'conditions' =>array(
-				'type' => 1,
 				'status' => 1
 			),
 		));
