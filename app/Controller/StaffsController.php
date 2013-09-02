@@ -483,6 +483,7 @@
 			$result = $this->User->getUserNamePixById($userId);
 			return $result;
 		}
+
 		/*****
 		* STAFF :: Update comment on the transaction
 		******/
@@ -597,6 +598,23 @@
 		*	STAFF :: All Commissions
 		****/
 		public function report_close_order(){
+
+			App::uses('CakeTime', 'Utility');
+			$semalam = strtotime("yesterday");
+			$date =  CakeTime::dayAsSql($semalam);
+			debug($date);
+
+			$this->paginate = array(
+		        'conditions' => array(
+		        'and' => array(
+		        	array(
+		        		'Mt4Trade.OPEN_TIME <= ' => $date,
+		                'Mt4Trade.CLOSE_TIME >= ' => $date
+		            ),
+		           //Add another filer
+		    )));
+		    $trades = $this->paginate('Mt4Trade');
+			debug($trades); die();
 
 		}
 		/***

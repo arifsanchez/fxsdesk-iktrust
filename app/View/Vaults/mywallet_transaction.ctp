@@ -5,7 +5,7 @@
  ?>
 
 <div class="row-fluid">
-	<div class="span12">
+	<div class="span6">
 		<!-- Transaction Details -->
 		<div class="box box-color satblue box-small box-bordered nopadding">
 			<div class="box-title">
@@ -20,7 +20,6 @@
 							<th>Status</th>
 							<th>Tracc</th>
 							<th>Amount</th>
-							<th>Wallet</th>
 							<th>Wallet Balance</th>
 						</tr>
 					</thead>
@@ -60,7 +59,6 @@
 									};
 								?>
 							</td>
-							<td><?php echo $TranDetails['VaultTransaction']['tracc_no'];?></td>
 							<td><?php echo $this->Number->Currency($TranDetails['VaultTransaction']['jumlah'], '$ ');?></td>
 							<td><?php echo $TranDetails['Vault']['id'];?></td>
 							<td><?php echo $this->Number->Currency($TranDetails['Vault']['acc_1'], 'IK$ ');?></td>
@@ -70,7 +68,8 @@
 				</table>
 			</div>
 		</div>
-
+	</div>
+	<div class="span6">
 		<!-- Comments Details -->
 		<div class="box box-small box-bordered">
 			<div class="box-title">
@@ -119,7 +118,7 @@
 					</li>
 				<?php endforeach; ?>
 					<li class="insert">
-						<?php echo $this->Form->create('Staff', array('action' => 'updateTranComment','class'=> 'form-messages')); ?>
+						<?php echo $this->Form->create('Vault', array('action' => 'updateTranComment_trader','class'=> 'form-messages')); ?>
 						<!--form method="POST" action="#" class='form-messages'-->
 							<div class="text">
 								<?php

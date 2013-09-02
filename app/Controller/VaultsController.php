@@ -181,6 +181,28 @@ class VaultsController extends AppController {
 			$this->set('userDetails',$user);
 		}
 	}
+
+	/*****
+		* Trader :: Update comment on the transaction
+		******/
+		public function updateTranComment_trader(){
+			#debug($this->request->data); die();
+			if($this->request->data['Staff']){
+				$data = array(
+					'vault_transaction_id' => $this->request->data['Staff']['vault_transaction_id'],
+					'comment' => $this->request->data['Staff']['comment'],
+					'user_id' => $this->request->data['Staff']['user_id']
+				);
+				$this->VaultTransactionComment->create();
+				$this->VaultTransactionComment->save($data);
+				$this->Session->setFlash(__('Comment for transaction #'.$data['vault_transaction_id'].' updated.'),'default',array('class' => 'success'));
+				$this->redirect($this->referer());
+			} else {
+				$this->redirect($this->referer());
+			}
+
+		}
+
 	/**
 	 * Deposit :: Bank Trasfer
 	 *
