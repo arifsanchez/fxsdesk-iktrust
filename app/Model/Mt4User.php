@@ -390,8 +390,28 @@ class Mt4User extends AppModel {
 	function kiraTotalTracc() {
 		$total = 0;
 		$total = $this->find('all', array(
-			'conditions' => array('GROUP LIKE' => '%IK%'),
+			'conditions' => array(
+				'GROUP LIKE' => '%IK%',
+				'ENABLE' => '1'
+			),
 			'fields' => array('sum(BALANCE) AS total')
+		));
+		return $total;
+	}
+
+	/**
+	 * Kira Total Trading Account Credit Float
+	 *
+	 * @access public
+	*/
+	function kiraTotalTraccCR() {
+		$total = 0;
+		$total = $this->find('all', array(
+			'conditions' => array(
+				'GROUP LIKE' => '%IK%',
+				'ENABLE' => '1'
+			),
+			'fields' => array('sum(CREDIT) AS total')
 		));
 		return $total;
 	}

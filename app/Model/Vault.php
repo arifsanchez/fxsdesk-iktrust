@@ -124,4 +124,18 @@ public $validate = array(
 		return $total;
 	}
 
+	/**
+	 * STAFF :: Kira Total Wallet Partner
+	 *
+	 * @access public
+	*/
+	function kiraTotalWalletPartner() {
+		$total = 0;
+		$total = $this->find('all', array(
+			'conditions' => array('Vault.partner' => 1),
+			'fields' => array('sum(Vault.acc_1) AS total')
+		));
+		return $total;
+	}
+
 }

@@ -1,5 +1,5 @@
 <?php 
-	#echo pr($var);
+	echo $this->element('popup.feature.comingsoon'); //call a href #popup-coming-soon
 ?>
 
 <div class="row-fluid">
@@ -49,7 +49,7 @@
 			<div class="box-content">
 				<ul class="stats">
 					<li class="grey">
-						<a href="#">
+						<a href="#popup-coming-soon">
 							<i class="icon-group"></i>
 							<div class="details">
 								<span class="big"><span class="big"><?php $TotalRegPartners = $this->requestAction('usermgmt/Users/kiraTotalPartner') ; echo $TotalRegPartners;?></span></span>
@@ -79,7 +79,7 @@
 			<div class="box-title">
 				<h3>
 					<i class="icon-th-large"></i>
-					Finance Queue
+					Finance Transfer Queue
 				</h3>
 			</div>
 			<div class="box-content">
@@ -107,13 +107,32 @@
 					<li class="orange">
 						<a href="<?php echo SITE_URL;?>Staffs/transfer_request/filter:new?me:<?php echo $var['User']['username'];?>" rel="tooltip" data-placement="bottom" data-original-title="New Transfer Request">
 							<i class="icon-money"></i>
+							
 							<div class="details">
-								<span class="big"><?php $TotalTRW_TRACC = $this->requestAction('vaults/kiraTotalNewTRW_TRACC'); echo $TotalTRW_TRACC;?> NEW</span>
-								<span>Transfer</span>
+								<span class="big"><?php $TotalTRW_TRACC = $this->requestAction('vaults/kiraTotalNewTRW_TRACC'); echo $TotalTRW_TRACC;?> </span>
+								<span>NEW</span>
 							</div>
 						</a>
 					</li>
-				</ul>
+					<li class="satblue">
+						<a href="<?php echo SITE_URL;?>Staffs/transfer_request/filter:pending?me:<?php echo $var['User']['username'];?>" rel="tooltip" data-placement="bottom" data-original-title="Pending Transfer Request">
+							<i class="icon-money"></i>
+							<div class="details">
+								<span class="big"><?php $TotalTRW_TRACC_pending = $this->requestAction('vaults/kiraTotalNewTRW_TRACC_code2'); echo $TotalTRW_TRACC_pending;?> </span>
+								<span>PENDING</span>
+							</div>
+						</a>
+					</li>
+					<li class="green">
+						<a href="<?php echo SITE_URL;?>Staffs/transfer_request/filter:approve?me:<?php echo $var['User']['username'];?>" rel="tooltip" data-placement="bottom" data-original-title="Approved Transfer Request">
+							<i class="icon-money"></i>
+							<div class="details">
+								<span class="big"><?php $TotalTRW_TRACC_approve = $this->requestAction('vaults/kiraTotalNewTRW_TRACC_code3'); echo $TotalTRW_TRACC_approve;?> </span>
+								<span>APPROVE</span>
+							</div>
+						</a>
+					</li>
+				</ul>				
 			</div>
 		</div>
 	</div>

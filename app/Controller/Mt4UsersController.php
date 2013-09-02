@@ -123,6 +123,25 @@ class Mt4UsersController extends AppController {
 			}
 		}
 	}
+	/**
+	 * Request Total IK Trading Account Balance
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function kiraTotalTraccCR() {
+		$this->layout = "ajax";
+		if($this->UserAuth->isLogged()){
+			$total = $this->Mt4User->kiraTotalTraccCR();
+			#debug($total['0']['0']['total']);die();
+			$total = $total['0']['0']['total'];
+			if ($this->request->is('requested')) {
+				return $total;
+			} else {
+				$this->set('TotalTracc', $total);
+			}
+		}
+	}
 
 	/**
 	 * Request Total IK Trading Accounts Berdaftar

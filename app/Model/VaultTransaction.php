@@ -76,6 +76,34 @@ class VaultTransaction extends AppModel {
 	}
 
 	/**
+	 * Kira Total Transfer to TradAcc Transaction
+	 *
+	*/
+	function kiraTotalNewTRW_TRACC_code2() {
+		$result ='';
+		$result = $this->find('count', array(
+			'conditions' =>array(
+				'status' => 2
+			),
+		));
+		return $result;
+	}
+
+	/**
+	 * Kira Total Transfer to TradAcc Transaction
+	 *
+	*/
+	function kiraTotalNewTRW_TRACC_code3() {
+		$result ='';
+		$result = $this->find('count', array(
+			'conditions' =>array(
+				'status' => 3
+			),
+		));
+		return $result;
+	}
+
+	/**
 	 * TRADER :: List down latest transactions for $user_id
 	 *
 	*/

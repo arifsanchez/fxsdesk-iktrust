@@ -384,7 +384,7 @@ class VaultsController extends AppController {
 					'tracc_no' => $acc,
 					'type' => 1,
 					'status' => 1,
-					'description' => "TR IK WALLET #".$vaultId
+					'description' => "DP TRACC #".$vaultId
 				);
 				//sent to transfer request queue
 				$this->VaultTransaction->create();
@@ -436,7 +436,7 @@ class VaultsController extends AppController {
 					'tracc_no' => $tracc,
 					'type' => 4,
 					'status' => 1,
-					'description' => "TR IK TRACC #".$tracc
+					'description' => "WD TRACC #".$tracc
 				);
 				//sent to transfer request queue
 				$this->VaultTransaction->create();
@@ -470,6 +470,26 @@ class VaultsController extends AppController {
 	}
 
 	/**
+	 * STAFF : Request Total IK Wallet Partner
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function kiraTotalWalletPartner() {
+		$this->layout = "ajax";
+		if($this->UserAuth->isLogged()){
+			$total = $this->Vault->kiraTotalWalletPartner();
+			#debug($total['0']['0']['total']);die();
+			$total = $total['0']['0']['total'];
+			if ($this->request->is('requested')) {
+				return $total;
+			} else {
+				$this->set('TotalWallet', $total);
+			}
+		}
+	}
+
+	/**
 	 * STAFF : Kira Total Transfer to TradAcc Transaction with status New
 	 *
 	 * @access public
@@ -479,6 +499,44 @@ class VaultsController extends AppController {
 		$this->layout = "ajax";
 		if($this->UserAuth->isLogged()){
 			$total = $this->VaultTransaction->kiraTotalNewTRW_TRACC();
+			#debug($total);die();
+			if ($this->request->is('requested')) {
+				return $total;
+			} else {
+				$this->set('totalTRW_TRACC', $total);
+			}
+		}
+	}
+
+	/**
+	 * STAFF : Kira Total Transfer to TradAcc Transaction with status Pending
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function kiraTotalNewTRW_TRACC_code2() {
+		$this->layout = "ajax";
+		if($this->UserAuth->isLogged()){
+			$total = $this->VaultTransaction->kiraTotalNewTRW_TRACC_code2();
+			#debug($total);die();
+			if ($this->request->is('requested')) {
+				return $total;
+			} else {
+				$this->set('totalTRW_TRACC', $total);
+			}
+		}
+	}
+
+	/**
+	 * STAFF : Kira Total Transfer to TradAcc Transaction with status Approve
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function kiraTotalNewTRW_TRACC_code3() {
+		$this->layout = "ajax";
+		if($this->UserAuth->isLogged()){
+			$total = $this->VaultTransaction->kiraTotalNewTRW_TRACC_code3();
 			#debug($total);die();
 			if ($this->request->is('requested')) {
 				return $total;
