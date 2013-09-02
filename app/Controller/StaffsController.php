@@ -108,7 +108,83 @@
 		}
 
 		/**
-		* STAFF :: Accounts listing
+		* STAFF :: Partner Accounts listing
+		*/
+		public function partner_listing() {
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "All Partner Accounts"
+			);
+			$this->set('page_title',$page_title);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 10, 
+				'order'=> 'Mt4User.BALANCE DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4User.COMMENT LIKE' => '%ML%',
+					'Mt4User.LOGIN LIKE' => '88%',
+				)
+			);
+			$trades = $this->paginate('Mt4User');
+			#debug($trades); die();
+			$this->set('MT_ACC',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('partner_listing');
+			}
+		}
+
+		/**
+		* STAFF :: Partner Accounts history
+		*/
+		public function partner_history() {
+			//start cari agent ID
+			$tracc_id = $this->request->params['named']['process'];
+
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-group",
+				'name' => "Agent #".$tracc_id." History"
+			);
+			$this->set('page_title',$page_title);
+
+			$bakiAcc = $this->Mt4User->bakiAcc($tracc_id);
+			$this->set('nama_agent',$bakiAcc['Mt4User']['NAME']);
+			$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
+
+			//listing downline
+			$downlines = $this->Mt4User->listingDownline($tracc_id);
+			#debug($downlines); die();
+			$this->set('downlines', $downlines);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4Trade.LOGIN LIKE' => $tracc_id,
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			$this->set('agentPost',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('partner_history');
+			}
+		}
+
+		/**
+		* STAFF :: Agent Accounts listing
 		*/
 		public function agent_listing() {
 			//Layout
@@ -139,7 +215,7 @@
 		}
 
 		/**
-		* STAFF :: Accounts history
+		* STAFF :: Agent Accounts history
 		*/
 		public function agent_history() {
 			//start cari agent ID

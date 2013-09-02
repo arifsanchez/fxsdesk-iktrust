@@ -49,10 +49,10 @@
 			<div class="box-content">
 				<ul class="stats">
 					<li class="grey">
-						<a href="#popup-coming-soon">
+						<a href="<?php echo SITE_URL;?>Staffs/partner_listing?me:<?php echo $var['User']['username'];?>">
 							<i class="icon-group"></i>
 							<div class="details">
-								<span class="big"><span class="big"><?php $TotalRegPartners = $this->requestAction('usermgmt/Users/kiraTotalPartner') ; echo $TotalRegPartners;?></span></span>
+								<span class="big"><span class="big"><?php $TotalRegPartners = $this->requestAction('usermgmt/Users/kiraTotalPartner') ; echo $TotalRegPartners;?> Live</span></span>
 								<span>Partners</span>
 							</div>
 						</a>
