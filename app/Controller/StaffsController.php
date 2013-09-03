@@ -69,6 +69,45 @@
 		}
 
 		/**
+		* STAFF :: Registered Client listing
+		*/
+		public function client_profile() {
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "Client Profile"
+			);
+			$this->set('page_title',$page_title);
+
+
+			//Dapatkan info tentang registered info
+			$username = $this->request->params['named']['name'];
+			$user = $this->User->findByUsername($username);
+			$this->set('user', $user);
+
+			//Dapatkan info wallet client
+			$vacc = $this->Vault->getAccBalance($user['User']['id']);
+			$this->set('acc1', $vacc['Vault']['acc_1']);
+			$this->set('acc2', $vacc['Vault']['acc_2']);
+
+			//Dapatkan senarai trading account
+			$tradeAcc = $this->Mt4User->listTradeAcc($user['User']['email']);
+			$this->set('tradeTracc', $tradeAcc);
+
+			//Dapatkan senarai affilliate jika ada
+			$acc = $this->Mt4User->find('all', array(
+				'conditions' =>array(
+					'Mt4User.EMAIL' => $user['User']['email'],
+					#'Mt4User.EMAIL' => "me@arif.my", //Test Account
+					'Mt4User.GROUP LIKE' => '%Aff%'
+				)
+			));
+			$this->set('tradeAgacc',$acc);
+		}
+
+		/**
 		* STAFF :: Accounts listing
 		*/
 		public function search_tracc() {

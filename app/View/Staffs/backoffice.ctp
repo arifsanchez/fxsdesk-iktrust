@@ -183,7 +183,7 @@
 						</a>
 					</li>
 					
-					<li class="orange">
+					<!--li class="orange">
 						<a href="<?php echo SITE_URL;?>Staffs/report_close_order?me:<?php echo $var['User']['username'];?>" rel="tooltip" data-placement="bottom" data-original-title="New Transfer Request">
 							<i class="icon-spinner"></i>
 							<div class="details">
@@ -191,7 +191,7 @@
 								<span>Closed Orders</span>
 							</div>
 						</a>
-					</li>
+					</li-->
 				</ul>
 			</div>
 		</div>

@@ -1,3 +1,7 @@
+<?php 
+	echo $this->element('popup.feature.comingsoon'); //call a href #popup-coming-soon
+?>
+
 <?php
 if(!isset($updateDivId)) {
 	$updateDivId="updateIndex";
@@ -87,12 +91,12 @@ if($ajax) {
 								echo "<tr id='rowId".$row['User']['id']."'>";
 								#echo "<td>".$i."</td>";
 								#echo "<td>".$row['User']['id']."</td>";
-								echo "<td><img src='".$this->Image->resize('img/'.IMG_DIR, $row['UserDetail']['photo'], 60, null, true)."'></td>";
+								echo "<td><img src='".$this->Image->resize('img/'.IMG_DIR, $row['UserDetail']['photo'], 60, 60, true)."'></td>";
 								echo "<td>".h($row['User']['first_name'])." ".h($row['User']['last_name']);
 									if($row['User']['fb_id'] == null){
-										echo "<br/><a class='btn btn-mini btn-blue' href='".SITE_URL."".h($row['User']['username'])."'>".h($row['User']['username'])."</a><br/>";
+										echo "<br/><a class='btn btn-mini btn-blue' href='".SITE_URL."Staffs/client_profile/name:".h($row['User']['username'])."'>".h($row['User']['username'])."</a><br/>";
 									} else {
-										echo "<br/><a class='btn btn-mini btn-blue ' href='".SITE_URL."".h($row['User']['username'])."'>".h($row['User']['username'])."</a>&nbsp;<a href='https://facebook.com/".h($row['User']['username'])."'><i class='icon-facebook-sign'></i></a><br/>";
+										echo "<br/><a class='btn btn-mini btn-blue ' href='".SITE_URL."Staffs/client_profile/name:".h($row['User']['username'])."'>".h($row['User']['username'])."</a>&nbsp;<a href='https://facebook.com/".h($row['User']['username'])."'><i class='icon-facebook-sign'></i></a><br/>";
 									}
 									echo "<i class='icon-flag'></i> ".date('d/m/Y',strtotime($row['User']['created']));
 								echo "</td>";
@@ -136,13 +140,21 @@ if($ajax) {
 
 								#Control Panel Button - Start
 								$loadingImg = '<img src="'.SITE_URL.'usermgmt/img/loading-circle.gif">';
-								echo "<td class='action'>";
+								echo "<td>";
+
+								echo $this->Html->link("View Details",
+									 array('plugin' => '','controller'=>'Staffs', 'action'=>'client_profile', 'name:'.$row['User']['username']), 
+									 array('class'=> 'btn btn-satblue btn-mini'));
+
+
+								#echo "<a href=".SITE_URL.'"Staffs/client_detail/name:".$acc['Mt4User']['LOGIN']." class='btn btn-satblue' rel='tooltip' title=".h($row['User']['first_name'])." ".h($row['User']['last_name'].""><i class='glyphicon-table'></i> Transactions</a>";
+								/*
 								echo "<div class='btn-group'>";
 								echo "<a href='#'' data-toggle='dropdown' class='btn btn-mini btn-darkblue dropdown-toggle'><i class='icon-user'></i> User Panel <span class='caret'></span></a>";
 								echo "<ul class='dropdown-menu'>";
 								echo"<li>";
 									echo $this->Html->link("<i class='icon-user'></i> User Profile" ,
-									array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'viewUser', $row['User']['id'], 'page'=>$page), 
+									array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'viewUser', $row['User']['id']), 
 									array('escape'=>false
 										   
 										)
@@ -150,7 +162,7 @@ if($ajax) {
                                  echo"</li>";
                                  echo"<li>";
 									echo $this->Html->link("<i class='icon-edit'></i> Edit Profile",
-										array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'editUser', $row['User']['id'], 'page'=>$page),
+										array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'editUser', $row['User']['id']),
 										array('escape'=>false,
 										 	
 										 	)
@@ -159,7 +171,7 @@ if($ajax) {
                                  echo"<li>";
 									echo $this->Html->link("<i class='icon-unlock'></i> Change Password",
 
-									 array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'changeUserPassword', $row['User']['id'], 'page'=>$page), 
+									 array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'changeUserPassword', $row['User']['id']), 
 									 array('escape'=>false));
 								echo"</li>";
 								echo"<li>";
@@ -196,18 +208,18 @@ if($ajax) {
 									echo"<li>";
 									echo $this->Html->link("<i class='icon-warning-sign'></i> Permissions", 
 										
-									    array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'viewUserPermissions', $row['User']['id'], 'page'=>$page), array('escape'=>false));
+									    array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'viewUserPermissions', $row['User']['id']), array('escape'=>false));
                                     echo"</li>";
                                     echo"<li>";
 									echo $this->Html->link("<i class='icon-envelope-alt'></i> Send Email",
 
-										array('plugin' => 'usermgmt','controller'=>'UserEmails', 'action'=>'sendToUser', $row['User']['id'], 'page'=>$page), array('escape'=>false));
+										array('plugin' => 'usermgmt','controller'=>'UserEmails', 'action'=>'sendToUser', $row['User']['id']), array('escape'=>false));
 									echo"</li>";
 									echo"</div>";
-
+									
 								echo "</td>";
 								#Control Panel Button - End
-
+								*/
 								echo "</tr>";
 							}
 						} else {
