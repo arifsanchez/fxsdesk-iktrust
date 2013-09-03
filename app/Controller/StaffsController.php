@@ -51,14 +51,17 @@
 			);
 			$this->set('page_title',$page_title);
 
-			$this->paginate = array('limit' => 30, 'order'=>'User.id desc', 'recursive'=>1, 'conditions' => array('User.user_group_id' => 2));
+			$this->paginate = array(
+				'limit' => 15, 
+				'order'=>'User.id desc', 
+				'recursive'=>1, 
+				'conditions' => array(
+					#'User.user_group_id' => 2
+				)
+			);
 			$users = $this->paginate('User');
-			$i=0;
-			foreach($users as $user) {
-				$users[$i]['UserGroup']['name']=$this->UserGroup->getGroupsByIds($user['User']['user_group_id']);
-				$i++;
-			}
 			$this->set('users', $users);
+			
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
 				$this->render('client_listing');

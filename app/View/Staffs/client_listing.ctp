@@ -68,11 +68,9 @@ if($ajax) {
 				</div>
 			</div>
 			<div class="box-content nopadding">
-				<table class="table table-hover table-nomargin table-bordered dataTable dataTable-fixedcolumn dataTable-scroll-x dataTable-scroll-y">
+				<table class="table table-hover table-nomargin table-bordered usertable">
 					<thead>
 						<tr>
-							
-							<!--th class="sorting"><?php echo $this->Paginator->sort('User.id', __('User Id')); ?></th-->
 							<th><?php echo __('Photo');?></th>
 							<th class="sorting"><?php echo $this->Paginator->sort('User.first_name', __('Personal Info')); ?></th>
 							<th class="sorting"><?php echo $this->Paginator->sort('User.email', __('Contact')); ?></th>
@@ -83,14 +81,10 @@ if($ajax) {
 					</thead>
 					<tbody>
 					<?php if(!empty($users)) {
-							#debug($users); die();
-							$page = $this->request->params['paging']['User']['page'];
-							$limit = $this->request->params['paging']['User']['limit'];
-							$i=($page-1) * $limit;
 							foreach ($users as $row) {
 								#debug($row); die();
-								$i++;
-								#echo "<tr id='rowId".$row['User']['id']."'>";
+								#$i++;
+								echo "<tr id='rowId".$row['User']['id']."'>";
 								#echo "<td>".$i."</td>";
 								#echo "<td>".$row['User']['id']."</td>";
 								echo "<td><img src='".$this->Image->resize('img/'.IMG_DIR, $row['UserDetail']['photo'], 60, null, true)."'></td>";
@@ -98,7 +92,7 @@ if($ajax) {
 									if($row['User']['fb_id'] == null){
 										echo "<br/><a class='btn btn-mini btn-blue' href='".SITE_URL."".h($row['User']['username'])."'>".h($row['User']['username'])."</a><br/>";
 									} else {
-										echo "<br/><a class='btn btn-mini' href='".SITE_URL."".h($row['User']['username'])."'>".h($row['User']['username'])."</a>&nbsp;<a class='btn btn-mini btn-satblue' href='https://facebook.com/".h($row['User']['username'])."'><i class='icon-facebook-sign'></i></a><br/>";
+										echo "<br/><a class='btn btn-mini btn-blue ' href='".SITE_URL."".h($row['User']['username'])."'>".h($row['User']['username'])."</a>&nbsp;<a href='https://facebook.com/".h($row['User']['username'])."'><i class='icon-facebook-sign'></i></a><br/>";
 									}
 									echo "<i class='icon-flag'></i> ".date('d/m/Y',strtotime($row['User']['created']));
 								echo "</td>";
@@ -220,6 +214,7 @@ if($ajax) {
 							echo "<tr><td colspan=10><br/><br/>".__('No Data')."</td></tr>";
 						} ?>
 					</tbody>
+					
 				</table>
 				<?php echo $this->element('trader.dashboard.pagination'); ?>
 			</div>
