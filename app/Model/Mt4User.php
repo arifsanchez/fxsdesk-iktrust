@@ -351,6 +351,38 @@ class Mt4User extends AppModel {
 	}
 
 	/**
+	 * Kira Total Trading Account bawah satu email
+	 *
+	 * @access public
+	*/
+	function kiraAccBawahTracc($email=null) {
+		$result ='';
+		$result = $this->find('count', array(
+			'conditions' =>array(
+				'EMAIL' => $email,
+				'GROUP LIKE' => '%IK%'
+			)
+		));
+		return $result;
+	}
+
+	/**
+	 * Kira Total Agent Account bawah satu email
+	 *
+	 * @access public
+	*/
+	function kiraAgentBawahTracc($email=null) {
+		$result ='';
+		$result = $this->find('count', array(
+			'conditions' =>array(
+				'EMAIL' => $email,
+				'GROUP LIKE' => '%Aff%'
+			)
+		));
+		return $result;
+	}
+
+	/**
 	 * Kira Total Trading Account bawah partner
 	 *
 	 * @access public

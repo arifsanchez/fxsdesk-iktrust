@@ -15,7 +15,7 @@
 			<div class="box-content">
 				<ul class="stats">
 					<li class="blue">
-						<a href="<?php echo SITE_URL;?>usermgmt/Users/index?me:<?php echo $var['User']['username'];?>">
+						<a href="<?php echo SITE_URL;?>staffs/client_listing?me:<?php echo $var['User']['username'];?>">
 							<i class="icon-user"></i>
 							<div class="details">
 								<span class="big"><?php $TotalRegClients = $this->requestAction('usermgmt/Users/kiraTotalClient') ; echo $TotalRegClients;?></span>

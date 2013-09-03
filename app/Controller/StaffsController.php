@@ -17,7 +17,7 @@
 		*
 		* @var array
 		*/
-		public $uses = array("Vault","VaultTransaction","VaultTransactionComment","Mt4User","Usermgmt.User","Mt4Trade");
+		public $uses = array("Vault","VaultTransaction","VaultTransactionComment","Mt4User","Usermgmt.User","Usermgmt.UserGroup","Mt4Trade");
 
 		/**
 		* Staff Dashboard
@@ -36,6 +36,47 @@
 			);
 			$this->set('page_title',$page_title);
 
+		}
+
+		/**
+		* STAFF :: Registered Client listing
+		*/
+		public function client_listing() {
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "All Client"
+			);
+			$this->set('page_title',$page_title);
+
+			$this->paginate = array('limit' => 30, 'order'=>'User.id desc', 'recursive'=>1, 'conditions' => array('User.user_group_id' => 2));
+			$users = $this->paginate('User');
+			$i=0;
+			foreach($users as $user) {
+				$users[$i]['UserGroup']['name']=$this->UserGroup->getGroupsByIds($user['User']['user_group_id']);
+				$i++;
+			}
+			$this->set('users', $users);
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('client_listing');
+			}
+		}
+
+		/**
+		* STAFF :: Accounts listing
+		*/
+		public function search_tracc() {
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "Search Trading Accounts"
+			);
+			$this->set('page_title',$page_title);
 		}
 
 		/**
@@ -66,6 +107,36 @@
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
 				$this->render('tracc_listing');
+			}
+		}
+
+		/***
+		* Partner :: request kira total trading account bawah satu email
+		***/
+
+		public function kiraAccBawahTracc(){
+			$this->layout = "ajax";
+			$email = $this->request->params['named']['siapa'];
+			$TotalTraccship = $this->Mt4User->kiraAccBawahTracc($email);
+			if ($this->request->is('requested')) {
+				return $TotalTraccship;
+			} else {
+				$this->set('TotalTraccship', $TotalTraccship);
+			}
+		}
+
+		/***
+		* Partner :: request kira total agent account bawah satu email
+		***/
+
+		public function kiraAgentBawahTracc(){
+			$this->layout = "ajax";
+			$email = $this->request->params['named']['siapa'];
+			$TotalAgentship = $this->Mt4User->kiraAgentBawahTracc($email);
+			if ($this->request->is('requested')) {
+				return $TotalAgentship;
+			} else {
+				$this->set('TotalAgentship', $TotalAgentship);
 			}
 		}
 
@@ -797,7 +868,7 @@
 		public function report_close_order(){
 
 			App::uses('CakeTime', 'Utility');
-			$semalam = strtotime("yesterday");
+			$semalam = strtotime('yesterday');
 			$date =  CakeTime::dayAsSql($semalam);
 			debug($date);
 
@@ -813,26 +884,6 @@
 		    $trades = $this->paginate('Mt4Trade');
 			debug($trades); die();
 
-		}
-		/***
-		*	STAFF :: All Commissions
-		****/
-		public function totalOrderBySymbol(){
-			/*$result = $this->Mt4Trade->find('count', array(
-				'group' => array('Mt4Trade.LOGIN'),
-				'recursive'=>0,
-				'conditions' =>array(
-				''
-				)
-			));
-			*/
-
-			$semalam = strtotime("yesterday");
-			App::uses('CakeTime', 'Utility');
-			$semalam =  CakeTime::nice($semalam);
-			debug($semalam);
-			#debug($result); 
-			die();
 		}
 
 	}
