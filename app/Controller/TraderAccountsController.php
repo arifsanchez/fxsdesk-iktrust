@@ -187,7 +187,7 @@
 			//Page title
 			$page_title = array(
 				'icon' => "glyphicon-table",
-				'name' => "All Transactions #".$acc.""
+				'name' => "History Acc ".$acc.""
 			);
 			$this->set('page_title',$page_title);
 
