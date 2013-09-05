@@ -47,6 +47,9 @@ class VaultsController extends AppController {
 		if ($this->request->is('requested')) {
 			$bal = $balance['Vault']['acc_1'];
 			return $bal;
+
+			$cred = $balance['Vault']['acc_2'];
+			return $cred;
 		} else {
 			$this->set('balance', $balance['Vault']['acc_1']);
 		}

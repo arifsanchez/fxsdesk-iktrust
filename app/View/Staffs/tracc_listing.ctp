@@ -25,6 +25,58 @@ if($ajax) {
 				<h3>
 					Registered Trading Accounts
 				</h3>
+				<div class="actions">
+					<style>
+					    #custom-search-form {
+					    margin:0;
+					    margin-top: 5px;
+					    padding: 0;
+					    }
+					    #custom-search-form .search-query {
+					    padding-right: 3px;
+					    padding-right: 4px \9;
+					    padding-left: 3px;
+					    padding-left: 4px \9;
+					    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+					    margin-bottom: 0;
+					    -webkit-border-radius: 3px;
+					    -moz-border-radius: 3px;
+					    border-radius: 3px;
+					    }
+					    #custom-search-form button {
+					    border: 0;
+					    background: none;
+					    /** belows styles are working good */
+					    padding: 2px 5px;
+					    margin-top: 2px;
+					    position: relative;
+					    left: -28px;
+					    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+					    margin-bottom: 0;
+					    -webkit-border-radius: 3px;
+					    -moz-border-radius: 3px;
+					    border-radius: 3px;
+					    }
+					    .search-query:focus + button {
+					    z-index: 3;
+					    }
+				    </style>
+				    <?php echo $this->Form->create('Staff', array('action' => 'cariTracc'), array('class' => 'form-search form-horizontal pull-right'));
+				    	echo "<div class='controls'><div class='input-prepend'>";
+				    	echo $this->Form->input('tracc_no', array(
+							'label' => false,
+							'data-rule-required' => 'true',
+							'data-rule-number' => 'true',
+							'placeholder' => 'Trading Acc No',
+							'class' => 'input-medium',
+							'div' => false,
+							'after' => "<span class='add-on'><i class='icon-search'></i></span>"
+						));
+				    	echo "</div></div>";
+				    	echo $this->Form->submit();
+						echo $this->Form->end();
+					?>
+				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-bordered usertable">
@@ -47,7 +99,7 @@ if($ajax) {
 								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
 									<i class="icon-exclamation-sign"></i>
 								</button>
-								<a class="btn" href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" >
+								<a class="btn" href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['NAME'];?>" >
 									<?php echo $acc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>

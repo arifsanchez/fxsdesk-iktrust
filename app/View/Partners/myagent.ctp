@@ -36,7 +36,7 @@ if($ajax) {
 							<th>Phone</th>
 							<th><div class="text-right">Commission $</div></th>
 							<th><div class="text-center">Downline</div></th>
-							<th>Account Status</th>
+							<th>Dashboard</th>
 							<th>Operations</th>
 						</tr>
 					</thead>
@@ -57,15 +57,14 @@ if($ajax) {
 							<td><div class="text-center"><span class="badge badge-warning"><?php $TotalDownline = $this->requestAction('partners/kiraAccBawahAff/agent:'.$acc['Mt4User']['LOGIN'].'') ; echo $TotalDownline;?></span></div></td>
 							<td>
 								<?php 	
-								$accstatus = $acc['Mt4User']['ENABLE'];
-
-									switch ($accstatus){
-										case "1":
-										echo "<span class=\"label label-satgreen\">Active</span>";
-										break;
-										default:
+								$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$acc['Mt4User']['EMAIL']);
+								#debug($accstatus);
+									if(!empty($accstatus)){
+										$email = base64_encode($acc['Mt4User']['EMAIL']);
+										echo "<a href='".SITE_URL."partners/myclient_profile/kunci:".$email."/siapa:".$var['User']['username']."' class='btn btn-mini btn-green'>View Detail</a>";
+									} else {
 										echo "<span class=\"label label-lightred\">Inactive</span>";
-									};
+									}
 								?>
 							</td>
 							<td>

@@ -42,18 +42,25 @@ if($ajax) {
 						<?php foreach($MT_ACC as $acc): ?>
 						<tr>
 							<td>
-								<a class="btn btn-mini btn-blue" href="#" >
+								<span class="label label-blue">
 									<?php echo $acc['Mt4User']['NAME'];?>
-								</a>
+								</span>
 							</td>
 							<td><?php echo $acc['Mt4User']['EMAIL'];?></td>
 							<td><?php echo $acc['Mt4User']['PHONE'];?></td>
 							<td><?php echo $acc['Mt4User']['COUNTRY'];?></td>
 							<td>
 
-								<a href="#popup-coming-soon" class="btn btn-mini btn-satblue" rel="tooltip" title="Email Client" data-toggle="modal"><i class="icon-envelope-alt"></i> Sent Email</a>
-
-								<a href="#popup-coming-soon" class="btn btn-mini btn-green" rel="tooltip" title="Deposit to client wallet" data-toggle="modal"><i class="icon-money"></i> Transfer IK$</a>
+								<?php 	
+								$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$acc['Mt4User']['EMAIL']);
+								#debug($accstatus);
+									if(!empty($accstatus)){
+										$email = base64_encode($acc['Mt4User']['EMAIL']);
+										echo "<a href='".SITE_URL."partners/myclient_profile/kunci:".$email."/siapa:".$var['User']['username']."' class='btn btn-mini btn-green'>View Profile</a>";
+									} else {
+										echo "<a href='#popup-coming-soon' class='btn btn-mini btn-red'>Invite Dashboard</a>";
+									}
+								?>
 							</td>
 						</tr>
 						<?php endforeach; ?>

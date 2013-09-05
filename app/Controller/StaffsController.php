@@ -153,6 +153,20 @@
 		}
 
 		/***
+		* Staff :: carian untuk Tracc History
+		***/
+
+		public function cariTracc(){
+			$cari = $this->request->data['Staff']['tracc_no'];
+			if($cari){
+				//check if this is a valid trading account
+				$this->redirect('tracc_history/process:'.$cari);
+			} else {
+				$this->redirect($this->referer());
+			}
+		}
+
+		/***
 		* Partner :: request kira total trading account bawah satu email
 		***/
 
@@ -212,7 +226,14 @@
 				)
 			);
 			$trades = $this->paginate('Mt4Trade');
-			$this->set('agentPost',$trades);
+
+			if(!empty($trades)){
+				$this->set('agentPost',$trades);	
+			} else {
+				$this->Session->setFlash(__($tracc_id.' Trading Account History need some transactions to display beautifully !'),'default',array('class' => 'error'));
+				$this->redirect('tracc_listing');
+			}
+			
 
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';

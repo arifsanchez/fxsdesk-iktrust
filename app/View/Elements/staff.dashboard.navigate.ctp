@@ -14,7 +14,7 @@
 	if($this->UserAuth->isLogged()) {
 	echo "<li class='".(($actionUrl=='Staffs/backoffice') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Dashboard'), array('controller'=>'Staffs', 'action'=>'backoffice?me:'.$var['User']['username'], 'plugin' => ''))."</li>";
 		
-		/*
+		
 		echo "<li class='dropdown'>";
 			if($this->UserAuth->HP('Users', 'index')) {
 				echo $this->Html->link(__('Users').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
@@ -90,7 +90,7 @@
 				}
 			echo "</ul>";
 		echo "</li>";
-		*/
+		
 	}
 	?>
 </ul>

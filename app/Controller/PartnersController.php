@@ -361,6 +361,48 @@
 		}
 
 		/**
+		* PARTNER :: Client listing
+		*/
+		public function myclient_profile() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "Client Profile"
+			);
+			$this->set('page_title',$page_title);
+
+
+			//Dapatkan info tentang registered info
+			$kunci = $this->request->params['named']['kunci'];
+			#debug($kunci);
+			$email = base64_decode($kunci);
+			#debug($email);
+			$user = $this->User->findByEmail($email);
+			$this->set('user', $user);
+
+			//Dapatkan info wallet client
+			$vacc = $this->Vault->getAccBalance($user['User']['id']);
+			$this->set('acc1', $vacc['Vault']['acc_1']);
+			$this->set('acc2', $vacc['Vault']['acc_2']);
+
+			//Dapatkan senarai trading account
+			$tradeAcc = $this->Mt4User->listTradeAcc($user['User']['email']);
+			$this->set('tradeTracc', $tradeAcc);
+
+			//Dapatkan senarai affilliate jika ada
+			$acc = $this->Mt4User->find('all', array(
+				'conditions' =>array(
+					'Mt4User.EMAIL' => $user['User']['email'],
+					#'Mt4User.EMAIL' => "me@arif.my", //Test Account
+					'Mt4User.GROUP LIKE' => '%Aff%'
+				)
+			));
+			$this->set('tradeAgacc',$acc);
+		}
+
+		/**
 		* PARTNER :: Agent listing
 		*/
 		public function myagent() {
@@ -428,7 +470,7 @@
 
 			//Paginate Trader Accounts Listing
 			$this->paginate = array(
-				'limit' => 35, 
+				'limit' => 20, 
 				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
 				'recursive'=>0,
 				'conditions' =>array(
@@ -442,6 +484,22 @@
 				$this->layout = 'ajax';
 				$this->render('myagent_history');
 			}
+		}
+
+		/**
+		* PARTNER :: Check kewujudan dashboard Account
+		*
+		*/
+		public function checkDashboardStatus(){
+			$email = $this->request->params['named']['pass'];
+			$adoTak = $this->User->getUserByEmail($email);
+			#debug($adoTak);
+			if ($this->request->is('requested')) {
+				return $adoTak;
+			} else {
+				$this->set('statusDash', $adoTak);
+			}
+			#
 		}
 
 		/**

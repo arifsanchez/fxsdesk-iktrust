@@ -6,7 +6,7 @@
 			</li>
 			
 			<li class="teal long">
-				<a href="<?php echo SITE_URL;?>Partners/history"><span><i class="icon-book"></i></span><span class='name'>Trading Acc History</span></a>
+				<a href="<?php echo SITE_URL;?>Partners/history"><span><i class="icon-book"></i></span><span class='name'>Partner Acc History</span></a>
 			</li>
 
 			<li class="blue">

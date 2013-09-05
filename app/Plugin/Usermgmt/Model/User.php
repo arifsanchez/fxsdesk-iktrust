@@ -550,6 +550,18 @@ class User extends UserMgmtAppModel {
 	}
 
 	/**
+	 * Used to get user by user email
+	 *
+	 * @access public
+	 * @param integer $userId user id
+	 * @return string
+	 */
+	public function getUserByEmail($email) {
+		$res = $this->find('first', array('conditions' => array('User.email' => $email)));
+		$email=(!empty($res)) ? ($res['User']['id']) : null;
+		return $res;
+	}
+	/**
 	 * Used to get user name and pix by user id
 	 *
 	 * @access public
