@@ -11,6 +11,9 @@
 					<i class="icon-th-large"></i>
 					Traders
 				</h3>
+				<div class="actions">
+					<?php echo $this->element('staff.carianClientEmail');?>
+				</div>
 			</div>
 			<div class="box-content">
 				<ul class="stats">

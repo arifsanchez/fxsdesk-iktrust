@@ -14,7 +14,7 @@
 	if($this->UserAuth->isLogged()) {
 	echo "<li class='".(($actionUrl=='Staffs/backoffice') ? $activeClass : $inactiveClass)."'>".$this->Html->link(__('Dashboard'), array('controller'=>'Staffs', 'action'=>'backoffice?me:'.$var['User']['username'], 'plugin' => ''))."</li>";
 		
-		
+		/*
 		echo "<li class='dropdown'>";
 			if($this->UserAuth->HP('Users', 'index')) {
 				echo $this->Html->link(__('Users').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
@@ -57,6 +57,9 @@
 				}
 			echo "</ul>";
 		echo "</li>";
+
+		*/
+		
 		echo "<li class='dropdown'>";
 			if($this->UserAuth->HP('Contents', 'index')) {
 				echo $this->Html->link(__('Pages').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
@@ -70,10 +73,11 @@
 				}
 			echo "</ul>";
 		echo "</li>";
+		
 
 		echo "<li class='dropdown'>";
 			if($this->UserAuth->HP('UserSettings', 'index')) {
-				echo $this->Html->link(__('SysConfig').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
+				echo $this->Html->link(__('System Config').' <b class="caret"></b>', '#', array('escape'=>false, 'class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'));
 			}
 			echo "<ul class='dropdown-menu'>";
 				if($this->UserAuth->HP('UserGroupPermissions', 'index')) {

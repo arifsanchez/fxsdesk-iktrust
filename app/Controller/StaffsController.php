@@ -83,9 +83,15 @@
 
 
 			//Dapatkan info tentang registered info
-			$username = $this->request->params['named']['name'];
-			$user = $this->User->findByUsername($username);
-			$this->set('user', $user);
+			if(!empty($this->request->params['named']['name'])){
+				$username = $this->request->params['named']['name'];
+				$user = $this->User->findByUsername($username);
+				$this->set('user', $user);
+			} else if(!empty($this->request->params['named']['email'])){
+				$email = $this->request->params['named']['email'];
+				$user = $this->User->findByEmail($email);
+				$this->set('user', $user);
+			}
 
 			//Dapatkan info wallet client
 			$vacc = $this->Vault->getAccBalance($user['User']['id']);
@@ -161,6 +167,27 @@
 			if($cari){
 				//check if this is a valid trading account
 				$this->redirect('tracc_history/process:'.$cari);
+			} else {
+				$this->redirect($this->referer());
+			}
+		}
+
+		/***
+		* Staff :: carian untuk Tracc History
+		***/
+
+		public function cariClient(){
+			$cari = $this->request->data['Staff']['email'];
+			if($cari){
+				//check if this is a valid trading account
+				$email = $this->User->findByEmail($cari);
+				if(empty($email)){
+					$this->Session->setFlash(__('Email address search return empty result .'),'default',array('class' => 'error'));
+					$this->redirect('client_listing');
+				} else {
+					$this->redirect('client_profile/email:'.$cari);
+				}
+				
 			} else {
 				$this->redirect($this->referer());
 			}
