@@ -171,6 +171,7 @@
 						'recursive'=>-1,
 						'conditions' =>array(
 							'Mt4User.LOGIN LIKE' => $cari,
+							'Mt4User.GROUP LIKE' => '%IK%'
 						),
 						'fields' => array('Mt4User.LOGIN')
 					));
@@ -198,6 +199,7 @@
 						'recursive'=>-1,
 						'conditions' =>array(
 							'Mt4User.LOGIN LIKE' => $cari,
+							'Mt4User.GROUP LIKE' => '%Aff%'
 						),
 						'fields' => array('Mt4User.LOGIN')
 					));
@@ -220,7 +222,7 @@
 			$cari = $this->request->data['Staff']['email'];
 			if($cari){
 				//check if this is a valid trading account
-				$email = $this->User->findBy($cari);
+				$email = $this->User->findByEmail($cari);
 				if(empty($email)){
 					$this->Session->setFlash(__('Email address search return empty result .'),'default',array('class' => 'error'));
 					$this->redirect('client_listing');
