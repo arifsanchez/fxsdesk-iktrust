@@ -470,7 +470,8 @@ class Mt4User extends AppModel {
 			),
 			'fields' => array(
 				'BALANCE',
-				'NAME'
+				'NAME',
+				'EMAIL'
 			)
 		));
 		return $bakiAcc;

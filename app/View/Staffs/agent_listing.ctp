@@ -25,6 +25,9 @@ if($ajax) {
 				<h3>
 					Registered Agent Accounts
 				</h3>
+				<div class="actions">
+					<?php echo $this->element('staff.carianAgaccNo');?>
+				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-bordered usertable">

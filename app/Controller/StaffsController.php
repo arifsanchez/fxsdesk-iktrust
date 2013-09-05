@@ -166,7 +166,47 @@
 			$cari = $this->request->data['Staff']['tracc_no'];
 			if($cari){
 				//check if this is a valid trading account
-				$this->redirect('tracc_history/process:'.$cari);
+				$traccNo = $this->Mt4User->find('first', 
+					array(
+						'recursive'=>-1,
+						'conditions' =>array(
+							'Mt4User.LOGIN LIKE' => $cari,
+						),
+						'fields' => array('Mt4User.LOGIN')
+					));
+				if(empty($traccNo)){
+					$this->Session->setFlash(__('Trading Account Number search return empty result .'),'default',array('class' => 'error'));
+					$this->redirect('tracc_listing');
+				} else {
+					$this->redirect('tracc_history/process:'.$cari);
+				}
+			} else {
+				$this->redirect($this->referer());
+			}
+		}
+
+		/***
+		* Staff :: carian untuk Agacc History
+		***/
+
+		public function cariAgacc(){
+			$cari = $this->request->data['Staff']['tracc_no'];
+			if($cari){
+				//check if this is a valid trading account
+				$traccNo = $this->Mt4User->find('first', 
+					array(
+						'recursive'=>-1,
+						'conditions' =>array(
+							'Mt4User.LOGIN LIKE' => $cari,
+						),
+						'fields' => array('Mt4User.LOGIN')
+					));
+				if(empty($traccNo)){
+					$this->Session->setFlash(__('Agent Account Number search return empty result .'),'default',array('class' => 'error'));
+					$this->redirect('agent_listing');
+				} else {
+					$this->redirect('agent_history/process:'.$cari);
+				}
 			} else {
 				$this->redirect($this->referer());
 			}
@@ -180,7 +220,7 @@
 			$cari = $this->request->data['Staff']['email'];
 			if($cari){
 				//check if this is a valid trading account
-				$email = $this->User->findByEmail($cari);
+				$email = $this->User->findBy($cari);
 				if(empty($email)){
 					$this->Session->setFlash(__('Email address search return empty result .'),'default',array('class' => 'error'));
 					$this->redirect('client_listing');
@@ -393,6 +433,7 @@
 
 			$bakiAcc = $this->Mt4User->bakiAcc($tracc_id);
 			$this->set('nama_agent',$bakiAcc['Mt4User']['NAME']);
+			$this->set('email_agent',$bakiAcc['Mt4User']['EMAIL']);
 			$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
 
 			//listing downline
@@ -976,5 +1017,22 @@
 
 		}
 
+		/****
+		*	STAFF :: Baca Log
+		*****/
+
+		public function baca_error_log(){
+			debug($this->request);
+			App::uses('Folder', 'Utility');
+			App::uses('File', 'Utility');
+			$dir = new Folder('/tmp/logs');
+			$files = $dir->find('.*\error.log');
+
+			foreach ($files as $file) {
+			    $contents = $file->read();
+			    debug($contents);
+			    $file->close();
+			}
+		}	
 	}
 ?>

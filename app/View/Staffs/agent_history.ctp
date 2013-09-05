@@ -20,16 +20,28 @@ if($ajax) {
 	<div class="span12">
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
 			<div class="row-fluid">
-				<div class="span2">
+				<div class="span3">
 					<p><b>Account Name</b><br/>
-					<span class="label label-blue"><?php echo $nama_agent;?></span></p>
+					<span class="label label-blue"><?php echo $nama_agent;?></span><br/>
+					
+						<?php 	
+						$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$email_agent);
+						#debug($accstatus);
+							if(!empty($accstatus)){
+								$email = base64_encode($email_agent);
+								echo "<span class='label label-green'><i class='glyphicon-dashboard'></i> ".$email_agent."</span>";
+							} else {
+								echo "<span class='label label-red'><i class='glyphicon-dashboard'></i> ".$email_agent."</span>";
+							}
+						?>
+					</p>
 					<p><b>Account Balance</b><br/>
 					<span class="label label-red"><?php echo $this->Number->Currency($bakiAcc, 'IK$ ');?></span></p>
 				</div>
-				<div class="span10">
+				<div class="span9">
 				<?php if(!empty($downlines)){ ?>
 				
-					<p><b>Agent Downline</b></p>
+					<p><b>Agent Downline</b> <span class="label label-warning"><?php echo count($downlines);?> Trading Accounts</span></p>
 					<p>
 				    <?php foreach($downlines as $downline):?>
 				    <?php #debug($downline);?>
