@@ -27,14 +27,14 @@
 		<div class="pagestats">
 			<span class="left"><b>Clients</b></span>
 			<span class="left label label-success">
-				<?php $TotalWallet = $this->requestAction('vaults/kiraTotalWallet') ; echo $this->Number->currency($TotalWallet,'USD');?>
+				<?php $TotalWallet = $this->requestAction('vaults/kiraTotalWalletClient') ; echo $this->Number->currency($TotalWallet,'IK$ ');?>
 			</span>
 		</div>
 		<br/>
 		<div class="pagestats">
 			<span class="left"><b>Partners</b></span>
 			<span class="left label label-success">
-				<?php $TotalWalletPartner = $this->requestAction('vaults/kiraTotalWalletPartner') ; echo $this->Number->currency($TotalWalletPartner,'USD');?>
+				<?php $TotalWalletPartner = $this->requestAction('vaults/kiraTotalWalletPartner') ; echo $this->Number->currency($TotalWalletPartner,'IK$ ');?>
 			</span>
 		</div>
 	</div>

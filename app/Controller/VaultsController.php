@@ -481,7 +481,7 @@ class VaultsController extends AppController {
 	 * @access public
 	 * @return array
 	 */
-	public function kiraTotalWallet() {
+	public function kiraTotalWalletClient() {
 		$this->layout = "ajax";
 		if($this->UserAuth->isLogged()){
 			$total = $this->Vault->kiraTotalWallet();

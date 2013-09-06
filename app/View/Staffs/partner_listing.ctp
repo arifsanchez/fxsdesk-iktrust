@@ -36,7 +36,7 @@ if($ajax) {
 							<th>Phone</th>
 							<th><div class="text-right"><?php echo $this->Paginator->sort('Mt4User.BALANCE', __('Balance')); ?></div></th>
 							<th>Downline</th>
-							<th>Account Status</th>
+							<th>Dashboard</th>
 							<th>Operations</th>
 						</tr>
 					</thead>
@@ -57,15 +57,14 @@ if($ajax) {
 							<td><div class="text-center"><span class="badge badge-warning"><?php $TotalDownline = $this->requestAction('partners/kiraAccBawahAff/agent:'.$acc['Mt4User']['LOGIN'].'') ; echo $TotalDownline;?></span></div></td>
 							<td>
 								<?php 	
-								$accstatus = $acc['Mt4User']['ENABLE'];
-
-									switch ($accstatus){
-										case "1":
-										echo "<span class=\"label label-satgreen\">Active</span>";
-										break;
-										default:
-										echo "<span class=\"label label-lightred\">Inactive</span>";
-									};
+								$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$acc['Mt4User']['EMAIL']);
+								#debug($accstatus);
+									if(!empty($accstatus)){
+										$email = base64_encode($acc['Mt4User']['EMAIL']);
+										echo "<a href='#popup-coming-soon' class='btn btn-mini btn-green'>Active</a>";
+									} else {
+										echo "<a href='#popup-coming-soon' class='btn btn-mini btn-red'>Inactive</a>";
+									}
 								?>
 							</td>
 							<td>

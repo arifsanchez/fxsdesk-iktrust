@@ -119,6 +119,7 @@ public $validate = array(
 	function kiraTotalWallet() {
 		$total = 0;
 		$total = $this->find('all', array(
+			'conditions' => array('Vault.partner' => 0),
 			'fields' => array('sum(Vault.acc_1) AS total')
 		));
 		return $total;
