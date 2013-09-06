@@ -743,7 +743,101 @@
 				);
 				#debug($data); die();
 				$process = $this->addBalTracc($data);
-				$this->log("WT TRACC, ".$jumlah, 'mt4Balance');
+				$this->log("WT PRACC, ".$jumlah, 'mt4Balance');
+			}
+
+			## > sent email status update to finance & user email
+
+			## > sent session flash and back to reffered page
+			$this->Session->setFlash(__('Status for transaction #'.$transId.' updated.'),'default',array('class' => 'success'));
+			$this->redirect($this->referer());
+		}
+
+		/*****
+		* STAFF :: Change status on the transaction for type code 10
+		******/
+		public function updateTransactionStatus_code10(){
+			
+			#setiap status update params
+			$status = $this->request->data['Staff']['status'];
+			$transId = $this->request->data['Staff']['transid'];
+			$jumlah = $this->request->data['Staff']['jumlah'];
+			$userId = $this->request->data['Staff']['userId'];
+			$staffId = $this->request->data['Staff']['staffId'];
+			$traccId = $this->request->data['Staff']['traccId'];
+
+			## > update status field at VaultTransaction
+			$data = array('status' => $status);
+			$this->VaultTransaction->id = $transId;
+			$this->VaultTransaction->save($data);
+
+			## > add comment to VaultTransactionComment
+			$message = $status;
+			switch ($message){
+				case "1":
+				$message = "Status have been updated to NEW request.";
+				break;
+				case "2":
+				$message = "We have received your request and proceeding within 24 hours time. Status have been updated to PENDING for processing request.";
+				break;
+				case "3":
+				$message = "Congratulations ! Your transfer request have been APPROVED.";
+				break;
+				case "4":
+				$message = "Sorry ! Your transfer request have been DECLINED. Please contact our finance department for further info.";
+				break;
+			};
+
+			$data = array(
+				'vault_transaction_id' => $transId,
+				'comment' => "$message",
+				'user_id' => $staffId
+			);
+			$this->VaultTransactionComment->create();
+			$this->VaultTransactionComment->save($data);
+
+			#initiate finance process
+			//Jika status = 2
+			## > deduct duit dari wallet 
+			## > update acc1 field at Vault
+			if($status == 2){
+				$vaultId = $this->Vault->find('first', array(
+					'conditions' =>array(
+						'user_id' => $userId,
+					)
+				));
+				$new_balance = $vaultId['Vault']['acc_1'] - $jumlah;
+				$data = array('acc_1' => $new_balance);
+				$this->Vault->id = $vaultId['Vault']['id'];
+				$this->Vault->save($data);
+				#debug($this->request); die();
+			}
+
+			//Jika status = 4
+			## > refund semula ke dalam IK Wallet
+			if($status == 4){
+				$vaultId = $this->Vault->find('first', array(
+					'conditions' =>array(
+						'user_id' => $userId,
+					)
+				));
+				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
+				$data = array('acc_1' => $new_balance);
+				$this->Vault->id = $vaultId['Vault']['id'];
+				$this->Vault->save($data);
+			}
+
+			//Jika status = 3
+			## > run proc_WT_TRACC 
+			if($status == 3){
+				$data = array(
+				'traccId' => $traccId,
+				'tambahJumlah' => $jumlah,
+				'type' => "VT PRACC",
+				);
+				#debug($data); die();
+				$process = $this->addBalTracc($data);
+				$this->log("VT PRACC, ".$jumlah, 'mt4Balance');
 			}
 
 			## > sent email status update to finance & user email
@@ -809,6 +903,101 @@
 				#debug($data); die();
 				$process = $this->trigBalTracc($data);
 				$this->log("WT TRACC, ".$jumlah, 'mt4Balance');
+			}
+
+			//Jika status = 4 decline
+			## > refund semula ke dalam trading account
+			if($status == 4){
+
+				$data = array(
+					'traccId' => $traccId,
+					'tambahJumlah' => $jumlah,
+					'type' => "CANCEL TRACC",
+				);
+				#debug($data); die();
+				$process = $this->trigBalTracc($data);
+				$this->log("CANCEL TRACC, ".$jumlah, 'mt4Balance');
+			}
+
+			//Jika status = 3 accepted
+			## > update acc1 field at Vault
+			if($status == 3){
+				$vaultId = $this->Vault->find('first', array(
+					'conditions' =>array(
+						'user_id' => $userId,
+					)
+				));
+				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
+				$data = array('acc_1' => $new_balance);
+				$this->Vault->id = $vaultId['Vault']['id'];
+				$this->Vault->save($data);
+				#debug($this->request); die();
+				
+			}
+
+			## > sent email status update to finance & user email
+
+			## > sent session flash and back to reffered page
+			$this->Session->setFlash(__('Status for transaction #'.$transId.' updated.'),'default',array('class' => 'success'));
+			$this->redirect($this->referer());
+		}
+
+		/*****
+		* STAFF :: Change status on the transaction for type code 4
+		******/
+		public function updateTransactionStatus_code40(){
+			
+			#setiap status update params
+			$status = $this->request->data['Staff']['status'];
+			$transId = $this->request->data['Staff']['transid'];
+			$jumlah = $this->request->data['Staff']['jumlah'];
+			$userId = $this->request->data['Staff']['userId'];
+			$staffId = $this->request->data['Staff']['staffId'];
+			$traccId = $this->request->data['Staff']['traccId'];
+
+			## > update status field at VaultTransaction
+			$data = array('status' => $status);
+			$this->VaultTransaction->id = $transId;
+			$this->VaultTransaction->save($data);
+
+			## > add comment to VaultTransactionComment
+			$message = $status;
+			switch ($message){
+				case "1":
+				$message = "Status have been updated to NEW request.";
+				break;
+				case "2":
+				$message = "We have received your request and proceeding within 24 hours time. Status have been updated to PENDING for processing request.";
+				break;
+				case "3":
+				$message = "Congratulations ! Your transfer request have been APPROVED.";
+				break;
+				case "4":
+				$message = "Sorry ! Your transfer request have been DECLINED. Please contact our finance department for further info.";
+				break;
+			};
+
+			$data = array(
+				'vault_transaction_id' => $transId,
+				'comment' => "$message",
+				'user_id' => $staffId
+			);
+			$this->VaultTransactionComment->create();
+			$this->VaultTransactionComment->save($data);
+
+			#initiate finance process
+			//Jika status = 2 pending
+			## > deduct duit dari acc trading 
+
+			if($status == 2){
+				$data = array(
+					'traccId' => $traccId,
+					'tambahJumlah' => '-'.$jumlah,
+					'type' => "VT PRACC",
+				);
+				#debug($data); die();
+				$process = $this->trigBalTracc($data);
+				$this->log("VT PRACC, ".$jumlah, 'mt4Balance');
 			}
 
 			//Jika status = 4 decline

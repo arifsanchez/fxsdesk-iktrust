@@ -62,35 +62,13 @@
 							<td>
 								<?php
 									$type = $Transaction['VaultTransaction']['type'];
-
-									switch ($type){
-										case "1":
-										echo "<span class='label label-satgreen'>DEPO TO TRADING ACC</span>";
-										break;
-										case "2":
-										echo "<span class='label label-satgreen'>DEPO TO WALLET</span>";
-										break;
-									};
+									echo $this->element('requestVaultTransType', array('type' => $type));
 								?>
 							</td>
 							<td>
 								<?php
 									$status = $Transaction['VaultTransaction']['status'];
-									
-									switch ($status){
-										case 1:
-										echo "<span class='label label-orange'>NEW</span>";
-										break;
-										case 2:
-										echo "<span class='label label-satblue'>PROCESSING</span>";
-										break;
-										case 3:
-										echo "<span class='label label-satgreen'>APPROVE</span>";
-										break;
-										case 4:
-										echo "<span class='label label-red'>DECLINE</span>";
-										break;
-									};
+									echo $this->element('requestVaultStatLabel', array('status' => $status));
 								?>
 							</td>
 							<td><?php echo ucwords(strtolower($Transaction['VaultTransaction']['description']));?></td>

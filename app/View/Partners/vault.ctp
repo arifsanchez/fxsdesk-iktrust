@@ -1,7 +1,7 @@
 <?php 
 	echo $this->element('popup.feature.comingsoon');
-	echo $this->element('popup.deposit', array('bal' => $acc1,'uname' => $var['User']['username'], 'uid' => $var['User']['id']));
-	echo $this->element('popup.withdraw', array('bal' => $acc1));
+	echo $this->element('popup.deposit_partner', array('bal' => $acc1,'uname' => $var['User']['username'], 'uid' => $var['User']['id']));
+	echo $this->element('popup.withdraw_partner', array('bal' => $acc1));
 ?>
 
 <div class="row-fluid">
@@ -13,7 +13,7 @@
 					<div class="box-title">
 						<h3>
 							<i class="icon-money"></i>
-							Account 1
+							IK$
 						</h3>
 						<div class="pull-right">
 							<a
@@ -21,7 +21,7 @@
 								rel="tooltip" 
 								data-placement="bottom" 
 								class="btn btn-satgreen" 
-								href="#popup-coming-soon" 
+								href="#DepositWallet_partner" 
 								title="" 
 								data-toggle="modal" 
 								data-trigger="hover"  
@@ -33,7 +33,7 @@
 								data-original-title="The safest way to withdraw your IK Wallet fund. Select from many of our payment channel." 
 								data-placement="bottom" 
 								class="btn btn-red" 
-								href="#popup-coming-soon" 
+								href="#WithdrawWallet_partner" 
 								title="" 
 								data-toggle="modal" 
 								data-trigger="hover"  
@@ -62,7 +62,7 @@
 					<div class="box-title">
 						<h3>
 							<i class="icon-money"></i>
-							Account 2
+							CR$
 						</h3>
 						<div class="pull-right">
 							<a
@@ -139,35 +139,13 @@
 									<td>
 										<?php
 											$type = $vt_latest['VaultTransaction']['type'];
-
-											switch ($type){
-												case "1":
-												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-												break;
-												case "2":
-												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
-												break;
-											};
+											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
 									<td>
 										<?php
 											$status = $vt_latest['VaultTransaction']['status'];
-											
-											switch ($status){
-												case 1:
-												echo "<span class='label label-orange'>NEW</span>";
-												break;
-												case 2:
-												echo "<span class='label label-satblue'>PENDING</span>";
-												break;
-												case 3:
-												echo "<span class='label label-satgreen'>APPROVE</span>";
-												break;
-												case 4:
-												echo "<span class='label label-red'>DECLINE</span>";
-												break;
-											};
+											echo $this->element('requestVaultStatLabel', array('status' => $status));
 										?>
 									</td>
 									<td><div class="text-right"><?php echo $vt_latest['VaultTransaction']['jumlah'];?></div></td>
@@ -196,15 +174,7 @@
 									<td>
 										<?php
 											$type = $vt_new['VaultTransaction']['type'];
-
-											switch ($type){
-												case "1":
-												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-												break;
-												case "2":
-												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
-												break;
-											};
+											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
 									<td><?php echo $vt_new['VaultTransaction']['description'];?></td>
@@ -234,15 +204,7 @@
 									<td>
 										<?php
 											$type = $vt_pending['VaultTransaction']['type'];
-
-											switch ($type){
-												case "1":
-												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-												break;
-												case "2":
-												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
-												break;
-											};
+											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
 									<td><?php echo $vt_pending['VaultTransaction']['description'];?></td>
@@ -272,15 +234,7 @@
 									<td>
 										<?php
 											$type = $vt_app['VaultTransaction']['type'];
-
-											switch ($type){
-												case "1":
-												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-												break;
-												case "2":
-												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
-												break;
-											};
+											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
 									<td><?php echo $vt_app['VaultTransaction']['description'];?></td>
@@ -310,15 +264,7 @@
 									<td>
 										<?php
 											$type = $vt_dec['VaultTransaction']['type'];
-
-											switch ($type){
-												case "1":
-												echo "<span class='label label-satgreen'>DP <i class='glyphicon-right_arrow'></i> TRADING ACC</span>";
-												break;
-												case "2":
-												echo "<span class='label label-satgreen'>DP -> WALLET</span>";
-												break;
-											};
+											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
 									<td><?php echo $vt_dec['VaultTransaction']['description'];?></td>
@@ -371,7 +317,7 @@
 									rel="tooltip"
 									data-placement="bottom"
 									class="btn btn-satgreen" 
-									href="#popup-coming-soon"
+									href="#DPpartnerAcc<?php echo $tradeAcc['Mt4User']['LOGIN'];?>"
 									title="" 
 									data-trigger="hover" 
 									data-toggle="modal"	
@@ -383,7 +329,7 @@
 									data-original-title="Withdraw funds to IK Wallet"
 									data-placement="bottom"
 									class="btn btn-red" 
-									href="#popup-coming-soon"
+									href="#WDpartnerAcc<?php echo $tradeAcc['Mt4User']['LOGIN'];?>"
 									title="" 
 									data-trigger="hover" 
 									data-toggle="modal" 
@@ -395,8 +341,8 @@
 							</td>
 						</tr>
 						<?php
-							#echo $this->element('popup.DPtradeAcc.wallet', array('login' => $tradeAcc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $tradeAcc['Mt4User']['BALANCE']));
-							#echo $this->element('popup.WDtradeAcc.wallet', array('login' => $tradeAcc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $tradeAcc['Mt4User']['BALANCE']));
+							echo $this->element('popup.DPpartnerAcc', array('login' => $tradeAcc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $tradeAcc['Mt4User']['BALANCE']));
+							echo $this->element('popup.WDpartnerAcc', array('login' => $tradeAcc['Mt4User']['LOGIN'],'bal' => $acc1, 'balance' => $tradeAcc['Mt4User']['BALANCE']));
 						?>
 						<?php #endforeach; ?>
 					</tbody>

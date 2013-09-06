@@ -360,7 +360,6 @@ class VaultsController extends AppController {
 		$acc1 = $this->Vault->getAccBalance($userId);
 		$vaultId = $acc1['Vault']['id'];
 		$bakiAcc1Wallet = $acc1['Vault']['acc_1'];
-		#debug($bakiAcc1Wallet);
 
 		//get berapa amount nak transfer dari form
 		$request = $this->request->data;
@@ -381,19 +380,31 @@ class VaultsController extends AppController {
 				$this->Session->setFlash(__('Sorry, you have not enter any amount to transfer.'),'default',array('class' => 'info'));
 				$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
 			} else {
+				if($request['Vault']['partner'] == 'yes'){
+					$typecode = 10;
+					$comment = "Vault Transfer #";
+				} else {
+					$typecode = 1;
+					$comment = "Wallet Transfer #";
+				}
 				$data = array(
 					'vault_id' => $vaultId,
 					'jumlah' => $intmount,
 					'tracc_no' => $acc,
-					'type' => 1,
+					'type' => $typecode,
 					'status' => 1,
-					'description' => "DP TRACC #".$vaultId
+					'description' => $comment.$vaultId
 				);
 				//sent to transfer request queue
 				$this->VaultTransaction->create();
 				$this->VaultTransaction->save($data);
 				$this->Session->setFlash(__('Transfer request has been sent to IK Trust HQ'),'default',array('class' => 'success'));
-				$this->redirect(array('controller' =>'vaults', 'action' => 'mywallet_history'));
+				
+				if($request['Vault']['partner'] == 'yes'){
+					$this->redirect(array('controller' =>'partners', 'action' => 'vault_history'));	
+				} else {
+					$this->redirect(array('controller' =>'vaults', 'action' => 'mywallet_history'));
+				}
 			}
 		} else {
 			$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
@@ -433,19 +444,31 @@ class VaultsController extends AppController {
 				$this->Session->setFlash(__('Sorry, you have not enter any amount to transfer.'),'default',array('class' => 'info'));
 				$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
 			} else {
+				if($request['Vault']['partner'] == 'yes'){
+					$typecode = 40;
+					$comment = "Vault Transfer #";
+				} else {
+					$typecode = 4;
+					$comment = "Wallet Transfer #";
+				}
 				$data = array(
 					'vault_id' => $vaultId,
 					'jumlah' => $intmount,
 					'tracc_no' => $tracc,
-					'type' => 4,
+					'type' => $typecode,
 					'status' => 1,
-					'description' => "WD TRACC #".$tracc
+					'description' => $comment.$tracc
 				);
 				//sent to transfer request queue
 				$this->VaultTransaction->create();
 				$this->VaultTransaction->save($data);
 				$this->Session->setFlash(__('Transfer request has been sent to IK Trust HQ'),'default',array('class' => 'success'));
-				$this->redirect(array('controller' =>'vaults', 'action' => 'mywallet_history'));
+
+				if($request['Vault']['partner'] == 'yes'){
+					$this->redirect(array('controller' =>'partners', 'action' => 'vault_history'));	
+				} else {				
+					$this->redirect(array('controller' =>'vaults', 'action' => 'mywallet_history'));
+				}
 			}
 		} else {
 			$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
