@@ -59,7 +59,7 @@ if($ajax) {
 								<?php 	
 								$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$acc['Mt4User']['EMAIL']);
 								#debug($accstatus);
-									if(!empty($accstatus)){
+									if(!empty($accstatus['User']['partnertag'])){
 										$email = base64_encode($acc['Mt4User']['EMAIL']);
 										echo "<a href='#popup-coming-soon' class='btn btn-mini btn-green'>Active</a>";
 									} else {
