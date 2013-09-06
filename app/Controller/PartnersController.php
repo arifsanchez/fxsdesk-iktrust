@@ -286,6 +286,34 @@
 			}
 		}
 
+		/***
+		* Staff :: carian untuk Tracc History
+		***/
+
+		public function cariTracc(){
+			$cari = $this->request->data['Partner']['tracc_no'];
+			if($cari){
+				//check if this is a valid trading account
+				$traccNo = $this->Mt4User->find('first', 
+					array(
+						'recursive'=>-1,
+						'conditions' =>array(
+							'Mt4User.LOGIN LIKE' => $cari,
+							'Mt4User.GROUP LIKE' => '%IK%'
+						),
+						'fields' => array('Mt4User.LOGIN')
+					));
+				if(empty($traccNo)){
+					$this->Session->setFlash(__('Trading Account Number search return empty result .'),'default',array('class' => 'error'));
+					$this->redirect('mynetwork');
+				} else {
+					$this->redirect('mynetwork_history/process:'.$cari);
+				}
+			} else {
+				$this->redirect($this->referer());
+			}
+		}
+
 		/**
 		* PARTNER :: Trader Accounts History
 		*/

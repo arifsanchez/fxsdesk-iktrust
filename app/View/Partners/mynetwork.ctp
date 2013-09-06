@@ -25,6 +25,9 @@ if($ajax) {
 				<h3>
 					Registered Trading Accounts
 				</h3>
+				<div class="actions">
+					<?php echo $this->element('partner.carianTraccNo');?>
+				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-bordered usertable">
@@ -69,7 +72,7 @@ if($ajax) {
 							</td>
 							<td><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"</span></td>
 							<td>
-								<a href="#popup-coming-soon" class="btn btn-mini btn-grey" rel="tooltip" title="Transactions History" data-toggle="modal"><i class="glyphicon-table"></i> </a>
+								<a class="btn btn-mini" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['LOGIN'];?> Transactions" href="<?php echo SITE_URL;?>partners/mynetwork_history/process:<?php echo $acc['Mt4User']['LOGIN']?>" ><i class="glyphicon-table"></i> </a>
 
 								<a href="#popup-coming-soon" class="btn btn-mini btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> </a>
 							</td>

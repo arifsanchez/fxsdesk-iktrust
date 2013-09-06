@@ -1213,7 +1213,7 @@
 		*****/
 
 		public function baca_error_log(){
-			debug($this->request);
+			debug(APP_DIR);
 			App::uses('Folder', 'Utility');
 			App::uses('File', 'Utility');
 			$dir = new Folder('/tmp/logs');
