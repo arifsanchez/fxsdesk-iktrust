@@ -35,32 +35,33 @@ if($ajax) {
 							<th>Email</th>
 							<th>Phone</th>
 							<th>Country</th>
-							<th>Operations</th>
+							<th>Dashboard Account</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach($MT_ACC as $acc): ?>
 						<tr>
-							<td>
-								<span class="label label-blue">
-									<?php echo $acc['Mt4User']['NAME'];?>
-								</span>
-							</td>
-							<td><?php echo $acc['Mt4User']['EMAIL'];?></td>
-							<td><?php echo $acc['Mt4User']['PHONE'];?></td>
-							<td><?php echo $acc['Mt4User']['COUNTRY'];?></td>
-							<td>
-
-								<?php 	
+							<?php 	
 								$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$acc['Mt4User']['EMAIL']);
 								#debug($accstatus);
 									if(!empty($accstatus)){
 										$email = base64_encode($acc['Mt4User']['EMAIL']);
-										echo "<a href='".SITE_URL."partners/myclient_profile/kunci:".$email."/siapa:".$var['User']['username']."' class='btn btn-mini btn-green'>View Profile</a>";
+										$name = "<span class='label label-green'><a href='".SITE_URL."partners/myclient_profile/kunci:".$email."/siapa:".$var['User']['username']."' class='btn btn-mini'>".$acc['Mt4User']['NAME']."</a></span>";
+										$button = "<a href='".SITE_URL."partners/myclient_profile/kunci:".$email."/siapa:".$var['User']['username']."' class='btn btn-mini btn-green'>View Profile</a>";
 									} else {
-										echo "<a href='#popup-coming-soon' class='btn btn-mini btn-red'>Invite Dashboard</a>";
+										$name = "<span class='label label-info'>".strtoupper($acc['Mt4User']['NAME'])."</span>";
+								
+										$button = "<span class='label label-red'>Not registered</span>";
 									}
 								?>
+							<td>
+								<?php echo $name;?>
+							</td>
+							<td><?php echo strtolower($acc['Mt4User']['EMAIL']);?></td>
+							<td><?php echo $acc['Mt4User']['PHONE'];?></td>
+							<td><?php echo $acc['Mt4User']['COUNTRY'];?></td>
+							<td>
+								<?php echo $button;?>
 							</td>
 						</tr>
 						<?php endforeach; ?>
