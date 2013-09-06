@@ -46,7 +46,7 @@ if($ajax) {
 								#debug($accstatus);
 									if(!empty($accstatus)){
 										$email = base64_encode($acc['Mt4User']['EMAIL']);
-										$name = "<span class='label label-green'><a href='".SITE_URL."partners/myclient_profile/kunci:".$email."/siapa:".$var['User']['username']."' class='btn btn-mini'>".$acc['Mt4User']['NAME']."</a></span>";
+										$name = "<a href='".SITE_URL."partners/myclient_profile/kunci:".$email."/siapa:".$var['User']['username']."' class='btn btn-mini btn-blue'>".strtoupper($acc['Mt4User']['NAME'])."</a>";
 										$button = "<a href='".SITE_URL."partners/myclient_profile/kunci:".$email."/siapa:".$var['User']['username']."' class='btn btn-mini btn-green'>View Profile</a>";
 									} else {
 										$name = "<span class='label label-info'>".strtoupper($acc['Mt4User']['NAME'])."</span>";
