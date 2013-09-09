@@ -12,7 +12,7 @@
 					<div class="box-title">
 						<h3>
 							<i class="icon-money"></i>
-							Account 1
+							IK$
 						</h3>
 						<div class="pull-right">
 							<a
@@ -20,7 +20,7 @@
 								rel="tooltip" 
 								data-placement="bottom" 
 								class="btn btn-satgreen" 
-								href="##DepositWallet" 
+								href="#DepositWallet" 
 								title="" 
 								data-toggle="modal" 
 								data-trigger="hover"  
@@ -61,7 +61,7 @@
 					<div class="box-title">
 						<h3>
 							<i class="icon-money"></i>
-							Account 2
+							CR$
 						</h3>
 						<div class="pull-right">
 							<a
