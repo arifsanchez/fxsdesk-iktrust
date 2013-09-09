@@ -332,20 +332,40 @@
 		***/
 
 		public function cariClient(){
-			$cari = $this->request->data['Staff']['email'];
+			$cari = $this->request->data['Partner']['email'];
 			if($cari){
 				//check if this is a valid trading account
 				$email = $this->User->findByEmail($cari);
 				if(empty($email)){
 					$this->Session->setFlash(__('Email address search return empty result .'),'default',array('class' => 'error'));
-					$this->redirect('client_listing');
+					$this->redirect('myclient');
 				} else {
-					$this->redirect('client_profile/email:'.$cari);
+					$this->redirect('myclient_profile/email:'.$cari);
 				}
 				
 			} else {
 				$this->redirect($this->referer());
 			}
+		}
+
+		/**
+		* PARTNER :: Ajax search client guna email
+		*/
+		function searchClient(){
+			if($this->RequestHandler->isAjax() ) {
+				Configure::write ( 'debug', 0 );
+				$this->autoRender=false;
+				$this->User->recursive = -1;
+				$users = $this->User->find('all',array('conditions'=>array('User.email LIKE'=>'%'.$_GET['term'].'%')));
+				#debug($users); die();
+				
+					$i=0;
+					foreach($users as $user){
+						$response[$i]['value'] = $user['User']['email'];
+						$i++;
+					}
+				echo json_encode($response);
+		   }
 		}
 
 		/**

@@ -3,7 +3,11 @@
 		margin: 0 !important;
 	}
 </style>
-<?php echo $this->Form->create('Partner', array('action' => 'cariClient'), array('class' => 'form-search form-horizontal pull-right'));
+
+
+<?php 
+	echo $this->Html->script('searchClientEmail');
+	echo $this->Form->create('Partner', array('action' => 'cariClient'), array('class' => 'form-search form-horizontal pull-right'));
 	echo "<div class='controls'><div class='input-prepend'>";
 	echo $this->Form->input('email', array(
 		'label' => false,
