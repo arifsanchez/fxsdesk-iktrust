@@ -48,7 +48,7 @@
 			//Page title
 			$page_title = array(
 				'icon' => "icon-signal",
-				'name' => "All Client"
+				'name' => "All Staffs"
 			);
 			$this->set('page_title',$page_title);
 
@@ -57,7 +57,7 @@
 				'order'=>'User.id desc', 
 				'recursive'=>1, 
 				'conditions' => array(
-					'User.user_group_id' => 4
+					'User.user_group_id' => 1
 				)
 			);
 			$users = $this->paginate('User');

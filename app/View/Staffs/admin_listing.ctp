@@ -36,8 +36,7 @@ if($ajax) {
 							<th class="sorting"><?php echo $this->Paginator->sort('User.first_name', __('Personal Info')); ?></th>
 							<th class="sorting"><?php echo $this->Paginator->sort('User.email', __('Contact')); ?></th>
 							<th>Status</th>
-							<th>Accounts</th>
-							<th><?php echo __('Action');?></th>
+							<th>Last Login</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -78,105 +77,9 @@ if($ajax) {
 								echo "</td>";
 
 								echo "<td>";
-									#count total trading account under this email
-									$TotalTraccship = $this->requestAction('staffs/kiraAccBawahTracc/siapa:'.$row['User']['email'].'') ;
-									if(!empty($TotalTraccship)){
-										echo "<span class='badge badge-warning'>".$TotalTraccship." Tracc</span><br/>";
-									} else {
-										echo "<span class='badge badge-success'>0 Tracc</span><br/>";
-									}
-									
-									#count total email account under this email
-									$TotalAgentship = $this->requestAction('staffs/kiraAgentBawahTracc/siapa:'.$row['User']['email'].'') ;
-									if(!empty($TotalAgentship)){
-										echo "<span class='badge badge-inverse'>".$TotalAgentship." Agacc</span>";
-									} else {
-										echo "<span class='badge badge-inverse'>0 Agacc</span>";
-									}
+									echo $this->Time->nice($row['User']['last_login']);
 								echo "</td>";
 
-								#Control Panel Button - Start
-								$loadingImg = '<img src="'.SITE_URL.'usermgmt/img/loading-circle.gif">';
-								echo "<td>";
-
-								echo $this->Html->link("View Details",
-									 array('plugin' => '','controller'=>'Staffs', 'action'=>'client_profile', 'name:'.$row['User']['username']), 
-									 array('class'=> 'btn btn-satblue btn-mini'));
-
-
-								#echo "<a href=".SITE_URL.'"Staffs/client_detail/name:".$acc['Mt4User']['LOGIN']." class='btn btn-satblue' rel='tooltip' title=".h($row['User']['first_name'])." ".h($row['User']['last_name'].""><i class='glyphicon-table'></i> Transactions</a>";
-								/*
-								echo "<div class='btn-group'>";
-								echo "<a href='#'' data-toggle='dropdown' class='btn btn-mini btn-darkblue dropdown-toggle'><i class='icon-user'></i> User Panel <span class='caret'></span></a>";
-								echo "<ul class='dropdown-menu'>";
-								echo"<li>";
-									echo $this->Html->link("<i class='icon-user'></i> User Profile" ,
-									array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'viewUser', $row['User']['id']), 
-									array('escape'=>false
-										   
-										)
-									);
-                                 echo"</li>";
-                                 echo"<li>";
-									echo $this->Html->link("<i class='icon-edit'></i> Edit Profile",
-										array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'editUser', $row['User']['id']),
-										array('escape'=>false,
-										 	
-										 	)
-										 );
-                                 echo"</li>";
-                                 echo"<li>";
-									echo $this->Html->link("<i class='icon-unlock'></i> Change Password",
-
-									 array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'changeUserPassword', $row['User']['id']), 
-									 array('escape'=>false));
-								echo"</li>";
-								echo"<li>";
-
-									if ($row['User']['id']!=1 && strtolower($row['User']['username']) !='admin') {
-										if ($row['User']['active']==0) {
-											$activeInactiveImg = "<i class='icon-thumbs-up'></i> Activate";
-										} else {
-											$activeInactiveImg = "<i class='icon-thumbs-down'></i> Deactivate";
-										}
-										echo $this->Js->link($activeInactiveImg, array('action' => 'makeActiveInactive', $row['User']['id']), array('escape' => false, 'before'=>"var targetId = event.currentTarget.id; $('#'+targetId).html('".$loadingImg."');", 'success'=>"var targetId = event.currentTarget.id; if(data) { $('#'+targetId).html(data); }"));
-									}
-									if ($row['User']['id']!=1 && strtolower($row['User']['username']) !='admin') {
-										if ($row['User']['email_verified']==0) {
-											echo $this->Js->link($this->Html->image(SITE_URL.'usermgmt/img/email-verify.png', array('alt' => __('Verify Email'), 'title' => __('Verify Email'))), array('action' => 'verifyEmail', $row['User']['id']), array('escape' => false, 'confirm' => __('Are you sure you want to verify email of this user?'), 'before'=>"var targetId = event.currentTarget.id; $('#'+targetId).html('".$loadingImg."');", 'success'=>"var targetId = event.currentTarget.id; $('#'+targetId).html(data);"));
-										}
-									}
-									echo"</li>";
-									echo"<li>";
-									if ($row['User']['id']!=1 && strtolower($row['User']['username']) !='admin') {
-										echo $this->Js->link(
-											"<i class='icon-remove'></i> Delete User", 
-											
-											array('action' => 'deleteUser', $row['User']['id']), 
-											array(
-												
-												'escape' => false, 
-												'confirm' => __('Are you sure you want to delete this user?'), 
-												'before'=>"var targetId = event.currentTarget.id; $('#'+targetId).html('".$loadingImg."');", 'success'=>"var targetId = event.currentTarget.id; if(data=='1') { $('#rowId".$row['User']['id']."').hide('slow', function(){ $(this).remove(); }); } else { $('#'+targetId).html(data); }"
-											)
-										);
-									}
-									echo"</li>";
-									echo"<li>";
-									echo $this->Html->link("<i class='icon-warning-sign'></i> Permissions", 
-										
-									    array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'viewUserPermissions', $row['User']['id']), array('escape'=>false));
-                                    echo"</li>";
-                                    echo"<li>";
-									echo $this->Html->link("<i class='icon-envelope-alt'></i> Send Email",
-
-										array('plugin' => 'usermgmt','controller'=>'UserEmails', 'action'=>'sendToUser', $row['User']['id']), array('escape'=>false));
-									echo"</li>";
-									echo"</div>";
-									
-								echo "</td>";
-								#Control Panel Button - End
-								*/
 								echo "</tr>";
 							}
 						} else {
