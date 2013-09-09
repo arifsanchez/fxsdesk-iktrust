@@ -74,6 +74,11 @@ if($ajax) {
 								} else {
 									echo "<span class='label label-red'><i class='icon-envelope-alt'></i></span>";
 								}
+
+								echo $this->Html->link("Edit",
+										array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'editUser', $row['User']['id']),
+										array('class'=> 'btn btn-mini btn-orange',)
+										 );
 								echo "</td>";
 
 								echo "<td>";
