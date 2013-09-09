@@ -25,6 +25,9 @@ if($ajax) {
 				<h3>
 					Clientele
 				</h3>
+				<div class="actions">
+					<?php echo $this->element('partner.carianClientEmail');?>
+				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-bordered usertable">

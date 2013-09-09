@@ -268,15 +268,28 @@
 			$user = $this->UserAuth->getUser();
 
 			//Paginate Partner Network Listing
+			$headerTagAff = substr($user['User']['partnertag'], -2);
 			$this->paginate = array(
 				'limit' => 15, 
 				'order'=> 'Mt4User.REGDATE DESC',
 				'recursive'=>0,
-				'conditions' =>array(
-					'Mt4User.GROUP LIKE' => '%IK%',
-					#'Mt4User.AGENT_ACCOUNT LIKE' => '888808'
-					'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
-			));
+				'conditions' => array(
+					'OR' => array(
+						array(
+							'AND' => array(
+								'Mt4User.GROUP LIKE' => '%IK%',
+								'Mt4User.AGENT_ACCOUNT LIKE' => '7'.$headerTagAff.'%',
+							)
+						),
+						array(
+							'AND' => array(
+								'Mt4User.GROUP LIKE' => '%IK%',
+								'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
+							)
+						)
+					)
+				),
+			);
 			$trades = $this->paginate('Mt4User');
 			$this->set('MT_ACC',$trades);
 
@@ -287,7 +300,7 @@
 		}
 
 		/***
-		* Staff :: carian untuk Tracc History
+		* Partner :: carian untuk Tracc History
 		***/
 
 		public function cariTracc(){
@@ -309,6 +322,27 @@
 				} else {
 					$this->redirect('mynetwork_history/process:'.$cari);
 				}
+			} else {
+				$this->redirect($this->referer());
+			}
+		}
+
+		/***
+		* Partner :: carian guna email untuk Client
+		***/
+
+		public function cariClient(){
+			$cari = $this->request->data['Staff']['email'];
+			if($cari){
+				//check if this is a valid trading account
+				$email = $this->User->findByEmail($cari);
+				if(empty($email)){
+					$this->Session->setFlash(__('Email address search return empty result .'),'default',array('class' => 'error'));
+					$this->redirect('client_listing');
+				} else {
+					$this->redirect('client_profile/email:'.$cari);
+				}
+				
 			} else {
 				$this->redirect($this->referer());
 			}
@@ -346,6 +380,13 @@
 			$trades = $this->paginate('Mt4Trade');
 			$this->set('agentPost',$trades);
 
+			$bakiAcc = $this->Mt4User->bakiAcc($tracc_id);
+			$this->set('nama_trader',$bakiAcc['Mt4User']['NAME']);
+			$this->set('email_trader',$bakiAcc['Mt4User']['EMAIL']);
+			$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
+			$this->set('leverage',$bakiAcc['Mt4User']['LEVERAGE']);
+			$this->set('bakiCR',$bakiAcc['Mt4User']['CREDIT']);
+
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
 				$this->render('tracc_history');
@@ -369,13 +410,26 @@
 			$user = $this->UserAuth->getUser();
 
 			//Paginate Partner Network Listing
+			$headerTagAff = substr($user['User']['partnertag'], -2);
 			$this->paginate = array(
 				'limit' => 15, 
 				'order'=> 'Mt4User.REGDATE DESC',
 				'recursive'=>0,
-				'conditions' =>array(
-					'Mt4User.GROUP LIKE' => '%IK%',
-					'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
+				'conditions' => array(
+					'OR' => array(
+						array(
+							'AND' => array(
+								'Mt4User.GROUP LIKE' => '%IK%',
+								'Mt4User.AGENT_ACCOUNT LIKE' => '7'.$headerTagAff.'%',
+							)
+						),
+						array(
+							'AND' => array(
+								'Mt4User.GROUP LIKE' => '%IK%',
+								'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
+							)
+						)
+					)
 				),
 				'group' => array('Mt4User.EMAIL')
 			);

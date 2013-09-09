@@ -61,9 +61,9 @@ if($ajax) {
 								#debug($accstatus);
 									if(!empty($accstatus['User']['partnertag'])){
 										$email = base64_encode($acc['Mt4User']['EMAIL']);
-										echo "<a href='#popup-coming-soon' class='btn btn-mini btn-green'>Active</a>";
+										echo "<a href='".SITE_URL."staffs/partner_history/process:".$acc['Mt4User']['LOGIN']."' class='btn btn-mini btn-green'>Active</a>";
 									} else {
-										echo "<a href='#popup-coming-soon' class='btn btn-mini btn-red'>Inactive</a>";
+										echo "<a href='".SITE_URL."staffs/partner_history/process:".$acc['Mt4User']['LOGIN']."' class='btn btn-mini btn-red'>Inactive</a>";
 									}
 								?>
 							</td>

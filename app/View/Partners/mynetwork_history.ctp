@@ -19,6 +19,41 @@ if($ajax) {
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
+			<div class="row-fluid">
+				<div class="span3">
+					<p><b>Account Name</b><br/>
+						<span class="label label-blue"><?php echo $nama_trader;?></span><br/>
+					</p>
+				</div>
+				<div class="span3">
+					<p><b>Dashboard Status</b><br/>
+					<?php 	
+						$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$email_trader);
+						#debug($accstatus);
+							if(!empty($accstatus)){
+								$email = base64_encode($email_trader);
+								echo "<span class='label label-green'><i class='glyphicon-dashboard'></i> ".$email_trader."</span>";
+							} else {
+								echo "<span class='label label-red'><i class='glyphicon-dashboard'></i> ".$email_trader."</span>";
+							}
+						?>
+					</p>
+				</div>
+				<div class="span2">
+					<p><b>Account Balance</b><br/>
+					<span class="label label-red"><?php echo $this->Number->Currency($bakiAcc, 'IK$ ');?></span></p>
+				</div>
+				<div class="span2">
+					<p><b>Credit Balance</b><br/>
+					<span class="label label-inverse"><?php echo $this->Number->Currency($bakiCR, 'CR$ ');?></span></p>
+				</div>
+
+				<div class="span2">
+					<p><b>Leverage</b><br/>
+					<span class="label label-lime"><?php echo "1:".$leverage;?></span></p>
+				</div>
+			</div>
+
 			<div class="box-title">
 				<h3>
 					Trading Account History

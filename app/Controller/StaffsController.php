@@ -56,7 +56,7 @@
 				'order'=>'User.id desc', 
 				'recursive'=>1, 
 				'conditions' => array(
-					#'User.user_group_id' => 2
+					'User.user_group_id' => 2
 				)
 			);
 			$users = $this->paginate('User');

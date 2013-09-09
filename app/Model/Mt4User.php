@@ -340,10 +340,23 @@ class Mt4User extends AppModel {
 	*/
 	function kiraTotalClient($partnertag=null) {
 		$result ='';
+		$headerTagAff = substr($partnertag, -2);
 		$result = $this->find('count', array(
-			'conditions' =>array(
-				'AGENT_ACCOUNT' => $partnertag,
-				'GROUP LIKE' => '%IK%'
+			'conditions' => array(
+				'OR' => array(
+					array(
+						'AND' => array(
+							'Mt4User.GROUP LIKE' => '%IK%',
+							'Mt4User.AGENT_ACCOUNT LIKE' => '7'.$headerTagAff.'%',
+						)
+					),
+					array(
+						'AND' => array(
+							'Mt4User.GROUP LIKE' => '%IK%',
+							'Mt4User.AGENT_ACCOUNT' => "".$partnertag.""
+						)
+					)
+				)
 			),
 			'group' => array('EMAIL')
 		));
@@ -389,10 +402,23 @@ class Mt4User extends AppModel {
 	*/
 	function kiraTotalDownline($partnertag=null) {
 		$result ='';
+		$headerTagAff = substr($partnertag, -2);
 		$result = $this->find('count', array(
-			'conditions' =>array(
-				'AGENT_ACCOUNT' => $partnertag,
-				'GROUP LIKE' => '%IK%'
+			'conditions' => array(
+				'OR' => array(
+					array(
+						'AND' => array(
+							'Mt4User.GROUP LIKE' => '%IK%',
+							'Mt4User.AGENT_ACCOUNT LIKE' => '7'.$headerTagAff.'%',
+						)
+					),
+					array(
+						'AND' => array(
+							'Mt4User.GROUP LIKE' => '%IK%',
+							'Mt4User.AGENT_ACCOUNT' => "".$partnertag.""
+						)
+					)
+				)
 			)
 		));
 		return $result;
@@ -471,7 +497,9 @@ class Mt4User extends AppModel {
 			'fields' => array(
 				'BALANCE',
 				'NAME',
-				'EMAIL'
+				'EMAIL',
+				'LEVERAGE',
+				'CREDIT'
 			)
 		));
 		return $bakiAcc;
