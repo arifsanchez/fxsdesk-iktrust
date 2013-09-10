@@ -92,36 +92,42 @@
 			);
 			$this->set('page_title',$page_title);
 
-			//Request balance from vault db
-			$userId = $this->UserAuth->getUserId();
-			$acc1 = $this->Vault->getAccBalance($userId);
-			$this->set('acc1', $acc1['Vault']['acc_1']);
+				//Request balance from vault db
+				$userId = $this->UserAuth->getUserId();
+				$acc1 = $this->Vault->getAccBalance($userId);
+				$this->set('acc1', $acc1['Vault']['acc_1']);
 
-			//Pull info trader
-			$user = $this->UserAuth->getUser();
-			$result = $this->Mt4User->find('first', array(
-				'conditions' =>array(
-					'Mt4User.LOGIN' => $acc,
-				)
-			));
-			if($result['Mt4User']['EMAIL'] == $user['User']['email']){
-				$this->set('MT_ACC',$result);	
-			} else {
-				$this->Session->setFlash(__('You are not authorized to acess trading account #'.$acc.' details.'), 'default', array('class' => 'error'));
-				$this->redirect(array('action' => 'listing'));
-			}
-			
+				//Pull info trader
+				$user = $this->UserAuth->getUser();
+				$result = $this->Mt4User->find('first', array(
+					'conditions' =>array(
+						'Mt4User.LOGIN' => $acc,
+						'Mt4User.GROUP LIKE' => '%IK%'
+					)
+				));
 
-			//Pull top 5 transactions
-			$transact = $this->Mt4Trade->find('all', array(
-				'conditions' =>array(
-					'Mt4Trade.LOGIN' => $acc,
+				if(empty($result)){
+					$this->Session->setFlash(__('You are not authorized to acess trading account #'.$acc.' details.'), 'default', array('class' => 'error'));
+					$this->redirect(array('action' => 'listing'));
+				} else {
+					if($result['Mt4User']['EMAIL'] == $user['User']['email']){
+						$this->set('MT_ACC',$result);
 
-				),
-				'limit' => 10,
-				'order' => array('Mt4Trade.TICKET DESC'), 
-			));
-			$this->set('MT_TRANSACT',$transact);
+						//Pull top 5 transactions
+						$transact = $this->Mt4Trade->find('all', array(
+							'conditions' =>array(
+								'Mt4Trade.LOGIN' => $acc,
+
+							),
+							'limit' => 10,
+							'order' => array('Mt4Trade.TICKET DESC'), 
+						));
+						$this->set('MT_TRANSACT',$transact);
+					} else {
+						$this->Session->setFlash(__('You are not authorized to acess trading account #'.$acc.' details.'), 'default', array('class' => 'error'));
+						$this->redirect(array('action' => 'listing'));
+					}
+				}				
 		}
 
 
