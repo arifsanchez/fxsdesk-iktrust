@@ -152,5 +152,22 @@ class Mt4Trade extends AppModel {
 			),
 		),
 	);
+	
+	/****
+	*	STAFF :: Data berapa close position
+	*****/
+	public function jumlahCloseOrder($bila=null){
+		App::uses('CakeTime', 'Utility');
+		$yesterday = strtotime($bila);
+		$tempoh = CakeTime::daysAsSql($yesterday,$yesterday, 'CLOSE_TIME');
 
+		$jumlah = $this->find('all', array(
+			'conditions' => array(
+        		$tempoh,
+        		'SYMBOL NOT' => '',
+	        ),
+			'fields' => array('sum(PROFIT) AS total')
+		));
+		return $jumlah[0][0];
+	}
 }

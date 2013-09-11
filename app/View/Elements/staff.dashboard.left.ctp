@@ -39,3 +39,26 @@
 		</div>
 	</div>
 </div>
+<div class="subnav">
+	<div class="subnav-title">
+		<a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>Client P/L</span></a>
+	</div>
+	<div class="subnav-content">
+		<div class="pagestats">
+			<span class="left"><b>Semalam</b></span>
+			<span class="left label label-orange">
+				<?php 
+					$jumlahSemalam = $this->requestAction('staffs/profitLossClient_semalam');
+					echo "$ ".$jumlahSemalam['total'];
+					?>
+			</span>
+		</div>
+		<br/>
+		<div class="pagestats">
+			<span class="left"><b>Hari Ini</b></span>
+			<span class="left label label-orange">
+				<?php $jumlahHariNi = $this->requestAction('staffs/profitLossClient_hariNi') ; echo "$ ".$jumlahHariNi['total'];?>
+			</span>
+		</div>
+	</div>
+</div>

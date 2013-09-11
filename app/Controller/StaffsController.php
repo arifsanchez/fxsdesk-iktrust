@@ -1242,31 +1242,66 @@
 		}
 
 		/***
-		*	STAFF :: All Commissions
+		*	STAFF :: All Commissions TODOTODOTODOTODOTODOTODO
 		****/
 		public function report_close_order(){
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-exchange",
+				'name' => "All Closed Positions"
+			);
+			$this->set('page_title',$page_title);
 
 			App::uses('CakeTime', 'Utility');
-			$semalam = strtotime('yesterday');
-			$date =  CakeTime::dayAsSql($semalam);
-			debug($date);
-
+			$yesterday = strtotime('yesterday');
+			$tempoh = CakeTime::daysAsSql($yesterday,$yesterday, 'Mt4Trade.CLOSE_TIME');
+			#debug($tempoh);
 			$this->paginate = array(
 		        'conditions' => array(
-		        'and' => array(
-		        	array(
-		        		'Mt4Trade.OPEN_TIME <= ' => $date,
-		                'Mt4Trade.CLOSE_TIME >= ' => $date
-		            ),
-		           //Add another filer
-		    )));
+	        		$tempoh,
+	        		'Mt4Trade.SYMBOL NOT' => '',
+		        ),
+		        'order' => 'Mt4Trade.CLOSE_TIME DESC',
+		        'limit' => 50,
+	    	);
 		    $trades = $this->paginate('Mt4Trade');
-			debug($trades); die();
+			$this->set('reportCloseOrder' , $trades);
+			#debug($trades); die();
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('report_close_order');
+			}
 
 		}
 
+		/***
+		*	STAFF :: Kira Profit & Loss Semalam / Hari Ni
+		****/
+		public function profitLossClient_semalam(){
+			$semalam= $this->Mt4Trade->jumlahCloseOrder('yesterday'); 
+			#$hariNi = $this->Mt4Trade->jumlahCloseOrder('today');
+			#debug($semalam); 
+			#debug($hariNi); die();
+			if ($this->request->is('requested')) {
+				return $semalam;
+				#return $hariNi;
+			}
+		}
+		public function profitLossClient_hariNi(){
+			#$semalam= $this->Mt4Trade->jumlahCloseOrder('yesterday'); 
+			$hariNi = $this->Mt4Trade->jumlahCloseOrder('today');
+			#debug($semalam); 
+			#debug($hariNi); die();
+			if ($this->request->is('requested')) {
+				#return $semalam;
+				return $hariNi;
+			}
+		}
+
 		/****
-		*	STAFF :: Baca Log
+		*	STAFF :: Baca Log TODOTODOTODOTODOTODOTODO
 		*****/
 
 		public function baca_error_log(){
