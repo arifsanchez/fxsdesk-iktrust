@@ -34,6 +34,9 @@
 		<div class="box box-color satblue box-small box-bordered nopadding">
 			<div class="box-title">
 				<h3><i class="icon-reorder"></i> Transaction Details</h3>
+				<div class="actions">
+					<a href="<?php echo SITE_URL;?>Staffs/transfer_request/filter:new?me:<?php echo $var['User']['username'];?>" class="btn" data-toggle="modal" title="All Transfer Request"><i class="icon-reply"></i> Back to transaction listing</a>
+				</div>
 			</div>
 			<div class="box-content">
 				<!-- Type | Status | Amount | Source | Source balance-->
@@ -69,7 +72,7 @@
 								?>
 							</div></td>
 							<td><div class="text-center">
-								<?php echo $TranDetails['VaultTransaction']['tracc_no'];?>
+								<a data-content="$<?php echo $bakiTracc['BALANCE']; ?>" data-placement="bottom" title="<?php echo $bakiTracc['NAME']; ?>" data-trigger="hover" rel="popover" class="btn btn-mini btn-blue" href="#" data-original-title="Bottom popover"><?php echo $TranDetails['VaultTransaction']['tracc_no'];?></a>
 							</div></td>
 							<td><div class="text-center">
 								<?php echo money_format('%.2n',$TranDetails['VaultTransaction']['jumlah']);?>
@@ -97,7 +100,7 @@
 										
 									</ul>
 									<?php }else{ ?>
-										<a class="btn btn-success" href="#"><i class="icon-cog"></i> View Account </a>
+										<a class="btn btn-success" href="<?php echo SITE_URL;?>Staffs/client_profile/email:<?php echo h($userDetails['User']['email']);?>"><i class="icon-cog"></i> View Account </a>
 									<?php }?>
 								</div>
 							</div></td>

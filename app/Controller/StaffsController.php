@@ -682,6 +682,11 @@
 				));
 				$this->set('TranDetails', $details);
 
+				//dapatkan baki account semasa
+				$bakiTracc = $this->Mt4User->bakiAcc($details['VaultTransaction']['tracc_no']);
+				#debug($bakiTracc); die(); 
+				$this->set('bakiTracc', $bakiTracc['Mt4User']);
+
 				//call in user details tambahan
 				$userId = $details['Vault']['user_id'];
 				$user =$this->User->getUserById($userId);
@@ -689,6 +694,10 @@
 			}
 
 		}
+
+		/****
+		*	STAFF :: dapatkan details baki accoun trading
+		*****/
 
 		/*****
 		* STAFF :: Change status on the transaction for type code 1
