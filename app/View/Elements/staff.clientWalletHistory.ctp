@@ -18,6 +18,8 @@
 	}
 ?>
 
+<?php if(!empty($Wtransact)){ ?> 
+
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color satgreen box-bordered" id="updateTradeHistory">
@@ -30,7 +32,7 @@
 
 				<table class="table table-hover table-nomargin table-condensed table-bordered">
 					<thead>
-						<?php if(empty($Wtransact)){ echo "<tr><blockquote>Your IK Wallet account is fresh without any transaction. Start your multi million journey by trading & earning great rewards today .</blockquote></tr>";} else {?> 
+						
 						<tr>
 							<th>Type</th>
 							<th>Status</th>
@@ -39,7 +41,7 @@
 							<th><div class="text-center">Requested</div></th>
 							<th><div class="text-right">Operations</div></th>
 						</tr>
-						<?php } ?>
+						
 					</thead>
 					<tbody>
 						<?php foreach($Wtransact as $Transaction): ?>
@@ -92,3 +94,4 @@
 		</div>
 	</div>
 </div>
+<?php } ?>
