@@ -126,7 +126,11 @@
 								?>
 							</td>
 							<td><?php echo ucwords(strtolower($Transaction['VaultTransaction']['description']));?></td>
-							<td><div class="text-right"><?php echo $this->Number->Currency($Transaction['VaultTransaction']['jumlah'], '');?></div></td>
+							<td>
+								<div class="text-right">
+									<?php echo money_format('%.2n',$Transaction['VaultTransaction']['jumlah']);?>
+								</div>
+							</td>
 							<td><span data-livestamp="<?php echo $Transaction['VaultTransaction']['created'];?>"></span></td>
 							<td><a href="<?php echo SITE_URL;?>Staffs/transfer_detail/process:<?php echo $TRid;?>?me:<?php echo $var['User']['username'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $Transaction['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i> View Details</a></td>
 						</tr>

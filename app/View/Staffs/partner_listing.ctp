@@ -71,6 +71,16 @@ if($ajax) {
 								<a href="<?php echo SITE_URL;?>staffs/partner_history/process:<?php echo $acc['Mt4User']['LOGIN']?>" class="btn btn-mini btn-grey" rel="tooltip" title="Transactions History" data-toggle="modal"><i class="glyphicon-table"></i> </a>
 
 								<a href="#popup-coming-soon" class="btn btn-mini btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> </a>
+								<?php
+								if(!empty($accstatus['User']['id'])){
+									echo $this->Html->link("Edit",
+										array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'editUser', $accstatus['User']['id']),
+										array('class'=> 'btn btn-mini btn-orange',)
+									);
+								} else {
+									echo "";
+								}
+								?>
 							</td>
 						</tr>
 						<?php endforeach; ?>

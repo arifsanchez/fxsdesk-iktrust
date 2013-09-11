@@ -76,9 +76,9 @@ if($ajax) {
 								}
 
 								echo $this->Html->link("Edit",
-										array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'editUser', $row['User']['id']),
-										array('class'=> 'btn btn-mini btn-orange',)
-										 );
+									array('plugin' => 'usermgmt','controller'=>'Users', 'action'=>'editUser', $row['User']['id']),
+									array('class'=> 'btn btn-mini btn-orange',)
+								);
 								echo "</td>";
 
 								echo "<td>";
