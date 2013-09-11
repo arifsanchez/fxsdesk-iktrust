@@ -1,4 +1,3 @@
-
 <div class="row-fluid">
 	<div class="span6">
 		<div class="box box-small box-color lightred box-bordered">
@@ -7,9 +6,6 @@
 					<i class="glyphicon-vcard"></i>
 					<?php echo h($user['User']['first_name']." ".$user['User']['last_name'])?>
 				</h3>
-				<div class="actions">
-					<a href="<?php echo SITE_URL;?><?php echo $user['User']['username'];?>" class="btn btn-mini" rel="tooltip" title="<?php echo $user['User']['username'];?>"><i class="icon-user"></i> View Public Profile</a>
-				</div>
 			</div>
 			<div class="box-content">
 
@@ -62,13 +58,13 @@
 					<i class="icon-money"></i>
 					Wallet
 				</h3>
-				<div class="pull-right">
+				<div class="actions">
 					<a
 						data-original-title="Wallet Transaction History" 
 						rel="tooltip" 
 						data-placement="bottom" 
 						class="btn btn-mini" 
-						href="#" 
+						href="#clientWalletHistory" 
 						title="" 
 						data-toggle="modal" 
 						data-trigger="hover"  
@@ -83,13 +79,35 @@
 				<div class="row-fluid">
 					<div class="span6">
 						<center>
-							<h3><?php if($acc1 == 0){echo "IK$ 0.00";} else {echo $this->Number->currency($acc1, 'IK$ ');} ?></h3>
+							<h3>
+								<?php 
+									$akaun1 = $acc1;
+									if($akaun1 == 0.00){
+										echo "IK$ 0.00";
+									} else if($akaun1 < 1.00) {
+										echo money_format('%.2n', $akaun1);
+									} else {
+										echo $this->Number->Currency($akaun1, 'IK$ '); 
+									}
+								?>
+							</h3>
 						</center>
 					</div>
 					<div class="span6">
 						<center>
 							<!--h3><?php echo $this->Number->currency($acc2, 'CR$ ');?></h3-->
-							<h3>CR$ 0.00</h3>
+							<h3>
+								<?php 
+									$akaun2 = $acc2;
+									if($akaun2 == 0.00){
+										echo "CR$ 0.00";
+									} else if($akaun2 < 1.00) {
+										echo money_format('%.2n', $akaun2);
+									} else {
+										echo $this->Number->Currency($akaun2, 'CR$ '); 
+									}
+								?>
+							</h3>
 						</center>
 					</div>
 				</div>
@@ -176,3 +194,7 @@
 		</div>
 	</div>
 </div>
+
+<?php 
+	echo $this->element('staff.clientWalletHistory');
+?>
