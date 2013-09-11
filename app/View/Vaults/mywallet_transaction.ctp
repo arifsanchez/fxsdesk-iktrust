@@ -10,6 +10,9 @@
 		<div class="box box-color satblue box-small box-bordered nopadding">
 			<div class="box-title">
 				<h3><i class="icon-reorder"></i> Transaction Details</h3>
+				<div class="actions">
+					<a href="<?php echo SITE_URL;?>Vaults/mywallet_history?me:<?php echo $var['User']['username'];?>" class="btn btn-mini" rel="tooltip" title="My Wallet History"><i class="icon-money"></i> Back to wallet history</a>
+				</div>
 			</div>
 			<div class="box-content">
 				<!-- Type | Status | Amount | Source | Source balance-->
@@ -19,7 +22,7 @@
 							<th>Type</th>
 							<th>Status</th>
 							<th>Tracc</th>
-							<th>Amount</th>
+							<th>Transfer</th>
 							<th>Wallet Balance</th>
 						</tr>
 					</thead>
@@ -38,13 +41,45 @@
 								?>
 							</td>
 							<td><?php echo $TranDetails['VaultTransaction']['tracc_no'];?></td>
-							<td><?php echo $this->Number->Currency($TranDetails['VaultTransaction']['jumlah'], '$ ');?></td>
+							<td><div class="text-center">
+								<?php 
+									$jumlahTransfer = $TranDetails['VaultTransaction']['jumlah'];
+									if($jumlahTransfer == 0.00){
+										echo "0.00";
+									} else if($jumlahTransfer < 1.00) {
+										echo money_format('%.2n', $jumlahTransfer);
+									} else {
+										echo $this->Number->Currency($jumlahTransfer, ''); 
+									}
+								?>
+							</div></td>
 							
-							<td><?php echo $this->Number->Currency($TranDetails['Vault']['acc_1'], 'IK$ ');?></td>
+							<td><div class="text-center">
+								<?php 
+									$akaun1 = $TranDetails['Vault']['acc_1'];
+									if($akaun1 == 0.00){
+										echo "0.00";
+									} else if($akaun1 < 1.00) {
+										echo money_format('%.2n', $akaun1);
+									} else {
+										echo $this->Number->Currency($akaun1, ''); 
+									}
+								?>
+								
+							</div></td>
 							
 						</tr>
 					</tbody>
 				</table>
+				<blockquote><small>
+					<?php
+						$TRid = $TranDetails['VaultTransaction']['id'];
+						$VId = $TranDetails['VaultTransaction']['vault_id'];
+						$trDate = $this->Time->toUnix($TranDetails['VaultTransaction']['created'], null);
+						echo "<b>Reference Key</b> : TR-".$trDate."-".$VId."-".$TRid;
+						echo "<br/>Date of request : ".$TranDetails['VaultTransaction']['created'];
+					?>
+				</small></blockquote>
 			</div>
 		</div>
 	</div>

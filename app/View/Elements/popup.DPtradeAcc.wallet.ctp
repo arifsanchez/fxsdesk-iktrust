@@ -20,14 +20,15 @@
 				echo $this->Form->input('amount', array(
 					'label' => false,
 					'data-rule-required' => 'true',
-					'data-rule-number' => 'true',
+					'data-rule-digits' => 'true',
 					'placeholder' => 'Max IK$'.$bal,
 					'class' => 'input-medium',
 					'div' => false,
 					'before' => "<span class='add-on'><i class='icon-money'></i></span>",
 					'after' => "<span class='add-on'>.00</span>"
 				));
-				echo "</div></div>";
+				echo "</div>";
+				echo "</div>";
 
 				echo $this->Form->hidden('acc_trading', array('value' => $login));
 				$options = array(

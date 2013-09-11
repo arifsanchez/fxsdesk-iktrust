@@ -163,7 +163,7 @@
 							<thead>
 								<tr>
 									<th>Type</th>
-									<th>Comment</th>
+									<th>Reference</th>
 									<th>Total $</th>
 									<th>Date</th>
 									<th></th>
@@ -178,7 +178,14 @@
 											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
-									<td><?php echo $vt_new['VaultTransaction']['description'];?></td>
+									<td>
+										<?php
+											$TRid = $vt_new['VaultTransaction']['id'];
+											$VId = $vt_new['VaultTransaction']['vault_id'];
+											$trDate = $this->Time->toUnix($vt_new['VaultTransaction']['created'], null);
+											echo "TR-".$trDate."-".$VId."-".$TRid;
+										?>
+									</td>
 									<td><div class="text-right"><span class='label label-orange'><?php echo $vt_new['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_new['VaultTransaction']['created']);?></td>
 									<td><a href="<?php echo SITE_URL;?>vaults/mywallet_transaction/process:<?php echo $vt_latest['VaultTransaction']['id'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $vt_latest['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i></a></td>
@@ -195,7 +202,7 @@
 							<thead>
 								<tr>
 									<th>Type</th>
-									<th>Comment</th>
+									<th>Reference</th>
 									<th>Total $</th>
 									<th>Date</th>
 									<th></th>
@@ -210,7 +217,14 @@
 											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
-									<td><?php echo $vt_pending['VaultTransaction']['description'];?></td>
+									<td>
+										<?php
+											$TRid = $vt_pending['VaultTransaction']['id'];
+											$VId = $vt_pending['VaultTransaction']['vault_id'];
+											$trDate = $this->Time->toUnix($vt_pending['VaultTransaction']['created'], null);
+											echo "TR-".$trDate."-".$VId."-".$TRid;
+										?>
+									</td>
 									<td><div class="text-right"><span class='label label-satblue'><?php echo $vt_pending['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_pending['VaultTransaction']['created']);?></td>
 									<td><a href="<?php echo SITE_URL;?>vaults/mywallet_transaction/process:<?php echo $vt_latest['VaultTransaction']['id'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $vt_latest['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i></a></td>
@@ -227,7 +241,7 @@
 							<thead>
 								<tr>
 									<th>Type</th>
-									<th>Comment</th>
+									<th>Reference</th>
 									<th>Total $</th>
 									<th>Date</th>
 									<th></th>
@@ -242,7 +256,14 @@
 											echo $this->element('requestVaultTransType', array('type' => $type));
 										?>
 									</td>
-									<td><?php echo $vt_app['VaultTransaction']['description'];?></td>
+									<td>
+										<?php
+											$TRid = $vt_app['VaultTransaction']['id'];
+											$VId = $vt_app['VaultTransaction']['vault_id'];
+											$trDate = $this->Time->toUnix($vt_app['VaultTransaction']['created'], null);
+											echo "TR-".$trDate."-".$VId."-".$TRid;
+										?>
+									</td>
 									<td><div class="text-right"><span class='label label-satgreen'><?php echo $vt_app['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_app['VaultTransaction']['created']);?></td>
 									<td><a href="<?php echo SITE_URL;?>vaults/mywallet_transaction/process:<?php echo $vt_latest['VaultTransaction']['id'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $vt_latest['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i></a></td>
@@ -259,7 +280,7 @@
 							<thead>
 								<tr>
 									<th>Type</th>
-									<th>Comment</th>
+									<th>Reference</th>
 									<th>Total $</th>
 									<th>Date</th>
 									<th></th>
@@ -275,7 +296,14 @@
 											
 										?>
 									</td>
-									<td><?php echo $vt_dec['VaultTransaction']['description'];?></td>
+									<td>
+										<?php
+											$TRid = $vt_dec['VaultTransaction']['id'];
+											$VId = $vt_dec['VaultTransaction']['vault_id'];
+											$trDate = $this->Time->toUnix($vt_dec['VaultTransaction']['created'], null);
+											echo "TR-".$trDate."-".$VId."-".$TRid;
+										?>
+									</td>
 									<td><div class="text-right"><span class='label label-red'><?php echo $vt_dec['VaultTransaction']['jumlah'];?></span></div></td>
 									<td><?php echo $this->Time->nice($vt_dec['VaultTransaction']['created']);?></td>
 									<td><a href="<?php echo SITE_URL;?>vaults/mywallet_transaction/process:<?php echo $vt_latest['VaultTransaction']['id'];?>" class="btn btn-mini btn-darkblue" rel="tooltip" title="TR<?php echo $vt_latest['VaultTransaction']['id'];?>W  Transaction Details" data-toggle="modal"><i class="icon-cogs"></i></a></td>

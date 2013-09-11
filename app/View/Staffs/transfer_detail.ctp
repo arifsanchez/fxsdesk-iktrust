@@ -40,55 +40,59 @@
 				<table class="table table-hover table-nomargin table-condensed table-bordered">
 					<thead>
 						<tr>
-							<th>Type</th>
-							<th>Status</th>
-							<th>Tracc</th>
-							<th>Amount</th>
-							<th>Wallet</th>
-							<th>Wallet Balance</th>
-							<th>Operation</th>
+							<th><div class="text-center">Type</div></th>
+							<th><div class="text-center">Status</div></th>
+							<th><div class="text-center">Tracc No</div></th>
+							<th><div class="text-center">Amount</div></th>
+							
+							<th>
+								<button class="btn btn-mini btn-info" data-placement="top" title="" rel="tooltip" data-original-title="Wallet ID #<?php echo $TranDetails['Vault']['id'];?>">
+									<i class="icon-exclamation-sign"></i>
+								</button>
+								 Wallet
+							</th>
+							<th><div class="text-center">Finance Process</div></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>
+							<td><div class="text-center">
 								<?php
 									$type = $TranDetails['VaultTransaction']['type'];
 									echo $this->element('requestVaultTransType', array('type' => $type));
 								?>
-							</td>
-							<td>
+							</div></td>
+							<td><div class="text-center">
 								<?php
 									$status = $TranDetails['VaultTransaction']['status'];
 									echo $this->element('requestVaultStatLabel', array('status' => $status));
 								?>
-							</td>
-							<td><?php echo $TranDetails['VaultTransaction']['tracc_no'];?></td>
-							<td><?php echo $this->Number->Currency($TranDetails['VaultTransaction']['jumlah'], '$ ');?></td>
-							<td><?php echo $TranDetails['Vault']['id'];?></td>
-							<td><?php echo $this->Number->Currency($TranDetails['Vault']['acc_1'], 'IK$ ');?></td>
-							<td>
+							</div></td>
+							<td><div class="text-center">
+								<?php echo $TranDetails['VaultTransaction']['tracc_no'];?>
+							</div></td>
+							<td><div class="text-center">
+								<?php echo money_format('%.2n',$TranDetails['VaultTransaction']['jumlah']);?>
+							</div></td>
+							<td><div class="text-center">
+								<?php 
+									$akaun1 = $TranDetails['Vault']['acc_1'];
+									if($akaun1 == 0.00){
+										echo "IK$ 0.00";
+									} else if($akaun1 < 1.00) {
+										echo money_format('%.2n', $akaun1);
+									} else {
+										echo $this->Number->Currency($akaun1, 'IK$ '); 
+									}
+								?>
+							</div></td>
+							<td><div class="text-center">
 								<div class="btn-group">
 									<?php if($status != 3){?>
 									<a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> Update Status <span class="caret"></span></a>
 									<ul class="dropdown-menu dropdown-warning">
 										<?php
-											/*switch ($type) {
-												case '1':
-													echo $this->element('StaffTransStatus_type', array('status' => $status, 'TranDetails' => $TranDetails, 'type' => $type));
-													break;
-												case '4':
-													echo $this->element('StaffTransStatus_type4', array('status' => $status, 'TranDetails' => $TranDetails));
-													break;
-												
-												default:
-													echo "";
-													break;
-											}*/
-
 											echo $this->element('StaffTransStatus_type', array('status' => $status, 'TranDetails' => $TranDetails, 'type' => $type));
-											
-											#echo $this->element('StaffTransStatus.type4');
 										?>
 										
 									</ul>
@@ -96,7 +100,7 @@
 										<a class="btn btn-success" href="#"><i class="icon-cog"></i> View Account </a>
 									<?php }?>
 								</div>
-							</td>
+							</div></td>
 						</tr>
 					</tbody>
 				</table>

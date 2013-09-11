@@ -88,7 +88,7 @@
 							<th>Type</th>
 							<th>Status</th>
 							<th>Comment</th>
-							<th><div class="text-right">Amount IK$</div></th>
+							<th><div class="text-center">Amount IK$</div></th>
 							<th>Requested</th>
 							<th>Operations</th>
 						</tr>
@@ -107,7 +107,7 @@
 								?>
 								</button>
 								<?php
-									$username = $Transaction['Vault']['User']['username'];
+									$username = $Transaction['Vault']['User']['first_name']." ".$Transaction['Vault']['User']['last_name'];
 									echo $username;
 								?>
 
@@ -127,8 +127,17 @@
 							</td>
 							<td><?php echo ucwords(strtolower($Transaction['VaultTransaction']['description']));?></td>
 							<td>
-								<div class="text-right">
-									<?php echo money_format('%.2n',$Transaction['VaultTransaction']['jumlah']);?>
+								<div class="text-center">
+									<?php 
+										$akaun1 = $Transaction['VaultTransaction']['jumlah'];
+										if($akaun1 == 0.00){
+											echo "0.00";
+										} else if($akaun1 < 1.00) {
+											echo money_format('%.2n', $akaun1);
+										} else {
+											echo $this->Number->Currency($akaun1, ''); 
+										}
+									?>
 								</div>
 							</td>
 							<td><span data-livestamp="<?php echo $Transaction['VaultTransaction']['created'];?>"></span></td>
