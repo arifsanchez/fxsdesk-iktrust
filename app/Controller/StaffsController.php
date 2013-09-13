@@ -35,7 +35,6 @@
 				'name' => "Staff Dashboard"
 			);
 			$this->set('page_title',$page_title);
-
 		}
 
 
@@ -567,6 +566,33 @@
 			}
 		}
 		
+
+		/**
+		* STAFF : Kira Semua Close Position
+		***/
+		public function JumlahClosePost(){
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				App::uses('CakeTime', 'Utility');
+				$date = strtotime('today');
+				$time = "1970-01-01 00:00:00";
+				$tempoh = CakeTime::daysAsSql($time,$date, 'CLOSE_TIME');
+				$total = $this->Mt4Trade->find('count', array(
+					'conditions' => array(
+		        		$tempoh,
+		        		'SYMBOL NOT' => ''
+			        ),
+				));
+				#debug($total); die();
+
+				if ($this->request->is('requested')) {
+					return $total;
+				} else {
+					$this->set('JumlahClosePost', $total);
+				}
+			}
+		}
+
 		/**
 		* STAFF :: Deposit Main Window
 		*
@@ -1250,7 +1276,7 @@
 			//Page title
 			$page_title = array(
 				'icon' => "icon-exchange",
-				'name' => "All Closed Positions"
+				'name' => "Closed Position : Yesterday"
 			);
 			$this->set('page_title',$page_title);
 

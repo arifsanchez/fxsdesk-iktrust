@@ -159,6 +159,17 @@
 							</div>
 						</a>
 					</li>
+
+					<li class="lime">
+						<a href="<?php echo SITE_URL;?>Staffs/report_close_order?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-spinner"></i>
+							<div class="details">
+								<?php $TotalClosePost = $this->requestAction('Staffs/JumlahClosePost') ;?>
+								<span class="big"><span class="big"><?php echo $TotalClosePost;?></span></span>
+								<span>Traded</span>
+							</div>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>

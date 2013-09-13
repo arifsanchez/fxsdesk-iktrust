@@ -158,13 +158,13 @@ class Mt4Trade extends AppModel {
 	*****/
 	public function jumlahCloseOrder($bila=null){
 		App::uses('CakeTime', 'Utility');
-		$yesterday = strtotime($bila);
-		$tempoh = CakeTime::daysAsSql($yesterday,$yesterday, 'CLOSE_TIME');
+		$date = strtotime($bila);
+		$tempoh = CakeTime::daysAsSql($date,$date, 'CLOSE_TIME');
 
 		$jumlah = $this->find('all', array(
 			'conditions' => array(
         		$tempoh,
-        		'SYMBOL NOT' => '',
+        		'SYMBOL NOT' => ''
 	        ),
 			'fields' => array('sum(PROFIT) AS total')
 		));

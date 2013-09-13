@@ -34,7 +34,7 @@ if($ajax) {
 							<th>Transaction</th>
 							<th>Comment</th>
 							<th>Open / Close Time</th>
-							<th><div class="text-right">Amount US$</div></th>
+							<th><div class="text-right"><?php echo $this->Paginator->sort('Mt4Trade.PROFIT', __('Amount US$'));?></div></th>
 						</tr>
 						<?php } ?>
 					</thead>

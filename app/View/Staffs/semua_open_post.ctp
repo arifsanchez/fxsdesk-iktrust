@@ -20,9 +20,6 @@ if($ajax) {
 	<div class="span12">
 		<div class="box box-color grey box-bordered" id="updateTradeHistory">
 			<div class="box-title">
-				<h3>
-					Current Open Position
-				</h3>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-condensed table-bordered">
@@ -36,7 +33,7 @@ if($ajax) {
 							<th>Transactions</th>
 							<th>Open Time</th>
 							<th>Open Price</th>
-							<th><div class="text-right">Amount US$</div></th>
+							<th><div class="text-right"><?php echo $this->Paginator->sort('Mt4Trade.PROFIT', __('Amount US$'));?></div></th>
 						</tr>
 						<?php } ?>
 					</thead>
