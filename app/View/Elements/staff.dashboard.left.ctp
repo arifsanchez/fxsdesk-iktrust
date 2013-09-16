@@ -44,21 +44,35 @@
 		<a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>Client P/L</span></a>
 	</div>
 	<div class="subnav-content">
+		<?php 
+			$jumlahSemalam = $this->requestAction('staffs/profitLossClient_semalam');
+			$jst = intval($jumlahSemalam['total']);
+			if($jst != null){
+		?>
 		<div class="pagestats">
-			<span class="left"><b>Semalam</b></span>
+			<span class="left"><b>Yesterday</b></span><br/>
 			<span class="left label label-orange">
-				<?php 
-					$jumlahSemalam = $this->requestAction('staffs/profitLossClient_semalam');
-					echo "$ ".$jumlahSemalam['total'];
+				
+				<?php
+					echo $this->Number->currency($jst, '$');
 					?>
 			</span>
 		</div>
 		<br/>
+		<?php }; ?>
+		<?php 
+			$jumlahHariNi = $this->requestAction('staffs/profitLossClient_hariNi') ;
+			$jhn = intval($jumlahHariNi['total']);
+			if($jhn != null){
+		?>
 		<div class="pagestats">
-			<span class="left"><b>Hari Ini</b></span>
+			<span class="left"><b>Today</b></span><br/>
 			<span class="left label label-orange">
-				<?php $jumlahHariNi = $this->requestAction('staffs/profitLossClient_hariNi') ; echo "$ ".$jumlahHariNi['total'];?>
+				
+				<?php
+					echo $this->Number->currency($jhn, '$');?>
 			</span>
 		</div>
+		<?php } ?>
 	</div>
 </div>
