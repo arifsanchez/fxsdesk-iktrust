@@ -53,7 +53,7 @@
 
 			$this->paginate = array(
 				'limit' => 15, 
-				'order'=>'User.id desc', 
+				'order'=>'User.last_login desc', 
 				'recursive'=>1, 
 				'conditions' => array(
 					'User.user_group_id' => 1
@@ -83,7 +83,7 @@
 
 			$this->paginate = array(
 				'limit' => 15, 
-				'order'=>'User.id desc', 
+				'order'=>'User.last_login desc', 
 				'recursive'=>1, 
 				'conditions' => array(
 					'User.user_group_id' => 2

@@ -35,7 +35,7 @@ if($ajax) {
 				<table class="table table-hover table-nomargin table-bordered usertable">
 					<thead>
 						<tr>
-							<th><?php echo __('Photo');?></th>
+							<th><?php echo $this->Paginator->sort('User.last_login', __('Profile Picture')); ?></th>
 							<th class="sorting"><?php echo $this->Paginator->sort('User.first_name', __('Personal Info')); ?></th>
 							<th class="sorting"><?php echo $this->Paginator->sort('User.email', __('Contact')); ?></th>
 							<th>Status</th>

@@ -36,7 +36,7 @@ if($ajax) {
 							<th class="sorting"><?php echo $this->Paginator->sort('User.first_name', __('Personal Info')); ?></th>
 							<th class="sorting"><?php echo $this->Paginator->sort('User.email', __('Contact')); ?></th>
 							<th>Status</th>
-							<th>Last Login</th>
+							<th><?php echo $this->Paginator->sort('User.last_login', __('Last Login');?></th>
 						</tr>
 					</thead>
 					<tbody>
