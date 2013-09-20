@@ -34,7 +34,8 @@
 		<div class="pagestats">
 			<span class="left"><b>Partners</b></span>
 			<span class="left label label-success">
-				<?php $TotalWalletPartner = $this->requestAction('vaults/kiraTotalWalletPartner') ; echo $this->Number->currency($TotalWalletPartner,'IK$ ');?>
+				<?php 
+					$TotalWalletPartner = $this->requestAction('vaults/kiraTotalWalletPartner');echo $this->Number->currency($TotalWalletPartner,'IK$ ');?>
 			</span>
 		</div>
 	</div>
@@ -51,11 +52,13 @@
 		?>
 		<div class="pagestats">
 			<span class="left"><b>Yesterday</b></span><br/>
-			<span class="left label label-orange">
+			<span class="left label label-red">
 				
 				<?php
-					echo $this->Number->currency($jst, '$');
-					?>
+					#echo $this->Number->currency($jst, '$');
+					setlocale(LC_MONETARY, 'en_US');
+					echo money_format('%=*(#9.2n', $jst);
+				?>
 			</span>
 		</div>
 		<br/>
@@ -67,10 +70,13 @@
 		?>
 		<div class="pagestats">
 			<span class="left"><b>Today</b></span><br/>
-			<span class="left label label-orange">
+			<span class="left label label-red">
 				
 				<?php
-					echo $this->Number->currency($jhn, '$');?>
+					#echo $this->Number->currency($jhn, '$');
+					setlocale(LC_MONETARY, 'en_US');
+					echo money_format('%=*(#9.2n', $jhn);
+				?>
 			</span>
 		</div>
 		<?php } ?>
