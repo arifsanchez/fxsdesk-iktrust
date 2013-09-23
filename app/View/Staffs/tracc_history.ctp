@@ -18,11 +18,41 @@ if($ajax) {
 
 <div class="row-fluid">
 	<div class="span12">
-		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
+		<div class="box box-mini box-bordered" id="updateTradeHistory">
+			<?php #debug($traderClosePost); die(); ?>
+				<table class="table table-hover table-nomargin table-condensed table-bordered">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Total Closed Post</th>
+							<th>Total Floating Post</th>
+							<th>Balance (Now)</th>
+							<th>Balance (Yesterday)</th>
+							<th>Credit</th>
+							<th>Equity</th>
+						</tr>
+					</thead>
+					<tbody>
+						<td>
+							<?php 	
+							$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$userDetail['Mt4User']['EMAIL']);
+							#debug($accstatus);
+								if(!empty($accstatus)){
+									echo "<a href='".SITE_URL."staffs/client_profile/name:".$userDetail['Mt4User']['EMAIL']."/siapa:".$var['User']['username']."' class='btn btn-mini btn-blue'>".strtoupper($userDetail['Mt4User']['NAME'])."</a>";
+								} else {
+									echo h($userDetail['Mt4User']['NAME']);
+								}
+							?>
+						</td>
+						<td><div class="text-center"><?php echo $traderOpenPost; ?></div></td>
+						<td><div class="text-center"><?php echo $traderClosePost; ?></div></td>
+						<td><div class="text-center"><?php echo number_format($userDetail['Mt4User']['BALANCE'],2,'.',''); ?></div></td>
+						<td><div class="text-center"><?php echo number_format($userDetail['Mt4User']['PREVBALANCE'],2,'.',''); ?></div></td>
+						<td><div class="text-center"><?php echo number_format($userDetail['Mt4User']['CREDIT'],2,'.',''); ?></div></td>
+						<td><div class="text-center"><?php echo number_format($userDetail['Mt4User']['MARGIN_FREE']+$userDetail['Mt4User']['MARGIN'],2,'.',''); ?></div></td>
+					</tbody>
+				</table>
 			<div class="box-title">
-				<h3>
-					Trading Account History
-				</h3>
 				<div class="actions">
 					<a href="<?php echo SITE_URL;?>Staffs/tracc_listing" class="btn btn-mini" rel="tooltip" title="Trading Accounts Listing"><i class="icon-briefcase"></i> Back to accounts listing</a>
 				</div>

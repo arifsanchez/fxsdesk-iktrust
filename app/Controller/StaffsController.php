@@ -328,6 +328,18 @@
 			);
 			$this->set('page_title',$page_title);
 
+			//dapatkan details traders
+			if(!empty($tracc_id)){
+				$result = $this->Mt4User->tentangDiri($tracc_id);
+				$this->set('userDetail', $result);
+
+				$traderOpenPost = $this->Mt4Trade->traderOpenPost($tracc_id);
+				$this->set('traderOpenPost', $traderOpenPost);
+
+				$traderClosePost = $this->Mt4Trade->traderClosePost($tracc_id);
+				$this->set('traderClosePost', $traderClosePost);
+			}
+
 			//listing downline
 			$downlines = $this->Mt4User->listingDownline($tracc_id);
 			$this->set('downlines', $downlines);
@@ -621,28 +633,36 @@
 
 			//check for param request
 			$filter = $this->params->named['process'];
+			$uid = $this->params->named['uid'];
 			#debug($filter); die();
 			if(!empty($filter)){
 				//list with paginate all pending request
 				$this->paginate = array(
 					'order' => 'VaultTransaction.created DESC',
 					'limit' => 35,
+					'recursive' => -1,
 					'conditions' => array('VaultTransaction.vault_id' => $filter)
 				);
 
-				$this->set('filter' , $filter);
+				$Wtransact = $this->paginate('VaultTransaction');
+				
+				$this->set('Wtransact',$Wtransact);
+
+				if($this->RequestHandler->isAjax()) {
+					$this->layout = 'ajax';
+					$this->render('wallet_statement');
+				}
 			} else {
 				$this->Session->setFlash(__('Sorry :( Error publishing records.'),'default',array('class' => 'error'));
 				$this->redirect(array('action' => 'backoffice'));
 			}
 
-			$Wtransact = $this->paginate('VaultTransaction');
-			$this->set('Wtransact',$Wtransact);
 
-			if($this->RequestHandler->isAjax()) {
-				$this->layout = 'ajax';
-				$this->render('transfer_request');
+			if(!empty($uid)){
+				$result = $this->User->getUserNamePixById($uid);
+				$this->set('userDetail', $result);
 			}
+			
 
 		}
 

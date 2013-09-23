@@ -400,12 +400,20 @@
 			$trades = $this->paginate('Mt4Trade');
 			$this->set('agentPost',$trades);
 
-			$bakiAcc = $this->Mt4User->bakiAcc($tracc_id);
+			$bakiAcc = $this->Mt4User->tentangDiri($tracc_id);
 			$this->set('nama_trader',$bakiAcc['Mt4User']['NAME']);
 			$this->set('email_trader',$bakiAcc['Mt4User']['EMAIL']);
 			$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
+			$this->set('bakiSemalam',$bakiAcc['Mt4User']['PREVBALANCE']);
 			$this->set('leverage',$bakiAcc['Mt4User']['LEVERAGE']);
 			$this->set('bakiCR',$bakiAcc['Mt4User']['CREDIT']);
+			$this->set('equity',$bakiAcc['Mt4User']['MARGIN_FREE']+$bakiAcc['Mt4User']['MARGIN']);
+
+			$traderOpenPost = $this->Mt4Trade->traderOpenPost($tracc_id);
+			$this->set('traderOpenPost', $traderOpenPost);
+
+			$traderClosePost = $this->Mt4Trade->traderClosePost($tracc_id);
+			$this->set('traderClosePost', $traderClosePost);
 
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';

@@ -505,4 +505,29 @@ class Mt4User extends AppModel {
 		return $bakiAcc;
 	}
 
+
+	/**
+	* STAFF : Dapatkan info trader
+	***/
+	public function tentangDiri($login=null){
+		$result = $this->find('first', array(
+			'conditions' =>array(
+				'LOGIN LIKE' => $login,
+			),
+			'fields' => array(
+				'NAME',
+				'EMAIL',
+				'LEVERAGE',
+				'CREDIT',
+				'PREVBALANCE',
+				'BALANCE',
+				'MARGIN',
+				'MARGIN_LEVEL',
+				'MARGIN_FREE',
+				'MODIFY_TIME'
+			)
+		));
+		return $result;
+	}
+
 }

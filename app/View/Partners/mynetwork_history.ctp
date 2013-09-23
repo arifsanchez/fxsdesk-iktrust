@@ -20,38 +20,55 @@ if($ajax) {
 	<div class="span12">
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
 			<div class="row-fluid">
-				<div class="span3">
-					<p><b>Account Name</b><br/>
-						<span class="label label-blue"><?php echo $nama_trader;?></span><br/>
-					</p>
-				</div>
-				<div class="span3">
-					<p><b>Dashboard Status</b><br/>
-					<?php 	
-						$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$email_trader);
-						#debug($accstatus);
-							if(!empty($accstatus)){
-								$email = base64_encode($email_trader);
-								echo "<span class='label label-green'><i class='glyphicon-dashboard'></i> ".$email_trader."</span>";
-							} else {
-								echo "<span class='label label-red'><i class='glyphicon-dashboard'></i> ".$email_trader."</span>";
-							}
-						?>
-					</p>
-				</div>
-				<div class="span2">
-					<p><b>Account Balance</b><br/>
-					<span class="label label-red"><?php echo $this->Number->Currency($bakiAcc, 'IK$ ');?></span></p>
-				</div>
-				<div class="span2">
-					<p><b>Credit Balance</b><br/>
-					<span class="label label-inverse"><?php echo $this->Number->Currency($bakiCR, 'CR$ ');?></span></p>
-				</div>
-
-				<div class="span2">
-					<p><b>Leverage</b><br/>
-					<span class="label label-lime"><?php echo "1:".$leverage;?></span></p>
-				</div>
+				<table class="table table-hover table-nomargin table-condensed table-bordered">
+					<thead>
+						<tr>
+							<th>Account Name</th>
+							<th>Total Floating Post</th>
+							<th>Total Closed Post</th>
+							<th>$ (Now)</th>
+							<th>$ (Yesterday)</th>
+							<th>Credit</th>
+							<th>Equity</th>
+							<th>Leverage</th>
+						</tr>
+					</thead>
+					<tbody>
+						<td>
+							<?php 	
+								echo $nama_trader;
+							?>
+							<br/>
+							<?php 	
+							$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$email_trader);
+							#debug($accstatus);
+								if(!empty($accstatus)){
+									$email = base64_encode($email_trader);
+									echo "<span class='label label-green'><i class='glyphicon-dashboard'></i> ".$email_trader."</span>";
+								} else {
+									echo "<span class='label label-red'><i class='glyphicon-dashboard'></i> ".$email_trader."</span>";
+								}
+							?>
+						</td>
+						<td><div class="text-center"><h4><?php echo $traderOpenPost; ?></h4></div></td>
+						<td><div class="text-center"><h4><?php echo $traderClosePost; ?></h4></div></td>
+						<td><div class="text-center">
+							<span class="label label-red"><?php echo $this->Number->Currency($bakiAcc, 'IK$ ');?></span>
+						</div></td>
+						<td><div class="text-center">
+							<span class="label label-red"><?php echo $this->Number->Currency($bakiSemalam, 'IK$ ');?></span>
+						</div></td>
+						<td><div class="text-center">
+							<span class="label label-inverse"><?php echo $this->Number->Currency($bakiCR, 'CR$ ');?></span>
+						</div></td>
+						<td><div class="text-center">
+							<span class="label label-magenta"><?php echo $this->Number->Currency($equity, '$ ');?></span>
+						</div></td>
+						<td>
+							<span class="label label-lime"><?php echo "1:".$leverage;?></span>
+						</td>
+					</tbody>
+				</table>
 			</div>
 
 			<div class="box-title">

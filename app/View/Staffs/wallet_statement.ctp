@@ -22,6 +22,30 @@
 	<div class="span12">
 		<div class="box box-mini box-bordered" id="updateTradeHistory">
 			<div class="box-title">
+				<?php
+					#debug($userDetail); die();
+				?>
+				<table class="table table-hover table-nomargin table-condensed table-bordered">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Total Deposit</th>
+							<th>Total Withdrawal</th>
+							<th>Total Transfer In</th>
+							<th>Total Transfer Out</th>
+						</tr>
+					</thead>
+					<tbody>
+						<td>
+							<img alt="<?php echo h($userDetail['User']['first_name'].' '.$userDetail['User']['last_name']); ?>" src="<?php echo $this->Image->resize('img/'.IMG_DIR, $userDetail['UserDetail']['photo'], 20, null, true) ?>">
+							<?php echo h($userDetail['User']['first_name'].' '.$userDetail['User']['last_name']); ?>
+						</td>
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>
+					</tbody>
+				</table>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-condensed table-bordered">
@@ -60,9 +84,9 @@
 									<?php 
 										$akaun1 = $Transaction['VaultTransaction']['jumlah'];
 										if($akaun1 == 0.00){
-											echo "0.00";
+											echo "$ 0.00";
 										} else if($akaun1 < 1.00) {
-											echo money_format('%.2n', $akaun1);
+											echo "$ ".money_format('%.2n', $akaun1);
 										} else {
 											echo $this->Number->Currency($akaun1, '$ '); 
 										}

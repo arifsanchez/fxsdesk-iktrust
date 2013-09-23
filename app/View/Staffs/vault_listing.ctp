@@ -55,7 +55,7 @@ if($ajax) {
 								if($akaun1 == 0.00){
 									echo "IK$ 0.00";
 								} else if($akaun1 < 1.00) {
-									echo money_format('%.2n', $akaun1);
+									echo "IK$ ".money_format('%.2n', $akaun1);
 								} else {
 									echo $this->Number->Currency($akaun1, 'IK$ '); 
 								}

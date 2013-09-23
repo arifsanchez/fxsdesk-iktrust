@@ -170,4 +170,37 @@ class Mt4Trade extends AppModel {
 		));
 		return $jumlah[0][0];
 	}
+
+	/**
+	*	STAFF : Dapatkan total open post
+	***/
+	public function traderOpenPost($login=null){
+		$time = "1970-01-01 00:00:00";
+		$total = $this->find('count', array(
+			'conditions' => array(
+        		'CLOSE_TIME' => $time,
+        		'LOGIN' => $login,
+        		'SYMBOL NOT' => ''
+	        ),
+		));
+		return $total;
+	}
+
+	/**
+	*	STAFF : Dapatkan total close post
+	***/
+	public function traderClosePost($login=null){
+		App::uses('CakeTime', 'Utility');
+		$date = strtotime('today');
+		$time = "1970-01-01 00:00:00";
+		$tempoh = CakeTime::daysAsSql($time,$date, 'CLOSE_TIME');
+		$total = $this->find('count', array(
+			'conditions' => array(
+        		$tempoh,
+        		'LOGIN' => $login,
+        		'SYMBOL NOT' => ''
+	        ),
+		));
+		return $total;
+	}
 }
