@@ -542,6 +542,114 @@
 			}
 		}
 
+		
+		/**
+		* STAFF :: Client Wallet listing
+		*/
+		public function wallet_listing() {
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "Client Wallets"
+			);
+			$this->set('page_title',$page_title);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 20, 
+				'order'=> 'Vault.acc_1 DESC',
+				'conditions' => array(
+					'Vault.partner' => 0
+				)
+			);
+			$records = $this->paginate('Vault');
+			#debug($records); die();
+			$this->set('TRwallet',$records);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('wallet_listing');
+			}
+		}
+
+		/**
+		* STAFF :: Partner Vault listing
+		*/
+		public function vault_listing() {
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "Partner Vaults"
+			);
+			$this->set('page_title',$page_title);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 20, 
+				'order'=> 'Vault.acc_1 DESC',
+				'conditions' => array(
+					'Vault.partner' => 1
+				)
+			);
+			$records = $this->paginate('Vault');
+			$this->set('PRvault',$records);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('vault_listing');
+			}
+		}
+
+		/**
+		* STAFF : Kira Semua Open Position
+		***/
+		public function JumlahActiveWallets(){
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$total = $this->Vault->find('count',
+					array(
+						'recursive'=>0,
+						'conditions' => array(
+							'Vault.acc_1 >' => 0,
+							'Vault.partner' => 0
+						)
+					)
+				);
+				if ($this->request->is('requested')) {
+					return $total;
+				} else {
+					$this->set('JumlahActiveWallets', $total);
+				}
+			}
+		}
+
+		/**
+		* STAFF : Kira Semua Open Position
+		***/
+		public function JumlahActiveVaults(){
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$total = $this->Vault->find('count',
+					array(
+						'recursive'=>0,
+						'conditions' => array(
+							'Vault.acc_1 >' => 0,
+							'Vault.partner' => 1
+						)
+					)
+				);
+				if ($this->request->is('requested')) {
+					return $total;
+				} else {
+					$this->set('JumlahActiveWallets', $total);
+				}
+			}
+		}
+
 		/**
 		* STAFF : Kira Semua Open Position
 		***/

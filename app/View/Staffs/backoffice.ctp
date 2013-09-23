@@ -139,6 +139,44 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="span6">
+		<!-- Market Watch -->
+		<div class="box box-color magenta box-bordered">
+			<div class="box-title">
+				<h3>
+					<i class="icon-th-large"></i>
+					Finance Monitoring
+				</h3>
+			</div>
+			<div class="box-content">
+				<ul class="stats">
+					<li class="blue">
+						<a href="<?php echo SITE_URL;?>Staffs/wallet_listing?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-sitemap"></i>
+							<div class="details">
+								<span class="big"><span class="big"><?php $JumlahActiveWallets = $this->requestAction('Staffs/JumlahActiveWallets') ; echo $JumlahActiveWallets;?></span></span>
+								<span>Client Wallets</span>
+							</div>
+						</a>
+					</li>
+
+					<li class="grey">
+						<a href="<?php echo SITE_URL;?>Staffs/vault_listing?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-sitemap"></i>
+							<div class="details">
+								<span class="big"><span class="big"><?php $JumlahActiveVaults = $this->requestAction('Staffs/JumlahActiveVaults') ; echo $JumlahActiveVaults;?></span></span>
+								<span>Partner Vaults</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid">
 	<div class="span6">
 		<!-- Market Watch -->
 		<div class="box box-color lime box-bordered">
@@ -173,7 +211,11 @@
 				</ul>
 			</div>
 		</div>
-	</div>	
+	</div>
+
+	<div class="span6">
+		
+	</div>
 </div>
 
 <div class="row-fluid">
