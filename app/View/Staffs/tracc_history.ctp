@@ -24,8 +24,8 @@ if($ajax) {
 					<thead>
 						<tr>
 							<th>Name</th>
-							<th>Total Closed Post</th>
 							<th>Total Floating Post</th>
+							<th>Total Closed Post</th>
 							<th>Balance (Now)</th>
 							<th>Balance (Yesterday)</th>
 							<th>Credit</th>
