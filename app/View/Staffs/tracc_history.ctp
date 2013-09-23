@@ -38,7 +38,7 @@ if($ajax) {
 							$accstatus = $this->requestAction('partners/checkDashboardStatus/pass:'.$userDetail['Mt4User']['EMAIL']);
 							#debug($accstatus);
 								if(!empty($accstatus)){
-									echo "<a href='".SITE_URL."staffs/client_profile/name:".$userDetail['Mt4User']['EMAIL']."/siapa:".$var['User']['username']."' class='btn btn-mini btn-blue'>".strtoupper($userDetail['Mt4User']['NAME'])."</a>";
+									echo "<a href='".SITE_URL."staffs/client_profile/email:".$userDetail['Mt4User']['EMAIL']."/siapa:".$var['User']['username']."' class='btn btn-mini btn-blue'>".strtoupper($userDetail['Mt4User']['NAME'])."</a>";
 								} else {
 									echo h($userDetail['Mt4User']['NAME']);
 								}
