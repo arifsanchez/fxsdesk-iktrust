@@ -72,7 +72,7 @@
 								?>
 							</div></td>
 							<td><div class="text-center">
-								<a data-content="$<?php echo $bakiTracc['BALANCE']; ?>" data-placement="bottom" title="<?php echo $bakiTracc['NAME']; ?>" data-trigger="hover" rel="popover" class="btn btn-mini btn-blue" href="#" data-original-title="Bottom popover"><?php echo $TranDetails['VaultTransaction']['tracc_no'];?></a>
+								<a data-placement="bottom" data-trigger="hover" rel="tooltip" class="btn btn-mini btn-blue" href="<?php echo SITE_URL;?>staffs/tracc_history/process:<?php echo $TranDetails['VaultTransaction']['tracc_no'];?>" data-original-title="$<?php echo $bakiTracc['BALANCE']; ?>"><?php echo $TranDetails['VaultTransaction']['tracc_no'];?></a>
 							</div></td>
 							<td><div class="text-center">
 								<?php echo money_format('%.2n',$TranDetails['VaultTransaction']['jumlah']);?>

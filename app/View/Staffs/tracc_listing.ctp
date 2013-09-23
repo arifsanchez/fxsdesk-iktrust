@@ -22,9 +22,6 @@ if($ajax) {
 	<div class="span12">
 		<div class="box box-color box-small blue box-bordered" id="updateNetworklisting">
 			<div class="box-title">
-				<h3>
-					Registered Trading Accounts
-				</h3>
 				<div class="actions">
 					<?php echo $this->element('staff.carianTraccNo');?>
 				</div>
@@ -47,10 +44,10 @@ if($ajax) {
 						<?php foreach($MT_ACC as $acc): ?>
 						<tr>
 							<td>
-								<button class="btn btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
+								<button class="btn btn-mini btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
 									<i class="icon-exclamation-sign"></i>
 								</button>
-								<a class="btn" href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['NAME'];?>" >
+								<a class="btn btn-mini" href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['NAME'];?>" >
 									<?php echo $acc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>
@@ -72,9 +69,9 @@ if($ajax) {
 							</td>
 							<td><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"></span></td>
 							<td>
-								<a href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
+								<a href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-mini btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
 
-								<a href="#popup-coming-soon" class="btn btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> Setting</a>
+								<a href="#popup-coming-soon" class="btn btn-mini btn-darkblue" rel="tooltip" title="Trading Account Setting" data-toggle="modal"><i class="icon-cogs"></i> Setting</a>
 							</td>
 						</tr>
 						<?php endforeach; ?>
