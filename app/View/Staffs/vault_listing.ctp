@@ -50,12 +50,32 @@ if($ajax) {
 									<?php echo $acc['User']['first_name']." ".$acc['User']['last_name'];?>
 								</a>
 							</td>
-							<td><?php echo $this->Number->currency($acc['Vault']['acc_1'], 'IK$ ');?></td>
-							<td><?php echo $this->Number->currency($acc['Vault']['acc_2'], 'CR$ ');?></td>
+							<td><?php 
+								$akaun1 = $acc['Vault']['acc_1'];
+								if($akaun1 == 0.00){
+									echo "IK$ 0.00";
+								} else if($akaun1 < 1.00) {
+									echo money_format('%.2n', $akaun1);
+								} else {
+									echo $this->Number->Currency($akaun1, 'IK$ '); 
+								}
+								#echo $this->Number->currency($acc['Vault']['acc_1'], 'IK$ ');
+							?></td>
+							<td><?php 
+								$akaun2 = $acc['Vault']['acc_2'];
+								if($akaun2 == 0.00){
+									echo "CR$ 0.00";
+								} else if($akaun1 < 1.00) {
+									echo "CR$ ".money_format('%.2n', $akaun2);
+								} else {
+									echo $this->Number->Currency($akaun2, 'CR$ '); 
+								}
+								#echo $this->Number->currency($acc['Vault']['acc_2'], 'CR$ ');
+							?></td>
 							<td><?php echo $acc['Vault']['modified'];?></td>
 							<td><span data-livestamp="<?php echo $acc['Vault']['created'];?>"></span></td>
 							<td>
-								<a href="<?php echo SITE_URL;?>Staffs/wallet_statement/process:<?php echo $acc['Vault']['id'];?>" class="btn btn-grey" rel="tooltip" title="Wallet Statement"><i class="glyphicon-table"></i> Statement</a>
+								<a href="<?php echo SITE_URL;?>Staffs/wallet_statement/process:<?php echo $acc['Vault']['id'];?>" class="btn btn-grey" rel="tooltip" title="Vault Statement"><i class="glyphicon-table"></i> Statement</a>
 							</td>
 						</tr>
 						<?php endforeach; ?>

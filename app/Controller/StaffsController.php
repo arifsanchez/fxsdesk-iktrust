@@ -605,6 +605,48 @@
 		}
 
 		/**
+		* Staff :: Transfer Main Window
+		*
+		*/
+		public function wallet_statement() {
+
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-money",
+				'name' => "Wallet Statement"
+			);
+			$this->set('page_title',$page_title);
+
+			//check for param request
+			$filter = $this->params->named['process'];
+			#debug($filter); die();
+			if(!empty($filter)){
+				//list with paginate all pending request
+				$this->paginate = array(
+					'order' => 'VaultTransaction.created DESC',
+					'limit' => 35,
+					'conditions' => array('VaultTransaction.vault_id' => $filter)
+				);
+
+				$this->set('filter' , $filter);
+			} else {
+				$this->Session->setFlash(__('Sorry :( Error publishing records.'),'default',array('class' => 'error'));
+				$this->redirect(array('action' => 'backoffice'));
+			}
+
+			$Wtransact = $this->paginate('VaultTransaction');
+			$this->set('Wtransact',$Wtransact);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('transfer_request');
+			}
+
+		}
+
+		/**
 		* STAFF : Kira Semua Open Position
 		***/
 		public function JumlahActiveWallets(){

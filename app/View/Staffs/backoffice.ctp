@@ -156,7 +156,7 @@
 							<i class="icon-sitemap"></i>
 							<div class="details">
 								<span class="big"><span class="big"><?php $JumlahActiveWallets = $this->requestAction('Staffs/JumlahActiveWallets') ; echo $JumlahActiveWallets;?></span></span>
-								<span>Client Wallets</span>
+								<span>Wallets</span>
 							</div>
 						</a>
 					</li>
@@ -166,7 +166,7 @@
 							<i class="icon-sitemap"></i>
 							<div class="details">
 								<span class="big"><span class="big"><?php $JumlahActiveVaults = $this->requestAction('Staffs/JumlahActiveVaults') ; echo $JumlahActiveVaults;?></span></span>
-								<span>Partner Vaults</span>
+								<span>Vaults</span>
 							</div>
 						</a>
 					</li>
