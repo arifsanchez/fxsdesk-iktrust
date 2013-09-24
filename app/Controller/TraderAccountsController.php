@@ -88,7 +88,7 @@
 			//Page title
 			$page_title = array(
 				'icon' => "icon-signal",
-				'name' => "Account Overview #".$acc.""
+				'name' => "#".$acc.""
 			);
 			$this->set('page_title',$page_title);
 
@@ -105,6 +105,21 @@
 						'Mt4User.GROUP LIKE' => '%IK%'
 					)
 				));
+
+				$bakiAcc = $this->Mt4User->tentangDiri($acc);
+				$this->set('nama_trader',$bakiAcc['Mt4User']['NAME']);
+				$this->set('email_trader',$bakiAcc['Mt4User']['EMAIL']);
+				$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
+				$this->set('bakiSemalam',$bakiAcc['Mt4User']['PREVBALANCE']);
+				$this->set('leverage',$bakiAcc['Mt4User']['LEVERAGE']);
+				$this->set('bakiCR',$bakiAcc['Mt4User']['CREDIT']);
+				$this->set('equity',$bakiAcc['Mt4User']['MARGIN_FREE']+$bakiAcc['Mt4User']['MARGIN']);
+
+				$traderOpenPost = $this->Mt4Trade->traderOpenPost($acc);
+				$this->set('traderOpenPost', $traderOpenPost);
+
+				$traderClosePost = $this->Mt4Trade->traderClosePost($acc);
+				$this->set('traderClosePost', $traderClosePost);
 
 				if(empty($result)){
 					$this->Session->setFlash(__('You are not authorized to acess trading account #'.$acc.' details.'), 'default', array('class' => 'error'));
@@ -170,6 +185,21 @@
 				$trades = $this->paginate('Mt4Trade');
 				$this->set('MT_TRANSACT',$trades);
 
+				$bakiAcc = $this->Mt4User->tentangDiri($acc);
+				$this->set('nama_trader',$bakiAcc['Mt4User']['NAME']);
+				$this->set('email_trader',$bakiAcc['Mt4User']['EMAIL']);
+				$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
+				$this->set('bakiSemalam',$bakiAcc['Mt4User']['PREVBALANCE']);
+				$this->set('leverage',$bakiAcc['Mt4User']['LEVERAGE']);
+				$this->set('bakiCR',$bakiAcc['Mt4User']['CREDIT']);
+				$this->set('equity',$bakiAcc['Mt4User']['MARGIN_FREE']+$bakiAcc['Mt4User']['MARGIN']);
+
+				$traderOpenPost = $this->Mt4Trade->traderOpenPost($acc);
+				$this->set('traderOpenPost', $traderOpenPost);
+
+				$traderClosePost = $this->Mt4Trade->traderClosePost($acc);
+				$this->set('traderClosePost', $traderClosePost);
+
 				if($this->RequestHandler->isAjax()) {
 					$this->layout = 'ajax';
 					$this->render('history');
@@ -226,6 +256,15 @@
 				));
 				$trades = $this->paginate('Mt4Trade');
 				$this->set('MT_TRANSACT',$trades);
+
+				$bakiAcc = $this->Mt4User->tentangDiri($acc);
+				$this->set('nama_trader',$bakiAcc['Mt4User']['NAME']);
+				$this->set('email_trader',$bakiAcc['Mt4User']['EMAIL']);
+				$this->set('bakiAcc',$bakiAcc['Mt4User']['BALANCE']);
+				$this->set('bakiSemalam',$bakiAcc['Mt4User']['PREVBALANCE']);
+				$this->set('leverage',$bakiAcc['Mt4User']['LEVERAGE']);
+				$this->set('bakiCR',$bakiAcc['Mt4User']['CREDIT']);
+				$this->set('equity',$bakiAcc['Mt4User']['MARGIN_FREE']+$bakiAcc['Mt4User']['MARGIN']);
 
 				if($this->RequestHandler->isAjax()) {
 					$this->layout = 'ajax';

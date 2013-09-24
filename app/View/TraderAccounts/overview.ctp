@@ -77,17 +77,46 @@
 		</div>
 	</div>
 </div>
+
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color grey box-small box-bordered">
+		<table class="table table-hover table-condensed table-bordered">
+			<thead>
+				<tr>
+					<th>Account Name</th>
+					<th>Total Floating Post</th>
+					<th>Total Closed Post</th>
+					<th>Balance $ (Yesterday)</th>
+					<th>Credit</th>
+					<th>Equity</th>
+					<th>Leverage</th>
+				</tr>
+			</thead>
+			<tbody>
+				<td>
+					<?php 	
+						echo $nama_trader;
+					?>
+				</td>
+				<td><div class="text-center"><h4><?php echo $traderOpenPost; ?></h4></div></td>
+				<td><div class="text-center"><h4><?php echo $traderClosePost; ?></h4></div></td>
+				<td><div class="text-center">
+					<span class="label label-red"><?php echo $this->Number->Currency($bakiSemalam, 'IK$ ');?></span>
+				</div></td>
+				<td><div class="text-center">
+					<span class="label label-inverse"><?php echo $this->Number->Currency($bakiCR, 'CR$ ');?></span>
+				</div></td>
+				<td><div class="text-center">
+					<span class="label label-magenta"><?php echo $this->Number->Currency($equity, '$ ');?></span>
+				</div></td>
+				<td>
+					<span class="label label-lime"><?php echo "1:".$leverage;?></span>
+				</td>
+			</tbody>
+		</table>
+		
 			<div class="box-title">
-				<h3>
-					<i class="icon-reorder"></i>
-					Latest Account Transactions
-				</h3>
-				<div class="actions">
-					<a href="<?php echo SITE_URL;?>TraderAccounts/history/acc:<?php echo $MT_ACC['Mt4User']['LOGIN'];?>" class="btn btn-mini"><i class="glyphicon-table"></i> View All Transactions</a>
-				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-condensed table-bordered">

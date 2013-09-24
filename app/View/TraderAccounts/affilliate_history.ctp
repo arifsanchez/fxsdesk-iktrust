@@ -22,6 +22,34 @@ if($ajax) {
 			<?php if(!empty($downlines)){ ?>
 			<div class="row-fluid">
 				<div class="span12">
+					<table class="table table-hover table-nomargin table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th>Account Name</th>
+								<th>Email</th>
+								<th>$ (Now)</th>
+								<th>$ (Yesterday)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<td>
+								<?php 	
+									echo $nama_trader;
+								?>
+							</td>
+							<td>
+								<?php 	
+									echo $email_trader;
+								?>
+							</td>
+							<td><div class="text-center">
+								<span class="label label-red"><?php echo $this->Number->Currency($bakiAcc, 'IK$ ');?></span>
+							</div></td>
+							<td><div class="text-center">
+								<span class="label label-red"><?php echo $this->Number->Currency($bakiSemalam, 'IK$ ');?></span>
+							</div></td>
+						</tbody>
+					</table>
 					<p><b>Agent Downline</b></p>
 					<p>
 				    <?php foreach($downlines as $downline):?>
@@ -37,9 +65,6 @@ if($ajax) {
 			</div>
 			<?php } ?>
 			<div class="box-title">
-				<h3>
-					Affilliate Account History
-				</h3>
 				<div class="actions">
 					<a href="<?php echo SITE_URL;?>TraderAccounts/affilliate/acc:<?php echo $MT_ACC['Mt4User']['LOGIN'];?>" class="btn" rel="tooltip" title="My Affilliate Account Overview"><i class="icon-briefcase"></i> Back to affilliate overview</a>
 				</div>
