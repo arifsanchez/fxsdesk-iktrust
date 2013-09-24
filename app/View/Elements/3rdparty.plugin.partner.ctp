@@ -30,7 +30,9 @@
 <script type="text/javascript">
 var __lc = {};
 __lc.license = 1656311;
-
+__lc.params = [
+{ name: 'Email', value: "<?php echo $var['User']['email'];?>" },
+]; 
 (function() {
   var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
   lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
