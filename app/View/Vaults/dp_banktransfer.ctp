@@ -1,5 +1,7 @@
 <?php 
+    #debug($var); die();
     echo $this->element('popup.feature.comingsoon');
+    echo $this->element('popup.DPmaybank', array('bal' => $acc1['Vault']['acc_1'], 'uid' => $var['User']['id']));
 ?>
 
 <div class="row-fluid">
@@ -192,7 +194,7 @@
                     Maybank
                 </h3>
                 <div class="actions">
-                    <a href="#popup-coming-soon" data-toggle="modal" class="btn" rel="tooltip" title="Deposit via Maybank"><i class="glyphicon-bank"></i> Submit Deposit</a>
+                    <a href="#DPmaybank-<?php echo $var['User']['id'];?>" data-toggle="modal" class="btn" rel="tooltip" title="Deposit via Maybank"><i class="glyphicon-bank"></i> Submit Deposit</a>
                 </div>
             </div>
             <div class="box-content">

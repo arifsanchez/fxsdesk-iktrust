@@ -238,6 +238,23 @@ class VaultsController extends AppController {
 		);
 		$this->set('page_title',$page_title);
 
+		//Dapatkan user id
+		$userId = $this->UserAuth->getUserId();
+		//Check jika traders first time buka vault
+		$checkVault = $this->Vault->checkVaultAccount($userId);
+		$acc1 = $this->Vault->getAccBalance($userId);
+		$this->set('acc1', $acc1);
+
+	}
+
+	/**
+	 * Deposit :: Request Bank Trasfer confirmation
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function request_deposit_banktransfer() {
+		debug($this->request);
 	}
 
 	/**
@@ -255,6 +272,7 @@ class VaultsController extends AppController {
 			'name' => "Deposit via Credit Card"
 		);
 		$this->set('page_title',$page_title);
+
 
 	}
 

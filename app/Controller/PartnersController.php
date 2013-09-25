@@ -306,18 +306,35 @@
 		public function cariTracc(){
 			$cari = $this->request->data['Partner']['tracc_no'];
 			if($cari){
+				$user = $this->UserAuth->getUser();
+				$headerTagAff = substr($user['User']['partnertag'], -2);
+
 				//check if this is a valid trading account
 				$traccNo = $this->Mt4User->find('first', 
 					array(
 						'recursive'=>-1,
-						'conditions' =>array(
-							'Mt4User.LOGIN LIKE' => $cari,
-							'Mt4User.GROUP LIKE' => '%IK%'
+						'conditions' => array(
+							'OR' => array(
+								array(
+									'AND' => array(
+										'Mt4User.LOGIN LIKE' => $cari,
+										'Mt4User.GROUP LIKE' => '%IK%',
+										'Mt4User.AGENT_ACCOUNT LIKE' => '7'.$headerTagAff.'%',
+									)
+								),
+								array(
+									'AND' => array(
+										'Mt4User.LOGIN LIKE' => $cari,
+										'Mt4User.GROUP LIKE' => '%IK%',
+										'Mt4User.AGENT_ACCOUNT' => "".$user['User']['partnertag'].""
+									)
+								)
+							)
 						),
 						'fields' => array('Mt4User.LOGIN')
 					));
 				if(empty($traccNo)){
-					$this->Session->setFlash(__('Trading Account Number search return empty result .'),'default',array('class' => 'error'));
+					$this->Session->setFlash(__('Sorry, you do not have access to view searched trading account number.'),'default',array('class' => 'error'));
 					$this->redirect('mynetwork');
 				} else {
 					$this->redirect('mynetwork_history/process:'.$cari);
