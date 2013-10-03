@@ -26,6 +26,7 @@ if($ajax) {
 							<th>Name</th>
 							<th>Total Floating Post</th>
 							<th>Total Closed Post</th>
+							<th>Trade Volume</th>
 							<th>Balance (Now)</th>
 							<th>Balance (Yesterday)</th>
 							<th>Credit</th>
@@ -46,6 +47,7 @@ if($ajax) {
 						</td>
 						<td><div class="text-center"><?php echo $traderOpenPost; ?></div></td>
 						<td><div class="text-center"><?php echo $traderClosePost; ?></div></td>
+						<td><div class="text-center"><?php  echo $traderTradeVol." lot"; ?></div></td>
 						<td><div class="text-center"><?php echo number_format($userDetail['Mt4User']['BALANCE'],2,'.',''); ?></div></td>
 						<td><div class="text-center"><?php echo number_format($userDetail['Mt4User']['PREVBALANCE'],2,'.',''); ?></div></td>
 						<td><div class="text-center"><?php echo number_format($userDetail['Mt4User']['CREDIT'],2,'.',''); ?></div></td>

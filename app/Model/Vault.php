@@ -68,6 +68,26 @@ public $validate = array(
 	);
 
 	/**
+	 * Get Trader Wallet Account ID
+	 *
+	 * @access public
+	 * @param array $userIds user ids
+	 * @return boolean
+	*/
+	function getID($userId=null) {
+		if($userId) {
+			$result = $this->find('first', array(
+				'conditions' =>array(
+					'user_id' => $userId,
+				),
+				'fields' => array('id'),
+				'recursive' => -1
+			));
+		return $result;
+		}
+	}
+
+	/**
 	 * Get Trader Wallet Account Balance
 	 *
 	 * @access public

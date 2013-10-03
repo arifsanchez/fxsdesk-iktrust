@@ -203,4 +203,18 @@ class Mt4Trade extends AppModel {
 		));
 		return $total;
 	}
+
+	/**
+	*	STAFF : Dapatkan total volume
+	***/
+	public function traderTradeVol($login=null){
+		$total = $this->find('all', array(
+			'conditions' => array(
+        		'LOGIN' => $login,
+        		'SYMBOL NOT' => ''
+	        ),
+	        'fields' => array('sum(VOLUME) AS total')
+		));
+		return $total[0][0]['total']/100;
+	}
 }

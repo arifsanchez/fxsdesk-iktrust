@@ -120,6 +120,9 @@
 
 				$traderClosePost = $this->Mt4Trade->traderClosePost($acc);
 				$this->set('traderClosePost', $traderClosePost);
+				
+				$traderTradeVol = $this->Mt4Trade->traderTradeVol($acc);
+				$this->set('traderTradeVol', $traderTradeVol);
 
 				if(empty($result)){
 					$this->Session->setFlash(__('You are not authorized to acess trading account #'.$acc.' details.'), 'default', array('class' => 'error'));

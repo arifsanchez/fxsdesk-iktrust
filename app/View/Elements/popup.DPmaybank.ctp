@@ -34,7 +34,7 @@
 				echo "</div></div>";
 
 				echo $this->Form->hidden('siapa', array('value' => $uid));
-				echo $this->Form->hidden('partner', array('value' => 'yes'));
+				echo $this->Form->hidden('channel', array('value' => 'MBB-IKMT'));
 				$options = array(
 				    'label' => 'Submit Deposit Request',
 				    'div' => null,

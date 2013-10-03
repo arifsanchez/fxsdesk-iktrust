@@ -31,18 +31,6 @@
 
 									</tr>
 									<tr>
-										<td><strong><?php echo __('Gender');?></strong></td>
-										<td><?php echo h(ucwords($user['UserDetail']['gender']))?></td>
-									</tr>
-									<tr>
-										<td><strong><?php echo __('Current City');?></strong></td>
-										<td><?php echo h($user['UserDetail']['location'])?></td>
-									</tr>
-									<tr>
-										<td><strong><?php echo __('Web Page');?></strong></td>
-										<td><?php echo h($user['UserDetail']['web_page'])?></td>
-									</tr>
-									<tr>
 										<td><strong><?php echo __('IK Trader Since');?></strong></td>
 										<td><?php echo date('d M Y',strtotime($user['User']['created']))?></td>
 									</tr>

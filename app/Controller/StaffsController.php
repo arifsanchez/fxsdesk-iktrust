@@ -338,6 +338,9 @@
 
 				$traderClosePost = $this->Mt4Trade->traderClosePost($tracc_id);
 				$this->set('traderClosePost', $traderClosePost);
+
+				$traderTradeVol = $this->Mt4Trade->traderTradeVol($tracc_id);
+				$this->set('traderTradeVol', $traderTradeVol);
 			}
 
 			//listing downline

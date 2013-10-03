@@ -254,7 +254,59 @@ class VaultsController extends AppController {
 	 * @return array
 	 */
 	public function request_deposit_banktransfer() {
-		debug($this->request);
+		//Layout
+		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "icon-money",
+			'name' => "Deposit : Bank Transfer"
+		);
+		$this->set('page_title',$page_title);
+		#debug($this->request->data);
+		if($this->request->data){
+
+			//coming soon
+			$this->Session->setFlash(__('Deposit via Bank Transfer request will be available soon.'),'default',array('class' => 'error'));
+			$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
+
+			//>> Vault ID
+			$userId = $this->UserAuth->getUserId();
+			$vault_id = $this->Vault->getID($userId);
+			#debug($vaultSiapa); die();
+			$this->set('vaultSiapa', $vault_id['Vault']['id']);
+
+			//>> Amount Request
+			$amntReq = "100";
+			$this->set('amount_request', $amntReq); 
+
+			//>> Amount Due
+
+			//save to vault transaction as new request
+			$data = array(
+				'vault_id' => $vault_id['Vault']['id'],
+				'jumlah' => $this->request->data['Vault']['amount'],
+				'type' => 2,
+				'status' => 1,
+				'description' => $this->request->data['Vault']['channel']
+			);
+			debug($data);
+			#$this->VaultTransaction->create();
+			#$this->VaultTransaction->save($data);
+
+			//sent to transfer request queue
+
+			//>> Invoice number = Transaction ID
+			#$TRid = $vt_new['VaultTransaction']['id'];
+			#$VId = $vault_id['Vault']['id'];
+			#$trDate = $this->Time->toUnix($vt_new['VaultTransaction']['created'], null);
+			#"TR-".$trDate."-".$VId."-".$TRid
+			$invID = "IK1234";
+			$this->set('invoiceID', $invID); 
+		}
+		
+		
+
+		//display invoice
 	}
 
 	/**

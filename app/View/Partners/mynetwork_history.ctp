@@ -24,8 +24,9 @@ if($ajax) {
 					<thead>
 						<tr>
 							<th>Account Name</th>
-							<th>Total Floating Post</th>
-							<th>Total Closed Post</th>
+							<th>Floating</th>
+							<th>Closed</th>
+							<th>Volume</th>
 							<th>$ (Now)</th>
 							<th>$ (Yesterday)</th>
 							<th>Credit</th>
@@ -52,6 +53,7 @@ if($ajax) {
 						</td>
 						<td><div class="text-center"><h4><?php echo $traderOpenPost; ?></h4></div></td>
 						<td><div class="text-center"><h4><?php echo $traderClosePost; ?></h4></div></td>
+						<td><div class="text-center"><h4><?php echo $traderTradeVol." lot"; ?></h4></div></td>
 						<td><div class="text-center">
 							<span class="label label-red"><?php echo $this->Number->Currency($bakiAcc, 'IK$ ');?></span>
 						</div></td>
