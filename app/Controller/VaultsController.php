@@ -453,7 +453,7 @@ class VaultsController extends AppController {
 				if($request['Vault']['partner'] == 'yes'){
 					$typecode = 10;
 					$comment = "Vault Transfer #";
-				} else {
+				} else if($request['Vault']['partner'] == null) {
 					$typecode = 1;
 					$comment = "Wallet Transfer #";
 				}
@@ -472,7 +472,7 @@ class VaultsController extends AppController {
 				
 				if($request['Vault']['partner'] == 'yes'){
 					$this->redirect(array('controller' =>'partners', 'action' => 'vault_history'));	
-				} else {
+				} else if($request['Vault']['partner'] == null){
 					$this->redirect(array('controller' =>'vaults', 'action' => 'mywallet_history'));
 				}
 			}

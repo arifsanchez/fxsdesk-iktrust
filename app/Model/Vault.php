@@ -27,7 +27,7 @@ class Vault extends AppModel {
 public $validate = array(
     'user_id' => array(
         'rule'    => 'isUnique',
-        'message' => 'This user wallet has already created.'
+        'message' => 'This Wallet Account has already been created.'
     )
 );
 

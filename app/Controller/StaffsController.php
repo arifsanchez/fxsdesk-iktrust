@@ -940,7 +940,7 @@
 				$message = "Status have been updated to NEW request.";
 				break;
 				case "2":
-				$message = "We have received your request and proceeding within 24 hours time. Status have been updated to PENDING for processing request.";
+				$message = "We have received your request and proceeding within 24 hours time. Balance & status have been updated to PENDING for processing request. ";
 				break;
 				case "3":
 				$message = "Congratulations ! Your transfer request have been APPROVED.";
@@ -970,9 +970,10 @@
 				));
 				$new_balance = $vaultId['Vault']['acc_1'] - $jumlah;
 				$data = array('acc_1' => $new_balance);
+				#debug($data); die();
 				$this->Vault->id = $vaultId['Vault']['id'];
 				$this->Vault->save($data);
-				#debug($this->request); die();
+				
 			}
 
 			//Jika status = 4
@@ -1128,7 +1129,7 @@
 				$message = "Status have been updated to NEW request.";
 				break;
 				case "2":
-				$message = "We have received your request and proceeding within 24 hours time. Status have been updated to PENDING for processing request.";
+				$message = "We have received your request and proceeding within 24 hours time. Balance & Status have been updated to PENDING for processing request.";
 				break;
 				case "3":
 				$message = "Congratulations ! Your transfer request have been APPROVED.";
@@ -1181,12 +1182,17 @@
 				$vaultId = $this->Vault->find('first', array(
 					'conditions' =>array(
 						'user_id' => $userId,
-					)
+					),
+					'recursive' => -1
 				));
+				
 				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
-				$data = array('acc_1' => $new_balance);
+				$data = array(
+					'acc_1' => $new_balance
+				);
+				#debug($vaultId['Vault']['id']); die();
 				$this->Vault->id = $vaultId['Vault']['id'];
-				$this->Vault->save($data);
+				$this->Vault->saveField('acc_1', $new_balance);
 				#debug($this->request); die();
 				
 			}

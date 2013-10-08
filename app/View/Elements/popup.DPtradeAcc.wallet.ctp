@@ -29,7 +29,7 @@
 				));
 				echo "</div>";
 				echo "</div>";
-
+				echo $this->Form->hidden('partner', array('value' => ''));
 				echo $this->Form->hidden('acc_trading', array('value' => $login));
 				$options = array(
 				    'label' => 'Submit Transfer Request',
