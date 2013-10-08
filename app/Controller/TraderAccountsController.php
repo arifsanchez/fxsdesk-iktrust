@@ -300,6 +300,26 @@
 		}
 
 		/**
+		* Staff Kira Total Trader Accounts
+		*
+		* @access public
+		* @return array
+		*/
+		public function kiraTotalTradersInactive() {
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$total = $this->Mt4User->kiraTotalAccsInactive();
+				#debug($total['0']['0']['total']);die();
+				#$total = $total['0']['0']['total'];
+				if ($this->request->is('requested')) {
+					return $total;
+				} else {
+					$this->set('TotalAccsInactive', $total);
+				}
+			}
+		}
+
+		/**
 		* Staff Kira Total Agent Accounts
 		*
 		* @access public

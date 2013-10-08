@@ -23,7 +23,7 @@ if($ajax) {
 		<div class="box box-color box-small blue box-bordered" id="updateNetworklisting">
 			<div class="box-title">
 				<div class="actions">
-					<?php echo $this->element('staff.carianTraccNo');?>
+					<?php echo $this->element('staff.carianTraccNoInactive');?>
 				</div>
 			</div>
 			<div class="box-content nopadding">
@@ -32,9 +32,9 @@ if($ajax) {
 					<thead>
 						<tr>
 							<th>Account Number</th>
-							<th>Leverage</th>
+							<th>Name</th>
+							<th>Email / Phone</th>
 							<th>Balance $</th>
-							<th>Credit $</th>
 							<th>Trade Status</th>
 							<th>Account Maturity</th>
 							<th>Operations</th>
@@ -44,16 +44,14 @@ if($ajax) {
 						<?php foreach($MT_ACC as $acc): ?>
 						<tr>
 							<td>
-								<button class="btn btn-mini btn-info" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['GROUP'];?>">
-									<i class="icon-exclamation-sign"></i>
-								</button>
-								<a class="btn btn-mini" href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" data-placement="right" title="" rel="tooltip" data-original-title="<?php echo $acc['Mt4User']['NAME'];?>" >
+								<a class="btn btn-mini" href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" >
 									<?php echo $acc['Mt4User']['LOGIN'];?>
 								</a>
 							</td>
-							<td>1:<?php echo $acc['Mt4User']['LEVERAGE'];?></td>
-							<td><?php echo $this->Number->currency($acc['Mt4User']['BALANCE'], '');?></td>
-							<td><?php echo $this->Number->currency($acc['Mt4User']['CREDIT'], '');?></td>
+							<td><?php echo $acc['Mt4User']['NAME'];?></td>
+							<td><?php echo $acc['Mt4User']['EMAIL'];?><br/>
+								<?php echo $acc['Mt4User']['PHONE'];?></td>
+							<td><?php echo $this->Number->currency($acc['Mt4User']['BALANCE'], '');?></td></td>
 							<td>
 								<?php 	
 								$accstatus = $acc['Mt4User']['ENABLE'];
@@ -67,7 +65,7 @@ if($ajax) {
 									};
 								?>
 							</td>
-							<td><span data-livestamp="<?php echo $acc['Mt4User']['REGDATE'];?>"></span></td>
+							<td><?php echo $acc['Mt4User']['REGDATE'];?></td>
 							<td>
 								<a href="<?php echo SITE_URL;?>Staffs/tracc_history/process:<?php echo $acc['Mt4User']['LOGIN'];?>" class="btn btn-mini btn-grey" rel="tooltip" title="Transactions History"><i class="glyphicon-table"></i> Transactions</a>
 

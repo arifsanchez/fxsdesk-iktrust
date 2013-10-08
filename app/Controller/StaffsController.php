@@ -205,6 +205,37 @@
 			}
 		}
 
+		/**
+		* STAFF :: Inactive
+		*/
+		public function tracc_inactive_listing() {
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-signal",
+				'name' => "All Inactive Accounts"
+			);
+			$this->set('page_title',$page_title);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4User.MODIFY_TIME DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4User.GROUP LIKE' => '%Z-%',
+				)
+			);
+			$trades = $this->paginate('Mt4User');
+			$this->set('MT_ACC',$trades);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('inactive_listing');
+			}
+		}
+
 		/***
 		* Staff :: carian untuk Tracc History
 		***/
@@ -219,6 +250,34 @@
 						'conditions' =>array(
 							'Mt4User.LOGIN LIKE' => $cari,
 							'Mt4User.GROUP LIKE' => '%IK%'
+						),
+						'fields' => array('Mt4User.LOGIN')
+					));
+				if(empty($traccNo)){
+					$this->Session->setFlash(__('Trading Account Number search return empty result .'),'default',array('class' => 'error'));
+					$this->redirect('tracc_listing');
+				} else {
+					$this->redirect('tracc_history/process:'.$cari);
+				}
+			} else {
+				$this->redirect($this->referer());
+			}
+		}
+
+		/***
+		* Staff :: carian untuk Inactive Account
+		***/
+
+		public function cariTraccInactive(){
+			$cari = $this->request->data['Staff']['tracc_no'];
+			if($cari){
+				//check if this is a valid trading account
+				$traccNo = $this->Mt4User->find('first', 
+					array(
+						'recursive'=>-1,
+						'conditions' =>array(
+							'Mt4User.LOGIN LIKE' => $cari,
+							'Mt4User.GROUP LIKE' => '%Z-%'
 						),
 						'fields' => array('Mt4User.LOGIN')
 					));
@@ -1185,7 +1244,7 @@
 					),
 					'recursive' => -1
 				));
-				
+
 				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
 				$data = array(
 					'acc_1' => $new_balance

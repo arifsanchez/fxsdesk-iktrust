@@ -35,6 +35,16 @@
 							</div>
 						</a>
 					</li>
+
+					<li class="lightgrey">
+						<a href="<?php echo SITE_URL;?>Staffs/tracc_inactive_listing?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-user"></i>
+							<div class="details">
+								<span class="big"><?php $TotalTradersInactive = $this->requestAction('TraderAccounts/kiraTotalTradersInactive') ; echo $TotalTradersInactive;?></span>
+								<span>Accounts</span>
+							</div>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>

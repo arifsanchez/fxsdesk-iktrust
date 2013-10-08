@@ -319,6 +319,19 @@ class Mt4User extends AppModel {
 	}
 
 	/**
+	 * Kira Total Trading Accounts bawah HQ Inactive
+	 *
+	 * @access public
+	*/
+	function kiraTotalAccsInactive() {
+		$total = 0;
+		$total = $this->find('count', array(
+			'conditions' => array('GROUP LIKE' => '%Z%')
+		));
+		return $total;
+	}
+
+	/**
 	 * Kira Total Affilliate Account bawah HQ
 	 *
 	 * @access public
