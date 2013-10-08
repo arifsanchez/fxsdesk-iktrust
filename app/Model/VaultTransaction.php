@@ -11,7 +11,8 @@ class VaultTransaction extends AppModel {
  * Display field
  *
  * @var string
- */
+ */	
+	public $primaryKey = 'id';
 	public $displayField = 'id';
 
 

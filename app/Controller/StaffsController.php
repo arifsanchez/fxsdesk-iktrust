@@ -1029,7 +1029,6 @@
 				));
 				$new_balance = $vaultId['Vault']['acc_1'] - $jumlah;
 				$data = array('acc_1' => $new_balance);
-				#debug($data); die();
 				$this->Vault->id = $vaultId['Vault']['id'];
 				$this->Vault->save($data);
 				
@@ -1246,14 +1245,14 @@
 				));
 
 				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
-				$data = array(
-					'acc_1' => $new_balance
-				);
-				#debug($vaultId['Vault']['id']); die();
-				$this->Vault->id = $vaultId['Vault']['id'];
-				$this->Vault->saveField('acc_1', $new_balance);
-				#debug($this->request); die();
+				$id = $vaultId['Vault']['id'];
 				
+				//update field
+				$this->Vault->updateAll(
+					array('Vault.acc_1' => $new_balance),
+					array('Vault.id' => $id),
+					array('Vault.user_id' => $userId)
+				);
 			}
 
 			## > sent email status update to finance & user email
@@ -1341,14 +1340,19 @@
 				$vaultId = $this->Vault->find('first', array(
 					'conditions' =>array(
 						'user_id' => $userId,
-					)
+					),
+					'recursive' => -1
 				));
+
 				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
-				$data = array('acc_1' => $new_balance);
-				$this->Vault->id = $vaultId['Vault']['id'];
-				$this->Vault->save($data);
-				#debug($this->request); die();
+				$id = $vaultId['Vault']['id'];
 				
+				//update field
+				$this->Vault->updateAll(
+					array('Vault.acc_1' => $new_balance),
+					array('Vault.id' => $id),
+					array('Vault.user_id' => $userId)
+				);
 			}
 
 			## > sent email status update to finance & user email

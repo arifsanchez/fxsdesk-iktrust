@@ -13,8 +13,8 @@ class Vault extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'id';
-
+	public $primaryKey = 'id';
+	public $displayField = 'user_id';
 /**
 	 * Use component object
 	 *
