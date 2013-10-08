@@ -232,7 +232,7 @@
 
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
-				$this->render('inactive_listing');
+				$this->render('tracc_inactive_listing');
 			}
 		}
 
