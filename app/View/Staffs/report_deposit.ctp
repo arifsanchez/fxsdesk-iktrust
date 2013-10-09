@@ -88,7 +88,7 @@ if($ajax) {
 							</td>
 							
 							<td>
-								<span class="label label-lightgrey"><?php echo $Transaction['Mt4Trade']['COMMENT'];?></span>
+								<span class="label label-green"><?php echo $Transaction['Mt4Trade']['COMMENT'];?></span>
 							</td>
 							<td>
 								<?php

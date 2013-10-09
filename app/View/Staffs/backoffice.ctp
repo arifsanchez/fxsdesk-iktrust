@@ -236,7 +236,7 @@
 				<ul class="stats">
 					<li class="green">
 						<a href="<?php echo SITE_URL;?>Staffs/report_deposit?me:<?php echo $var['User']['username'];?>">
-							<i class="icon-sitemap"></i>
+							<i class="icon-exchange"></i>
 							<div class="details">
 								<span class="big"><span class="big"><?php $JumlahDeposit = $this->requestAction('Staffs/JumlahDeposit') ; echo $JumlahDeposit;?></span></span>
 								<span>Deposits</span>
@@ -246,7 +246,7 @@
 
 					<li class="red">
 						<a href="<?php echo SITE_URL;?>Staffs/report_withdrawal?me:<?php echo $var['User']['username'];?>">
-							<i class="icon-sitemap"></i>
+							<i class="icon-exchange"></i>
 							<div class="details">
 								<span class="big"><span class="big"><?php $JumlahWithdrawal = $this->requestAction('Staffs/JumlahWithdrawal') ; echo $JumlahWithdrawal;?></span></span>
 								<span>Withdrawal</span>
