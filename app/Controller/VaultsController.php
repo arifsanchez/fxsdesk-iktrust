@@ -262,7 +262,7 @@ class VaultsController extends AppController {
 			//coming soon
 			$this->Session->setFlash(__('Deposit via Bank Transfer request will be available soon.'),'default',array('class' => 'error'));
 			$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
-			$this->request->data['']
+			
 			//>> Vault ID
 			$userId = $this->UserAuth->getUserId();
 			$vault_id = $this->Vault->getID($userId);
