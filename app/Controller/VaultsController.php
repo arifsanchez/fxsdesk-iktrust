@@ -255,24 +255,18 @@ class VaultsController extends AppController {
 	 */
 	public function request_deposit_banktransfer() {
 		//Layout
-		$this->layout = "trader.dashboard";
-		//Page title
-		$page_title = array(
-			'icon' => "icon-money",
-			'name' => "Deposit : Bank Transfer"
-		);
-		$this->set('page_title',$page_title);
-		#debug($this->request->data);
-		if($this->request->data){
+		$this->layout = "ajax";
 
+		if($this->request->data){
+			#debug($this->request->data); die();
 			//coming soon
 			$this->Session->setFlash(__('Deposit via Bank Transfer request will be available soon.'),'default',array('class' => 'error'));
 			$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
-
+			$this->request->data['']
 			//>> Vault ID
 			$userId = $this->UserAuth->getUserId();
 			$vault_id = $this->Vault->getID($userId);
-			#debug($vaultSiapa); die();
+			debug($vaultSiapa); die();
 			$this->set('vaultSiapa', $vault_id['Vault']['id']);
 
 			//>> Amount Request
@@ -301,12 +295,36 @@ class VaultsController extends AppController {
 			#$trDate = $this->Time->toUnix($vt_new['VaultTransaction']['created'], null);
 			#"TR-".$trDate."-".$VId."-".$TRid
 			$invID = "IK1234";
-			$this->set('invoiceID', $invID); 
+			$this->set('invoiceID', $invID);
+
+			$this->redirect(array('controller' =>'vaults', 'action' => 'invoice_bank_transfer','/request_queue:'.$INVid));
 		}
 		
-		
+	}
 
-		//display invoice
+	/**
+	 * Invoice Bank Transfer
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function invoice_bank_transfer() {
+		
+		//dapatkan request id
+		$INVid = $this->request->params['named']['request_queue'];
+		if($this->request->params['named']['request_queue'] == null){
+			$this->redirect(array('controller' =>'vaults', 'action' => 'manage'));
+		}
+
+		//Layout
+		$this->layout = "trader.dashboard";
+		//Page title
+		$page_title = array(
+			'icon' => "icon-money",
+			'name' => "Invoice #".$INVid
+		);
+		$this->set('page_title',$page_title);
+
 	}
 
 	/**

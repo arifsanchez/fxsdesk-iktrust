@@ -437,7 +437,7 @@
 
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
-				$this->render('tracc_history');
+				$this->render('mynetwork_history');
 			}
 		}
 

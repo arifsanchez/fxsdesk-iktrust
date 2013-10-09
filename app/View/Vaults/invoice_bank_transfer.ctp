@@ -1,12 +1,12 @@
 <div class="row-fluid">
 	<div class="span12">
-		<div class="box-content">
+		<div class="box-bordered box-content">
 			<hr>
 			<div class="invoice-info">
 				<div class="invoice-name">
 					IK Financial Market Corp. Ltd.
 					<div class="pull-right">
-						<button class="btn btn-mini btn-satblue">PRINT PDF</button>
+						<button class="btn btn-mini btn-satblue">PRINT INVOICE</button>
 					</div>
 				</div>
 				<div class="invoice-from">
