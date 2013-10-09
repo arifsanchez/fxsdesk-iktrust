@@ -826,6 +826,51 @@
 		}
 
 		/**
+		* STAFF : Kira Semua Total Deposit
+		***/
+		public function JumlahDeposit(){
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+
+				$total = $this->Mt4Trade->find('count', array(
+					'conditions' => array(
+		        		'Mt4Trade.COMMENT LIKE' => '%DP%',
+		        		'Mt4Trade.CMD' => '6',
+			        ),
+				));
+				#debug($total); die();
+
+				if ($this->request->is('requested')) {
+					return $total;
+				} else {
+					$this->set('JumlahDeposit', $total);
+				}
+			}
+		}
+
+		/**
+		* STAFF : Kira Semua Total Withdrawal
+		***/
+		public function JumlahWithdrawal(){
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$total = $this->Mt4Trade->find('count', array(
+					'conditions' => array(
+		        		'Mt4Trade.COMMENT LIKE' => '%WD%',
+		        		'Mt4Trade.CMD' => '6',
+			        ),
+				));
+				#debug($total); die();
+
+				if ($this->request->is('requested')) {
+					return $total;
+				} else {
+					$this->set('JumlahWithdrawal', $total);
+				}
+			}
+		}
+
+		/**
 		* STAFF :: Deposit Main Window
 		*
 		*/
@@ -1510,7 +1555,7 @@
 		}
 
 		/***
-		*	STAFF :: All Commissions TODOTODOTODOTODOTODOTODO
+		*	STAFF :: All Commissions
 		****/
 		public function report_close_order(){
 			//Layout
@@ -1540,6 +1585,68 @@
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
 				$this->render('report_close_order');
+			}
+
+		}
+
+		/***
+		*	STAFF :: Report Deposit
+		****/
+		public function report_deposit(){
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-exchange",
+				'name' => "All Deposit"
+			);
+			$this->set('page_title',$page_title);
+
+			$this->paginate = array(
+		        'conditions' => array(
+	        		'Mt4Trade.COMMENT LIKE' => '%DP%',
+	        		'Mt4Trade.CMD' => '6',
+		        ),
+		        'order' => 'Mt4Trade.OPEN_TIME DESC',
+		        'limit' => 50,
+	    	);
+		    $trades = $this->paginate('Mt4Trade');
+			$this->set('reportDeposit' , $trades);
+			#debug($trades); die();
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('report_deposit');
+			}
+
+		}
+
+		/***
+		*	STAFF :: Report Deposit
+		****/
+		public function report_withdrawal(){
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-exchange",
+				'name' => "All Withdrawal"
+			);
+			$this->set('page_title',$page_title);
+
+			$this->paginate = array(
+		        'conditions' => array(
+	        		'Mt4Trade.COMMENT LIKE' => '%WD%',
+	        		'Mt4Trade.CMD' => '6',
+		        ),
+		        'order' => 'Mt4Trade.OPEN_TIME DESC',
+		        'limit' => 50,
+	    	);
+		    $trades = $this->paginate('Mt4Trade');
+			$this->set('reportDeposit' , $trades);
+			#debug($trades); die();
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('report_withdrawal');
 			}
 
 		}

@@ -224,7 +224,38 @@
 	</div>
 
 	<div class="span6">
-		
+		<!-- Market Watch -->
+		<div class="box box-color teal box-bordered">
+			<div class="box-title">
+				<h3>
+					<i class="icon-th-large"></i>
+					Accounting History
+				</h3>
+			</div>
+			<div class="box-content">
+				<ul class="stats">
+					<li class="green">
+						<a href="<?php echo SITE_URL;?>Staffs/report_deposit?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-sitemap"></i>
+							<div class="details">
+								<span class="big"><span class="big"><?php $JumlahDeposit = $this->requestAction('Staffs/JumlahDeposit') ; echo $JumlahDeposit;?></span></span>
+								<span>Deposits</span>
+							</div>
+						</a>
+					</li>
+
+					<li class="red">
+						<a href="<?php echo SITE_URL;?>Staffs/report_withdrawal?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-sitemap"></i>
+							<div class="details">
+								<span class="big"><span class="big"><?php $JumlahWithdrawal = $this->requestAction('Staffs/JumlahWithdrawal') ; echo $JumlahWithdrawal;?></span></span>
+								<span>Withdrawal</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 
