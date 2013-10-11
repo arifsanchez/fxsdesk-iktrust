@@ -1074,7 +1074,7 @@
 					'recursive' => -1
 				));
 
-				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
+				$new_balance = $vaultId['Vault']['acc_1'] - $jumlah;
 				$id = $vaultId['Vault']['id'];
 				
 				//update field
@@ -1175,7 +1175,7 @@
 					'recursive' => -1
 				));
 
-				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
+				$new_balance = $vaultId['Vault']['acc_1'] - $jumlah;
 				$id = $vaultId['Vault']['id'];
 				
 				//update field
