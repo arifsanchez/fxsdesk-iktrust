@@ -445,6 +445,9 @@ class VaultsController extends AppController {
 	public function procdpaccwallet() {
 		//request baki acc1
 		$userId = $this->UserAuth->getUserId();
+		$n4me = $this->User->getNameById($userId);
+		$us3r = $this->User->getUserNameById($userId);
+		$em4il = $this->User->getEmailById($userId);
 		$acc1 = $this->Vault->getAccBalance($userId);
 		$vaultId = $acc1['Vault']['id'];
 		$bakiAcc1Wallet = $acc1['Vault']['acc_1'];
@@ -483,9 +486,24 @@ class VaultsController extends AppController {
 					'status' => 1,
 					'description' => $comment.$vaultId
 				);
+
 				//sent to transfer request queue
 				$this->VaultTransaction->create();
 				$this->VaultTransaction->save($data);
+				$vltRansactID = $this->VaultTransaction->id;
+
+				//notify HQ of transaction
+				$newData = array(
+					'emailNtfy' => $em4il,
+					'name' => $n4me,
+					'usern4me' => $us3r,
+					'transactid' => $vltRansactID,
+					'jumlah' => $data['jumlah'],
+					'jenis' => 'DP'
+				);
+				$this->Vault->notifyHQtransferRequest($newData);
+
+				//notify user request dah sampai
 				$this->Session->setFlash(__('Transfer request has been sent to IK Trust HQ'),'default',array('class' => 'success'));
 				
 				if($request['Vault']['partner'] == 'yes'){
@@ -510,6 +528,9 @@ class VaultsController extends AppController {
 		//sorting data masuk
 		$request = $this->request->data;
 		$userId = $this->UserAuth->getUserId();
+		$n4me = $this->User->getNameById($userId);
+		$us3r = $this->User->getUserNameById($userId);
+		$em4il = $this->User->getEmailById($userId);
 		$acc1 = $this->Vault->getAccBalance($userId);
 		$tracc = $request['Vault']['acc_trading'];
 		$vaultId = $acc1['Vault']['id'];
@@ -550,6 +571,18 @@ class VaultsController extends AppController {
 				//sent to transfer request queue
 				$this->VaultTransaction->create();
 				$this->VaultTransaction->save($data);
+				$vltRansactID = $this->VaultTransaction->id;
+
+				//notify HQ of transaction
+				$newData = array(
+					'emailNtfy' => $em4il,
+					'name' => $n4me,
+					'usern4me' => $us3r,
+					'transactid' => $vltRansactID,
+					'jumlah' => $data['jumlah'],
+					'jenis' => 'WD'
+				);
+				$this->Vault->notifyHQtransferRequest($newData);
 				$this->Session->setFlash(__('Transfer request has been sent to IK Trust HQ'),'default',array('class' => 'success'));
 
 				if($request['Vault']['partner'] == 'yes'){
