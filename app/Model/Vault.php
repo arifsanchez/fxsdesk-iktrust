@@ -182,14 +182,14 @@ public $validate = array(
 		$email->template('default', 'default');
 		$email->emailFormat('both');
 		$email->viewVars(array('name' => $senderName));
-		$email->from(array( 'support@iktrust.com' => 'IK Trust'));
+		$email->from(array( 'webteam@iktrust.com' => 'IK Trust FXSDESK'));
 		$email->replyTo(array($senderEmail => $senderName));
 		$email->sender(array( $senderEmail => $senderName));
-		$email->to(array('finance@iktrust.com' => 'IK Trust Finance'));
+		$email->to(array('finance@iktrust.my' => 'IK Trust Finance'));
 		$email->subject('[NEW] '.$jenis.' Transfer Request #'.$transactid);
 		$email->addHeaders(array('Tag' => 'Transfer'));
 
-		$body=__('NEW TRANSFER NOTICE: <br/>Request From: %s<br/>Amount: IK$ %s<br/><br/>Please check and process IK Trust FXSdesk,<br/>%s', SITE_URL."/".$senderUsername, $jumlah, SITE_URL."/Staff/transfer_detail/process:".$transactid."?from:email");
+		$body=__('NEW TRANSFER NOTICE: <br/>Request From: %s<br/>Amount: IK$ %s<br/><br/>Please check and process IK Trust FXSdesk,<br/>%s', SITE_URL.''.$senderUsername, $jumlah, SITE_URL."/Staff/transfer_detail/process:".$transactid."?from:email");
 		try{
 			$result = $email->send($body);
 			#$this->log($result, 'debug');
