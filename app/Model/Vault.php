@@ -176,22 +176,23 @@ public $validate = array(
 		$jumlah = $data['jumlah'];
 		$jenis = $data['jenis'];
 		#sending email
+		App::uses('CakeEmail', 'Network/Email');
 		$email = new CakeEmail();
 		$email->config('default');
 		$email->template('default', 'default');
 		$email->emailFormat('both');
 		$email->viewVars(array('name' => $senderName));
-		$email->from(array( $senderEmail => $senderName));
+		$email->from(array( 'support@iktrust.com' => 'IK Trust'));
 		$email->replyTo(array($senderEmail => $senderName));
 		$email->sender(array( $senderEmail => $senderName));
-		$email->to('finance@iktrust.com');
+		$email->to(array('finance@iktrust.com' => 'IK Trust Finance'));
 		$email->subject('[NEW] '.$jenis.' Transfer Request #'.$transactid);
 		$email->addHeaders(array('Tag' => 'Transfer'));
 
 		$body=__('NEW TRANSFER NOTICE: <br/>Request From: %s<br/>Amount: IK$ %s<br/><br/>Please check and process IK Trust FXSdesk,<br/>%s', SITE_URL."/".$senderUsername, $jumlah, SITE_URL."/Staff/transfer_detail/process:".$transactid."?from:email");
 		try{
 			$result = $email->send($body);
-			$this->log($result, 'debug');
+			#$this->log($result, 'debug');
 			$this->log(''.$jenis.' Request by '.$senderEmail.', TransID #'.$transactid, 'notify_email');
 		} catch (Exception $ex){
 			// we could not send the email, ignore it
