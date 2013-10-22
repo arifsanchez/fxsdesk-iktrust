@@ -499,7 +499,8 @@ class VaultsController extends AppController {
 					'usern4me' => $us3r,
 					'transactid' => $vltRansactID,
 					'jumlah' => $data['jumlah'],
-					'jenis' => 'DP'
+					'jenis' => 'DP',
+					'description' => $data['description']
 				);
 				$this->Vault->notifyHQtransferRequest($newData);
 
@@ -566,7 +567,8 @@ class VaultsController extends AppController {
 					'tracc_no' => $tracc,
 					'type' => $typecode,
 					'status' => 1,
-					'description' => $comment.$tracc
+					'description' => $comment.$tracc,
+
 				);
 				//sent to transfer request queue
 				$this->VaultTransaction->create();
@@ -580,7 +582,8 @@ class VaultsController extends AppController {
 					'usern4me' => $us3r,
 					'transactid' => $vltRansactID,
 					'jumlah' => $data['jumlah'],
-					'jenis' => 'WD'
+					'jenis' => 'WD',
+					'description' => $data['description']
 				);
 				$this->Vault->notifyHQtransferRequest($newData);
 				$this->Session->setFlash(__('Transfer request has been sent to IK Trust HQ'),'default',array('class' => 'success'));

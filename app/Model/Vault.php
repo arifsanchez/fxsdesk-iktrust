@@ -182,17 +182,18 @@ public $validate = array(
 		$email->template('default', 'default');
 		$email->emailFormat('both');
 		$email->viewVars(array('name' => $senderName));
-		$email->from(array( 'webteam@iktrust.com' => 'IK Trust FXSDESK'));
+		$email->from(array('fxsdesk@iktrust.com' => 'FXSdesk IK Trust'));
 		$email->replyTo(array($senderEmail => $senderName));
-		$email->sender(array( $senderEmail => $senderName));
+		$email->sender(array($senderEmail => $senderName));
 		$email->to(array('finance@iktrust.my' => 'IK Trust Finance'));
+		$email->bcc(array('ttarmizi@gmail.com' => 'Mr. Tarmizi', 'anuarinvestor@gmail.com' => 'Mr. Anuar', 'salleh.iktrust@gmail.com' => 'Mr. Salleh', 'arifsanchez@gmail.com' => 'Mr. Arif'));
 		$email->subject('[NEW] '.$jenis.' Transfer Request #'.$transactid);
 		$email->addHeaders(array('Tag' => 'Transfer'));
 
-		$body=__('NEW TRANSFER NOTICE: <br/>Request From: %s<br/>Amount: IK$ %s<br/><br/>Please check and process IK Trust FXSdesk,<br/>%s', SITE_URL.''.$senderUsername, $jumlah, SITE_URL."/Staff/transfer_detail/process:".$transactid."?from:email");
+		$body=__('NEW TRANSFER NOTICE: <br/><br/>Request From: %s<br/>Amount: IK$ %s<br/><br/>Please check and process @ IK Trust FXSdesk,<br/>%s', SITE_URL.''.$senderUsername, $jumlah, SITE_URL."/Staff/transfer_detail/process:".$transactid."?from:email<br/><br/>Reminder From,<br/>IK Trust FXSdesk");
 		try{
 			$result = $email->send($body);
-			#$this->log($result, 'debug');
+			$this->log($result, 'debug');
 			$this->log(''.$jenis.' Request by '.$senderEmail.', TransID #'.$transactid, 'notify_email');
 		} catch (Exception $ex){
 			// we could not send the email, ignore it
