@@ -19,10 +19,32 @@ if($ajax) {
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color grey box-bordered" id="updateTradeHistory">
+			<table class="table table-hover table-nomargin table-condensed table-bordered">
+				<thead>
+					<tr>
+						<th>Total Today</th>
+						<th>Total Yesterday</th>
+						<th>Total Last Week</th>
+						<th>Total Last Month</th>
+						<th>Overall</th>
+					</tr>
+				</thead>
+				<tbody>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($TodayComm, 'IK$ '); ?></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($YesterdayComm, 'IK$ '); ?></h4></div></td>
+					<td><div class="text-center"><h4><h4><?php echo $this->Number->currency($LastWeekComm, 'IK$ '); ?></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastMonthComm, 'IK$ '); ?></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($jumlahSemua, 'IK$ '); ?></h4></div></td>
+				</tbody>
+			</table>
 			<div class="box-title">
-				<h3>
-					Trading Account History
-				</h3>
+				<div class="pull-left">
+					<a class="btn  btn-red" href="<?php echo SITE_URL;?>Partners/history_today">Today</a>
+					<a class="btn  btn-red" href="<?php echo SITE_URL;?>Partners/history_yesterday">Yesterday</a>
+					<a class="btn  btn-red" href="<?php echo SITE_URL;?>Partners/history_lastweek">Last Week</a>
+					<a class="btn  btn-red" href="<?php echo SITE_URL;?>Partners/history_lastmonth">Last Month</a>
+					<a class="btn  btn-green" href="<?php echo SITE_URL;?>Partners/history">Overall</a>
+				</div>
 				<div class="actions">
 					<a href="<?php echo SITE_URL;?>Partners/vault" class="btn btn-mini" rel="tooltip" title="Partner Vault Overview"><i class="icon-briefcase"></i> Back to vault overview</a>
 				</div>
@@ -36,7 +58,6 @@ if($ajax) {
 							<th>Deal #</th>
 							<th>Open Time / Close Time</th>
 							<th>Transactions</th>
-							<th>Open Price / Close Price</th>
 							<th><div class="text-right">Amount US$</div></th>
 						</tr>
 						<?php } ?>
@@ -50,8 +71,6 @@ if($ajax) {
 							</td>
 							<td>
 								<?php echo $Transaction['Mt4Trade']['OPEN_TIME'];?>
-								<br/>
-								<?php echo $Transaction['Mt4Trade']['CLOSE_TIME'];?>
 							</td>
 							<td>
 								<?php
@@ -91,14 +110,6 @@ if($ajax) {
 									};
 								?>
 							</td>
-							<td>
-								<?php if($Transaction['Mt4Trade']['OPEN_PRICE'] == "0"){ ;?>
-									&nbsp;
-								<?php } else {
-									echo $Transaction['Mt4Trade']['OPEN_PRICE'];
-									echo "<br/>";
-									echo $Transaction['Mt4Trade']['CLOSE_PRICE'];
-								};?>
 							<td>
 								<div class="text-right">
 									<b>

@@ -633,7 +633,263 @@
 		}
 
 		/**
-		* PARTNER :: Trading Account History
+		* PARTNER :: Commission Yesterday
+		*
+		*/
+		public function history_yesterday() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "glyphicon-table",
+				'name' => "Commission Yesterday"
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info trader
+			$user = $this->UserAuth->getUser();
+			$acc = $user['User']['partnertag'];
+
+			//Paginate Trade history
+			App::uses('CakeTime', 'Utility');
+			$date1 = strtotime('yesterday');
+			$date2 = strtotime('yesterday');
+			$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+			#debug($tempoh); die();
+			$this->paginate = array(
+				'limit' => 30, 
+				'order'=>'Mt4Trade.COMMENT DESC', 
+				'recursive'=>0,
+				'conditions' =>array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			$this->set('MT_TRANSACT',$trades);
+
+			//start loading data to table top
+			#Overall Commission
+			$t1 = $this->Mt4Trade->OverallComm($acc);
+			$this->set('jumlahSemua', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthComm($acc);
+			$this->set('LastMonthComm', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekComm($acc);
+			$this->set('LastWeekComm', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayComm($acc);
+			$this->set('YesterdayComm', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayComm($acc);
+			$this->set('TodayComm', $t5);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('history_yesterday');
+			}
+		}
+
+		/**
+		* PARTNER :: Commission Today
+		*
+		*/
+		public function history_today() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "glyphicon-table",
+				'name' => "Commission Yesterday"
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info trader
+			$user = $this->UserAuth->getUser();
+			$acc = $user['User']['partnertag'];
+
+			//Paginate Trade history
+			App::uses('CakeTime', 'Utility');
+			$date1 = strtotime('today');
+			$date2 = strtotime('today');
+			$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+			#debug($tempoh); die();
+			$this->paginate = array(
+				'limit' => 30, 
+				'order'=>'Mt4Trade.COMMENT DESC', 
+				'recursive'=>0,
+				'conditions' =>array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			$this->set('MT_TRANSACT',$trades);
+
+			//start loading data to table top
+			#Overall Commission
+			$t1 = $this->Mt4Trade->OverallComm($acc);
+			$this->set('jumlahSemua', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthComm($acc);
+			$this->set('LastMonthComm', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekComm($acc);
+			$this->set('LastWeekComm', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayComm($acc);
+			$this->set('YesterdayComm', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayComm($acc);
+			$this->set('TodayComm', $t5);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('history_today');
+			}
+		}
+
+		/**
+		* PARTNER :: Commission Last Week
+		*
+		*/
+		public function history_lastweek() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "glyphicon-table",
+				'name' => "Commission Last Week"
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info trader
+			$user = $this->UserAuth->getUser();
+			$acc = $user['User']['partnertag'];
+
+			//Paginate Trade history
+			App::uses('CakeTime', 'Utility');
+			$date1 = strtotime('last week Monday');
+		$date2 = strtotime('last week Friday');
+			$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+			#debug($tempoh); die();
+			$this->paginate = array(
+				'limit' => 30, 
+				'order'=>'Mt4Trade.COMMENT DESC', 
+				'recursive'=>0,
+				'conditions' =>array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			$this->set('MT_TRANSACT',$trades);
+
+			//start loading data to table top
+			#Overall Commission
+			$t1 = $this->Mt4Trade->OverallComm($acc);
+			$this->set('jumlahSemua', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthComm($acc);
+			$this->set('LastMonthComm', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekComm($acc);
+			$this->set('LastWeekComm', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayComm($acc);
+			$this->set('YesterdayComm', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayComm($acc);
+			$this->set('TodayComm', $t5);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('history_lastweek');
+			}
+		}
+
+		/**
+		* PARTNER :: Commission last month
+		*
+		*/
+		public function history_lastmonth() {
+			//Layout
+			$this->layout = "partner.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "glyphicon-table",
+				'name' => "Commission Last Month"
+			);
+			$this->set('page_title',$page_title);
+
+			//Pull info trader
+			$user = $this->UserAuth->getUser();
+			$acc = $user['User']['partnertag'];
+
+			//Paginate Trade history
+			App::uses('CakeTime', 'Utility');
+			$date1 = strtotime('first day of last month');
+			$date2 = strtotime('last day of last month');
+			$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+			#debug($tempoh); die();
+			$this->paginate = array(
+				'limit' => 30, 
+				'order'=>'Mt4Trade.COMMENT DESC', 
+				'recursive'=>0,
+				'conditions' =>array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			$this->set('MT_TRANSACT',$trades);
+
+			//start loading data to table top
+			#Overall Commission
+			$t1 = $this->Mt4Trade->OverallComm($acc);
+			$this->set('jumlahSemua', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthComm($acc);
+			$this->set('LastMonthComm', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekComm($acc);
+			$this->set('LastWeekComm', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayComm($acc);
+			$this->set('YesterdayComm', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayComm($acc);
+			$this->set('TodayComm', $t5);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('history_lastmonth');
+			}
+		}
+
+		/**
+		* PARTNER :: Commission Overall
 		*
 		*/
 		public function history() {
@@ -642,7 +898,7 @@
 			//Page title
 			$page_title = array(
 				'icon' => "glyphicon-table",
-				'name' => "Partner Account History"
+				'name' => "Commission Overall"
 			);
 			$this->set('page_title',$page_title);
 
@@ -657,9 +913,33 @@
 				'recursive'=>0,
 				'conditions' =>array(
 					'Mt4Trade.LOGIN' => $acc,
-			));
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				)
+			);
 			$trades = $this->paginate('Mt4Trade');
 			$this->set('MT_TRANSACT',$trades);
+
+
+			//start loading data to table top
+			#Overall Commission
+			$t1 = $this->Mt4Trade->OverallComm($acc);
+			$this->set('jumlahSemua', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthComm($acc);
+			$this->set('LastMonthComm', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekComm($acc);
+			$this->set('LastWeekComm', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayComm($acc);
+			$this->set('YesterdayComm', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayComm($acc);
+			$this->set('TodayComm', $t5);
 
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
