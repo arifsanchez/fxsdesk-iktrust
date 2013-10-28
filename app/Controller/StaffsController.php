@@ -832,18 +832,23 @@
 			$this->layout = "ajax";
 			if($this->UserAuth->isLogged()){
 
-				$total = $this->Mt4Trade->find('count', array(
+				$total = $this->Mt4Trade->find('all', array(
 					'conditions' => array(
 		        		'Mt4Trade.COMMENT LIKE' => '%DP%',
-		        		'Mt4Trade.CMD' => '6',
+						'Mt4Trade.CMD' => '6',
+						'Mt4Trade.LOGIN NOT LIKE' => '88%',
+						'Mt4Trade.PROFIT NOT LIKE' => '%-%'
 			        ),
+			        'fields' => array(
+						'sum(PROFIT) AS total'
+					)
 				));
 				#debug($total); die();
 
 				if ($this->request->is('requested')) {
-					return $total;
+					return $total[0][0]['total'];
 				} else {
-					$this->set('JumlahDeposit', $total);
+					$this->set('JumlahDeposit', $total[0][0]['total']);
 				}
 			}
 		}
@@ -854,21 +859,125 @@
 		public function JumlahWithdrawal(){
 			$this->layout = "ajax";
 			if($this->UserAuth->isLogged()){
-				$total = $this->Mt4Trade->find('count', array(
+				$total = $this->Mt4Trade->find('all', array(
 					'conditions' => array(
 		        		'Mt4Trade.COMMENT LIKE' => '%WD%',
-		        		'Mt4Trade.CMD' => '6',
+						'Mt4Trade.CMD' => '6',
+						'Mt4Trade.LOGIN NOT LIKE' => '88%',
+						'Mt4Trade.PROFIT LIKE' => '%-%'
 			        ),
+			        'fields' => array(
+						'sum(PROFIT) AS total'
+					)
 				));
 				#debug($total); die();
 
 				if ($this->request->is('requested')) {
-					return $total;
+					return $total[0][0]['total'];
 				} else {
-					$this->set('JumlahWithdrawal', $total);
+					$this->set('JumlahWithdrawal', $total[0][0]['total']);
 				}
 			}
 		}
+
+		/**
+		* STAFF : Kira Semua Total Rebate Loss
+		***/
+		public function JumlahRebateLoss(){
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$total = $this->Mt4Trade->find('all', array(
+					'conditions' => array(
+		        		'Mt4Trade.COMMENT LIKE' => '%Rebate #Loss%'
+			        ),
+			        'fields' => array(
+						'sum(PROFIT) AS total'
+					)
+				));
+				#debug($total); die();
+
+				if ($this->request->is('requested')) {
+					return $total[0][0]['total'];
+				} else {
+					$this->set('JumlahRebateLoss', $total[0][0]['total']);
+				}
+			}
+		}
+
+
+		/**
+		* STAFF : Kira Semua Total Rebate Profit
+		***/
+		public function JumlahRebateProfit(){
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$total = $this->Mt4Trade->find('all', array(
+					'conditions' => array(
+		        		'Mt4Trade.COMMENT LIKE' => '%Rebate #Profit%'
+			        ),
+			        'fields' => array(
+						'sum(PROFIT) AS total'
+					)
+				));
+				#debug($total); die();
+
+				if ($this->request->is('requested')) {
+					return $total[0][0]['total'];
+				} else {
+					$this->set('JumlahRebateProfit', $total[0][0]['total']);
+				}
+			}
+		}
+
+		/**
+		* STAFF : Kira Semua Total commission affiliate
+		***/
+		public function JumlahCommission(){
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$total = $this->Mt4Trade->find('all', array(
+			        'conditions' => array(
+			        	'Mt4Trade.COMMENT LIKE' => '%agent%'
+					),
+			        'fields' => array(
+						'sum(PROFIT) AS total'
+					)
+				));
+				#debug($total); die();
+
+				if ($this->request->is('requested')) {
+					return $total[0][0]['total'];
+				} else {
+					$this->set('JumlahCommission', $total[0][0]['total']);
+				}
+			}
+		}
+
+		/**
+		* STAFF : Kira Semua Total commission partner
+		***/
+		public function JumlahCommissionPartner(){
+			$this->layout = "ajax";
+			if($this->UserAuth->isLogged()){
+				$total = $this->Mt4Trade->find('all', array(
+			        'conditions' => array(
+						'Mt4Trade.COMMENT LIKE' => '%comm%'
+					),
+			        'fields' => array(
+						'sum(PROFIT) AS total'
+					)
+				));
+				#debug($total); die();
+
+				if ($this->request->is('requested')) {
+					return $total[0][0]['total'];
+				} else {
+					$this->set('JumlahCommissionPartner', $total[0][0]['total']);
+				}
+			}
+		}
+		
+
 
 		/**
 		* STAFF :: Deposit Main Window
@@ -1511,7 +1620,7 @@
 			//Page title
 			$page_title = array(
 				'icon' => "icon-money",
-				'name' => "All Commissions History"
+				'name' => "Affilliate Commissions"
 			);
 			$this->set('page_title',$page_title);
 
@@ -1528,6 +1637,27 @@
 			#debug($trades); die();
 			$this->set('reportComm',$trades);
 
+			//start loading data to table top
+			#Overall Commission
+			$t1 = $this->Mt4Trade->OverallComm();
+			$this->set('jumlahSemua', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthComm();
+			$this->set('LastMonthComm', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekComm();
+			$this->set('LastWeekComm', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayComm();
+			$this->set('YesterdayComm', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayComm();
+			$this->set('TodayComm', $t5);
+
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
 				$this->render('report_commission');
@@ -1537,14 +1667,14 @@
 		/***
 		*	STAFF :: All Commissions
 		****/
-		public function report_rebate(){
+		public function report_commission_partner(){
 
 			//Layout
 			$this->layout = "staff.dashboard";
 			//Page title
 			$page_title = array(
 				'icon' => "icon-money",
-				'name' => "All Rebates History"
+				'name' => "Partner Commission"
 			);
 			$this->set('page_title',$page_title);
 
@@ -1554,16 +1684,145 @@
 				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
 				'recursive'=>0,
 				'conditions' =>array(
-					'Mt4Trade.COMMENT LIKE' => '%rebate%',
+					'Mt4Trade.COMMENT LIKE' => '%comm%',
 				)
 			);
 			$trades = $this->paginate('Mt4Trade');
 			#debug($trades); die();
 			$this->set('reportComm',$trades);
 
+			//start loading data to table top
+			#Overall Commission
+			$t1 = $this->Mt4Trade->OverallCommPartner();
+			$this->set('jumlahSemua', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthCommPartner();
+			$this->set('LastMonthComm', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekCommPartner();
+			$this->set('LastWeekComm', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayCommPartner();
+			$this->set('YesterdayComm', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayCommPartner();
+			$this->set('TodayComm', $t5);
+
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
-				$this->render('report_rebate');
+				$this->render('report_commission');
+			}
+		}
+
+		/***
+		*	STAFF :: Report rebate profit
+		****/
+		public function report_rebate_profit(){
+
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-money",
+				'name' => "Profit Rebates"
+			);
+			$this->set('page_title',$page_title);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4Trade.COMMENT LIKE' => '%Rebate #Profit%',
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			#debug($trades); die();
+			$this->set('reportComm',$trades);
+
+			//start loading data to table top
+			#Overall Rebate prof
+			$t1 = $this->Mt4Trade->OverallRebprof();
+			$this->set('OverallRebprof', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthRebprof();
+			$this->set('LastMonthRebprof', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekRebprof();
+			$this->set('LastWeekRebprof', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayRebprof();
+			$this->set('YesterdayRebprof', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayRebprof();
+			$this->set('TodayRebprof', $t5);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('report_rebate_profit');
+			}
+		}
+
+		/***
+		*	STAFF :: Report rebate loss
+		****/
+		public function report_rebate_loss(){
+
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-money",
+				'name' => "Loss Rebate"
+			);
+			$this->set('page_title',$page_title);
+
+			//Paginate Trader Accounts Listing
+			$this->paginate = array(
+				'limit' => 35, 
+				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
+				'recursive'=>0,
+				'conditions' =>array(
+					'Mt4Trade.COMMENT LIKE' => '%Rebate #Loss%',
+				)
+			);
+			$trades = $this->paginate('Mt4Trade');
+			#debug($trades); die();
+			$this->set('reportComm',$trades);
+
+			//start loading data to table top
+			#Overall Rebate Loss
+			$t1 = $this->Mt4Trade->OverallRebloss();
+			$this->set('OverallRebloss', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthRebloss();
+			$this->set('LastMonthRebloss', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekRebloss();
+			$this->set('LastWeekRebloss', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayRebloss();
+			$this->set('YesterdayRebloss', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayRebloss();
+			$this->set('TodayRebloss', $t5);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('report_rebate_loss');
 			}
 		}
 
@@ -1618,7 +1877,9 @@
 			$this->paginate = array(
 		        'conditions' => array(
 	        		'Mt4Trade.COMMENT LIKE' => '%DP%',
-	        		'Mt4Trade.CMD' => '6',
+					'Mt4Trade.CMD' => '6',
+					'Mt4Trade.LOGIN NOT LIKE' => '88%',
+					'Mt4Trade.PROFIT NOT LIKE' => '%-%',
 		        ),
 		        'order' => 'Mt4Trade.OPEN_TIME DESC',
 		        'limit' => 50,
@@ -1626,6 +1887,28 @@
 		    $trades = $this->paginate('Mt4Trade');
 			$this->set('reportDeposit' , $trades);
 			#debug($trades); die();
+			
+			//start loading data to table top
+			#Overall Deposit
+			$t1 = $this->Mt4Trade->OverallDepo();
+			$this->set('OverallDepo', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthDepo();
+			$this->set('LastMonthDepo', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekDepo();
+			$this->set('LastWeekDepo', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayDepo();
+			$this->set('YesterdayDepo', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayDepo();
+			$this->set('TodayDepo', $t5);
+
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
 				$this->render('report_deposit');
@@ -1634,7 +1917,7 @@
 		}
 
 		/***
-		*	STAFF :: Report Deposit
+		*	STAFF :: Report Withdrawal
 		****/
 		public function report_withdrawal(){
 			//Layout
@@ -1649,13 +1932,37 @@
 			$this->paginate = array(
 		        'conditions' => array(
 	        		'Mt4Trade.COMMENT LIKE' => '%WD%',
-	        		'Mt4Trade.CMD' => '6',
+					'Mt4Trade.CMD' => '6',
+					'Mt4Trade.LOGIN NOT LIKE' => '88%',
+					'Mt4Trade.PROFIT LIKE' => '%-%'
 		        ),
 		        'order' => 'Mt4Trade.OPEN_TIME DESC',
 		        'limit' => 50,
 	    	);
+
+	    	//start loading data to table top
+			#Overall Deposit
+			$t1 = $this->Mt4Trade->OverallWdrw();
+			$this->set('OverallWdrw', $t1);
+
+			#Last Month
+			$t2 = $this->Mt4Trade->LastMonthWdrw();
+			$this->set('LastMonthWdrw', $t2);
+
+			#Last Week
+			$t3 = $this->Mt4Trade->LastWeekWdrw();
+			$this->set('LastWeekWdrw', $t3);
+
+			#Yesterday
+			$t4 = $this->Mt4Trade->YesterdayWdrw();
+			$this->set('YesterdayWdrw', $t4);
+
+			#Today
+			$t5 = $this->Mt4Trade->TodayWdrw();
+			$this->set('TodayWdrw', $t5);
+
 		    $trades = $this->paginate('Mt4Trade');
-			$this->set('reportDeposit' , $trades);
+			$this->set('reportWithdrawal' , $trades);
 			#debug($trades); die();
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';

@@ -222,16 +222,28 @@ class Mt4Trade extends AppModel {
 	*	PARTNER : Dapatkan overall commission from day 1
 	***/
 	public function OverallComm($acc=null){
-		$total = $this->find('all', array(
-			'conditions' => array(
-				'Mt4Trade.LOGIN' => $acc,
-				'Mt4Trade.COMMENT LIKE' => '%agent%'
-			),
-			'fields' => array(
-				'sum(PROFIT) AS total'
-			)
+		if(!empty($acc)){
+			$total = $this->find('all', array(
+				'conditions' => array(
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
 
-		));
+			));
+		} else {
+			$total = $this->find('all', array(
+				'conditions' => array(
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		}
 		return $total[0][0]['total'];
 	}
 
@@ -244,17 +256,30 @@ class Mt4Trade extends AppModel {
 		$date2 = strtotime('last day of last month');
 		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
 		#debug($tempoh); die();
-		$total = $this->find('all', array(
-			'conditions' => array(
-				$tempoh,
-				'Mt4Trade.LOGIN' => $acc,
-				'Mt4Trade.COMMENT LIKE' => '%agent%'
-			),
-			'fields' => array(
-				'sum(PROFIT) AS total'
-			)
+		if(!empty($acc)){
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
 
-		));
+			));
+		} else {
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		}
 		return $total[0][0]['total'];
 	}
 
@@ -267,17 +292,30 @@ class Mt4Trade extends AppModel {
 		$date2 = strtotime('last week Friday');
 		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
 		#debug($tempoh); die();
-		$total = $this->find('all', array(
-			'conditions' => array(
-				$tempoh,
-				'Mt4Trade.LOGIN' => $acc,
-				'Mt4Trade.COMMENT LIKE' => '%agent%'
-			),
-			'fields' => array(
-				'sum(PROFIT) AS total'
-			)
+		if(!empty($acc)){
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
 
-		));
+			));
+		} else {
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		}
 		return $total[0][0]['total'];
 	}
 
@@ -290,17 +328,30 @@ class Mt4Trade extends AppModel {
 		$date2 = strtotime('yesterday');
 		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
 		#debug($tempoh); die();
-		$total = $this->find('all', array(
-			'conditions' => array(
-				$tempoh,
-				'Mt4Trade.LOGIN' => $acc,
-				'Mt4Trade.COMMENT LIKE' => '%agent%'
-			),
-			'fields' => array(
-				'sum(PROFIT) AS total'
-			)
+		if(!empty($acc)){
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
 
-		));
+			));
+		} else {
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		}
 		return $total[0][0]['total'];
 	}
 
@@ -313,11 +364,643 @@ class Mt4Trade extends AppModel {
 		$date2 = strtotime('today');
 		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
 		#debug($tempoh); die();
+		if(!empty($acc)){
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		} else {
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.COMMENT LIKE' => '%agent%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		}
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	PARTNER : Dapatkan overall commission from day 1
+	***/
+	public function OverallCommPartner($acc=null){
+		if(!empty($acc)){
+			$total = $this->find('all', array(
+				'conditions' => array(
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		} else {
+			$total = $this->find('all', array(
+				'conditions' => array(
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		}
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	PARTNER : Dapatkan overall commission from last month
+	***/
+	public function LastMonthCommPartner($acc=null){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('first day of last month');
+		$date2 = strtotime('last day of last month');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		if(!empty($acc)){
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		} else {
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		}
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	PARTNER : Dapatkan overall commission from last week
+	***/
+	public function LastWeekCommPartner($acc=null){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last week Monday');
+		$date2 = strtotime('last week Friday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		if(!empty($acc)){
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		} else {
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		}
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	PARTNER : Dapatkan overall commission from yesterday
+	***/
+	public function YesterdayCommPartner($acc=null){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('yesterday');
+		$date2 = strtotime('yesterday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		if(!empty($acc)){
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		} else {
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		}
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	PARTNER : Dapatkan overall commission from today
+	***/
+	public function TodayCommPartner($acc=null){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		if(!empty($acc)){
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.LOGIN' => $acc,
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		} else {
+			$total = $this->find('all', array(
+				'conditions' => array(
+					$tempoh,
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
+				),
+				'fields' => array(
+					'sum(PROFIT) AS total'
+				)
+
+			));
+		}
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall deposit from day 1
+	***/
+	public function OverallDepo(){
+		$total = $this->find('all', array(
+			'conditions' => array(
+				'Mt4Trade.COMMENT LIKE' => '%DP%',
+				'Mt4Trade.CMD' => '6',
+				'Mt4Trade.LOGIN NOT LIKE' => '88%',
+				'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall deposit from last month
+	***/
+	public function LastMonthDepo(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('first day of last month');
+		$date2 = strtotime('last day of last month');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
 				$tempoh,
-				'Mt4Trade.LOGIN' => $acc,
-				'Mt4Trade.COMMENT LIKE' => '%agent%'
+				'Mt4Trade.COMMENT LIKE' => '%DP%',
+				'Mt4Trade.CMD' => '6',
+				'Mt4Trade.LOGIN NOT LIKE' => '88%',
+				'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall deposit from last week
+	***/
+	public function LastWeekDepo(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last week Monday');
+		$date2 = strtotime('last week Friday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%DP%',
+				'Mt4Trade.CMD' => '6',
+				'Mt4Trade.LOGIN NOT LIKE' => '88%',
+				'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	Staff : Dapatkan overall deposit from yesterday
+	***/
+	public function YesterdayDepo(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('yesterday');
+		$date2 = strtotime('yesterday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%DP%',
+				'Mt4Trade.CMD' => '6',
+				'Mt4Trade.LOGIN NOT LIKE' => '88%',
+				'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	Staff : Dapatkan overall deposit from today
+	***/
+	public function TodayDepo(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%DP%',
+				'Mt4Trade.CMD' => '6',
+				'Mt4Trade.LOGIN NOT LIKE' => '88%',
+				'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall withdrawal from day 1
+	***/
+	public function OverallWdrw(){
+		$total = $this->find('all', array(
+			'conditions' => array(
+				'Mt4Trade.COMMENT LIKE' => '%WD%',
+				'Mt4Trade.CMD' => '6',
+				'Mt4Trade.LOGIN NOT LIKE' => '88%',
+				'Mt4Trade.PROFIT LIKE' => '%-%'
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall withdrawal from last month
+	***/
+	public function LastMonthWdrw(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('first day of last month');
+		$date2 = strtotime('last day of last month');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%WD%',
+				'Mt4Trade.CMD' => '6',
+				'Mt4Trade.LOGIN NOT LIKE' => '88%',
+				'Mt4Trade.PROFIT LIKE' => '%-%'
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall withdrawal from last week
+	***/
+	public function LastWeekWdrw(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last week Monday');
+		$date2 = strtotime('last week Friday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%WD%',
+				'Mt4Trade.CMD' => '6',
+				'Mt4Trade.LOGIN NOT LIKE' => '88%',
+				'Mt4Trade.PROFIT LIKE' => '%-%'
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	Staff : Dapatkan overall withdrawal from yesterday
+	***/
+	public function YesterdayWdrw(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('yesterday');
+		$date2 = strtotime('yesterday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%WD%',
+				'Mt4Trade.CMD' => '6',
+				'Mt4Trade.LOGIN NOT LIKE' => '88%',
+				'Mt4Trade.PROFIT LIKE' => '%-%'
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	Staff : Dapatkan overall withdrawal from today
+	***/
+	public function TodayWdrw(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%WD%',
+				'Mt4Trade.CMD' => '6',
+				'Mt4Trade.LOGIN NOT LIKE' => '88%',
+				'Mt4Trade.PROFIT LIKE' => '%-%'
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall rebate loss from day 1
+	***/
+	public function OverallRebloss(){
+		$total = $this->find('all', array(
+			'conditions' => array(
+				'Mt4Trade.COMMENT LIKE' => '%Rebate #Loss%',
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall rebate loss from last month
+	***/
+	public function LastMonthRebloss(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('first day of last month');
+		$date2 = strtotime('last day of last month');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%Rebate #Loss%',
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall rebate loss from last week
+	***/
+	public function LastWeekRebloss(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last week Monday');
+		$date2 = strtotime('last week Friday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%Rebate #Loss%',
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	Staff : Dapatkan overall rebate loss from yesterday
+	***/
+	public function YesterdayRebloss(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('yesterday');
+		$date2 = strtotime('yesterday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%Rebate #Loss%',
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	Staff : Dapatkan overall rebate loss from today
+	***/
+	public function TodayRebloss(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%Rebate #Loss%',
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall rebate prof from day 1
+	***/
+	public function OverallRebprof(){
+		$total = $this->find('all', array(
+			'conditions' => array(
+				'Mt4Trade.COMMENT LIKE' => '%Rebate #Profit%',
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall rebate prof from last month
+	***/
+	public function LastMonthRebprof(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('first day of last month');
+		$date2 = strtotime('last day of last month');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%Rebate #Profit%',
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall rebate prof from last week
+	***/
+	public function LastWeekRebprof(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last week Monday');
+		$date2 = strtotime('last week Friday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%Rebate #Profit%',
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	Staff : Dapatkan overall rebate prof from yesterday
+	***/
+	public function YesterdayRebprof(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('yesterday');
+		$date2 = strtotime('yesterday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%Rebate #Profit%',
+			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	Staff : Dapatkan overall rebate prof from today
+	***/
+	public function TodayRebprof(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+				'Mt4Trade.COMMENT LIKE' => '%Rebate #Profit%',
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'

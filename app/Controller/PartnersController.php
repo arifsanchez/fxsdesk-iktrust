@@ -42,6 +42,8 @@
 		public function acc1_balance() {
 			$this->layout = "ajax";
 			$userId = $this->UserAuth->getUserId();
+			#jika tiada wallet create new
+			$vault = $this->Vault->checkVaultAccount($userId);
 			$balance = $this->Vault->getAccBalance($userId);
 			#debug($balance['Vault']['acc_1']);die();
 			if ($this->request->is('requested')) {
@@ -201,6 +203,22 @@
 				return $TotalAgent;
 			} else {
 				$this->set('TotalAgent', $TotalAgent);
+			}
+		}
+		
+		/***
+		* Partner :: request kira total commission partner
+		***/
+
+		public function kiraTotalComm(){
+			$this->layout = "ajax";
+			$user = $this->UserAuth->getUser();
+			$partnertag = $user['User']['partnertag'];
+			$total = $this->Mt4Trade->OverallCommPartner($partnertag);
+			if ($this->request->is('requested')) {
+				return $total;
+			} else {
+				$this->set('totalComm', $total);
 			}
 		}
 
@@ -658,36 +676,37 @@
 			#debug($tempoh); die();
 			$this->paginate = array(
 				'limit' => 30, 
-				'order'=>'Mt4Trade.COMMENT DESC', 
+				'order'=>'Mt4Trade.PROFIT DESC', 
 				'recursive'=>0,
 				'conditions' =>array(
 					$tempoh,
 					'Mt4Trade.LOGIN' => $acc,
-					'Mt4Trade.COMMENT LIKE' => '%agent%'
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
 				)
 			);
 			$trades = $this->paginate('Mt4Trade');
 			$this->set('MT_TRANSACT',$trades);
 
+
 			//start loading data to table top
 			#Overall Commission
-			$t1 = $this->Mt4Trade->OverallComm($acc);
+			$t1 = $this->Mt4Trade->OverallCommPartner($acc);
 			$this->set('jumlahSemua', $t1);
 
 			#Last Month
-			$t2 = $this->Mt4Trade->LastMonthComm($acc);
+			$t2 = $this->Mt4Trade->LastMonthCommPartner($acc);
 			$this->set('LastMonthComm', $t2);
 
 			#Last Week
-			$t3 = $this->Mt4Trade->LastWeekComm($acc);
+			$t3 = $this->Mt4Trade->LastWeekCommPartner($acc);
 			$this->set('LastWeekComm', $t3);
 
 			#Yesterday
-			$t4 = $this->Mt4Trade->YesterdayComm($acc);
+			$t4 = $this->Mt4Trade->YesterdayCommPartner($acc);
 			$this->set('YesterdayComm', $t4);
 
 			#Today
-			$t5 = $this->Mt4Trade->TodayComm($acc);
+			$t5 = $this->Mt4Trade->TodayCommPartner($acc);
 			$this->set('TodayComm', $t5);
 
 			if($this->RequestHandler->isAjax()) {
@@ -722,12 +741,12 @@
 			#debug($tempoh); die();
 			$this->paginate = array(
 				'limit' => 30, 
-				'order'=>'Mt4Trade.COMMENT DESC', 
+				'order'=>'Mt4Trade.PROFIT DESC', 
 				'recursive'=>0,
 				'conditions' =>array(
 					$tempoh,
 					'Mt4Trade.LOGIN' => $acc,
-					'Mt4Trade.COMMENT LIKE' => '%agent%'
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
 				)
 			);
 			$trades = $this->paginate('Mt4Trade');
@@ -735,23 +754,23 @@
 
 			//start loading data to table top
 			#Overall Commission
-			$t1 = $this->Mt4Trade->OverallComm($acc);
+			$t1 = $this->Mt4Trade->OverallCommPartner($acc);
 			$this->set('jumlahSemua', $t1);
 
 			#Last Month
-			$t2 = $this->Mt4Trade->LastMonthComm($acc);
+			$t2 = $this->Mt4Trade->LastMonthCommPartner($acc);
 			$this->set('LastMonthComm', $t2);
 
 			#Last Week
-			$t3 = $this->Mt4Trade->LastWeekComm($acc);
+			$t3 = $this->Mt4Trade->LastWeekCommPartner($acc);
 			$this->set('LastWeekComm', $t3);
 
 			#Yesterday
-			$t4 = $this->Mt4Trade->YesterdayComm($acc);
+			$t4 = $this->Mt4Trade->YesterdayCommPartner($acc);
 			$this->set('YesterdayComm', $t4);
 
 			#Today
-			$t5 = $this->Mt4Trade->TodayComm($acc);
+			$t5 = $this->Mt4Trade->TodayCommPartner($acc);
 			$this->set('TodayComm', $t5);
 
 			if($this->RequestHandler->isAjax()) {
@@ -786,36 +805,37 @@
 			#debug($tempoh); die();
 			$this->paginate = array(
 				'limit' => 30, 
-				'order'=>'Mt4Trade.COMMENT DESC', 
+				'order'=>'Mt4Trade.OPEN_TIME DESC', 
 				'recursive'=>0,
 				'conditions' =>array(
 					$tempoh,
 					'Mt4Trade.LOGIN' => $acc,
-					'Mt4Trade.COMMENT LIKE' => '%agent%'
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
 				)
 			);
 			$trades = $this->paginate('Mt4Trade');
 			$this->set('MT_TRANSACT',$trades);
 
+
 			//start loading data to table top
 			#Overall Commission
-			$t1 = $this->Mt4Trade->OverallComm($acc);
+			$t1 = $this->Mt4Trade->OverallCommPartner($acc);
 			$this->set('jumlahSemua', $t1);
 
 			#Last Month
-			$t2 = $this->Mt4Trade->LastMonthComm($acc);
+			$t2 = $this->Mt4Trade->LastMonthCommPartner($acc);
 			$this->set('LastMonthComm', $t2);
 
 			#Last Week
-			$t3 = $this->Mt4Trade->LastWeekComm($acc);
+			$t3 = $this->Mt4Trade->LastWeekCommPartner($acc);
 			$this->set('LastWeekComm', $t3);
 
 			#Yesterday
-			$t4 = $this->Mt4Trade->YesterdayComm($acc);
+			$t4 = $this->Mt4Trade->YesterdayCommPartner($acc);
 			$this->set('YesterdayComm', $t4);
 
 			#Today
-			$t5 = $this->Mt4Trade->TodayComm($acc);
+			$t5 = $this->Mt4Trade->TodayCommPartner($acc);
 			$this->set('TodayComm', $t5);
 
 			if($this->RequestHandler->isAjax()) {
@@ -850,36 +870,37 @@
 			#debug($tempoh); die();
 			$this->paginate = array(
 				'limit' => 30, 
-				'order'=>'Mt4Trade.COMMENT DESC', 
+				'order'=>'Mt4Trade.OPEN_TIME DESC', 
 				'recursive'=>0,
 				'conditions' =>array(
 					$tempoh,
 					'Mt4Trade.LOGIN' => $acc,
-					'Mt4Trade.COMMENT LIKE' => '%agent%'
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
 				)
 			);
 			$trades = $this->paginate('Mt4Trade');
 			$this->set('MT_TRANSACT',$trades);
 
+
 			//start loading data to table top
 			#Overall Commission
-			$t1 = $this->Mt4Trade->OverallComm($acc);
+			$t1 = $this->Mt4Trade->OverallCommPartner($acc);
 			$this->set('jumlahSemua', $t1);
 
 			#Last Month
-			$t2 = $this->Mt4Trade->LastMonthComm($acc);
+			$t2 = $this->Mt4Trade->LastMonthCommPartner($acc);
 			$this->set('LastMonthComm', $t2);
 
 			#Last Week
-			$t3 = $this->Mt4Trade->LastWeekComm($acc);
+			$t3 = $this->Mt4Trade->LastWeekCommPartner($acc);
 			$this->set('LastWeekComm', $t3);
 
 			#Yesterday
-			$t4 = $this->Mt4Trade->YesterdayComm($acc);
+			$t4 = $this->Mt4Trade->YesterdayCommPartner($acc);
 			$this->set('YesterdayComm', $t4);
 
 			#Today
-			$t5 = $this->Mt4Trade->TodayComm($acc);
+			$t5 = $this->Mt4Trade->TodayCommPartner($acc);
 			$this->set('TodayComm', $t5);
 
 			if($this->RequestHandler->isAjax()) {
@@ -913,7 +934,7 @@
 				'recursive'=>0,
 				'conditions' =>array(
 					'Mt4Trade.LOGIN' => $acc,
-					'Mt4Trade.COMMENT LIKE' => '%agent%'
+					'Mt4Trade.COMMENT LIKE' => '%comm%'
 				)
 			);
 			$trades = $this->paginate('Mt4Trade');
@@ -922,23 +943,23 @@
 
 			//start loading data to table top
 			#Overall Commission
-			$t1 = $this->Mt4Trade->OverallComm($acc);
+			$t1 = $this->Mt4Trade->OverallCommPartner($acc);
 			$this->set('jumlahSemua', $t1);
 
 			#Last Month
-			$t2 = $this->Mt4Trade->LastMonthComm($acc);
+			$t2 = $this->Mt4Trade->LastMonthCommPartner($acc);
 			$this->set('LastMonthComm', $t2);
 
 			#Last Week
-			$t3 = $this->Mt4Trade->LastWeekComm($acc);
+			$t3 = $this->Mt4Trade->LastWeekCommPartner($acc);
 			$this->set('LastWeekComm', $t3);
 
 			#Yesterday
-			$t4 = $this->Mt4Trade->YesterdayComm($acc);
+			$t4 = $this->Mt4Trade->YesterdayCommPartner($acc);
 			$this->set('YesterdayComm', $t4);
 
 			#Today
-			$t5 = $this->Mt4Trade->TodayComm($acc);
+			$t5 = $this->Mt4Trade->TodayCommPartner($acc);
 			$this->set('TodayComm', $t5);
 
 			if($this->RequestHandler->isAjax()) {

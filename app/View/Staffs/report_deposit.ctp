@@ -19,6 +19,25 @@ if($ajax) {
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
+			<table class="table table-hover table-nomargin table-condensed table-bordered">
+				<thead>
+					<tr>
+						<th><div class="text-center">Total Today</div></th>
+						<th><div class="text-center">Total Yesterday</div></th>
+						<th><div class="text-center">Total Last Week</div></th>
+						<th><div class="text-center">Total Last Month</div></th>
+						<th><div class="text-center">Overall</div></th>
+					</tr>
+				</thead>
+				<tbody>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($TodayDepo, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($TodayDepo*3.5, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($YesterdayDepo, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($YesterdayDepo*3.5, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastWeekDepo, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($LastWeekDepo*3.5, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastMonthDepo, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($LastMonthDepo*3.5, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($OverallDepo, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($OverallDepo*3.5, 'RM '); ?></small></h4></div></td>
+				</tbody>
+			</table>
+
 			<div class="box-title">
 			</div>
 			<div class="box-content nopadding">
@@ -32,7 +51,6 @@ if($ajax) {
 							<th><?php echo $this->Paginator->sort('Mt4Trade.TICKET', __('Post Info')); ?></th>
 							<th>Tracc No</th>
 							<th>Transaction</th>
-							<th>Comment</th>
 							<th>Processing Time</th>
 							<th><div class="text-right"><?php echo $this->Paginator->sort('Mt4Trade.PROFIT', __('Amount US$'));?></div></th>
 						</tr>
@@ -87,9 +105,6 @@ if($ajax) {
 								?>
 							</td>
 							
-							<td>
-								<span class="label label-green"><?php echo $Transaction['Mt4Trade']['COMMENT'];?></span>
-							</td>
 							<td>
 								<?php
 									echo $this->Time->nice($Transaction['Mt4Trade']['OPEN_TIME']);

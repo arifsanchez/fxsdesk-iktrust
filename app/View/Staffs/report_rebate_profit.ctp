@@ -22,22 +22,22 @@ if($ajax) {
 			<table class="table table-hover table-nomargin table-condensed table-bordered">
 				<thead>
 					<tr>
-						<th>Total Today</th>
-						<th>Total Yesterday</th>
-						<th>Total Last Week</th>
-						<th>Total Last Month</th>
-						<th>Overall</th>
+						<th><div class="text-center">Total Today</div></th>
+						<th><div class="text-center">Total Yesterday</div></th>
+						<th><div class="text-center">Total Last Week</div></th>
+						<th><div class="text-center">Total Last Month</div></th>
+						<th><div class="text-center">Overall</div></th>
 					</tr>
 				</thead>
 				<tbody>
-					<td><div class="text-center"><h4><?php echo $this->Number->currency($TodayComm, 'IK$ '); ?></h4></div></td>
-					<td><div class="text-center"><h4><?php echo $this->Number->currency($YesterdayComm, 'IK$ '); ?></h4></div></td>
-					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastWeekComm, 'IK$ '); ?></h4></div></td>
-					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastMonthComm, 'IK$ '); ?></h4></div></td>
-					<td><div class="text-center"><h4><?php echo $this->Number->currency($jumlahSemua, 'IK$ '); ?></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($TodayRebprof, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($TodayRebprof*3.3, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($YesterdayRebprof, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($YesterdayRebprof*3.3, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastWeekRebprof, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($LastWeekRebprof*3.3, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastMonthRebprof, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($LastMonthRebprof*3.3, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($OverallRebprof, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($OverallRebprof*3.3, 'RM '); ?></small></h4></div></td>
 				</tbody>
 			</table>
-			
+
 			<div class="box-title">
 				<div class="actions">
 				</div>
@@ -51,7 +51,7 @@ if($ajax) {
 							} else {?> 
 						<tr>
 							<th><?php echo $this->Paginator->sort('Mt4Trade.TICKET', __('Post Info')); ?></th>
-							<th>Partner No</th>
+							<th>Tracc No</th>
 							<th>Comment</th>
 							<th>Date / Time</th>
 							<th><div class="text-right">Amount US$</div></th>

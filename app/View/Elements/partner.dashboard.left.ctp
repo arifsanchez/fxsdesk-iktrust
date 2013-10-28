@@ -55,5 +55,22 @@
 				</a>
 			</span>
 		</div>
+		<div class="pagestats">
+			<span class="left"><b>Commissions</b></span>
+			<span class="left">
+				<a
+					data-original-title="View all commission history"
+					rel="tooltip"
+					data-placement="bottom"
+					class="btn" 
+					href="<?php echo SITE_URL;?>Partners/history?me:<?php echo $var['User']['username'];?>"
+					title="" 
+					data-trigger="hover" 
+					data-toggle="modal"	
+				>
+				<i class="icon-money"></i> <?php $TotalComm = $this->requestAction('partners/kiraTotalComm') ; echo $this->Number->currency($TotalComm, 'IK$ ');?>
+				</a>
+			</span>
+		</div>
 	</div>
 </div>

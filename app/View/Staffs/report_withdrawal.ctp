@@ -19,27 +19,45 @@ if($ajax) {
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
+			<table class="table table-hover table-nomargin table-condensed table-bordered">
+				<thead>
+					<tr>
+						<th><div class="text-center">Total Today</div></th>
+						<th><div class="text-center">Total Yesterday</div></th>
+						<th><div class="text-center">Total Last Week</div></th>
+						<th><div class="text-center">Total Last Month</div></th>
+						<th><div class="text-center">Overall</div></th>
+					</tr>
+				</thead>
+				<tbody>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($TodayWdrw, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($TodayWdrw*3.5, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($YesterdayWdrw, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($YesterdayWdrw*3.5, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastWeekWdrw, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($LastWeekWdrw*3.5, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastMonthWdrw, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($LastMonthWdrw*3.5, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($OverallWdrw, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($OverallWdrw*3.5, 'RM '); ?></small></h4></div></td>
+				</tbody>
+			</table>
+
 			<div class="box-title">
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-condensed table-bordered">
 					<thead>
 						<?php 
-							if(empty($reportDeposit)){ 
+							if(empty($reportWithdrawal)){ 
 								echo "<tr><blockquote>There is 0 Transaction History at the moment.</blockquote></tr>";
 							} else {?> 
 						<tr>
 							<th><?php echo $this->Paginator->sort('Mt4Trade.TICKET', __('Post Info')); ?></th>
 							<th>Tracc No</th>
 							<th>Transaction</th>
-							<th>Comment</th>
 							<th>Processing Time</th>
 							<th><div class="text-right"><?php echo $this->Paginator->sort('Mt4Trade.PROFIT', __('Amount US$'));?></div></th>
 						</tr>
 						<?php } ?>
 					</thead>
 					<tbody>
-						<?php foreach($reportDeposit as $Transaction): ?>
+						<?php foreach($reportWithdrawal as $Transaction): ?>
 						<tr>
 							<td>
 								#<?php echo $Transaction['Mt4Trade']['TICKET'];?>
@@ -87,9 +105,6 @@ if($ajax) {
 								?>
 							</td>
 							
-							<td>
-								<span class="label label-lightred"><?php echo $Transaction['Mt4Trade']['COMMENT'];?></span>
-							</td>
 							<td>
 								<?php
 									echo $this->Time->nice($Transaction['Mt4Trade']['OPEN_TIME']);

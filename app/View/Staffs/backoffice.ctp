@@ -229,7 +229,7 @@
 			<div class="box-title">
 				<h3>
 					<i class="icon-th-large"></i>
-					Accounting History
+					Accounting Monitoring
 				</h3>
 			</div>
 			<div class="box-content">
@@ -238,7 +238,7 @@
 						<a href="<?php echo SITE_URL;?>Staffs/report_deposit?me:<?php echo $var['User']['username'];?>">
 							<i class="icon-exchange"></i>
 							<div class="details">
-								<span class="big"><span class="big"><?php $JumlahDeposit = $this->requestAction('Staffs/JumlahDeposit') ; echo $JumlahDeposit;?></span></span>
+								<span class="big"><span class="big"><?php $JumlahDeposit = $this->requestAction('Staffs/JumlahDeposit') ; echo $this->Number->currency($JumlahDeposit, '$ '); ?></span></span>
 								<span>Deposits</span>
 							</div>
 						</a>
@@ -248,7 +248,7 @@
 						<a href="<?php echo SITE_URL;?>Staffs/report_withdrawal?me:<?php echo $var['User']['username'];?>">
 							<i class="icon-exchange"></i>
 							<div class="details">
-								<span class="big"><span class="big"><?php $JumlahWithdrawal = $this->requestAction('Staffs/JumlahWithdrawal') ; echo $JumlahWithdrawal;?></span></span>
+								<span class="big"><?php $JumlahWithdrawal = $this->requestAction('Staffs/JumlahWithdrawal') ;echo $this->Number->currency($JumlahWithdrawal, '$ '); ?></span>
 								<span>Withdrawal</span>
 							</div>
 						</a>
@@ -265,17 +265,27 @@
 			<div class="box-title">
 				<h3>
 					<i class="icon-th-large"></i>
-					Traders Monitoring
+					Rebates Monitoring
 				</h3>
 			</div>
 			<div class="box-content">
 				<ul class="stats">
 					<li class="grey">
-						<a href="<?php echo SITE_URL;?>Staffs/report_rebate?me:<?php echo $var['User']['username'];?>">
+						<a href="<?php echo SITE_URL;?>Staffs/report_rebate_loss?me:<?php echo $var['User']['username'];?>">
 							<i class="icon-money"></i>
 							<div class="details">
-								<span class="big"><span class="big">Report</span></span>
-								<span>Rebates</span>
+								<span class="big"><?php $JumlahRebateLoss = $this->requestAction('Staffs/JumlahRebateLoss') ;echo $this->Number->currency($JumlahRebateLoss, '$ '); ?></span>
+								<span>Rebates Loss</span>
+							</div>
+						</a>
+					</li>
+
+					<li class="grey">
+						<a href="<?php echo SITE_URL;?>Staffs/report_rebate_profit?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-money"></i>
+							<div class="details">
+								<span class="big"><?php $JumlahRebateProfit = $this->requestAction('Staffs/JumlahRebateProfit') ;echo $this->Number->currency($JumlahRebateProfit, '$ '); ?></span>
+								<span>Rebates Profit</span>
 							</div>
 						</a>
 					</li>
@@ -299,7 +309,7 @@
 			<div class="box-title">
 				<h3>
 					<i class="icon-th-large"></i>
-					Partners Monitoring
+					Commissions Monitoring
 				</h3>
 			</div>
 			<div class="box-content">
@@ -308,8 +318,18 @@
 						<a href="<?php echo SITE_URL;?>Staffs/report_commission?me:<?php echo $var['User']['username'];?>">
 							<i class="icon-money"></i>
 							<div class="details">
-								<span class="big"><span class="big">Report</span></span>
-								<span>Commissions</span>
+								<span class="big"><?php $JumlahCommission = $this->requestAction('Staffs/JumlahCommission') ;echo $this->Number->currency($JumlahCommission, '$ '); ?></span>
+								<span>Affilliater's</span>
+							</div>
+						</a>
+					</li>
+
+					<li class="grey">
+						<a href="<?php echo SITE_URL;?>Staffs/report_commission_partner?me:<?php echo $var['User']['username'];?>">
+							<i class="icon-money"></i>
+							<div class="details">
+								<span class="big"><?php $JumlahCommissionPartner = $this->requestAction('Staffs/JumlahCommissionPartner') ;echo $this->Number->currency($JumlahCommissionPartner, '$ '); ?></span>
+								<span>MasterIB's</span>
 							</div>
 						</a>
 					</li>

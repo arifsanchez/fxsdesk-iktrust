@@ -1278,6 +1278,8 @@ class UsersController extends UserMgmtAppController {
 				$this->redirect(array('plugin' => '','controller' => 'staffs', 'action' => 'backoffice'));
 			} else if ($getGroupId == 4){
 				$this->redirect(array('plugin' => '','controller' => 'partners', 'action' => 'cabinet'));
+			} else if ($getGroupId == 4){
+				$this->redirect(array('plugin' => '','controller' => 'exchangers', 'action' => 'wallet'));
 			} else if ($getGroupId == 2){
 				//Check jika traders first time buka vault
 				$checkVault = $this->Vault->checkVaultAccount($userId);

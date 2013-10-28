@@ -6,7 +6,7 @@
 			</li>
 			
 			<li class="teal long">
-				<a href="<?php echo SITE_URL;?>Partners/history"><span><i class="icon-book"></i></span><span class='name'>Partner Acc History</span></a>
+				<a href="<?php echo SITE_URL;?>Partners/history"><span><i class="icon-book"></i></span><span class='name'>Partner Commissions</span></a>
 			</li>
 
 			<li class="blue">
@@ -16,7 +16,7 @@
 				<a href="<?php echo SITE_URL;?>Partners/mynetwork"><span class='count'><i class="icon-group"></i><span class='name'>Accounts</span></a>
 			</li>
 			<li class="grey">
-				<a href="<?php echo SITE_URL;?>Partners/myagent"><span class='count'><i class="icon-group"></i><span class='name'>Agents</span></a>
+				<a href="<?php echo SITE_URL;?>Partners/myagent"><span class='count'><i class="icon-group"></i><span class='name'>Affiliates</span></a>
 			</li>
 			
 			<li class="orange">

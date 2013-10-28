@@ -19,11 +19,26 @@ if($ajax) {
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
+			<table class="table table-hover table-nomargin table-condensed table-bordered">
+				<thead>
+					<tr>
+						<th><div class="text-center">Total Today</div></th>
+						<th><div class="text-center">Total Yesterday</div></th>
+						<th><div class="text-center">Total Last Week</div></th>
+						<th><div class="text-center">Total Last Month</div></th>
+						<th><div class="text-center">Overall</div></th>
+					</tr>
+				</thead>
+				<tbody>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($TodayRebloss, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($TodayRebloss*3.3, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($YesterdayRebloss, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($YesterdayRebloss*3.3, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastWeekRebloss, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($LastWeekRebloss*3.3, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($LastMonthRebloss, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($LastMonthRebloss*3.3, 'RM '); ?></small></h4></div></td>
+					<td><div class="text-center"><h4><?php echo $this->Number->currency($OverallRebloss, 'IK$ '); ?><br/><small><?php echo $this->Number->currency($OverallRebloss*3.3, 'RM '); ?></small></h4></div></td>
+				</tbody>
+			</table>
 
 			<div class="box-title">
-				<h3>
-					Transactions
-				</h3>
 				<div class="actions">
 				</div>
 			</div>
