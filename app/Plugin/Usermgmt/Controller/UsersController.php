@@ -116,7 +116,7 @@ class UsersController extends UserMgmtAppController {
 				'name' => "All Clients"
 			);
 			$this->set('page_title',$page_title);
-		$this->paginate = array('limit' => 10, 'order'=>'User.id desc', 'recursive'=>1, 'conditions' => array('User.user_group_id' => 2));
+		$this->paginate = array('limit' => 20, 'order'=>'User.id desc', 'recursive'=>1);
 		$users = $this->paginate('User');
 		$i=0;
 		foreach($users as $user) {

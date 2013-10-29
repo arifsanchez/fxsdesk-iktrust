@@ -1,5 +1,3 @@
-
-	
 <?php #https://github.com/arifsanchez/usermanagement_plugin ;?>
 <?php echo $this->Search->searchForm('User', array('legend' => false, 'updateDivId' => 'updateUserIndex')); ?>
 <?php echo $this->element('Usermgmt.paginator', array('useAjax' => true, 'updateDivId' => 'updateUserIndex')); ?>
