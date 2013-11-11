@@ -79,10 +79,10 @@ class DATABASE_CONFIG {
 	public $mt4 = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '64.207.151.182',
-		'login' => 'db138565_arif',
-		'password' => '>R1n"U8N{oP0',
-		'database' => 'IKMT4_rsdb',
+		'host' => '198.61.151.213',
+		'login' => 'arifsanchez',
+		'password' => 'naga88',
+		'database' => 'IKDBrs-LT1',
 		'prefix' => '',
 		'port' => '3306',
 	);

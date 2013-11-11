@@ -1124,10 +1124,6 @@
 
 		}
 
-		/****
-		*	STAFF :: dapatkan details baki accoun trading
-		*****/
-
 		/*****
 		* STAFF :: Change status on the transaction for type code 1
 		******/
@@ -1204,9 +1200,18 @@
 					)
 				));
 				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
-				$data = array('acc_1' => $new_balance);
-				$this->Vault->id = $vaultId['Vault']['id'];
-				$this->Vault->save($data);
+				$id = $vaultId['Vault']['id'];
+				
+				//update field
+				$this->Vault->updateAll(
+					array('Vault.acc_1' => $new_balance),
+					array('Vault.id' => $id),
+					array('Vault.user_id' => $userId)
+				);
+
+				#$data = array('acc_1' => $new_balance);
+				#$this->Vault->id = $vaultId['Vault']['id'];
+				#$this->Vault->save($data);
 			}
 
 			//Jika status = 3
@@ -1304,9 +1309,14 @@
 					)
 				));
 				$new_balance = $vaultId['Vault']['acc_1'] + $jumlah;
-				$data = array('acc_1' => $new_balance);
-				$this->Vault->id = $vaultId['Vault']['id'];
-				$this->Vault->save($data);
+				$id = $vaultId['Vault']['id'];
+				
+				//update field
+				$this->Vault->updateAll(
+					array('Vault.acc_1' => $new_balance),
+					array('Vault.id' => $id),
+					array('Vault.user_id' => $userId)
+				);
 			}
 
 			//Jika status = 3
