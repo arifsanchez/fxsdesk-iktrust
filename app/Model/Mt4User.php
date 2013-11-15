@@ -14,6 +14,13 @@ class Mt4User extends AppModel {
 	var $useTable = 'MT4_USERS';
 	var $primaryKey = 'LOGIN';
 	
+	public $hasMany = array(
+        'Mt4Trade' => array(
+            'className' => 'Mt4Trade',
+            'foreignKey' => 'LOGIN'
+        )
+    );
+
 	public $validate = array(
 		'LOGIN' => array(
 			'numeric' => array(

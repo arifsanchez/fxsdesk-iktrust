@@ -787,6 +787,7 @@
 						'recursive'=>0,
 						'conditions' => array(
 							'CLOSE_TIME' => $time,
+							'Mt4User.GROUP LIKE' => '%IK%'
 						)
 					)
 				);
@@ -812,7 +813,8 @@
 				$total = $this->Mt4Trade->find('count', array(
 					'conditions' => array(
 		        		$tempoh,
-		        		'SYMBOL NOT' => ''
+		        		'SYMBOL NOT' => '',
+		        		'Mt4User.GROUP LIKE' => '%IK%'
 			        ),
 				));
 				#debug($total); die();
@@ -836,8 +838,9 @@
 					'conditions' => array(
 		        		'Mt4Trade.COMMENT LIKE' => '%DP%',
 						'Mt4Trade.CMD' => '6',
-						'Mt4Trade.LOGIN NOT LIKE' => '88%',
+						'Mt4User.GROUP LIKE' => '%IK%',
 						'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+
 			        ),
 			        'fields' => array(
 						'sum(PROFIT) AS total'
@@ -863,7 +866,7 @@
 					'conditions' => array(
 		        		'Mt4Trade.COMMENT LIKE' => '%WD%',
 						'Mt4Trade.CMD' => '6',
-						'Mt4Trade.LOGIN NOT LIKE' => '88%',
+						'Mt4User.GROUP LIKE' => '%IK%',
 						'Mt4Trade.PROFIT LIKE' => '%-%'
 			        ),
 			        'fields' => array(
@@ -1837,9 +1840,94 @@
 		}
 
 		/***
-		*	STAFF :: All Commissions
+		*	STAFF :: All Closed Orders
 		****/
 		public function report_close_order(){
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-exchange",
+				'name' => "Closed Position : Overall"
+			);
+			$this->set('page_title',$page_title);
+
+			$this->paginate = array(
+		        'conditions' => array(
+	        		
+	        		'Mt4Trade.SYMBOL NOT' => '',
+	        		'Mt4User.GROUP LIKE' => '%IK%'
+		        ),
+		        'order' => 'Mt4Trade.PROFIT ASC',
+		        'limit' => 10,
+	    	);
+		    $trades = $this->paginate('Mt4Trade');
+		    #debug($trades); die();
+			$this->set('reportCloseOrder' , $trades);
+			
+			//start loading data to table top
+			#Overall Close Order (LOSS)
+			$t1 = $this->Mt4Trade->OverallLOSS();
+			$this->set('OverallLOSS', $t1);
+
+			#Overall Close Order (PROFIT)
+			$t2 = $this->Mt4Trade->OverallPROFIT();
+			$this->set('OverallPROFIT', $t2);
+
+			#Overall Close Order Last Month(LOSS)
+			$t3 = $this->Mt4Trade->OverallLastMonthLOSS();
+			$this->set('OverallLastMonthLOSS', $t3);
+
+			#Overall Close Order  Last Month (PROFIT)
+			$t4 = $this->Mt4Trade->OverallLastMonthPROFIT();
+			$this->set('OverallLastMonthPROFIT', $t4);
+
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('report_close_order');
+			}
+
+		}
+
+		/***
+		*	STAFF :: Yesterday Close Today
+		****/
+		public function report_close_order_today(){
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-exchange",
+				'name' => "Closed Position : Today"
+			);
+			$this->set('page_title',$page_title);
+
+			App::uses('CakeTime', 'Utility');
+			$today = strtotime('today');
+			$tempoh = CakeTime::daysAsSql($today,$today, 'Mt4Trade.CLOSE_TIME');
+			#debug($tempoh);
+			$this->paginate = array(
+		        'conditions' => array(
+	        		$tempoh,
+	        		'Mt4Trade.SYMBOL NOT' => '',
+		        ),
+		        'order' => 'Mt4Trade.CLOSE_TIME DESC',
+		        'limit' => 50,
+	    	);
+		    $trades = $this->paginate('Mt4Trade');
+			$this->set('reportCloseOrder' , $trades);
+			#debug($trades); die();
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('report_close_order_today');
+			}
+
+		}
+
+		/***
+		*	STAFF :: Yesterday Close Orders
+		****/
+		public function report_close_order_yesterday(){
 			//Layout
 			$this->layout = "staff.dashboard";
 			//Page title
@@ -1866,7 +1954,7 @@
 			#debug($trades); die();
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
-				$this->render('report_close_order');
+				$this->render('report_close_order_yesterday');
 			}
 
 		}
@@ -1890,6 +1978,7 @@
 					'Mt4Trade.CMD' => '6',
 					'Mt4Trade.LOGIN NOT LIKE' => '88%',
 					'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+					'Mt4User.GROUP LIKE' => '%IK%'
 		        ),
 		        'order' => 'Mt4Trade.OPEN_TIME DESC',
 		        'limit' => 50,
@@ -1944,7 +2033,8 @@
 	        		'Mt4Trade.COMMENT LIKE' => '%WD%',
 					'Mt4Trade.CMD' => '6',
 					'Mt4Trade.LOGIN NOT LIKE' => '88%',
-					'Mt4Trade.PROFIT LIKE' => '%-%'
+					'Mt4Trade.PROFIT LIKE' => '%-%',
+					'Mt4User.GROUP LIKE' => '%IK%'
 		        ),
 		        'order' => 'Mt4Trade.OPEN_TIME DESC',
 		        'limit' => 50,

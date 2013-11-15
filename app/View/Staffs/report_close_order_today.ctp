@@ -19,44 +19,7 @@ if($ajax) {
 <div class="row-fluid">
 	<div class="span12">
 		<div class="box box-color satblue box-bordered" id="updateTradeHistory">
-			<table class="table table-hover table-nomargin table-condensed table-bordered">
-				<thead>
-					<tr>
-						<th><div class="text-center">Overall (Loss / Profit)</div></th>
-						<th><div class="text-center">Last Month (Loss / Profit)</div></th>
-					</tr>
-				</thead>
-				<tbody>
-					<td>
-						<div class="text-center">
-							<h4>
-								<?php echo $this->Number->currency($OverallLOSS, 'IK$ '); ?>
-								&nbsp;|&nbsp;
-								<?php echo $this->Number->currency($OverallPROFIT, 'IK$ '); ?>
-							</h4>
-						</div>
-					</td>
-
-					<td>
-						<div class="text-center">
-							<h4>
-								<?php echo $this->Number->currency($OverallLastMonthLOSS, 'IK$ '); ?>
-								&nbsp;|&nbsp;
-								<?php echo $this->Number->currency($OverallLastMonthPROFIT, 'IK$ '); ?>
-							</h4>
-						</div>
-					</td>
-				</tbody>
-			</table>
-
 			<div class="box-title">
-				<div class="pull-left">
-					<a class="btn  btn-red" href="<?php echo SITE_URL;?>Staffs/reposit_close_order_today">Today</a>
-					<a class="btn  btn-red" href="<?php echo SITE_URL;?>Staffs/reposit_close_order_yesterday">Yesterday</a>
-					<a class="btn  btn-red" href="<?php echo SITE_URL;?>Staffs/reposit_close_order_lastweek">Last Week</a>
-					<a class="btn  btn-red" href="<?php echo SITE_URL;?>Staffs/reposit_close_order_lastmonth">Last Month</a>
-					<a class="btn  btn-green" href="<?php echo SITE_URL;?>Staffs/reposit_close_order">Overall</a>
-				</div>
 			</div>
 			<div class="box-content nopadding">
 				<table class="table table-hover table-nomargin table-condensed table-bordered">

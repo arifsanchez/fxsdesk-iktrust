@@ -18,8 +18,15 @@ class Mt4Trade extends AppModel {
 	var $useDbConfig = 'mt4';
 	// Table Name
 	var $useTable = 'MT4_TRADES';
-	 var $primaryKey = 'TICKET';
- 
+	var $primaryKey = 'TICKET';
+ 	
+ 	public $belongsTo = array(
+        'Mt4User' => array(
+            'className' => 'Mt4User',
+            'foreignKey' => 'LOGIN'
+        )
+    );
+
 	public $validate = array(
 		'TICKET' => array(
 			'numeric' => array(
@@ -164,7 +171,9 @@ class Mt4Trade extends AppModel {
 		$jumlah = $this->find('all', array(
 			'conditions' => array(
         		$tempoh,
-        		'SYMBOL NOT' => ''
+        		'SYMBOL NOT' => '',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+
 	        ),
 			'fields' => array('sum(PROFIT) AS total')
 		));
@@ -180,7 +189,8 @@ class Mt4Trade extends AppModel {
 			'conditions' => array(
         		'CLOSE_TIME' => $time,
         		'LOGIN' => $login,
-        		'SYMBOL NOT' => ''
+        		'SYMBOL NOT' => '',
+        		
 	        ),
 		));
 		return $total;
@@ -573,7 +583,8 @@ class Mt4Trade extends AppModel {
 				'Mt4Trade.COMMENT LIKE' => '%DP%',
 				'Mt4Trade.CMD' => '6',
 				'Mt4Trade.LOGIN NOT LIKE' => '88%',
-				'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+				'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+				'Mt4User.GROUP LIKE' => '%IK%'
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'
@@ -598,7 +609,8 @@ class Mt4Trade extends AppModel {
 				'Mt4Trade.COMMENT LIKE' => '%DP%',
 				'Mt4Trade.CMD' => '6',
 				'Mt4Trade.LOGIN NOT LIKE' => '88%',
-				'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+				'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+				'Mt4User.GROUP LIKE' => '%IK%'
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'
@@ -623,7 +635,8 @@ class Mt4Trade extends AppModel {
 				'Mt4Trade.COMMENT LIKE' => '%DP%',
 				'Mt4Trade.CMD' => '6',
 				'Mt4Trade.LOGIN NOT LIKE' => '88%',
-				'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+				'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+				'Mt4User.GROUP LIKE' => '%IK%'
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'
@@ -648,7 +661,8 @@ class Mt4Trade extends AppModel {
 				'Mt4Trade.COMMENT LIKE' => '%DP%',
 				'Mt4Trade.CMD' => '6',
 				'Mt4Trade.LOGIN NOT LIKE' => '88%',
-				'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+				'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+				'Mt4User.GROUP LIKE' => '%IK%'
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'
@@ -673,7 +687,8 @@ class Mt4Trade extends AppModel {
 				'Mt4Trade.COMMENT LIKE' => '%DP%',
 				'Mt4Trade.CMD' => '6',
 				'Mt4Trade.LOGIN NOT LIKE' => '88%',
-				'Mt4Trade.PROFIT NOT LIKE' => '%-%'
+				'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+				'Mt4User.GROUP LIKE' => '%IK%'
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'
@@ -692,7 +707,8 @@ class Mt4Trade extends AppModel {
 				'Mt4Trade.COMMENT LIKE' => '%WD%',
 				'Mt4Trade.CMD' => '6',
 				'Mt4Trade.LOGIN NOT LIKE' => '88%',
-				'Mt4Trade.PROFIT LIKE' => '%-%'
+				'Mt4Trade.PROFIT LIKE' => '%-%',
+				'Mt4User.GROUP LIKE' => '%IK%'
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'
@@ -717,7 +733,8 @@ class Mt4Trade extends AppModel {
 				'Mt4Trade.COMMENT LIKE' => '%WD%',
 				'Mt4Trade.CMD' => '6',
 				'Mt4Trade.LOGIN NOT LIKE' => '88%',
-				'Mt4Trade.PROFIT LIKE' => '%-%'
+				'Mt4Trade.PROFIT LIKE' => '%-%',
+				'Mt4User.GROUP LIKE' => '%IK%'
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'
@@ -742,7 +759,8 @@ class Mt4Trade extends AppModel {
 				'Mt4Trade.COMMENT LIKE' => '%WD%',
 				'Mt4Trade.CMD' => '6',
 				'Mt4Trade.LOGIN NOT LIKE' => '88%',
-				'Mt4Trade.PROFIT LIKE' => '%-%'
+				'Mt4Trade.PROFIT LIKE' => '%-%',
+				'Mt4User.GROUP LIKE' => '%IK%'
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'
@@ -767,7 +785,8 @@ class Mt4Trade extends AppModel {
 				'Mt4Trade.COMMENT LIKE' => '%WD%',
 				'Mt4Trade.CMD' => '6',
 				'Mt4Trade.LOGIN NOT LIKE' => '88%',
-				'Mt4Trade.PROFIT LIKE' => '%-%'
+				'Mt4Trade.PROFIT LIKE' => '%-%',
+				'Mt4User.GROUP LIKE' => '%IK%'
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'
@@ -792,7 +811,9 @@ class Mt4Trade extends AppModel {
 				'Mt4Trade.COMMENT LIKE' => '%WD%',
 				'Mt4Trade.CMD' => '6',
 				'Mt4Trade.LOGIN NOT LIKE' => '88%',
-				'Mt4Trade.PROFIT LIKE' => '%-%'
+				'Mt4Trade.PROFIT LIKE' => '%-%',
+				'Mt4User.GROUP LIKE' => '%IK%'
+
 			),
 			'fields' => array(
 				'sum(PROFIT) AS total'
@@ -1002,6 +1023,88 @@ class Mt4Trade extends AppModel {
 				$tempoh,
 				'Mt4Trade.COMMENT LIKE' => '%Rebate #Profit%',
 			),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall close trade (PROFIT)
+	***/
+	public function OverallPROFIT(){
+		$total = $this->find('all', array(
+			'conditions' => array(
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall close trade (LOSS)
+	***/
+	public function OverallLOSS(){
+		$total = $this->find('all', array(
+			'conditions' => array(
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall close trade (PROFIT)
+	***/
+	public function OverallLastMonthPROFIT(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('first day of last month');
+		$date2 = strtotime('last day of last month');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan overall close trade (LOSS)
+	***/
+	public function OverallLastMonthLOSS(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('first day of last month');
+		$date2 = strtotime('last day of last month');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
 			'fields' => array(
 				'sum(PROFIT) AS total'
 			)
