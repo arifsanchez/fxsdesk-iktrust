@@ -2207,19 +2207,32 @@
 			$email->replyTo(array('fxsdesk@iktrust.com' => 'FXSdesk IK Trust'));
 			$email->sender(array('fxsdesk@iktrust.com' => 'FXSdesk IK Trust'));
 			$email->to(array('finance@iktrust.com' => 'Finance IK TRUST'));
-			$email->bcc(array('ttarmizi@gmail.com' => 'Mr. Tarmizi', 'anuarinvestor@gmail.com' => 'Mr. Anuar', 'salleh.iktrust@gmail.com' => 'Mr. Salleh', 'arifsanchez@gmail.com' => 'Mr. Arif'));
+			#$email->bcc(array('ttarmizi@gmail.com' => 'Mr. Tarmizi', 'anuarinvestor@gmail.com' => 'Mr. Anuar', 'salleh.iktrust@gmail.com' => 'Mr. Salleh', 'arifsanchez@gmail.com' => 'Mr. Arif'));
 			$email->subject('[UPDATE] P/L Risk #'.$time);
 			$email->addHeaders(array('Tag' => 'Report'));
 
 			$body=__('<b>IK TRUST | Closed Trade Report</b><br/><br/>Overall (LOSS) = '.$TodayLOSS.'<br/>Overall (PROFIT) = '.$TodayPROFIT.'<br/><br/>IKtrust.my (LOSS) = '.$TodayMYLOSS.'<br/>IKtrust.my (PROFIT) = '.$TodayMYPROFIT.'');
 			#debug($body); die();
 
+			#sending email
 			try{
 				$result = $email->send($body);
 				$this->log($result, 'debug');
 			} catch (Exception $ex){
 				$this->log($ex, 'notify_email');
 			}
+
+			#sending sms notification
+			App::uses('HttpSocket', 'Network/Http');
+			$HttpSocket = new HttpSocket();
+            $results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', array(
+                'user' => 'instafx',
+                'pass' => 'instafx8000',
+                'msisdn' => '60136454002;60127181461;60192711461;60163050072;60182818297;60123854983;60129746478',
+                'body' => '- IK TRUST Overall(L) = ['.$TodayLOSS.'] , Overall(P) = ['.$TodayPROFIT.'] , IKtrust.my(L) = ['.$TodayMYLOSS.'] , IKtrust.my(P) = ['.$TodayMYPROFIT.'] , '.$time.'',
+                'smstype' => 'TEXT',
+                'sender' => 'IKTRUST',
+            ));
 		}
 	}
 ?>
