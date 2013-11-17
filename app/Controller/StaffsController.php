@@ -2182,9 +2182,18 @@
 
 			$this->layout = 'ajax';
 
-			#data array
-			$overall = '$ 123,456.00';
-			$iktrustmy = '$ 188.00';
+			####### Data Array #######
+
+			#Overall Close Order Last Friday(LOSS)
+			$TodayLOSS = $this->Mt4Trade->TodayLOSS();
+			$TodayMYLOSS = $this->Mt4Trade->TodayMYLOSS();
+			#debug($TodayLOSS);debug($TodayMYLOSS);
+			#Overall Close Order  Last Friday (PROFIT)
+			$TodayPROFIT = $this->Mt4Trade->TodayPROFIT();
+			$TodayMYPROFIT = $this->Mt4Trade->TodayMYPROFIT();
+			#debug($TodayPROFIT);debug($TodayMYPROFIT); die();
+
+			#masa report
 			$time = date('d-m-Y g:iA',strtotime('now'));
 
 			#sending email
@@ -2197,12 +2206,14 @@
 			$email->from(array('fxsdesk@iktrust.com' => 'FXSdesk IK Trust'));
 			$email->replyTo(array('fxsdesk@iktrust.com' => 'FXSdesk IK Trust'));
 			$email->sender(array('fxsdesk@iktrust.com' => 'FXSdesk IK Trust'));
-			$email->to(array('arifsanchez@gmail.com' => 'MM Arif MZ'));
-			#$email->bcc(array('ttarmizi@gmail.com' => 'Mr. Tarmizi', 'anuarinvestor@gmail.com' => 'Mr. Anuar', 'salleh.iktrust@gmail.com' => 'Mr. Salleh', 'arifsanchez@gmail.com' => 'Mr. Arif'));
+			$email->to(array('finance@iktrust.com' => 'Finance IK TRUST'));
+			$email->bcc(array('ttarmizi@gmail.com' => 'Mr. Tarmizi', 'anuarinvestor@gmail.com' => 'Mr. Anuar', 'salleh.iktrust@gmail.com' => 'Mr. Salleh', 'arifsanchez@gmail.com' => 'Mr. Arif'));
 			$email->subject('[UPDATE] P/L Risk #'.$time);
 			$email->addHeaders(array('Tag' => 'Report'));
 
-			$body=__('CURRENT P/L Risk (%s) <br/><br/>Overall = %s<br/>IKtrust.my = %s', $time , $overall, $iktrustmy);
+			$body=__('<b>IK TRUST | Closed Trade Report</b><br/><br/>Overall (LOSS) = '.$TodayLOSS.'<br/>Overall (PROFIT) = '.$TodayPROFIT.'<br/><br/>IKtrust.my (LOSS) = '.$TodayMYLOSS.'<br/>IKtrust.my (PROFIT) = '.$TodayMYPROFIT.'');
+			#debug($body); die();
+
 			try{
 				$result = $email->send($body);
 				$this->log($result, 'debug');

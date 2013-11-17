@@ -1394,4 +1394,94 @@ class Mt4Trade extends AppModel {
 		));
 		return $total[0][0]['total'];
 	}
+
+	/**
+	*	STAFF : Dapatkan today close trade (LOSS)
+	***/
+	public function TodayLOSS(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	public function TodayMYLOSS(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%08%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan today close trade (PROFIT)
+	***/
+	public function TodayPROFIT(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	public function TodayMYPROFIT(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%08%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
 }
