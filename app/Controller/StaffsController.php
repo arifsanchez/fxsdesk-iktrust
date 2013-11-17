@@ -1849,21 +1849,9 @@
 			$page_title = array(
 				'icon' => "icon-exchange",
 				'name' => "Closed Position : Overall"
+
 			);
 			$this->set('page_title',$page_title);
-
-			$this->paginate = array(
-		        'conditions' => array(
-	        		
-	        		'Mt4Trade.SYMBOL NOT' => '',
-	        		'Mt4User.GROUP LIKE' => '%IK%'
-		        ),
-		        'order' => 'Mt4Trade.PROFIT ASC',
-		        'limit' => 10,
-	    	);
-		    $trades = $this->paginate('Mt4Trade');
-		    #debug($trades); die();
-			$this->set('reportCloseOrder' , $trades);
 			
 			//start loading data to table top
 			#Overall Close Order (LOSS)
@@ -1882,10 +1870,54 @@
 			$t4 = $this->Mt4Trade->OverallLastMonthPROFIT();
 			$this->set('OverallLastMonthPROFIT', $t4);
 
-			if($this->RequestHandler->isAjax()) {
-				$this->layout = 'ajax';
-				$this->render('report_close_order');
-			}
+			#Overall Close Order Last Week(LOSS)
+			$t3 = $this->Mt4Trade->OverallLastWeekLOSS();
+			$this->set('OverallLastWeekLOSS', $t3);
+
+			#Overall Close Order  Last Month (PROFIT)
+			$t4 = $this->Mt4Trade->OverallLastWeekPROFIT();
+			$this->set('OverallLastWeekPROFIT', $t4);
+
+			#Overall Close Order Last Monday(LOSS)
+			$t5 = $this->Mt4Trade->LastMondayLOSS();
+			$this->set('LastMondayLOSS', $t5);
+
+			#Overall Close Order  Last Monday (PROFIT)
+			$t6 = $this->Mt4Trade->LastMondayPROFIT();
+			$this->set('LastMondayPROFIT', $t6);
+
+			#Overall Close Order Last Tuesday(LOSS)
+			$t7 = $this->Mt4Trade->LastTuesdayLOSS();
+			$this->set('LastTuesdayLOSS', $t7);
+
+			#Overall Close Order  Last Tuesday (PROFIT)
+			$t8 = $this->Mt4Trade->LastTuesdayPROFIT();
+			$this->set('LastTuesdayPROFIT', $t8);
+
+			#Overall Close Order Last Wednesday(LOSS)
+			$t9 = $this->Mt4Trade->LastWednesdayLOSS();
+			$this->set('LastWednesdayLOSS', $t9);
+
+			#Overall Close Order  Last Wednesday (PROFIT)
+			$t10 = $this->Mt4Trade->LastWednesdayPROFIT();
+			$this->set('LastWednesdayPROFIT', $t10);
+
+			#Overall Close Order Last Thursday(LOSS)
+			$t11 = $this->Mt4Trade->LastThursdayLOSS();
+			$this->set('LastThursdayLOSS', $t11);
+
+			#Overall Close Order  Last Thursday (PROFIT)
+			$t12 = $this->Mt4Trade->LastThursdayPROFIT();
+			$this->set('LastThursdayPROFIT', $t12);
+
+			#Overall Close Order Last Friday(LOSS)
+			$t13 = $this->Mt4Trade->LastFridayLOSS();
+			$this->set('LastFridayLOSS', $t13);
+
+			#Overall Close Order  Last Friday (PROFIT)
+			$t14 = $this->Mt4Trade->LastFridayPROFIT();
+			$this->set('LastFridayPROFIT', $t14);
+
 
 		}
 
@@ -1910,6 +1942,7 @@
 		        'conditions' => array(
 	        		$tempoh,
 	        		'Mt4Trade.SYMBOL NOT' => '',
+	        		'Mt4User.GROUP LIKE' => '%IK%'
 		        ),
 		        'order' => 'Mt4Trade.CLOSE_TIME DESC',
 		        'limit' => 50,
@@ -1945,6 +1978,7 @@
 		        'conditions' => array(
 	        		$tempoh,
 	        		'Mt4Trade.SYMBOL NOT' => '',
+	        		'Mt4User.GROUP LIKE' => '%IK%'
 		        ),
 		        'order' => 'Mt4Trade.CLOSE_TIME DESC',
 		        'limit' => 50,
@@ -1955,6 +1989,37 @@
 			if($this->RequestHandler->isAjax()) {
 				$this->layout = 'ajax';
 				$this->render('report_close_order_yesterday');
+			}
+
+		}
+
+		/***
+		*	STAFF :: Overall Close Orders
+		****/
+		public function report_close_order_overall(){
+			//Layout
+			$this->layout = "staff.dashboard";
+			//Page title
+			$page_title = array(
+				'icon' => "icon-exchange",
+				'name' => "Closed Position : Overall"
+			);
+			$this->set('page_title',$page_title);
+
+			$this->paginate = array(
+		        'conditions' => array(
+	        		'Mt4Trade.SYMBOL NOT' => '',
+	        		'Mt4User.GROUP LIKE' => '%IK%'
+		        ),
+		        'order' => 'Mt4Trade.CLOSE_TIME DESC',
+		        'limit' => 50,
+	    	);
+		    $trades = $this->paginate('Mt4Trade');
+			$this->set('reportCloseOrder' , $trades);
+			#debug($trades); die();
+			if($this->RequestHandler->isAjax()) {
+				$this->layout = 'ajax';
+				$this->render('report_close_order_overall');
 			}
 
 		}
@@ -2111,6 +2176,39 @@
 			    debug($contents);
 			    $file->close();
 			}
-		}	
+		}
+
+		public function updateStatusPL(){
+
+			$this->layout = 'ajax';
+
+			#data array
+			$overall = '$ 123,456.00';
+			$iktrustmy = '$ 188.00';
+			$time = date('d-m-Y g:iA',strtotime('now'));
+
+			#sending email
+			App::uses('CakeEmail', 'Network/Email');
+			$email = new CakeEmail();
+			$email->config('default');
+			$email->template('default', 'default');
+			$email->emailFormat('both');
+			$email->viewVars(array('name' => 'FXSdesk IK Trust'));
+			$email->from(array('fxsdesk@iktrust.com' => 'FXSdesk IK Trust'));
+			$email->replyTo(array('fxsdesk@iktrust.com' => 'FXSdesk IK Trust'));
+			$email->sender(array('fxsdesk@iktrust.com' => 'FXSdesk IK Trust'));
+			$email->to(array('arifsanchez@gmail.com' => 'MM Arif MZ'));
+			#$email->bcc(array('ttarmizi@gmail.com' => 'Mr. Tarmizi', 'anuarinvestor@gmail.com' => 'Mr. Anuar', 'salleh.iktrust@gmail.com' => 'Mr. Salleh', 'arifsanchez@gmail.com' => 'Mr. Arif'));
+			$email->subject('[UPDATE] P/L Risk #'.$time);
+			$email->addHeaders(array('Tag' => 'Report'));
+
+			$body=__('CURRENT P/L Risk (%s) <br/><br/>Overall = %s<br/>IKtrust.my = %s', $time , $overall, $iktrustmy);
+			try{
+				$result = $email->send($body);
+				$this->log($result, 'debug');
+			} catch (Exception $ex){
+				$this->log($ex, 'notify_email');
+			}
+		}
 	}
 ?>

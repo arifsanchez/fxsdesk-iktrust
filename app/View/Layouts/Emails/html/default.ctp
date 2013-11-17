@@ -114,7 +114,7 @@
 </head>
 <body style="padding:0; margin:0;" bgcolor="#ffffff">
 
-	<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#E51400">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FF4040">
 		<tr>
 			<td align="center">
 				<center>
@@ -145,7 +145,7 @@
 		</tr>
 	</table>
 
-	<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#E51400">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FF4040">
 		<tr>
 			<td align="center">
 				<center>
@@ -153,10 +153,10 @@
 						<tr>
 							<td style="color:#ffffff !important; font-size:20px; font-family: Arial, Verdana, sans-serif; padding-left:10px;" height="40">
 								<center>
-									<p style="font-size:12px; line-height:18px;">
-									&copy; Copyright 2012 - 2013 . All Rights Reserved . IK Trust Capital Market Corporation Limited .<br/>
-A Registered Financial company in New Zealand with partners in 102 countries.
-								</p>
+									<p style="font-size:11px; line-height:18px;">
+									&copy; Copyright 2012 - 2014 . All Rights Reserved . IK Trust Capital Market Corporation Limited .<br/>
+									If you have any questions, please feel free to contact our Customer Support Department via e-mail: support@iktrust.com
+									</p>
 								</center>
 							</td>
 						</tr>

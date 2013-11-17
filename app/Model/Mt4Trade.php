@@ -190,7 +190,7 @@ class Mt4Trade extends AppModel {
         		'CLOSE_TIME' => $time,
         		'LOGIN' => $login,
         		'SYMBOL NOT' => '',
-        		
+
 	        ),
 		));
 		return $total;
@@ -1068,7 +1068,7 @@ class Mt4Trade extends AppModel {
 	}
 
 	/**
-	*	STAFF : Dapatkan overall close trade (PROFIT)
+	*	STAFF : Dapatkan last month close trade (PROFIT)
 	***/
 	public function OverallLastMonthPROFIT(){
 		App::uses('CakeTime', 'Utility');
@@ -1091,7 +1091,7 @@ class Mt4Trade extends AppModel {
 	}
 
 	/**
-	*	STAFF : Dapatkan overall close trade (LOSS)
+	*	STAFF : Dapatkan last month close trade (LOSS)
 	***/
 	public function OverallLastMonthLOSS(){
 		App::uses('CakeTime', 'Utility');
@@ -1103,6 +1103,288 @@ class Mt4Trade extends AppModel {
 				$tempoh,
         		'Mt4Trade.SYMBOL NOT' => '',
         		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last week close trade (PROFIT)
+	***/
+	public function OverallLastWeekPROFIT(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last week Monday');
+		$date2 = strtotime('last week Friday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last week close trade (LOSS)
+	***/
+	public function OverallLastWeekLOSS(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last week Monday');
+		$date2 = strtotime('last week Friday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last monday close trade (LOSS)
+	***/
+	public function LastMondayLOSS(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last Monday');
+		$date2 = strtotime('last Monday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last monday close trade (PROFIT)
+	***/
+	public function LastMondayPROFIT(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last Monday');
+		$date2 = strtotime('last Monday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last tuesday close trade (LOSS)
+	***/
+	public function LastTuesdayLOSS(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last Tuesday');
+		$date2 = strtotime('last Tuesday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last Tuesday close trade (PROFIT)
+	***/
+	public function LastTuesdayPROFIT(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last Tuesday');
+		$date2 = strtotime('last Tuesday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last Wednesday close trade (LOSS)
+	***/
+	public function LastWednesdayLOSS(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last Wednesday');
+		$date2 = strtotime('last Wednesday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last Wednesday close trade (PROFIT)
+	***/
+	public function LastWednesdayPROFIT(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last Wednesday');
+		$date2 = strtotime('last Wednesday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last Thursday close trade (LOSS)
+	***/
+	public function LastThursdayLOSS(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last Thursday');
+		$date2 = strtotime('last Thursday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last Thursday close trade (PROFIT)
+	***/
+	public function LastThursdayPROFIT(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last Thursday');
+		$date2 = strtotime('last Thursday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last Friday close trade (LOSS)
+	***/
+	public function LastFridayLOSS(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last Friday');
+		$date2 = strtotime('last Friday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        ),
+			'fields' => array(
+				'sum(PROFIT) AS total'
+			)
+
+		));
+		return $total[0][0]['total'];
+	}
+
+	/**
+	*	STAFF : Dapatkan last Friday close trade (PROFIT)
+	***/
+	public function LastFridayPROFIT(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('last Friday');
+		$date2 = strtotime('last Friday');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('all', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
         		'Mt4User.GROUP LIKE' => '%IK%'
 	        ),
 			'fields' => array(
