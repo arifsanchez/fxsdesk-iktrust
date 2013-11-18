@@ -1484,4 +1484,38 @@ class Mt4Trade extends AppModel {
 		));
 		return $total[0][0]['total'];
 	}
+
+	public function TotalClosedAll(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('count', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%IK%'
+	        )
+		));
+		return $total;
+	}
+
+	public function TotalClosedMY(){
+		App::uses('CakeTime', 'Utility');
+		$date1 = strtotime('today');
+		$date2 = strtotime('today');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		#debug($tempoh); die();
+		$total = $this->find('count', array(
+			'conditions' => array(
+				$tempoh,
+        		'Mt4Trade.SYMBOL NOT' => '',
+        		'Mt4Trade.PROFIT NOT LIKE' => '%-%',
+        		'Mt4User.GROUP LIKE' => '%08%'
+	        )
+		));
+		return $total;
+	}
 }

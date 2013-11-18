@@ -2191,6 +2191,9 @@
 			#Overall Close Order  Last Friday (PROFIT)
 			$TodayPROFIT = $this->Mt4Trade->TodayPROFIT();
 			$TodayMYPROFIT = $this->Mt4Trade->TodayMYPROFIT();
+
+			$TotalClosedAll = $this->Mt4Trade->TotalClosedAll();
+			$TotalClosedMY = $this->Mt4Trade->TotalClosedMY();
 			#debug($TodayPROFIT);debug($TodayMYPROFIT); die();
 
 			#masa report
@@ -2228,8 +2231,8 @@
             $results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', array(
                 'user' => 'instafx',
                 'pass' => 'instafx8000',
-                'msisdn' => '60136454002;60127181461;60192711461;60163050072;60196684199;60123854983;60129746478',
-                'body' => '- IK TRUST Overall(L) = ['.$TodayLOSS.'] , Overall(P) = ['.$TodayPROFIT.'] , IKtrust.my(L) = ['.$TodayMYLOSS.'] , IKtrust.my(P) = ['.$TodayMYPROFIT.'] , '.$time.'',
+                'msisdn' => '60136454002;60127181461;60192711461;60163050072;60123854983;60129746478',
+                'body' => '- IK TRUST Overall(L) = ['.$TodayLOSS.'] , Overall(P) = ['.$TodayPROFIT.'] , IKtrust.my(L) = ['.$TodayMYLOSS.'] , IKtrust.my(P) = ['.$TodayMYPROFIT.'] , '.$time.' , Today Closed All = ['.$TotalClosedAll.'] , Today Closed .my = ['.$TotalClosedMY.']',
                 'smstype' => 'TEXT',
                 'sender' => 'IKTRUST',
             ));
