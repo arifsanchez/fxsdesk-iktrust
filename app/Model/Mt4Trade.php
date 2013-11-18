@@ -1074,7 +1074,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('first day of last month');
 		$date2 = strtotime('last day of last month');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		$total = $this->find('all', array(
 			'conditions' => array(
 				$tempoh,
@@ -1097,7 +1097,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('first day of last month');
 		$date2 = strtotime('last day of last month');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		$total = $this->find('all', array(
 			'conditions' => array(
 				$tempoh,
@@ -1120,7 +1120,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last week Monday');
 		$date2 = strtotime('last week Friday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
@@ -1144,7 +1144,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last week Monday');
 		$date2 = strtotime('last week Friday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		$total = $this->find('all', array(
 			'conditions' => array(
 				$tempoh,
@@ -1167,7 +1167,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last Monday');
 		$date2 = strtotime('last Monday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		$total = $this->find('all', array(
 			'conditions' => array(
 				$tempoh,
@@ -1190,7 +1190,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last Monday');
 		$date2 = strtotime('last Monday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
@@ -1214,7 +1214,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last Tuesday');
 		$date2 = strtotime('last Tuesday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		$total = $this->find('all', array(
 			'conditions' => array(
 				$tempoh,
@@ -1237,7 +1237,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last Tuesday');
 		$date2 = strtotime('last Tuesday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
@@ -1261,7 +1261,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last Wednesday');
 		$date2 = strtotime('last Wednesday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		$total = $this->find('all', array(
 			'conditions' => array(
 				$tempoh,
@@ -1284,7 +1284,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last Wednesday');
 		$date2 = strtotime('last Wednesday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
@@ -1308,7 +1308,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last Thursday');
 		$date2 = strtotime('last Thursday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		$total = $this->find('all', array(
 			'conditions' => array(
 				$tempoh,
@@ -1331,7 +1331,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last Thursday');
 		$date2 = strtotime('last Thursday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
@@ -1355,7 +1355,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last Friday');
 		$date2 = strtotime('last Friday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		$total = $this->find('all', array(
 			'conditions' => array(
 				$tempoh,
@@ -1378,7 +1378,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('last Friday');
 		$date2 = strtotime('last Friday');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
@@ -1402,7 +1402,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('today');
 		$date2 = strtotime('today');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
@@ -1423,7 +1423,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('today');
 		$date2 = strtotime('today');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
@@ -1447,7 +1447,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('today');
 		$date2 = strtotime('today');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
@@ -1468,7 +1468,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('today');
 		$date2 = strtotime('today');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('all', array(
 			'conditions' => array(
@@ -1489,7 +1489,7 @@ class Mt4Trade extends AppModel {
 		App::uses('CakeTime', 'Utility');
 		$date1 = strtotime('today');
 		$date2 = strtotime('today');
-		$tempoh = CakeTime::daysAsSql($date1,$date2, 'OPEN_TIME');
+		$tempoh = CakeTime::daysAsSql($date1,$date2, 'CLOSE_TIME');
 		#debug($tempoh); die();
 		$total = $this->find('count', array(
 			'conditions' => array(
