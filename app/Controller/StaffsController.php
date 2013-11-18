@@ -2228,7 +2228,7 @@
             $results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', array(
                 'user' => 'instafx',
                 'pass' => 'instafx8000',
-                'msisdn' => '60136454002;60127181461;60192711461;60163050072;60182818297;60123854983;60129746478',
+                'msisdn' => '60136454002;60127181461;60192711461;60163050072;60196684199;60123854983;60129746478',
                 'body' => '- IK TRUST Overall(L) = ['.$TodayLOSS.'] , Overall(P) = ['.$TodayPROFIT.'] , IKtrust.my(L) = ['.$TodayMYLOSS.'] , IKtrust.my(P) = ['.$TodayMYPROFIT.'] , '.$time.'',
                 'smstype' => 'TEXT',
                 'sender' => 'IKTRUST',
