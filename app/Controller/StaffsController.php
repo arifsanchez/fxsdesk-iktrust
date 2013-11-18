@@ -2214,7 +2214,7 @@
 			$email->subject('[UPDATE] P/L Risk #'.$time);
 			$email->addHeaders(array('Tag' => 'Report'));
 
-			$body=__('<b>IK TRUST | Closed Trade Report</b><br/><br/>Overall (LOSS) = '.$TodayLOSS.'<br/>Overall (PROFIT) = '.$TodayPROFIT.'<br/><br/>IKtrust.my (LOSS) = '.$TodayMYLOSS.'<br/>IKtrust.my (PROFIT) = '.$TodayMYPROFIT.'<br/><br/>Today Closed Trade All = '.$TotalClosedAll.' , Today Closed Trade .my = '.$TotalClosedMY.);
+			$body=__('<b>IK TRUST | Closed Trade Report</b><br/><br/>Overall (LOSS) = '.$TodayLOSS.'<br/>Overall (PROFIT) = '.$TodayPROFIT.'<br/><br/>IKtrust.my (LOSS) = '.$TodayMYLOSS.'<br/>IKtrust.my (PROFIT) = '.$TodayMYPROFIT.'<br/><br/>Today Closed Trade All = '.$TotalClosedAll.' , Today Closed Trade .my = '.$TotalClosedMY.'');
 			#debug($body); die();
 
 			#sending email
