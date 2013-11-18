@@ -2214,7 +2214,7 @@
 			$email->subject('[UPDATE] P/L Risk #'.$time);
 			$email->addHeaders(array('Tag' => 'Report'));
 
-			$body=__('<b>IK TRUST | Closed Trade Report</b><br/><br/>Overall (LOSS) = '.$TodayLOSS.'<br/>Overall (PROFIT) = '.$TodayPROFIT.'<br/><br/>IKtrust.my (LOSS) = '.$TodayMYLOSS.'<br/>IKtrust.my (PROFIT) = '.$TodayMYPROFIT.'');
+			$body=__('<b>IK TRUST | Closed Trade Report</b><br/><br/>Overall (LOSS) = '.$TodayLOSS.'<br/>Overall (PROFIT) = '.$TodayPROFIT.'<br/><br/>IKtrust.my (LOSS) = '.$TodayMYLOSS.'<br/>IKtrust.my (PROFIT) = '.$TodayMYPROFIT.'<br/><br/>Today Closed Trade All = '.$TotalClosedAll.' , Today Closed Trade .my = '.$TotalClosedMY.);
 			#debug($body); die();
 
 			#sending email
@@ -2232,7 +2232,7 @@
                 'user' => 'instafx',
                 'pass' => 'instafx8000',
                 'msisdn' => '60136454002;60127181461;60192711461;60163050072;60123854983;60129746478',
-                'body' => '- IK TRUST Overall(L) = ['.$TodayLOSS.'] , Overall(P) = ['.$TodayPROFIT.'] , IKtrust.my(L) = ['.$TodayMYLOSS.'] , IKtrust.my(P) = ['.$TodayMYPROFIT.'] , '.$time.' , Today Closed All = ['.$TotalClosedAll.'] , Today Closed .my = ['.$TotalClosedMY.']',
+                'body' => '- IK TRUST Overall(L) = ['.$TodayLOSS.'] , Overall(P) = ['.$TodayPROFIT.'] , IKtrust.my(L) = ['.$TodayMYLOSS.'] , IKtrust.my(P) = ['.$TodayMYPROFIT.'] , Today Closed All = ['.$TotalClosedAll.'] , Today Closed .my = ['.$TotalClosedMY.'] '.$time.'',
                 'smstype' => 'TEXT',
                 'sender' => 'IKTRUST',
             ));
