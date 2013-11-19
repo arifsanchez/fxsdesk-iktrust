@@ -284,8 +284,8 @@ class Mt4User extends AppModel {
 		if($userEmail) {
 		$result = $this->find('all', array(
 			'conditions' =>array(
-				'EMAIL' => $userEmail,
-				'GROUP LIKE' => '%IK%'
+				'Mt4User.EMAIL' => $userEmail,
+				'Mt4User.GROUP LIKE' => '%IK%'
 			)
 		));
 		return $result;
@@ -303,8 +303,8 @@ class Mt4User extends AppModel {
 		if($partnertag) {
 		$result = $this->find('first', array(
 			'conditions' =>array(
-				'LOGIN' => $partnertag,
-				'GROUP LIKE' => '%manager%'
+				'Mt4User.LOGIN' => $partnertag,
+				'Mt4User.GROUP LIKE' => '%manager%'
 			)
 		));
 		return $result;
@@ -320,7 +320,7 @@ class Mt4User extends AppModel {
 	function kiraTotalAccs() {
 		$total = 0;
 		$total = $this->find('count', array(
-			'conditions' => array('GROUP LIKE' => '%IK%')
+			'conditions' => array('Mt4User.GROUP LIKE' => '%IK%')
 		));
 		return $total;
 	}
@@ -333,7 +333,7 @@ class Mt4User extends AppModel {
 	function kiraTotalAccsInactive() {
 		$total = 0;
 		$total = $this->find('count', array(
-			'conditions' => array('GROUP LIKE' => '%Z%')
+			'conditions' => array('Mt4User.GROUP LIKE' => '%Z%')
 		));
 		return $total;
 	}
@@ -347,7 +347,7 @@ class Mt4User extends AppModel {
 		$result ='';
 		$result = $this->find('count', array(
 			'conditions' =>array(
-				'GROUP LIKE' => '%Aff%'
+				'Mt4User.GROUP LIKE' => '%Aff%'
 			)
 		));
 		return $result;
@@ -392,8 +392,8 @@ class Mt4User extends AppModel {
 		$result ='';
 		$result = $this->find('count', array(
 			'conditions' =>array(
-				'EMAIL' => $email,
-				'GROUP LIKE' => '%IK%'
+				'Mt4User.EMAIL' => $email,
+				'Mt4User.GROUP LIKE' => '%IK%'
 			)
 		));
 		return $result;
@@ -408,8 +408,8 @@ class Mt4User extends AppModel {
 		$result ='';
 		$result = $this->find('count', array(
 			'conditions' =>array(
-				'EMAIL' => $email,
-				'GROUP LIKE' => '%Aff%'
+				'Mt4User.EMAIL' => $email,
+				'Mt4User.GROUP LIKE' => '%Aff%'
 			)
 		));
 		return $result;
@@ -453,8 +453,8 @@ class Mt4User extends AppModel {
 		$result ='';
 		$result = $this->find('count', array(
 			'conditions' =>array(
-				'AGENT_ACCOUNT' => $partnertag,
-				'GROUP LIKE' => '%Aff%'
+				'Mt4User.AGENT_ACCOUNT' => $partnertag,
+				'Mt4User.GROUP LIKE' => '%Aff%'
 			)
 		));
 		return $result;
@@ -469,8 +469,8 @@ class Mt4User extends AppModel {
 		$total = 0;
 		$total = $this->find('all', array(
 			'conditions' => array(
-				'GROUP LIKE' => '%IK%',
-				'ENABLE' => '1'
+				'Mt4User.GROUP LIKE' => '%IK%',
+				'Mt4User.ENABLE' => '1'
 			),
 			'fields' => array('sum(BALANCE) AS total')
 		));
@@ -486,8 +486,8 @@ class Mt4User extends AppModel {
 		$total = 0;
 		$total = $this->find('all', array(
 			'conditions' => array(
-				'GROUP LIKE' => '%IK%',
-				'ENABLE' => '1'
+				'Mt4User.GROUP LIKE' => '%IK%',
+				'Mt4User.ENABLE' => '1'
 			),
 			'fields' => array('sum(CREDIT) AS total')
 		));
@@ -500,7 +500,7 @@ class Mt4User extends AppModel {
 	public function listingDownline($affId=null){
 		$listDownline = $this->find('all', array(
 			'conditions' =>array(
-				'AGENT_ACCOUNT LIKE' => $affId,
+				'Mt4User.AGENT_ACCOUNT LIKE' => $affId,
 			)
 		));
 		return $listDownline;
@@ -512,14 +512,14 @@ class Mt4User extends AppModel {
 	public function bakiAcc($login=null){
 		$bakiAcc = $this->find('first', array(
 			'conditions' =>array(
-				'LOGIN LIKE' => $login,
+				'Mt4User.LOGIN LIKE' => $login,
 			),
 			'fields' => array(
-				'BALANCE',
-				'NAME',
-				'EMAIL',
-				'LEVERAGE',
-				'CREDIT'
+				'Mt4User.BALANCE',
+				'Mt4User.NAME',
+				'Mt4User.EMAIL',
+				'Mt4User.LEVERAGE',
+				'Mt4User.CREDIT'
 			)
 		));
 		return $bakiAcc;
@@ -532,7 +532,7 @@ class Mt4User extends AppModel {
 	public function tentangDiri($login=null){
 		$result = $this->find('first', array(
 			'conditions' =>array(
-				'LOGIN LIKE' => $login,
+				'Mt4User.LOGIN LIKE' => $login,
 			),
 			'fields' => array(
 				'NAME',

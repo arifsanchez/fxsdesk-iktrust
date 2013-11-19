@@ -427,12 +427,13 @@
 			$this->paginate = array(
 				'limit' => 35, 
 				'order'=> 'Mt4Trade.MODIFY_TIME DESC',
-				'recursive'=>0,
+				'recursive'=>-1,
 				'conditions' =>array(
-					'Mt4Trade.LOGIN LIKE' => $tracc_id,
+					'Mt4Trade.LOGIN' => $tracc_id,
 				)
 			);
 			$trades = $this->paginate('Mt4Trade');
+			#debug($trades); die();
 			$this->set('agentPost',$trades);
 
 			$bakiAcc = $this->Mt4User->tentangDiri($tracc_id);

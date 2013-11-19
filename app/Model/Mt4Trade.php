@@ -187,9 +187,9 @@ class Mt4Trade extends AppModel {
 		$time = "1970-01-01 00:00:00";
 		$total = $this->find('count', array(
 			'conditions' => array(
-        		'CLOSE_TIME' => $time,
-        		'LOGIN' => $login,
-        		'SYMBOL NOT' => '',
+        		'Mt4Trade.CLOSE_TIME' => $time,
+        		'Mt4Trade.LOGIN' => $login,
+        		'Mt4Trade.SYMBOL NOT' => '',
 
 	        ),
 		));
@@ -207,8 +207,8 @@ class Mt4Trade extends AppModel {
 		$total = $this->find('count', array(
 			'conditions' => array(
         		$tempoh,
-        		'LOGIN' => $login,
-        		'SYMBOL NOT' => ''
+        		'Mt4Trade.LOGIN' => $login,
+        		'Mt4Trade.SYMBOL NOT' => ''
 	        ),
 		));
 		return $total;
@@ -220,8 +220,8 @@ class Mt4Trade extends AppModel {
 	public function traderTradeVol($login=null){
 		$total = $this->find('all', array(
 			'conditions' => array(
-        		'LOGIN' => $login,
-        		'SYMBOL NOT' => ''
+        		'Mt4Trade.LOGIN' => $login,
+        		'Mt4Trade.SYMBOL NOT' => ''
 	        ),
 	        'fields' => array('sum(VOLUME) AS total')
 		));
